@@ -1,0 +1,4 @@
+.downloads/
+.venv/
+world/
+__pycache__/
