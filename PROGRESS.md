@@ -82,4 +82,5 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - Bedrock: convert with Chunker when the user is happy; check command blocks survive, cheats on.
 - Buildings: interiors/floors, doors, front gardens; churches (St Peter's) and landmarks by hand.
 - Animals in fields (sheep/cows as entities); ducks impossible without mods, swans are block-built.
-- Hedges along field edges (OSM barrier=hedge), garden fences (barrier=fence/wall).
+- (done) Hedges, walls, fences from OSM barrier lines (16.9k blocks).
+- 2026-11-16 Barriers: OSM hedges (2-high leaves), walls (cobblestone wall), fences (oak fence), gapped at roads, water, houses. Reinstalled + rezipped.

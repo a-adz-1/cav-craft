@@ -33,6 +33,7 @@ def setup(G, P, lidar):
     G["stamps"].append(swans(G, P))
     G["stamps"].extend(streets(G, P))
     G["stamps"].append(credits_sign(G, P))
+    G["stamps"].append(barriers(G, P))
     G["trees"] = find_trees(G, lidar["vom"])
     print("trees:", len(G["trees"]))
     G["stamps"].append(tree_stamp(G, P))
@@ -388,3 +389,32 @@ def credits_sign(G, P):
     G["block_entities"].setdefault((sx // 16, sz // 16), []).append(
         lock.sign_entity(sx, y, sz, ["Cavcraft", "© OpenStreetMap", "© Environment", "Agency, OGL v3"]))
     return block_stamp({(sx, y, sz): P("oak_sign", rotation=8)})
+
+
+# ---- hedges, walls and fences from OSM barrier lines -----------------------------------------
+
+def barriers(G, P):
+    osm = json.load(open("build/osm.json"))
+    kinds = {"hedge": (P("oak_leaves", persistent="true"), 2), "wall": (P("cobblestone_wall"), 1),
+             "fence": (P("oak_fence"), 1)}
+    Hh, Ww = G["mask"].shape
+    blocks = {}
+    for ln in osm["lines"]:
+        k = kinds.get(ln["tags"].get("barrier"))
+        if not k:
+            continue
+        blk, height = k
+        pts = np.array([xz(e, n) for e, n in ln["pts"]], float)
+        for a, b in zip(pts[:-1], pts[1:]):
+            L = max(1, int(np.hypot(*(b - a)) * 2))
+            for t in np.linspace(0, 1, L + 1):
+                x, z = (int(round(v)) for v in a + (b - a) * t)
+                if not (0 <= x < Ww and 0 <= z < Hh) or not G["mask"][z, x]:
+                    continue
+                if G["water"][z, x] != -999 or G["building"][z, x] or G["surface"][z, x] in (3, 4, 9):
+                    continue    # never across water, houses or roads (gaps where OSM crosses them)
+                g = int(G["ground"][z, x])
+                for dy in range(1, height + 1):
+                    blocks[(x, g + dy, z)] = blk
+    print("barrier blocks:", len(blocks))
+    return block_stamp(blocks)
