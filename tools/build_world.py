@@ -162,6 +162,8 @@ def make_chunk(cx, cz):
     b[:] = np.where(sub, SUB_LUT[s][None], b)
     b[:] = np.where(Y == g, TOP_LUT[s][None], b)
     b[(Y > g) & (Y <= w)] = WATER
+    if "sandy_bed" in G:
+        b[:] = np.where(get("sandy_bed", False)[None] & (Y == g), SAND, b)
     b[0] = BEDROCK
 
     # plants on top of open ground
@@ -228,6 +230,11 @@ def build_region(args):
                 chunks[(lx, lz)] = anvil.chunk_nbt(cx, cz, blk, P.entries, Y_MIN, G.get("block_entities", {}).get((cx, cz), []))
     if chunks:
         anvil.write_region(os.path.join(out, "region", f"r.{rx}.{rz}.mca"), chunks)
+    ents = {(cx - rx * 32, cz - rz * 32): {"DataVersion": anvil.DATA_VERSION, "Position": anvil.int_array([cx, cz]),
+                                           "Entities": e}
+            for (cx, cz), e in G.get("entities", {}).items() if cx // 32 == rx and cz // 32 == rz}
+    if ents:
+        anvil.write_region(os.path.join(out, "entities", f"r.{rx}.{rz}.mca"), ents)
     return len(chunks)
 
 
@@ -246,6 +253,7 @@ def main():
     if os.path.exists(out):
         shutil.rmtree(out)
     os.makedirs(os.path.join(out, "region"))
+    os.makedirs(os.path.join(out, "entities"))
     hgt, wid = layers["mask"].shape
     jobs = [(rx, rz, out) for rz in range(-(-hgt // 512)) for rx in range(-(-wid // 512))]
     with mp.get_context("fork").Pool(min(len(jobs), os.cpu_count())) as pool:

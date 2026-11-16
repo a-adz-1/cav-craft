@@ -21,6 +21,12 @@ def setup(G, P, lidar):
     z -= 40
     G["spawn"] = (x, int(G["ground"][z, x]) + 1, z)
 
+    bridge_setup(G, lidar)
+    import lock
+    lock.setup(G, P, json.load(open("build/levels.json")))
+    G["stamps"].append(beach(G, P))
+    G["stamps"].append(bridge_stamp(G, P))
+    G["stamps"].append(swans(G, P))
     G["trees"] = find_trees(G, lidar["vom"])
     print("trees:", len(G["trees"]))
     G["stamps"].append(tree_stamp(G, P))
@@ -92,3 +98,219 @@ def tree_stamp(G, P):
                 col = b[ys, lz, lx]
                 b[ys, lz, lx] = np.where((col == 0) | np.isin(col, leaves), logs[kind], col)
     return stamp
+
+
+# ---- bridges: decks at the DSM height along each OSM bridge way ----------------------------
+
+BRIDGE_WIDTH = {"primary": 11, "secondary": 10, "tertiary": 8, "residential": 6, "unclassified": 6,
+                "service": 4, "footway": 3, "cycleway": 4, "path": 3, "pedestrian": 4, "steps": 3}
+
+
+def bridge_setup(G, lidar):
+    from scipy import ndimage
+    dsm = np.nan_to_num(lidar["dsm"], nan=-999.0)
+    Hh, Ww = G["mask"].shape
+    deck = np.full((Hh, Ww), -999, np.int32)
+    kind = np.zeros((Hh, Ww), np.int8)
+    centre = np.zeros((Hh, Ww), bool)
+    for br in json.load(open("build/bridges.json")):
+        t = br["tags"]
+        hw = t.get("highway")
+        if hw not in BRIDGE_WIDTH:
+            continue
+        pts = np.array([xz(e, n) for e, n in br["pts"]], float)
+        seg = np.diff(pts, axis=0)
+        L = np.hypot(seg[:, 0], seg[:, 1])
+        samples = np.concatenate([pts[i] + seg[i] * np.linspace(0, 1, max(2, int(L[i] * 2)))[:, None]
+                                  for i in range(len(seg))])
+        si = np.round(samples).astype(int)
+        ok = (si[:, 0] >= 0) & (si[:, 0] < Ww) & (si[:, 1] >= 0) & (si[:, 1] < Hh)
+        if not ok.all() or not G["mask"][si[:, 1], si[:, 0]].any():
+            continue
+        # the deck is the low part of the DSM across the bridge (parapets, lamps and cars stick up)
+        w = BRIDGE_WIDTH[hw]
+        ys = []
+        for x, z in si:
+            win = dsm[max(0, z - 2):z + 3, max(0, x - 2):x + 3]
+            win = win[win > -999]
+            ys.append(np.percentile(win, 30) if win.size else -999)
+        ys = ndimage.median_filter(np.array(ys), size=15, mode="nearest")
+        ys = np.round(ys).astype(int)
+        r = w / 2
+        for (x, z), y in zip(samples, ys):
+            for dz in range(-int(r) - 1, int(r) + 2):
+                for dx in range(-int(r) - 1, int(r) + 2):
+                    if dx * dx + dz * dz <= r * r:
+                        X, Z = int(round(x + dx)), int(round(z + dz))
+                        if 0 <= X < Ww and 0 <= Z < Hh and y > deck[Z, X]:
+                            deck[Z, X] = y
+                            kind[Z, X] = 2 if hw in ("footway", "cycleway", "path", "pedestrian", "steps") else 1
+            centre[int(round(z)), int(round(x))] = True
+    # only where the deck is clear of the ground does it need building
+    deck[(deck <= G["ground"] + 1) | ~G["mask"]] = -999
+    inb = deck > -999
+    edge = inb & ~ndimage.binary_erosion(inb)
+    G.update(br_deck=deck, br_kind=kind, br_edge=edge)
+    print("bridge cells:", int(inb.sum()))
+
+
+def bridge_stamp(G, P):
+    road, foot, under = P("gray_concrete"), P("smooth_stone"), P("stone_bricks")
+    wall, rail = P("stone_brick_wall"), P("iron_bars")
+    Y_MIN = -64
+
+    def stamp(b, x0, z0, g, w, s, Y):
+        d = G["br_deck"][z0:z0 + 16, x0:x0 + 16]
+        if d.shape != (16, 16) or not (d > -999).any():
+            return
+        k = G["br_kind"][z0:z0 + 16, x0:x0 + 16]
+        e = G["br_edge"][z0:z0 + 16, x0:x0 + 16]
+        on = d > -999
+        top = np.where(k == 2, foot, road)
+        b[:] = np.where(on & (Y > d) & (Y <= d + 4), 0, b)     # headroom: no leaves on the road
+        b[:] = np.where(on & (Y == d), top[None], b)
+        b[:] = np.where(on & (Y >= d - 1) & (Y < d), under, b)
+        b[:] = np.where(on & e & (Y == d + 1), np.where(k == 2, rail, wall)[None], b)
+    return stamp
+
+
+# ---- swans on the Thames (block-built: no swan mob without mods) ---------------------------
+
+def swans(G, P, n=14):
+    from scipy import ndimage
+    water = G["water"] > -999
+    thames = water & (G["water"] >= 35) & (G["water"] <= 36)
+    dist = ndimage.distance_transform_edt(thames)
+    clear = (dist >= 8) & (G["br_deck"] == -999)
+    clear &= ndimage.binary_erosion(G["br_deck"] == -999, iterations=20)
+    zs, xs = np.nonzero(clear)
+    rng = np.random.default_rng(11)
+    picks = []
+    for i in rng.permutation(len(zs)):
+        x, z = xs[i], zs[i]
+        if all(abs(x - a) + abs(z - c) > 120 for a, c in picks):
+            picks.append((x, z))
+        if len(picks) >= n:
+            break
+    wool, beak, eye = P("white_wool"), P("orange_concrete"), P("black_concrete")
+    blocks = {}
+    for x, z in picks:
+        lvl = int(G["water"][z, x])
+        d = 1 if rng.random() < 0.5 else -1          # facing east or west
+        for k in range(3):
+            blocks[(x - d * k, lvl, z)] = wool       # body sits in the water
+        blocks[(x - d * 2, lvl + 1, z)] = wool       # tail
+        blocks[(x, lvl + 1, z)] = wool               # neck
+        blocks[(x, lvl + 2, z)] = wool               # head
+        blocks[(x + d, lvl + 2, z)] = beak
+        # a cygnet or two following some of them
+        if rng.random() < 0.5:
+            blocks[(x - d * 5, lvl, z)] = P("light_gray_wool")
+    print("swans:", len(picks))
+    return block_stamp(blocks)
+
+
+def block_stamp(blocks):
+    by_chunk = {}
+    for (x, y, z), blk in blocks.items():
+        by_chunk.setdefault((x // 16, z // 16), []).append((x, y, z, blk))
+
+    def stamp(b, x0, z0, g, w, s, Y):
+        for x, y, z, blk in by_chunk.get((x0 // 16, z0 // 16), ()):
+            b[y + 64, z - z0, x - x0] = blk
+    return stamp
+
+
+# ---- Caversham Lakes beach (as in docs/caversham-lakes-beach.webp) ----------------------
+
+BEACH_AT = (474040, 174700)   # NW shore of the island lake between the rowing lake and the Thames (BNG);
+BEACH_LAKE = (474095, 174635)  # a point in that lake. The user: the beach is on the river side of the lakes
+
+
+def beach(G, P):
+    from scipy import ndimage
+    px, pz = xz(*BEACH_AT)
+    water = G["water"] > -999
+    win = np.s_[pz - 250:pz + 250, px - 250:px + 250]
+    wz, wx = np.nonzero(water[win])
+    wz += pz - 250
+    wx += px - 250
+    # the shore point nearest the venue, on a lake (not the Thames)
+    lab, _ = ndimage.label(water)
+    lake = lab == lab[xz(*BEACH_LAKE)[::-1]]
+    land = G["mask"] & ~water
+    shore = lake & ndimage.binary_dilation(land)
+    sz, sx = np.nonzero(shore[win])
+    sz += pz - 250
+    sx += px - 250
+    i = np.argmin((sx - px) ** 2 + (sz - pz) ** 2)
+    cx, cz = int(sx[i]), int(sz[i])
+    lvl = int(G["water"][cz, cx])
+    Z, X = np.ogrid[:G["mask"].shape[0], :G["mask"].shape[1]]
+    near = (X - cx) ** 2 + (Z - cz) ** 2
+    sand = land & (near <= 35 ** 2)
+    shallow = lake & (near <= 35 ** 2) & (G["water"] == lvl)
+    d_land = ndimage.distance_transform_edt(~land)
+    d_water = ndimage.distance_transform_edt(~shallow)
+    # sand slopes gently down to the water and on out under it: 1 block per 6 m
+    G["ground"][sand] = np.minimum(G["ground"][sand], lvl + 1 + (d_water[sand] // 8).astype(np.int16))
+    G["surface"][sand] = 10   # sand
+    G["building"][sand] = 0
+    G["b_wall"][sand] = 0
+    G["ground"][shallow] = np.maximum(G["ground"][shallow], lvl - 1 - (d_land[shallow] // 6).astype(np.int16))
+    G["ground"][shallow] = np.minimum(G["ground"][shallow], lvl - 1)
+    G["sandy_bed"] = shallow
+    # props: loungers and parasols on the sand, huts at the back, a buoy rope round the swim area
+    rng = np.random.default_rng(5)
+    blocks = {}
+    lounger = P("smooth_quartz_slab")
+    pole = P("oak_fence")
+    canopies = [P("red_wool"), P("blue_wool"), P("yellow_wool"), P("white_wool"), P("lime_wool")]
+    zs, xs = np.nonzero(sand & (d_water <= 12) & (d_water >= 3))
+    placed = []
+    for k in rng.permutation(len(zs))[:400]:
+        x, z = int(xs[k]), int(zs[k])
+        if any(abs(x - a) < 5 and abs(z - c) < 5 for a, c in placed):
+            continue
+        placed.append((x, z))
+        y = int(G["ground"][z, x]) + 1
+        if len(placed) % 3:
+            blocks[(x, y, z)] = lounger
+            blocks[(x + 1, y, z)] = lounger
+        else:
+            blocks[(x, y, z)] = pole
+            blocks[(x, y + 1, z)] = pole
+            c = canopies[len(placed) % len(canopies)]
+            for dx in (-1, 0, 1):
+                for dz in (-1, 0, 1):
+                    blocks[(x + dx, y + 2, z + dz)] = c
+        if len(placed) >= 18:
+            break
+    zs, xs = np.nonzero(sand & (d_water >= 18) & (d_water <= 22))
+    huts = []
+    walls_c = [P("spruce_planks"), P("birch_planks"), P("cyan_terracotta"), P("orange_terracotta")]
+    for k in rng.permutation(len(zs)):
+        x, z = int(xs[k]), int(zs[k])
+        if any(abs(x - a) < 6 and abs(z - c) < 6 for a, c in huts):
+            continue
+        huts.append((x, z))
+        y = int(G["ground"][z, x])
+        wc = walls_c[len(huts) % len(walls_c)]
+        for dx in range(3):
+            for dz in range(3):
+                G["ground"][z + dz, x + dx] = y
+                for dy in range(1, 4):
+                    edge = dx in (0, 2) or dz in (0, 2)
+                    blocks[(x + dx, y + dy, z + dz)] = wc if edge and not (dx == 1 and dz == 0 and dy < 3) else 0
+                blocks[(x + dx, y + 4, z + dz)] = P("dark_oak_slab")
+        if len(huts) >= 4:
+            break
+    ring = shallow & (d_land >= 14) & (d_land < 15)
+    zs, xs = np.nonzero(ring)
+    buoys = [P("red_wool"), P("white_wool")]
+    for k, (x, z) in enumerate(zip(xs, zs)):
+        if k % 3 == 0:
+            blocks[(int(x), lvl, int(z))] = buoys[(k // 3) % 2]
+    print(f"beach at x {cx} z {cz} (level {lvl}): {int(sand.sum())} m² sand, {len(placed)} props, {len(huts)} huts")
+    G["beach_spot"] = (cx, lvl + 2, cz)
+    return block_stamp(blocks)

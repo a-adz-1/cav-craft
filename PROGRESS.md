@@ -15,10 +15,10 @@
 5. [x] Ground + surface blocks + water → Anvil region writer, top-down render check
 6. [x] Buildings from footprints + LiDAR heights
 7. [x] Trees from VOM
-8. [ ] Bridges, roads, paths detail
-9. [ ] Caversham Lakes beach (as in docs/caversham-lakes-beach.webp)
-9b. [ ] Block-built swans on the Thames (no mods)
-10. [ ] Working Caversham Lock (command blocks)
+8. [x] Bridges, roads, paths detail
+9. [x] Caversham Lakes beach (as in docs/caversham-lakes-beach.webp)
+9b. [x] Block-built swans on the Thames (no mods)
+10. [x] Working Caversham Lock (command blocks)
 11. [ ] Spawn, credits sign, level.dat polish
 12. [ ] (later, user's call) Bedrock conversion via Chunker
 
@@ -45,3 +45,16 @@
 - 2026-11-16 Trees: features.find_trees — one per VOM canopy peak (25.8k), real height + crown radius, oak/birch/
   spruce/dark oak, leaves persistent so they never decay.
 - Not yet verified in real Minecraft (needs the game run; user's Prism instance is 1.21.11 NeoForge).
+- 2026-11-16 Bridges: features.bridge_setup — OSM bridge ways get decks at the DSM height (30th percentile across
+  the deck, median-smoothed along it), stone brick walls / iron railings, headroom cleared. Caversham, Reading and
+  Christchurch bridges + island footbridges.
+- 2026-11-16 Water levels: water cut at OSM weirs + lock gates (Caversham Weir carried on to the north bank to
+  close the side channel). Thames 36.46 m above the weir → y 36, 35.35 m below → y 35 (build/levels.json).
+- 2026-11-16 Lock (tools/lock.py): chamber straightened east–west at the OSM lock, x 4043–4076, z 4164–4169,
+  starts full with the upper gate open. Two button lines on the south wall at x 4045, z 4172 ("Down to Reading
+  Bridge") and z 4176 ("Up to Caversham Bridge"): button → repeaters → 3 relays → command blocks (shut gate,
+  drain/fill top layer, open far gate) ~1.6 s apart. Commands are plain `fill` with no block states so Bedrock
+  can run them. Oak boat in the chamber (entities/ region file).
+- 2026-11-16 Swans: 14 block-built swans (white wool, orange beak) on open Thames water, some with a cygnet.
+- 2026-11-16 Beach: user says it's on the river side of the lakes → the island lake between the rowing lake and
+  the Thames (x≈6069 z≈3535). Sand down into shallow water, loungers, parasols, 4 huts, buoy rope.

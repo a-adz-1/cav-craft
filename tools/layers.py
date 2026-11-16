@@ -176,24 +176,56 @@ surface = np.asarray(surf).copy()
 water = water_all & mask
 level = np.full((H, W), -999, np.int16)
 lab, n = ndimage.label(water)
-weir = next(l for l in osm["lines"] if l["tags"].get("name") == "Caversham Weir")
-weir_col = int(np.mean([e for e, _ in weir["pts"]]) - E0)
 lock_poly = arr(raster([lock]))
+# cut the water at the weirs and lock gates; the Thames piece holding the west end is the upper reach
+cut = Image.new("L", (W, H), 0)
+cd = ImageDraw.Draw(cut)
+for ln in osm["lines"]:
+    if ln["tags"].get("waterway") in ("weir", "lock_gate", "dam"):
+        cd.line(px(ln["pts"]), fill=1, width=3)
+for nd in osm["nodes"]:
+    if nd["tags"].get("waterway") == "lock_gate":
+        x, y = px([nd["pt"]])[0]
+        cd.ellipse([x - 5, y - 5, x + 5, y + 5], fill=1)
+cuts = arr(cut)
+# OSM's Caversham Weir stops at an island; carry it straight on to the north bank so the side channel
+# past the islands is cut too (otherwise the upper reach leaks round it)
+weir = next(l for l in osm["lines"] if l["tags"].get("name") == "Caversham Weir")
+(wr, wc) = min((rc(p) for p in weir["pts"]), key=lambda t: t[0])
+r = wr - 1
+while r > 0 and not water[r, wc]:
+    r -= 1
+while r > 0 and water[r, wc]:
+    cuts[r, wc - 1:wc + 2] = True
+    r -= 1
+lab, n = ndimage.label(water & ~cuts & ~lock_poly)
+west = np.nonzero((lab > 0) & thames)
+up_label = lab[west[0][np.argmin(west[1])], west[1].min()]
+reach = {}
 for i in range(1, n + 1):
     body = lab == i
     if body.sum() < 4:
         continue
-    if (body & thames).any():
-        cols_idx = np.arange(W)[None, :]
-        # rows of the river west of the weir are the upper reach; east is the lower reach
-        up = body & (cols_idx < weir_col) & ~lock_poly
-        down = body & (cols_idx >= weir_col) & ~lock_poly
-        for part in (up, down):
-            if part.any():
-                level[part] = int(np.floor(np.nanpercentile(dtm[part], 20)))
-        level[body & lock_poly] = level[up].max()   # lock chamber starts full; the lock tool drains it
+    reach[i] = float(np.nanmedian(dtm[body]))
+up_level = reach[up_label]
+down_labels = [i for i in reach if i != up_label and (lab == i)[thames].any()]
+down_level = float(np.median([reach[i] for i in down_labels]))
+print(f"Thames above Caversham weir {up_level:.2f} m, below {down_level:.2f} m")
+UP = int(np.floor(up_level))
+DOWN = UP - max(1, int(round(up_level - down_level)))
+for i in reach:
+    if i == up_label:
+        level[lab == i] = UP
+    elif i in down_labels:
+        level[lab == i] = DOWN
     else:
-        level[body] = int(np.floor(np.nanpercentile(dtm[body], 20)))
+        level[lab == i] = int(np.floor(np.nanpercentile(dtm[lab == i], 20)))
+# the cut lines themselves: take the higher neighbouring level (weir crest / gate), lock chamber starts full
+gap = water & (level == -999)
+level[gap & lock_poly] = UP
+grown = ndimage.grey_dilation(level, size=5)
+level[gap & ~lock_poly] = grown[gap & ~lock_poly]
+G_LEVELS = {"up": UP, "down": DOWN}
 surface[water] = S["water"]
 
 ground = np.where(np.isfinite(dtm), np.round(dtm), 0).astype(np.int16)
@@ -226,6 +258,7 @@ building = np.asarray(bimg).astype(np.int32) * mask
 
 json.dump(buildings, open("build/buildings.json", "w"))
 json.dump([{"id": b["id"], "tags": b["tags"], "pts": b["pts"]} for b in bridges], open("build/bridges.json", "w"))
+json.dump(G_LEVELS, open("build/levels.json", "w"))
 np.savez_compressed(out, mask=mask, surface=surface, ground=ground, water=level, building=building,
                     box=np.array([E0, N0, E1, N1]))
 print("buildings:", len(buildings) - 1, "bridges:", len(bridges),
