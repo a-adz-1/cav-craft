@@ -9,8 +9,10 @@ Status: **not started** — this is the brief only.
 
 ## What's in the world
 
-- **All of Caversham**: Lower Caversham, Caversham centre, Caversham Heights,
-  Caversham Park, and **Caversham Lakes**.
+- **All of Caversham**, as outlined in red in [docs/area.png](docs/area.png):
+  Caversham Heights, Emmer Green, Caversham Park Village, Lower Caversham,
+  Caversham centre. Plus **Caversham Lakes**, which sit just outside that
+  line to the east (Henley Road side) — extend the boundary to take them in.
 - **The Thames**, with its bridges (Caversham Bridge, Reading Bridge, Christchurch
   footbridge), islands (Piper's, Fry's, View Island) and the Splitwater
   Caversham reach — so you can cross it.
@@ -42,9 +44,10 @@ mesh; here it's a full area, written out as a Minecraft world.
 
 ## Rough pipeline
 
-1. Draw the boundary: Caversham's edge on the north/east/west, the south
-   bank of the Thames plus a few metres on the south. Store it as a polygon
-   in BNG metres.
+1. Draw the boundary: the red line in `docs/area.png` (OSM likely has it as
+   an admin/suburb boundary — use that rather than tracing the picture),
+   pushed out to the south bank of the Thames plus a few metres, and out
+   east around Caversham Lakes. Store it as a polygon in BNG metres.
 2. Pull OSM for the box (Overpass), mosaic the EA tiles over it.
 3. Per 1 m column: ground height, surface block (from OSM landuse/highway/
    water tags), water level.
@@ -87,4 +90,3 @@ mesh; here it's a full area, written out as a Minecraft world.
 - Detail level for buildings: plain boxes with roofs, or try for windows/doors?
 - Where it's played: single-player, or a server (and if so, Java or Bedrock —
   Geyser lets Bedrock players join a Java server instead of converting)?
-- Does Emmer Green count as Caversham for this?
