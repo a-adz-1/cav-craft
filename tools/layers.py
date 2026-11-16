@@ -20,9 +20,7 @@ from scipy import ndimage
 
 from box import E0, N0, E1, N1
 
-SURFACE = ["void", "grass", "water", "road", "minor_road", "footway", "path", "track", "parking",
-           "paved", "sand", "farmland", "allotment", "sports", "tennis", "woodland", "scrub",
-           "cemetery", "railway", "rock", "wetland", "bridge"]
+from surfaces import SURFACE
 S = {n: i for i, n in enumerate(SURFACE)}
 W, H = E1 - E0, N1 - N0
 CAVERSHAM_NODE = "n718511450"
