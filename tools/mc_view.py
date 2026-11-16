@@ -4,8 +4,7 @@
     .venv/bin/python tools/mc_view.py world/Cavcraft out.png x y z yaw pitch
 
 Copies the world into the instance's saves as Cavcraft-test with the player placed (spectator) at x y z
-looking yaw/pitch, launches it, waits for the chunks to draw, screenshots the game's half of the screen
-(the right-hand monitor), then closes the game. Yaw: 0 south, 90 west, 180 north, -90 east.
+looking yaw/pitch, launches it, waits for the chunks to draw, screenshots the game's window, then closes the game. Yaw: 0 south, 90 west, 180 north, -90 east.
 """
 import gzip
 import os
@@ -40,11 +39,11 @@ else:
     sys.exit("game never joined the world")
 time.sleep(wait)
 raw = out + ".full.png"
-subprocess.run(["spectacle", "-b", "-n", "-f", "-o", raw], check=True)
+subprocess.run(["spectacle", "-b", "-n", "-a", "-o", raw], check=True)   # the game's window only
 subprocess.run(["pkill", "-f", "minecraft-1.21.11-client"])
 from PIL import Image
 im = Image.open(raw)
-im.crop((im.width // 2, 0, im.width, im.height)).save(out)   # the game's monitor only
+im.save(out)
 os.remove(raw)
 errs = [l for l in open(LOG, errors="ignore") if ("ERROR" in l or "Exception" in l) and "text2speech" not in l
         and "Narrator" not in l and "DragonFight" not in l]

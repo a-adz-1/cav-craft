@@ -84,3 +84,14 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - Animals in fields (sheep/cows as entities); ducks impossible without mods, swans are block-built.
 - (done) Hedges, walls, fences from OSM barrier lines (16.9k blocks).
 - 2026-11-16 Barriers: OSM hedges (2-high leaves), walls (cobblestone wall), fences (oak fence), gapped at roads, water, houses. Reinstalled + rezipped.
+- 2026-11-16 User: "have you walked through the whole of cav getting all the buildings like splitwater did for
+  Henley… as realistic as blocks can get", then "using all those tools, website APIs etc", "do it till the
+  tokens run out". Plan: survey (catalogue + Mapillary + Commons) → per-street styles → better house builder →
+  hand-built landmarks.
+- 2026-11-16 tools/survey.py catalogue → docs/buildings.csv: 9,634 buildings on 457 streets (street from
+  addr:street or nearest named road). Fixed duplicate buildings (closed ways were read twice).
+- 2026-11-16 tools/houses.py replaces the old building code: roof fitted per building to the DSM (flat /
+  hipped / gabled by best fit; 3401 hip, 4509 gable, 1713 flat), measured eave + ridge, stairs-block slopes,
+  gable walls up to the ridge, tinted-glass windows per storey, floors every 3 blocks, a front door on the side
+  nearest the street, a chimney on pitched houses, optional Tudor beams; materials from
+  docs/street_styles.json (survey) or defaults by kind. mc_view now captures the game window only.

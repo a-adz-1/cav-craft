@@ -39,7 +39,7 @@ def setup(G, P, levels):
     water[site] = -999
     surface[site] = paved
     G["building"][site] = 0
-    G["b_wall"][site] = 0
+    G["h_wall"][site] = 0
 
     def carve(xa, xb, za, zb, lvl):
         s = np.s_[za:zb + 1, xa:xb + 1]

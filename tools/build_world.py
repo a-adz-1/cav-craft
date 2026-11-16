@@ -61,78 +61,7 @@ PLANTS = {
     "wetland": [(0.3, P("short_grass"))],
 }
 
-WALLS_HOUSE = [P("bricks"), P("bricks"), P("bricks"), P("white_terracotta"), P("smooth_quartz"),
-               P("granite"), P("light_gray_terracotta")]
-ROOFS_HOUSE = [P("deepslate_tiles"), P("deepslate_tiles"), P("terracotta"), P("brown_terracotta"),
-               P("polished_blackstone")]
-WALLS_BIG = [P("light_gray_concrete"), P("white_concrete"), P("smooth_stone"), P("bricks"), P("cyan_terracotta")]
-ROOF_FLAT = P("gray_concrete")
-WALL_CHURCH, ROOF_CHURCH = P("stone_bricks"), P("deepslate_tiles")
-WALL_SHED, ROOF_SHED = P("spruce_planks"), P("dark_oak_planks")
-FLOOR = P("oak_planks")
-BIG = {"commercial", "industrial", "retail", "warehouse", "office", "school", "university", "college",
-       "hospital", "supermarket", "sports_centre", "civic", "public", "hotel", "apartments", "train_station"}
-CHURCH = {"church", "chapel", "cathedral"}
-SHED = {"shed", "garage", "garages", "hut", "cabin", "greenhouse", "carport", "boathouse"}
-
 G = {}   # globals shared with forked workers
-
-
-def prepare(layers, lidar, buildings):
-    """Whole-map arrays the chunk builder reads: building base/roof heights and materials."""
-    ground = layers["ground"].astype(np.int32)
-    bid = layers["building"]
-    n = len(buildings)
-    inb = bid > 0
-    sums = np.bincount(bid[inb], ground[inb], minlength=n)
-    counts = np.bincount(bid[inb], minlength=n)
-    base_of = np.zeros(n, np.int32)
-    base_of[counts > 0] = np.round(sums[counts > 0] / counts[counts > 0])
-    base = np.where(inb, base_of[bid], 0)
-
-    dsm = np.nan_to_num(lidar["dsm"], nan=0.0)
-    roof = np.where(inb, np.round(dsm).astype(np.int32), 0)
-    # tall, thin outliers (trees over a roof) are cut to the building's 90th percentile height
-    p90 = np.zeros(n, np.int32)
-    order = np.argsort(bid[inb], kind="stable")
-    hb = (roof[inb] - base[inb])[order]
-    ids = bid[inb][order]
-    starts = np.searchsorted(ids, np.arange(n))
-    ends = np.searchsorted(ids, np.arange(n), side="right")
-    for i in range(1, n):
-        if ends[i] > starts[i]:
-            p90[i] = int(np.percentile(hb[starts[i]:ends[i]], 90))
-    roof = np.where(inb, np.clip(roof, base + 3, base + np.maximum(p90[bid], 3)), 0)
-
-    wall_of = np.zeros(n, np.int32)
-    roof_of = np.zeros(n, np.int32)
-    flat_of = np.zeros(n, bool)
-    for i, b in enumerate(buildings):
-        if not b:
-            continue
-        t = b["tags"].get("building", "yes")
-        h = zlib.crc32(b["id"].encode()) & 0xffff
-        if t in CHURCH or b["tags"].get("amenity") == "place_of_worship":
-            wall_of[i], roof_of[i] = WALL_CHURCH, ROOF_CHURCH
-        elif t in SHED:
-            wall_of[i], roof_of[i] = WALL_SHED, ROOF_SHED
-        elif t in BIG or counts[i] > 600:
-            wall_of[i], roof_of[i], flat_of[i] = WALLS_BIG[h % len(WALLS_BIG)], ROOF_FLAT, True
-        else:
-            wall_of[i], roof_of[i] = WALLS_HOUSE[h % len(WALLS_HOUSE)], ROOFS_HOUSE[(h >> 4) % len(ROOFS_HOUSE)]
-    # big flat-roofed buildings: one roof height for the whole thing
-    flat = inb & flat_of[bid]
-    roof = np.where(flat, base + np.maximum(p90[bid], 3), roof)
-
-    # edge cells (a 4-neighbour is a different building or none) become walls
-    edge = np.zeros_like(inb)
-    shell = roof.copy()
-    for ax, sh in ((0, 1), (0, -1), (1, 1), (1, -1)):
-        nb = np.roll(bid, sh, ax)
-        edge |= inb & (nb != bid)
-        shell = np.minimum(shell, np.where(nb == bid, np.roll(roof, sh, ax), shell))
-    G.update(b_base=base, b_roof=roof, b_shell=shell, b_edge=edge,
-             b_wall=np.where(inb, wall_of[bid], 0), b_rooftop=np.where(inb, roof_of[bid], 0))
 
 
 def make_chunk(cx, cz):
@@ -182,22 +111,6 @@ def make_chunk(cx, cz):
     ok = (yy >= 0) & (yy < H)
     b[yy[ok], zz[ok], xx[ok]] = top[zz[ok], xx[ok]]
 
-    # buildings
-    bb = get("b_base")
-    inb = get("b_wall") > 0
-    if inb.any():
-        roof, shell, edge = get("b_roof"), get("b_shell"), get("b_edge", False)
-        wall, rooftop = get("b_wall"), get("b_rooftop")
-        above = (Y > bb) & inb
-        b[above & (Y <= roof)] = AIR                          # clear plants/terrain poking up inside
-        b[(Y <= bb) & (Y > g) & inb] = DIRT                   # fill under the floor where ground dips
-        b[(Y == bb) & inb] = FLOOR
-        walls = edge & inb
-        b[:] = np.where(walls & (Y > bb) & (Y < roof), wall[None], b)
-        window = walls & ((Y - bb) % 3 == 2) & (((np.arange(16)[None, :] + x0) + (np.arange(16)[:, None] + z0)) % 3 != 0)
-        b[window & (Y > bb) & (Y < roof - 1)] = GLASS
-        b[:] = np.where(inb & (Y >= np.minimum(shell, roof)) & (Y <= roof) & (Y > bb), rooftop[None], b)
-
     for stamp in G.get("stamps", []):
         stamp(b, x0, z0, g, w, s, Y)
 
@@ -246,9 +159,11 @@ def main():
     lidar = np.load("build/lidar.npz")
     buildings = json.load(open("build/buildings.json"))
     G.update(layers)
-    prepare(layers, lidar, buildings)
+    import houses
+    houses.prepare(G, P, layers, lidar, buildings)
     import features
     features.setup(G, P, lidar)
+    G["stamps"].insert(0, houses.stamp_factory(G, P))
     print(f"prepared in {time.time() - t0:.0f}s, palette {len(P.entries)}")
 
     if os.path.exists(out):

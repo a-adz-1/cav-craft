@@ -265,7 +265,7 @@ def beach(G, P):
     G["ground"][sand] = np.minimum(G["ground"][sand], lvl + 1 + (d_water[sand] // 8).astype(np.int16))
     G["surface"][sand] = 10   # sand
     G["building"][sand] = 0
-    G["b_wall"][sand] = 0
+    G["h_wall"][sand] = 0
     G["ground"][shallow] = np.maximum(G["ground"][shallow], lvl - 1 - (d_land[shallow] // 6).astype(np.int16))
     G["ground"][shallow] = np.minimum(G["ground"][shallow], lvl - 1)
     G["sandy_bed"] = shallow

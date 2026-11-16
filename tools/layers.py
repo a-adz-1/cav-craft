@@ -239,6 +239,7 @@ surface[~mask] = S["void"]
 bimg = Image.new("I", (W, H), 0)
 bd = ImageDraw.Draw(bimg)
 buildings = [None]
+seen_b = set()
 for a in areas + [{"id": ln["id"], "tags": ln["tags"], "rings": [ln["pts"]]} for ln in osm["lines"]
                    if ln["tags"].get("building") and ln["pts"][0] == ln["pts"][-1]]:
     t = a["tags"]
@@ -248,8 +249,9 @@ for a in areas + [{"id": ln["id"], "tags": ln["tags"], "rings": [ln["pts"]]} for
     cr, cc_ = rc(ring[0])
     if not (0 <= cr < H and 0 <= cc_ < W) or not mask[cr, cc_]:
         continue
-    if any(b and b["id"] == a["id"] for b in buildings[-3:]):
+    if a["id"] in seen_b:
         continue
+    seen_b.add(a["id"])
     buildings.append({"id": a["id"], "tags": {k: v for k, v in t.items() if not k.startswith(("name:", "ref:", "addr:"))}})
     bd.polygon(px(ring), fill=len(buildings) - 1)
     for inner in a["rings"][1:]:
