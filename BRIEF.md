@@ -74,7 +74,7 @@ mesh; here it's a full area, written out as a Minecraft world.
   levels. Pistons + water sources and sponges work in both editions but are
   fiddly; command blocks (`/fill` water ↔ air in layers, with a delay) are
   simpler and look like a real fill.
-- Controls: a lever or button on each gate, like the real lock keeper's panel.
+- Controls: a **button** at each end (and on the lock keeper's hut) that runs the whole cycle: close gates, fill or drain, open the far gates. The user asked for this.
 - Java and Bedrock redstone don't behave quite the same (piston timing,
   quasi-connectivity, command syntax) — test the lock in both after
   converting; it may need a Bedrock-specific version.
