@@ -108,3 +108,11 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
   2 m inside the walls, min 5.6 m for two-storey houses (bungalows lower); upper-floor windows; brick front walls
   (Victorian) and privet hedges (interwar) on the pavement edge, open lawns for 1960s estates; walls and fences
   now connect (were lone posts). Roofs: 5379 hipped, 2593 gabled, 1651 flat.
+- 2026-11-17 Landmarks (tools/landmarks.py, photos via tools/look.py <osm id>): St Peter's (flint, red clay tile,
+  battlemented tower with belfry openings, stone quoins), Caversham Library (red brick + Bath-stone bands, clock
+  tower with green copper cupola and bell), Caversham Baptist Church (red brick, buff bands, pyramid-capped
+  tower), Caversham Heights Methodist (red brick, spired corner tower), St John the Baptist, Caversham Park
+  mansion (pale stone, colonnade, balustrade). Churches get lancet windows, civic buildings tall mullioned ones.
+  Landmark roofs are gabled with the ridge taken below the tower's height. Reinstalled + rezipped.
+- Next: more landmarks (Caversham Court gazebo, Reading Rowing Club, Fox and Hounds, Prospect pub, schools,
+  Heights water tower), Caversham Park front, shopfronts on Church Street / Prospect Street / Bridge Street.

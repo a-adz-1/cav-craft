@@ -15,6 +15,8 @@ import zlib
 import numpy as np
 from scipy import ndimage
 
+import landmarks
+
 DIRS = {"north": (0, -1), "south": (0, 1), "east": (1, 0), "west": (-1, 0)}   # (dx, dz)
 OPP = {"north": "south", "south": "north", "east": "west", "west": "east"}
 
@@ -33,6 +35,7 @@ WALLS = {
     "white_render": "white_concrete", "cream_render": "smooth_sandstone", "pebbledash": "diorite",
     "stone": "stone_bricks", "concrete": "light_gray_concrete", "timber": "spruce_planks",
     "tile_hung": "red_terracotta", "glass": "light_blue_stained_glass", "flint": "andesite",
+    "sandstone": "smooth_sandstone",
 }
 DOORS = ["oak_door", "spruce_door", "dark_oak_door", "birch_door", "jungle_door"]
 
@@ -42,12 +45,12 @@ DEFAULT_STYLE = {"walls": ["red_brick", "red_brick", "white_render", "pebbledash
                  "roof": ["dark_tile", "slate", "brown_tile"], "tudor": 0.0}
 
 
-def fit_roof(rel, inside, edge, attached=None):
+def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95):
     """rel: DSM - floor (m) over the building's crop; returns (kind, eave, ridge, dist field)."""
     vals = rel[inside]
     if vals.size < 6:
         return "flat", 3, 3, np.zeros_like(rel)
-    ridge = float(np.percentile(vals, 95))
+    ridge = float(np.percentile(vals, ridge_pct))
     # eaves: a couple of metres in from the walls (the outline's edge cells often catch the ground beside it)
     d_in = ndimage.distance_transform_edt(inside)
     ring = inside & (d_in > 1.5) & (d_in <= 2.5)
@@ -68,6 +71,8 @@ def fit_roof(rel, inside, edge, attached=None):
     d_gab = np.where(region, half - np.abs(off), 0)
     if ridge - eave < 1.2 or vals.size > 900:
         return "flat", eave, ridge, d_hip
+    if force in ("hip", "gable"):
+        return force, eave, ridge, d_hip if force == "hip" else d_gab
     best = None
     for kind, d in (("hip", d_hip), ("gable", d_gab)):
         dm = d[inside].max()
@@ -113,6 +118,7 @@ def prepare(G, P, layers, lidar, buildings):
     roofmat = np.zeros((H, W), np.int32)
     edge_all = np.zeros((H, W), bool)
     floors_every = np.zeros((H, W), np.int8)
+    winstyle = np.zeros((H, W), np.int8)     # 0 houses (2x2), 1 lancets, 2 tall mullioned
     roadish = np.isin(surface, (3, 4, 5, 6, 9))
     stats = {"flat": 0, "hip": 0, "gable": 0}
     for i in range(1, n):
@@ -134,7 +140,13 @@ def prepare(G, P, layers, lidar, buildings):
         edge = inside & ~ndimage.binary_erosion(inside)
         # attached neighbours (semis, terraces) count as roof, not as outside: the roof runs over the party wall
         attached = (bid[z0:z1, x0:x1] > 0)
-        rkind, eave, ridge, d = fit_roof(rel, inside, edge, attached)
+        lm = landmarks.LANDMARKS.get(b["id"])
+        if lm and lm["roof"] != "flat":
+            # landmarks: gabled; a tower's height mustn't set the nave's ridge
+            rkind, eave, ridge, d = fit_roof(rel, inside, edge, attached, force=lm.get("roof_kind", "gable"),
+                                             ridge_pct=70 if "tower" in lm else 95)
+        else:
+            rkind, eave, ridge, d = fit_roof(rel, inside, edge, attached)
         stats[rkind] += 1
         h = zlib.crc32(b["id"].encode())
         st = styles.get(streets.get(b["id"].lstrip("wr"), ""), None) or styles.get(streets.get(b["id"], ""), None)
@@ -147,12 +159,18 @@ def prepare(G, P, layers, lidar, buildings):
         if kind in ("garage", "garages", "shed", "hut", "carport"):
             st = {"walls": ["red_brick", "concrete", "timber"], "roof": ["felt"], "tudor": 0}
             rkind = "flat" if rkind == "flat" or ridge - eave < 1.5 else rkind
+        if lm:
+            st = {"walls": [lm["walls"]], "roof": [lm["roof"]], "tudor": 0}
+            if lm["roof"] == "flat":
+                rkind = "flat"
+            elif rkind == "flat":
+                rkind = "gable"
         wname = st["walls"][h % len(st["walls"])]
         upper = st.get("upper") and ((h >> 13) % 100) < st.get("upper_p", 0.5) * 100
         uname = st["upper"][(h >> 17) % len(st["upper"])] if upper else None
         rname = st["roof"][(h >> 5) % len(st["roof"])]
         if rkind == "flat":
-            rname = "flat" if big else "felt"
+            rname = "flat" if big or lm else "felt"
         elif rname == "flat":
             rname = "slate"
         full, stair, slab = ROOFS[rname]
@@ -177,6 +195,22 @@ def prepare(G, P, layers, lidar, buildings):
                 for y in range(fl + 1, int(top[zl, xl])):
                     blocks.setdefault((x0 + xl, y, z0 + zl), P("bricks"))
         roofmat[sub] = np.where(inside, P(full), roofmat[sub])
+        church = kind in ("church", "chapel") or t.get("amenity") == "place_of_worship"
+        ws = {"lancet": 1, "tall": 2}.get(lm.get("windows")) if lm else (1 if church else 0)
+        if ws:
+            winstyle[sub] = np.where(inside, ws, winstyle[sub])
+        if lm:
+            landmarks.dressings(P, blocks, inside, edge, x0, z0, fl, top, lm)
+            if "tower" in lm:
+                pk = np.unravel_index(np.argmax(np.where(inside, rel, -99)), rel.shape)
+                landmarks.tower(P, blocks, inside, fl, fl + int(round(rel[pk])), (x0 + pk[1], z0 + pk[0]),
+                                lm["tower"], P(full), P(stair) if stair else None)
+            if lm.get("colonnade"):
+                landmarks.colonnade(P, blocks, inside, x0, z0, fl, ey, lm["colonnade"])
+            if lm.get("parapet"):
+                for zl, xl in zip(*np.nonzero(edge)):
+                    blocks[(x0 + xl, int(top[zl, xl]) + 1, z0 + zl)] = P(lm["parapet"], up="true")
+            print(f"landmark: {lm['name']} ({rkind} roof, eave {eave:.1f} m, ridge {ridge:.1f} m)")
         edge_all[sub] |= edge
         floors_every[sub] = np.where(inside, 3, floors_every[sub])
         # stairs on the slopes: facing the uphill side
@@ -241,7 +275,7 @@ def prepare(G, P, layers, lidar, buildings):
         same = np.roll(bid, sh, ax) == bid
         lo = np.where(same & (bid > 0), np.minimum(lo, np.roll(roofY, sh, ax).astype(np.int32) + 1), lo)
     lo = np.minimum(lo, roofY)
-    G.update(h_up=upmat, h_roof=roofY, h_base=base, h_wall=wallmat, h_rooftop=roofmat, h_edge=edge_all, h_lo=lo.astype(np.int16),
+    G.update(h_win=winstyle, h_up=upmat, h_roof=roofY, h_base=base, h_wall=wallmat, h_rooftop=roofmat, h_edge=edge_all, h_lo=lo.astype(np.int16),
              h_blocks=blocks)
 
 
@@ -277,7 +311,11 @@ def stamp_factory(G, P):
             b[:] = np.where((walls & (up > 0))[None] & (Y > fl + 3) & (Y < top), up[None], b)
             X = np.arange(16)[None, None, :] + x0
             Z = np.arange(16)[None, :, None] + z0
-            win = walls[None] & ((rel % 3 == 1) | (rel % 3 == 2)) & (((X + Z) % 4 == 1) | ((X + Z) % 4 == 2))
+            ws = G["h_win"][sl][None]
+            win = walls[None] & (ws == 0) & ((rel % 3 == 1) | (rel % 3 == 2)) & (((X + Z) % 4 == 1) | ((X + Z) % 4 == 2))
+            # churches: tall narrow lancets; civic: tall mullioned pairs
+            win |= walls[None] & (ws == 1) & (rel >= 2) & (rel <= 5) & ((X + Z) % 3 == 1)
+            win |= walls[None] & (ws == 2) & ((rel % 4 == 1) | (rel % 4 == 2) | (rel % 4 == 3)) & ((X + Z) % 3 != 0)
             b[:] = np.where(win & (Y > fl) & (Y < top) & ((b == wall[None]) | (b == up[None])), glass, b)
             lo = G["h_lo"][sl].astype(np.int32)
             b[:] = np.where(inb[None] & (Y >= lo) & (Y <= top), rooftop[None], b)
