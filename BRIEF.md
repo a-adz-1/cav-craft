@@ -13,6 +13,9 @@ Status: **not started** — this is the brief only.
   Caversham Heights, Emmer Green, Caversham Park Village, Lower Caversham,
   Caversham centre. Plus **Caversham Lakes**, which sit just outside that
   line to the east (Henley Road side) — extend the boundary to take them in.
+  Include their **beach** (sand down to the water); check OSM for
+  `natural=beach` / `leisure=beach_resort` there, else trace it from aerial
+  imagery.
 - **The Thames**, with its bridges (Caversham Bridge, Reading Bridge, Christchurch
   footbridge), islands (Piper's, Fry's, View Island) and the Splitwater
   Caversham reach — so you can cross it.
