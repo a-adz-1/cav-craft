@@ -58,3 +58,11 @@
 - 2026-11-16 Swans: 14 block-built swans (white wool, orange beak) on open Thames water, some with a cygnet.
 - 2026-11-16 Beach: user says it's on the river side of the lakes → the island lake between the rowing lake and
   the Thames (x≈6069 z≈3535). Sand down into shallow water, loungers, parasols, 4 huts, buoy rope.
+- 2026-11-16 VERIFIED IN REAL MINECRAFT: tools/mc_view.py copies the world into the user's Prism instance
+  (1.21.11 NeoForge) as saves/Cavcraft-test, places a spectator camera via level.dat Player, launches, screenshots
+  the game monitor, quits. World loads and upgrades from 1.21.1 cleanly (only a harmless "DragonFight missing"
+  log line). Spawn moved onto grass by Caversham Bridge (was in the river).
+- 2026-11-16 Lock tested: LOCK_TEST=down build puts a redstone block + scheduled tick on the Down line; in game
+  the repeaters fire, upper gate shuts with planks, lower gate opens. (Button presses themselves not tested —
+  no way to send input to the game from here.)
+- 2026-11-16 Trees: crowns were flat-topped and merged into sheets; now rounded with a patchy outer shell.

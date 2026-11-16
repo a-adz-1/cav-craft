@@ -17,8 +17,12 @@ def setup(G, P, lidar):
     # spawn on the north bank at Caversham Bridge
     br = [b for b in json.load(open("build/bridges.json")) if "Caversham Bridge" in (b["tags"].get("name"), b["tags"].get("bridge:name"))]
     e, n = np.mean([p for b in br for p in b["pts"]], axis=0)
-    x, z = xz(e, n)
-    z -= 40
+    # nearest open grass to the bridge's north end, facing the river
+    bx, bz = xz(e, n)
+    ok = G["mask"] & (G["water"] == -999) & (G["building"] == 0) & (G["surface"] == 1)
+    zz, xx = np.nonzero(ok[bz - 120:bz, bx - 60:bx + 60])
+    i = np.argmin((zz - 120 + 25) ** 2 + (xx - 60) ** 2)
+    x, z = int(xx[i] + bx - 60), int(zz[i] + bz - 120)
     G["spawn"] = (x, int(G["ground"][z, x]) + 1, z)
 
     bridge_setup(G, lidar)
@@ -84,10 +88,12 @@ def tree_stamp(G, P):
                 cone = (Y > gy + h * 0.25) & (Y <= gy + h) & (d <= r * (gy + h - Y) / (h * 0.75) + 0.5)
                 leaf = cone
             else:
-                cy = gy + h - r * 0.9
-                ry = max(r * 0.8, (h - 2) / 2) if h > 2 * r else r * 0.8
-                leaf = ((X - x) ** 2 + (Z - z) ** 2) / r ** 2 + (Y - cy) ** 2 / ry ** 2 <= 1.0
-                leaf &= Y <= gy + h
+                ry = max(2.0, min(r * 1.1, h * 0.35))
+                cy = gy + h - ry                    # crown top at the measured height, rounded not flat
+                q = ((X - x) ** 2 + (Z - z) ** 2) / r ** 2 + (Y - cy) ** 2 / ry ** 2
+                # ragged edge: the outer shell is patchy so neighbouring crowns don't merge into one sheet
+                noise = ((X * 73 + Y * 37 + Z * 151 + x * 7) % 10) / 10.0
+                leaf = (q <= 0.7) | ((q <= 1.0) & (noise < 0.6))
             put = leaf & (b == 0)
             b[put] = leaves[kind]
             if x0 <= x < x0 + 16 and z0 <= z < z0 + 16:

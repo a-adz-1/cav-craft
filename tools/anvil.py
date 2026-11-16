@@ -162,7 +162,7 @@ def section(y, ids, palette):
     return {"Y": Byte(y), "block_states": bs, "biomes": {"palette": ["minecraft:plains"]}}
 
 
-def chunk_nbt(cx, cz, blocks, palette, y_min=-64, block_entities=()):
+def chunk_nbt(cx, cz, blocks, palette, y_min=-64, block_entities=(), block_ticks=()):
     """blocks: (H, 16, 16) [y, z, x] palette indices from y_min upward; index 0 must be air."""
     sections = []
     for i in range(0, blocks.shape[0], 16):
@@ -175,7 +175,7 @@ def chunk_nbt(cx, cz, blocks, palette, y_min=-64, block_entities=()):
     return {
         "DataVersion": DATA_VERSION, "xPos": cx, "zPos": cz, "yPos": y_min // 16,
         "Status": "minecraft:full", "LastUpdate": Long(0), "InhabitedTime": Long(0), "isLightOn": Byte(0),
-        "sections": sections, "block_entities": list(block_entities), "block_ticks": [], "fluid_ticks": [],
+        "sections": sections, "block_entities": list(block_entities), "block_ticks": list(block_ticks), "fluid_ticks": [],
         "PostProcessing": [], "structures": {"starts": {}, "References": {}}, "Heightmaps": {},
     }
 
@@ -213,7 +213,8 @@ def read_chunk(path, lx, lz):
     return read_nbt(zlib.decompress(data[off + 5:off + 4 + n]))
 
 
-def write_level_dat(path, name, spawn, border_centre, border_size, seed=20261116):
+def write_level_dat(path, name, spawn, border_centre, border_size, seed=20261116, player=None):
+    """player: optional (x, y, z, yaw, pitch) to start the single player there, flying (for test views)."""
     void = {"type": "minecraft:flat", "settings": {"layers": [], "biome": "minecraft:plains",
                                                    "features": Byte(0), "lakes": Byte(0), "structure_overrides": []}}
     data = {
@@ -243,5 +244,13 @@ def write_level_dat(path, name, spawn, border_centre, border_size, seed=20261116
             },
         },
     }
+    if player:
+        x, y, z, yaw, pitch = player
+        data["Player"] = {"DataVersion": DATA_VERSION, "Pos": [float(x), float(y), float(z)],
+                          "Rotation": [Float(yaw), Float(pitch)], "Motion": [0.0, 0.0, 0.0],
+                          "Dimension": "minecraft:overworld", "playerGameType": 3, "Health": Float(20),
+                          "abilities": {"flying": Byte(1), "mayfly": Byte(1), "instabuild": Byte(0),
+                                        "invulnerable": Byte(1), "mayBuild": Byte(0),
+                                        "flySpeed": Float(0.05), "walkSpeed": Float(0.1)}}
     with gzip.open(path, "wb") as f:
         f.write(nbt_bytes({"Data": data}))

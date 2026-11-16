@@ -227,7 +227,8 @@ def build_region(args):
                 continue
             blk = make_chunk(cx, cz)
             if blk is not None:
-                chunks[(lx, lz)] = anvil.chunk_nbt(cx, cz, blk, P.entries, Y_MIN, G.get("block_entities", {}).get((cx, cz), []))
+                chunks[(lx, lz)] = anvil.chunk_nbt(cx, cz, blk, P.entries, Y_MIN, G.get("block_entities", {}).get((cx, cz), []),
+                                                 G.get("block_ticks", {}).get((cx, cz), []))
     if chunks:
         anvil.write_region(os.path.join(out, "region", f"r.{rx}.{rz}.mca"), chunks)
     ents = {(cx - rx * 32, cz - rz * 32): {"DataVersion": anvil.DATA_VERSION, "Position": anvil.int_array([cx, cz]),

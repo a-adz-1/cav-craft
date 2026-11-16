@@ -11,6 +11,7 @@ each switch on the command blocks beside them, ~1.6 s apart:
 Only commands written the same way in Java and Bedrock are used (fill with plain block names, no states),
 so the converted Bedrock world can run them too. Pressing a button twice does nothing harmful.
 """
+import os
 import uuid
 
 import numpy as np
@@ -97,6 +98,13 @@ def setup(G, P, levels):
                 blocks[(rx, y, z + dz)] = cmd
                 entities[(rx, y, z + dz)] = command_entity(rx, y, z + dz, c)
             rx += 1
+    if os.environ.get("LOCK_TEST") in ("down", "up"):
+        # test build: a redstone block in place of the button's block, and a scheduled tick on the first
+        # repeater so the line fires as soon as the chunk loads
+        z = 4172 if os.environ["LOCK_TEST"] == "down" else 4176
+        blocks[(4046, y, z)] = P("redstone_block")
+        G.setdefault("block_ticks", {}).setdefault((4047 // 16, z // 16), []).append(
+            {"i": "minecraft:repeater", "x": 4047, "y": y, "z": z, "t": 40, "p": 0})
     gate = {(GATE_DOWN, yy, zz): planks for yy in range(bed + 1, top + 1) for zz in range(Z0, Z1 + 1)}
     blocks.update(gate)
 
