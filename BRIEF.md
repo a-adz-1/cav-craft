@@ -15,7 +15,12 @@ Status: **not started** — this is the brief only.
   line to the east (Henley Road side) — extend the boundary to take them in.
   Include their **beach** (sand down to the water); check OSM for
   `natural=beach` / `leisure=beach_resort` there, else trace it from aerial
-  imagery.
+  imagery. It may have closed since — build it as it was in
+  [docs/caversham-lakes-beach.webp](docs/caversham-lakes-beach.webp) either
+  way: wide sand sloping gently into shallow water, a buoy rope marking the
+  swim area, sun loungers (white slabs/stairs) and parasols on the sand, a
+  row of wooden beach huts/kiosk at the back, trees around, a small footbridge
+  over the channel behind.
 - **The Thames**, with its bridges (Caversham Bridge, Reading Bridge, Christchurch
   footbridge), islands (Piper's, Fry's, View Island) and the Splitwater
   Caversham reach — so you can cross it.
