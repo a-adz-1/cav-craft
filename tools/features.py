@@ -31,6 +31,8 @@ def setup(G, P, lidar):
     G["stamps"].append(beach(G, P))
     G["stamps"].append(bridge_stamp(G, P))
     G["stamps"].append(swans(G, P))
+    G["stamps"].extend(streets(G, P))
+    G["stamps"].append(credits_sign(G, P))
     G["trees"] = find_trees(G, lidar["vom"])
     print("trees:", len(G["trees"]))
     G["stamps"].append(tree_stamp(G, P))
@@ -44,7 +46,7 @@ def find_trees(G, vom):
     v = np.nan_to_num(vom, nan=0.0)
     v = ndimage.gaussian_filter(v, 1.0)
     peak = (v == ndimage.maximum_filter(v, size=7)) & (v >= 3.0)
-    peak &= G["mask"] & (G["building"] == 0) & (G["water"] == -999)
+    peak &= G["mask"] & (G["building"] == 0) & (G["water"] == -999) & (G["surface"] != 10)   # no trees on the beach
     zs, xs = np.nonzero(peak)
     hs = v[zs, xs]
     # crown radius: how far the canopy stays above half the peak height, sampled on 8 rays
@@ -320,3 +322,69 @@ def beach(G, P):
     print(f"beach at x {cx} z {cz} (level {lvl}): {int(sand.sum())} m² sand, {len(placed)} props, {len(huts)} huts")
     G["beach_spot"] = (cx, lvl + 2, cz)
     return block_stamp(blocks)
+
+
+# ---- street detail: centre lines on main roads, lamp posts, credits sign at spawn ---------------
+
+MARKED = {"primary", "secondary", "tertiary"}
+LIT = {"primary": 9, "secondary": 8, "tertiary": 7, "residential": 6, "unclassified": 6}
+
+
+def streets(G, P):
+    osm = json.load(open("build/osm.json"))
+    Hh, Ww = G["mask"].shape
+    line_cells = np.zeros((Hh, Ww), bool)
+    blocks = {}
+    post, lamp = P("dark_oak_fence"), P("lantern")
+    road_cls = (3, 4)   # surfaces: road, minor_road
+    lamps = 0
+    for ln in osm["lines"]:
+        t = ln["tags"]
+        hw = t.get("highway")
+        if hw not in LIT or (t.get("bridge") not in (None, "no")) or t.get("tunnel") not in (None, "no"):
+            continue
+        pts = np.array([xz(e, n) for e, n in ln["pts"]], float)
+        walked = 0.0
+        for a, b in zip(pts[:-1], pts[1:]):
+            seg = b - a
+            L = float(np.hypot(*seg))
+            if L == 0:
+                continue
+            d = seg / L
+            normal = np.array([-d[1], d[0]])
+            for k in np.arange(0, L, 1.0):
+                p = a + d * k
+                x, z = int(round(p[0])), int(round(p[1]))
+                s = walked + k
+                if 0 <= x < Ww and 0 <= z < Hh and G["mask"][z, x]:
+                    if hw in MARKED and (s % 6) < 3 and G["surface"][z, x] in road_cls:
+                        line_cells[z, x] = True
+                    if s % 30 < 1:
+                        q = p + normal * (LIT[hw] / 2 + 1)
+                        lx, lz = int(round(q[0])), int(round(q[1]))
+                        if (0 <= lx < Ww and 0 <= lz < Hh and G["mask"][lz, lx] and G["water"][lz, lx] == -999
+                                and G["building"][lz, lx] == 0 and G["surface"][lz, lx] not in road_cls):
+                            g = int(G["ground"][lz, lx])
+                            for dy in (1, 2, 3):
+                                blocks[(lx, g + dy, lz)] = post
+                            blocks[(lx, g + 4, lz)] = lamp
+                            lamps += 1
+            walked += L
+    G["road_line"] = line_cells
+    white = P("white_concrete")
+
+    def stamp(b, x0, z0, g, w, s, Y):
+        m = G["road_line"][z0:z0 + 16, x0:x0 + 16]
+        if m.shape == (16, 16) and m.any():
+            b[:] = np.where(m[None] & (Y == g), white, b)
+    print("street lamps:", lamps, "centre-line cells:", int(line_cells.sum()))
+    return [stamp, block_stamp(blocks)]
+
+
+def credits_sign(G, P):
+    x, y, z = G["spawn"]
+    sx, sz = x + 2, z
+    import lock
+    G["block_entities"].setdefault((sx // 16, sz // 16), []).append(
+        lock.sign_entity(sx, y, sz, ["Cavcraft", "© OpenStreetMap", "© Environment", "Agency, OGL v3"]))
+    return block_stamp({(sx, y, sz): P("oak_sign", rotation=8)})

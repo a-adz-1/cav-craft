@@ -19,7 +19,7 @@
 9. [x] Caversham Lakes beach (as in docs/caversham-lakes-beach.webp)
 9b. [x] Block-built swans on the Thames (no mods)
 10. [x] Working Caversham Lock (command blocks)
-11. [ ] Spawn, credits sign, level.dat polish
+11. [x] Spawn, credits sign, level.dat polish
 12. [ ] (later, user's call) Bedrock conversion via Chunker
 
 ## Log
@@ -66,3 +66,20 @@
   the repeaters fire, upper gate shuts with planks, lower gate opens. (Button presses themselves not tested —
   no way to send input to the game from here.)
 - 2026-11-16 Trees: crowns were flat-topped and merged into sheets; now rounded with a patchy outer shell.
+- 2026-11-16 Street detail: dashed white centre lines on primary/secondary/tertiary roads, 3068 lamp posts
+  (dark oak fence + lantern) every 30 m beside lit roads, credits sign by the spawn. No trees on the beach.
+- 2026-11-16 Delivered: world/Cavcraft, build/Cavcraft.zip (32 MB), installed in the user's Prism instance
+  "1.21.11 Paper" as saves/Cavcraft. README.md says how to play/rebuild. Screenshots from the real game in
+  docs/screenshots/ (caversham-bridge, lakes-beach, street, overview).
+
+## Status for the morning
+Done: plan items 1–11. Verified in real Minecraft 1.21.11: loads clean, terrain/water/buildings/trees/bridges/
+beach/swans render, lock fires (via the test trigger).
+Not verified: pressing the lock buttons by hand (input can't be sent to the game from here); the "Up" line
+(same build as "Down"); lamps at night; anything in Bedrock (not converted yet, by request).
+
+## Ideas next
+- Bedrock: convert with Chunker when the user is happy; check command blocks survive, cheats on.
+- Buildings: interiors/floors, doors, front gardens; churches (St Peter's) and landmarks by hand.
+- Animals in fields (sheep/cows as entities); ducks impossible without mods, swans are block-built.
+- Hedges along field edges (OSM barrier=hedge), garden fences (barrier=fence/wall).
