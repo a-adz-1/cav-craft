@@ -95,3 +95,16 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
   gable walls up to the ridge, tinted-glass windows per storey, floors every 3 blocks, a front door on the side
   nearest the street, a chimney on pitched houses, optional Tudor beams; materials from
   docs/street_styles.json (survey) or defaults by kind. mc_view now captures the game window only.
+- 2026-11-17 Mapillary: indexed all 24,293 street photos in the area (.downloads/ref/mapillary_index.json);
+  survey.py sheets picks up to 6 photos per street that look at its houses → contact sheets; 99 of 457 streets
+  have usable photos (the rest, mostly closes in Emmer Green and Caversham Park Village, have no coverage).
+  tools/batch_sheets.py packs them 6 streets per image; all 17 batches looked at by eye.
+- 2026-11-17 Style families (docs/style_families.json): victorian_terrace, victorian_villa, cottage,
+  interwar_semi, interwar_detached, postwar_council, estate_6070, modern, town — walls, upper-storey render or
+  tile-hanging, roof material, Tudor gables, brick quoins. docs/street_survey.csv: 104 streets classified (93 from
+  photos, 11 from local knowledge, marked). tools/styles.py → docs/street_styles.json; unphotographed streets take
+  their nearest surveyed street's family.
+- 2026-11-17 Houses: semis/terraces share one roof across party walls (no more pyramid halves); eaves measured
+  2 m inside the walls, min 5.6 m for two-storey houses (bungalows lower); upper-floor windows; brick front walls
+  (Victorian) and privet hedges (interwar) on the pavement edge, open lawns for 1960s estates; walls and fences
+  now connect (were lone posts). Roofs: 5379 hipped, 2593 gabled, 1651 flat.

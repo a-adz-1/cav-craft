@@ -399,6 +399,7 @@ def barriers(G, P):
              "fence": (P("oak_fence"), 1)}
     Hh, Ww = G["mask"].shape
     blocks = {}
+    conn = {kinds["wall"][0]: {}, kinds["fence"][0]: {}}
     for ln in osm["lines"]:
         k = kinds.get(ln["tags"].get("barrier"))
         if not k:
@@ -415,6 +416,12 @@ def barriers(G, P):
                     continue    # never across water, houses or roads (gaps where OSM crosses them)
                 g = int(G["ground"][z, x])
                 for dy in range(1, height + 1):
-                    blocks[(x, g + dy, z)] = blk
+                    if blk in conn:
+                        conn[blk][(x, g + dy, z)] = True
+                    else:
+                        blocks[(x, g + dy, z)] = blk
+    import houses
+    blocks.update(houses.connect(conn[kinds["wall"][0]], "cobblestone_wall", P))
+    blocks.update(houses.connect(conn[kinds["fence"][0]], "oak_fence", P, wall=False))
     print("barrier blocks:", len(blocks))
     return block_stamp(blocks)

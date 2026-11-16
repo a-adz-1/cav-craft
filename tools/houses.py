@@ -42,23 +42,30 @@ DEFAULT_STYLE = {"walls": ["red_brick", "red_brick", "white_render", "pebbledash
                  "roof": ["dark_tile", "slate", "brown_tile"], "tudor": 0.0}
 
 
-def fit_roof(rel, inside, edge):
+def fit_roof(rel, inside, edge, attached=None):
     """rel: DSM - floor (m) over the building's crop; returns (kind, eave, ridge, dist field)."""
     vals = rel[inside]
     if vals.size < 6:
         return "flat", 3, 3, np.zeros_like(rel)
-    eave = float(np.percentile(rel[edge], 15)) if edge.any() else float(np.percentile(vals, 10))
     ridge = float(np.percentile(vals, 95))
-    eave = max(2.5, min(eave, ridge))
-    d_hip = ndimage.distance_transform_edt(inside)
-    zz, xx = np.nonzero(inside)
+    # eaves: a couple of metres in from the walls (the outline's edge cells often catch the ground beside it)
+    d_in = ndimage.distance_transform_edt(inside)
+    ring = inside & (d_in > 1.5) & (d_in <= 2.5)
+    eave = float(np.percentile(rel[ring], 25)) if ring.sum() > 3 else float(np.percentile(vals, 30))
+    # a house with a real upstairs has eaves at 4.5 m or more; only low ridges (bungalows) sit lower
+    eave = max(5.6 if ridge >= 7 else 2.5, min(eave, ridge))   # two storeys: walls to y+6, windows on both
+    region = inside | (attached if attached is not None else False)
+    lab, _ = ndimage.label(region)
+    region = lab == np.bincount(lab[inside]).argmax()
+    d_hip = ndimage.distance_transform_edt(np.pad(region, 1)) [1:-1, 1:-1]
+    zz, xx = np.nonzero(region)
     pts = np.stack([xx, zz], 1).astype(float)
     c = pts.mean(0)
     u, s, vt = np.linalg.svd(pts - c, full_matrices=False)
     minor = vt[1]
     off = (np.stack(np.meshgrid(np.arange(rel.shape[1]), np.arange(rel.shape[0])), -1) - c) @ minor
-    half = np.abs(off[inside]).max() + 0.5
-    d_gab = np.where(inside, half - np.abs(off), 0)
+    half = np.abs(off[region]).max() + 0.5
+    d_gab = np.where(region, half - np.abs(off), 0)
     if ridge - eave < 1.2 or vals.size > 900:
         return "flat", eave, ridge, d_hip
     best = None
@@ -102,6 +109,7 @@ def prepare(G, P, layers, lidar, buildings):
     base = np.zeros((H, W), np.int16)
     blocks = {}                              # (x, y, z) -> palette index (sparse extras: doors, chimneys, stairs)
     wallmat = np.zeros((H, W), np.int32)
+    upmat = np.zeros((H, W), np.int32)       # upper-storey wall material where it differs (render over brick)
     roofmat = np.zeros((H, W), np.int32)
     edge_all = np.zeros((H, W), bool)
     floors_every = np.zeros((H, W), np.int8)
@@ -115,8 +123,8 @@ def prepare(G, P, layers, lidar, buildings):
         t = b["tags"]
         kind = t.get("building", "yes")
         # crop with a 1-cell margin
-        z0, z1 = max(0, sl[0].start - 1), min(H, sl[0].stop + 1)
-        x0, x1 = max(0, sl[1].start - 1), min(W, sl[1].stop + 1)
+        z0, z1 = max(0, sl[0].start - 12), min(H, sl[0].stop + 12)
+        x0, x1 = max(0, sl[1].start - 12), min(W, sl[1].stop + 12)
         inside = bid[z0:z1, x0:x1] == i
         if inside.sum() < 4:
             continue
@@ -124,7 +132,9 @@ def prepare(G, P, layers, lidar, buildings):
         fl = int(round(g[inside].mean()))
         rel = dsm[z0:z1, x0:x1] - fl
         edge = inside & ~ndimage.binary_erosion(inside)
-        rkind, eave, ridge, d = fit_roof(rel, inside, edge)
+        # attached neighbours (semis, terraces) count as roof, not as outside: the roof runs over the party wall
+        attached = (bid[z0:z1, x0:x1] > 0)
+        rkind, eave, ridge, d = fit_roof(rel, inside, edge, attached)
         stats[rkind] += 1
         h = zlib.crc32(b["id"].encode())
         st = styles.get(streets.get(b["id"].lstrip("wr"), ""), None) or styles.get(streets.get(b["id"], ""), None)
@@ -138,9 +148,13 @@ def prepare(G, P, layers, lidar, buildings):
             st = {"walls": ["red_brick", "concrete", "timber"], "roof": ["felt"], "tudor": 0}
             rkind = "flat" if rkind == "flat" or ridge - eave < 1.5 else rkind
         wname = st["walls"][h % len(st["walls"])]
+        upper = st.get("upper") and ((h >> 13) % 100) < st.get("upper_p", 0.5) * 100
+        uname = st["upper"][(h >> 17) % len(st["upper"])] if upper else None
         rname = st["roof"][(h >> 5) % len(st["roof"])]
         if rkind == "flat":
             rname = "flat" if big else "felt"
+        elif rname == "flat":
+            rname = "slate"
         full, stair, slab = ROOFS[rname]
         ey = fl + max(3, int(round(eave)))
         ry = fl + max(3, int(round(ridge)))
@@ -153,6 +167,15 @@ def prepare(G, P, layers, lidar, buildings):
         roofY[sub] = np.where(inside, top, roofY[sub])
         base[sub] = np.where(inside, fl, base[sub])
         wallmat[sub] = np.where(inside, P(WALLS[wname]), wallmat[sub])
+        if uname and uname != wname:
+            upmat[sub] = np.where(inside, P(WALLS[uname]), upmat[sub])
+        # brick quoins on the corners of grey-brick and rendered houses
+        if wname in ("grey_brick", "white_render", "cream_render") and st.get("quoins", 0) > ((h >> 21) % 100) / 100:
+            corner = edge & (ndimage.convolve(inside.astype(int), np.ones((3, 3), int), mode="constant") <= 4)
+            zz, xx = np.nonzero(corner)
+            for zl, xl in zip(zz, xx):
+                for y in range(fl + 1, int(top[zl, xl])):
+                    blocks.setdefault((x0 + xl, y, z0 + zl), P("bricks"))
         roofmat[sub] = np.where(inside, P(full), roofmat[sub])
         edge_all[sub] |= edge
         floors_every[sub] = np.where(inside, 3, floors_every[sub])
@@ -187,9 +210,9 @@ def prepare(G, P, layers, lidar, buildings):
             ridge_cells = np.argwhere(inside & (top == top[inside].max()))
             if len(ridge_cells):
                 zl, xl = ridge_cells[0] if (h & 1) else ridge_cells[-1]
-                for y in range(int(top[zl, xl]) - 1, int(top[zl, xl]) + 3):
+                for y in range(int(top[zl, xl]) - 1, int(top[zl, xl]) + 2):
                     blocks[(x0 + xl, y, z0 + zl)] = P("bricks")
-                blocks[(x0 + xl, int(top[zl, xl]) + 3, z0 + zl)] = P("flower_pot")
+                blocks[(x0 + xl, int(top[zl, xl]) + 2, z0 + zl)] = P("flower_pot")
         # front door: the wall cell nearest a road/path, on the outside face
         if kind not in ("garage", "garages", "shed", "hut") and inside.sum() >= 12:
             rz, rx = np.nonzero(roadish[z0 - 15 if z0 >= 15 else 0:z1 + 15, x0 - 15 if x0 >= 15 else 0:x1 + 15])
@@ -210,13 +233,15 @@ def prepare(G, P, layers, lidar, buildings):
                         G.setdefault("doorsteps", []).append((X + dx, fl, Z + dz))
                         break
     print("roofs:", stats)
+    G["h_blocks"] = blocks
+    front_boundaries(G, P, bid, surface, buildings, styles, streets)
     # lowest roof block per cell: down to one above the lowest neighbour in the same building, so slopes are solid
     lo = roofY.astype(np.int32)
     for ax, sh in ((0, 1), (0, -1), (1, 1), (1, -1)):
         same = np.roll(bid, sh, ax) == bid
         lo = np.where(same & (bid > 0), np.minimum(lo, np.roll(roofY, sh, ax).astype(np.int32) + 1), lo)
     lo = np.minimum(lo, roofY)
-    G.update(h_roof=roofY, h_base=base, h_wall=wallmat, h_rooftop=roofmat, h_edge=edge_all, h_lo=lo.astype(np.int16),
+    G.update(h_up=upmat, h_roof=roofY, h_base=base, h_wall=wallmat, h_rooftop=roofmat, h_edge=edge_all, h_lo=lo.astype(np.int16),
              h_blocks=blocks)
 
 
@@ -248,13 +273,71 @@ def stamp_factory(G, P):
             b[:] = np.where(storey_floor[None] & (rel > 0) & (rel % 3 == 0) & (Y < top - 1), floor, b)
             walls = edge & inb
             b[:] = np.where(walls[None] & (Y > fl) & (Y < top), wall[None], b)
+            up = G["h_up"][sl]
+            b[:] = np.where((walls & (up > 0))[None] & (Y > fl + 3) & (Y < top), up[None], b)
             X = np.arange(16)[None, None, :] + x0
             Z = np.arange(16)[None, :, None] + z0
             win = walls[None] & ((rel % 3 == 1) | (rel % 3 == 2)) & (((X + Z) % 4 == 1) | ((X + Z) % 4 == 2))
-            b[:] = np.where(win & (Y > fl) & (Y < top - 1) & (b == wall[None]), glass, b)
+            b[:] = np.where(win & (Y > fl) & (Y < top) & ((b == wall[None]) | (b == up[None])), glass, b)
             lo = G["h_lo"][sl].astype(np.int32)
             b[:] = np.where(inb[None] & (Y >= lo) & (Y <= top), rooftop[None], b)
         for x, y, z, blk in by_chunk.get((x0 // 16, z0 // 16), ()):
             if 0 <= y + 64 < b.shape[0]:
                 b[y + 64, z - z0, x - x0] = blk
     return stamp
+
+
+FRONT = {"victorian_terrace": "wall", "victorian_villa": "wall", "cottage": "hedge", "interwar_semi": "hedge",
+         "interwar_detached": "hedge", "postwar_council": "hedge", "estate_6070": None, "modern": "wall",
+         "town": None}
+
+
+def front_boundaries(G, P, bid, surface, buildings, styles, streets):
+    """Front garden walls and hedges: on grass right beside the pavement or road, in front of houses, by family
+    (Victorian brick walls, interwar privet hedges, open-plan 1960s lawns)."""
+    road = np.isin(surface, (3, 4, 5))
+    grass = surface == 1
+    beside = grass & ndimage.binary_dilation(road) & (bid == 0)
+    d, (iz, ix) = ndimage.distance_transform_edt(bid == 0, return_indices=True)
+    near = beside & (d <= 14)
+    zz, xx = np.nonzero(near)
+    wall, cap = P("brick_wall"), None
+    hedge = P("oak_leaves", persistent="true")
+    blocks = G["h_blocks"]
+    ground = G["ground"]
+    n = 0
+    walls_at = {}
+    for z, x in zip(zz, xx):
+        b = buildings[bid[iz[z, x], ix[z, x]]]
+        if not b or b["tags"].get("building") not in HOUSE_KINDS:
+            continue
+        st = styles.get(streets.get(b["id"], ""), {})
+        kind = FRONT.get(st.get("family"), None)
+        if not kind or (x * 7 + z * 13) % 11 == 0:   # gaps for gates and drives
+            continue
+        g = int(ground[z, x])
+        if kind == "wall":
+            walls_at[(x, g + 1, z)] = True
+        else:
+            blocks.setdefault((x, g + 1, z), hedge)
+            blocks.setdefault((x, g + 2, z), hedge)
+        n += 1
+    for k, v in connect(walls_at, "brick_wall", P).items():
+        blocks.setdefault(k, v)
+    print("front garden walls/hedges:", n)
+
+
+def connect(cells, name, P, wall=True):
+    """Gives walls/fences their side connections (Minecraft draws a lone post otherwise)."""
+    out = {}
+    for (x, y, z) in cells:
+        sides = {}
+        for side, (dx, dz) in DIRS.items():
+            on = (x + dx, y, z + dz) in cells
+            sides[side] = ("low" if on else "none") if wall else ("true" if on else "false")
+        if wall:
+            straight = (sides["north"] == sides["south"] == "low" and sides["east"] == sides["west"] == "none") or \
+                       (sides["east"] == sides["west"] == "low" and sides["north"] == sides["south"] == "none")
+            sides["up"] = "false" if straight else "true"
+        out[(x, y, z)] = P(name, **sides)
+    return out
