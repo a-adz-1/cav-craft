@@ -119,6 +119,11 @@ LANDMARKS = {
     # red brick, flat roof, rows of arched windows, a tall glazed bay in the middle of the front
     "w136162171": {"name": "Environment Agency (Kings Meadow House)", "walls": "red_brick", "roof": "flat",
                    "dress": None, "windows": "tall", "band": 3, "glass_bay": "light_blue_stained_glass"},
+    # The Heights Primary School (2021, on Mapledurham Playing Fields; built after the LiDAR survey): a modern
+    # two-storey school, buff brick with tall window bands, flat roof, a glazed entrance; features.heights_school
+    # dresses the grounds
+    "w1062444336": {"name": "The Heights Primary School", "walls": "buff_brick", "roof": "flat", "dress": None,
+                    "windows": "tall", "band": 4, "glass_bay": "light_blue_stained_glass"},
     # Reading Bridge House: the tall white concrete office tower beside it, ribbon windows
     "w77508239": {"name": "Reading Bridge House", "walls": "white_render", "roof": "flat", "dress": None,
                   "windows": "tall", "shopfront": "white_concrete"},

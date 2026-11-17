@@ -145,6 +145,8 @@ for a in groups["sports"]:
 ROAD_WIDTH = {"motorway": 12, "trunk": 10, "primary": 9, "secondary": 8, "tertiary": 7,
               "unclassified": 6, "residential": 6, "living_street": 5, "service": 4,
               "motorway_link": 6, "trunk_link": 6, "primary_link": 6, "secondary_link": 6, "tertiary_link": 6}
+# the drive from Upper Woodcote Road down to The Heights Primary School: a proper two-way road with pavements
+SCHOOL_ROADS = {"w37000897": 6}
 PATH_WIDTH = {"footway": 2, "cycleway": 2, "path": 2, "bridleway": 2, "steps": 2, "track": 3, "pedestrian": 4}
 bridges = []
 for ln in osm["lines"]:
@@ -170,6 +172,8 @@ for ln in osm["lines"]:
         cls, w = "railway", 4
     else:
         continue
+    if ln["id"] in SCHOOL_ROADS:
+        cls, w = "road", SCHOOL_ROADS[ln["id"]]
     pts = px(ln["pts"])
     d.line(pts, fill=S[cls], width=w)
     for x, y in pts:
@@ -255,7 +259,7 @@ level[~water] = -999
 surface[~mask] = S["void"]
 
 HOUSEY = {"house", "semidetached_house", "detached", "terrace", "bungalow", "residential", "garage", "garages",
-          "shed", "yes", "cottage", "hut"}
+          "shed", "yes", "cottage", "hut", "school", "kindergarten", "retail", "commercial", "church", "pavilion"}
 
 
 def square_houses(ball):
@@ -263,7 +267,8 @@ def square_houses(ball):
     garage: outlines that share corners) turns about its own centre to the nearest right angle, so walls are
     flat instead of stair-stepped. Groups bigger than 1500 m2 (flats, schools) and non-house buildings keep
     their angle. Returns {id: turned outer ring}."""
-    cand = [a for a in ball if a["tags"].get("building") in HOUSEY and len(a["rings"]) == 1]
+    cand = list({a["id"]: a for a in ball[::-1]
+                 if a["tags"].get("building") in HOUSEY and len(a["rings"]) == 1}.values())   # each id once
     parent = {a["id"]: a["id"] for a in cand}
 
     def find(i):
@@ -343,7 +348,8 @@ for i, b in enumerate(buildings[1:], start=1):
     z0, x0 = lo[1], lo[0]
     sz, sx = slice(max(z0, 0), min(z0 + m.shape[0], H)), slice(max(x0, 0), min(x0 + m.shape[1], W))
     m = m[sz.start - z0:sz.stop - z0, sx.start - x0:sx.stop - x0]
-    building[sz, sx][m & (building[sz, sx] == 0)] = i
+    free = (building[sz, sx] == 0) & ~np.isin(surface[sz, sx], (S["road"], S["minor_road"], S["footway"]))
+    building[sz, sx][m & free] = i                # (never turned out into a road or pavement)
 building *= mask
 # address points (OSM often has the number on a node inside the house): give the number to that building
 for nd in osm["nodes"]:

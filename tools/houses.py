@@ -62,6 +62,8 @@ def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95, low=Fal
         eave, ridge = 2.5, min(ridge, 4.5)
     elif force is None and ridge < 2.5 and vals.size <= 300:
         force, eave, ridge = "gable", 5.6, 8.5   # built after the LiDAR survey: a plain two-storey house
+    elif force in (None, "flat") and ridge < 2.5:
+        return "flat", 7.5, 7.5, np.zeros_like(rel)   # a bigger building put up after the survey: two storeys, flat
     elif force is None:
         # tree canopy over a roof reads as a tall spike: no house roof rises more than 45 deg from its eaves,
         # and no ordinary house is taller than 13 m

@@ -63,6 +63,8 @@ def setup(G, P, lidar):
     river_boats(G)
     G["stamps"].append(barges(G, P))
     G["stamps"].append(cinema(G, P))
+    G["stamps"].append(heights_school(G, P))
+    G["stamps"].append(play_parks(G, P))
     G["stamps"].append(school_treasure(G, P))
     G["stamps"].append(xmas_centre(G, P))
     marina(G, P)
@@ -896,7 +898,7 @@ def christchurch_mast(G, P):
         blocks[(mx, y, mz)] = P("white_concrete")
     blocks[(mx, top + 1, mz)] = P("end_rod", facing="up")
     deck = G["br_deck"]
-    chain = P("chain", axis="y")
+    chain = P("iron_chain", axis="y")
     # anchor points: along the deck itself (it bends mid-river), walking out from the mast end
     ways = {b["id"]: [xz(*p) for p in b["pts"]] for b in br}
     path = []
@@ -1142,7 +1144,7 @@ def leisure(G, P):
                 blocks[(cx + dx, g + 5, cz)] = P("red_concrete")
             for dx in (-1, 1):
                 for y in (g + 3, g + 4):
-                    blocks[(cx + dx, y, cz)] = P("chain", axis="y")
+                    blocks[(cx + dx, y, cz)] = P("iron_chain", axis="y")
                 blocks[(cx + dx, g + 2, cz)] = P("oak_slab", type="top")
             sx, sz = cx + 5, cz
             for k in range(4):
@@ -1371,6 +1373,7 @@ def crossings(G, P):
     S = np.array(segs, float)
     d = S[:, 2:] - S[:, :2]
     blocks = {}
+    stripes = []
     zebras = signals = 0
     for nd in osm["nodes"]:
         t = nd["tags"]
@@ -1390,43 +1393,71 @@ def crossings(G, P):
             z, x = int(near[j][0] + max(0, z - 3)), int(near[j][1] + max(0, x - 3))
         tt = np.clip(((x - S[:, 0]) * d[:, 0] + (z - S[:, 1]) * d[:, 1]) / np.maximum((d ** 2).sum(1), 1e-9), 0, 1)
         k = int(np.argmin(np.hypot(S[:, 0] + tt * d[:, 0] - x, S[:, 1] + tt * d[:, 1] - z)))
+        # square to the block grid: the crossing runs along whichever axis is nearest across the road, so the
+        # stripes are clean straight bars, not a scatter of blocks at the road's angle
         ux, uz = d[k] / max(np.hypot(*d[k]), 1e-9)          # along the road
-        vx, vz = -uz, ux                                     # across it
+        ax_ = (1, 0) if abs(ux) >= abs(uz) else (0, 1)       # along, snapped
+        vx, vz = ax_[1], ax_[0]                              # across, snapped
         kerbs = []
         for sgn in (1, -1):                                  # walk out to each kerb
-            for r in range(1, 14):
-                cx, cz = int(round(x + vx * r * sgn)), int(round(z + vz * r * sgn))
+            for r in range(1, 16):
+                cx, cz = x + vx * r * sgn, z + vz * r * sgn
                 if not (0 <= cz < Hh and 0 <= cx < Ww) or not road[cz, cx]:
                     kerbs.append((cx, cz, r))
                     break
         if len(kerbs) < 2:
             continue
         if zebra:
-            for cz in range(max(0, z - 14), min(Hh, z + 15)):    # each road block: along/across the crossing
-                for cx in range(max(0, x - 14), min(Ww, x + 15)):
-                    a, c = (cx - x) * ux + (cz - z) * uz, (cx - x) * vx + (cz - z) * vz
-                    if road[cz, cx] and abs(a) <= 1.5 and -kerbs[1][2] < c < kerbs[0][2] and round(c) % 2 == 0:
-                        blocks[(cx, int(ground[cz, cx]), cz)] = P("white_concrete")
+            for c in range(-kerbs[1][2] + 1, kerbs[0][2]):   # kerb to kerb, alternating white and road
+                if (c + kerbs[1][2]) % 2 == 0:
+                    continue
+                for a in (-1, 0, 1):                         # 3 wide along the road
+                    cx, cz = x + vx * c + ax_[0] * a, z + vz * c + ax_[1] * a
+                    if 0 <= cz < Hh and 0 <= cx < Ww and road[cz, cx]:
+                        stripes.append((cx, int(ground[cz, cx]), cz))
+            for cx, cz, r in kerbs:                          # red tactile paving where it meets the pavement
+                for a in (-1, 0, 1):
+                    tx_, tz_ = cx + ax_[0] * a, cz + ax_[1] * a
+                    if 0 <= tz_ < Hh and 0 <= tx_ < Ww and s[tz_, tx_] in (5, 9) and not G["building"][tz_, tx_]:
+                        blocks[(tx_, int(ground[tz_, tx_]), tz_)] = P("red_terracotta")
             zebras += 1
         else:
             signals += 1
-        for cx, cz, _ in kerbs:
-            if not (0 <= cz < Hh and 0 <= cx < Ww) or G["building"][cz, cx] or G["water"][cz, cx] != -999:
+        for cx, cz, r in kerbs:
+            sx_, sz_ = cx, cz                                # the beacon stands just beside the crossing
+            sx_, sz_ = sx_ + ax_[0] * 2, sz_ + ax_[1] * 2
+            if not (0 <= sz_ < Hh and 0 <= sx_ < Ww) or G["building"][sz_, sx_] or G["water"][sz_, sx_] != -999 \
+                    or road[sz_, sx_]:
+                sx_, sz_ = cx, cz
+            if not (0 <= sz_ < Hh and 0 <= sx_ < Ww) or G["building"][sz_, sx_] or G["water"][sz_, sx_] != -999:
                 continue
-            g = int(ground[cz, cx])
+            g = int(ground[sz_, sx_])
             if zebra:
                 for dy in (1, 2, 3):
-                    blocks[(cx, g + dy, cz)] = P("polished_blackstone_wall" if dy % 2 else "diorite_wall", up="true",
-                                                 north="none", south="none", east="none", west="none")
-                blocks[(cx, g + 4, cz)] = P("shroomlight")
+                    blocks[(sx_, g + dy, sz_)] = P("polished_blackstone_wall" if dy % 2 else "diorite_wall", up="true",
+                                                   north="none", south="none", east="none", west="none")
+                blocks[(sx_, g + 4, sz_)] = P("shroomlight")
             else:
                 for dy in (1, 2):
-                    blocks[(cx, g + dy, cz)] = P("polished_blackstone_wall", up="true", north="none", south="none",
-                                                 east="none", west="none")
-                blocks[(cx, g + 3, cz)] = P("black_concrete")
-                blocks[(cx, g + 4, cz)] = P("black_concrete")
+                    blocks[(sx_, g + dy, sz_)] = P("polished_blackstone_wall", up="true", north="none", south="none",
+                                                   east="none", west="none")
+                blocks[(sx_, g + 3, sz_)] = P("black_concrete")
+                blocks[(sx_, g + 4, sz_)] = P("black_concrete")
     print(f"crossings: {zebras} zebras, {signals} signal poles pairs")
-    return block_stamp(blocks)
+    base = block_stamp(blocks)
+    white, wslab = P("white_concrete"), P("smooth_quartz_slab", type="bottom")
+    road_slab = P("polished_deepslate_slab", type="bottom")
+    by_chunk = {}
+    for x, y, z in stripes:
+        by_chunk.setdefault((x // 16, z // 16), []).append((x, y, z))
+
+    def stamp(b, x0, z0, gg, w, sh, Y):
+        base(b, x0, z0, gg, w, sh, Y)
+        for x, y, z in by_chunk.get((x0 // 16, z0 // 16), ()):
+            b[y + 64, z - z0, x - x0] = white
+            if b[y + 65, z - z0, x - x0] == road_slab:       # a ramp step under the crossing: paint it too
+                b[y + 65, z - z0, x - x0] = wslab
+    return stamp
 
 
 # ---- Caversham Lock island and View Island: lamps, benches, railings, a carved head ------------------------
@@ -2161,29 +2192,47 @@ def barges(G, P):
 
 # ---- small helpers shared by the Christmas extras ----------------------------------------------------------
 
-def area_mask(G, osm_id):
+def area_mask(G, osm_id, turn=None):
+    """The OSM area's cells; turn=(angle, centre) turns its outline first (as layers.square_houses does)."""
     from PIL import Image, ImageDraw
     osm = json.load(open("build/osm.json"))
     Hh, Ww = G["mask"].shape
     a = next(a for a in osm["areas"] if a["id"] == osm_id)
+    ring = np.array(a["rings"][0], float)
+    if turn:
+        th, c = turn
+        R = np.array([[np.cos(-th), -np.sin(-th)], [np.sin(-th), np.cos(-th)]])
+        ring = (ring - c) @ R.T + c
     img = Image.new("L", (Ww, Hh), 0)
-    ImageDraw.Draw(img).polygon([xz(*p) for p in a["rings"][0]], fill=1)
+    ImageDraw.Draw(img).polygon([xz(*p) for p in ring], fill=1)
     return np.asarray(img).astype(bool) & G["mask"]
+
+
+def ring_turn(osm_id):
+    """The quarter-turn angle and centre layers.square_houses uses to square this building's outline."""
+    osm = json.load(open("build/osm.json"))
+    r = np.array(next(a for a in osm["areas"] if a["id"] == osm_id)["rings"][0], float)
+    seg = np.diff(r, axis=0)
+    L = np.hypot(seg[:, 0], seg[:, 1])
+    ang = np.arctan2(seg[:, 1], seg[:, 0]) * 4
+    return np.arctan2((L * np.sin(ang)).sum(), (L * np.cos(ang)).sum()) / 4, r.mean(0)
 
 
 def open_spot(G, inside, w, d, target=None):
     """The w x d box of open ground (grass or paving, no building or water) inside `inside` nearest target."""
     ok = inside & (G["building"] == 0) & (G["water"] == -999) & np.isin(G["surface"], (1, 9, 13, 15))
     zs, xs = np.nonzero(inside)
+    if not len(zs):
+        return None
     tx, tz = target if target is not None else (xs.mean(), zs.mean())
-    best = None
-    for z in range(zs.min(), zs.max() - d + 1):
-        for x in range(xs.min(), xs.max() - w + 1):
-            if ok[z:z + d, x:x + w].all():
-                dist = (x + w / 2 - tx) ** 2 + (z + d / 2 - tz) ** 2
-                if best is None or dist < best[0]:
-                    best = (dist, x, z)
-    return best[1:] if best else None
+    z0, z1, x0, x1 = zs.min(), zs.max() + 1, xs.min(), xs.max() + 1
+    c = np.pad(ok[z0:z1, x0:x1].astype(np.int32), ((1, 0), (1, 0))).cumsum(0).cumsum(1)   # summed-area table
+    full = (c[d:, w:] - c[:-d, w:] - c[d:, :-w] + c[:-d, :-w]) == w * d
+    if not full.size or not full.any():
+        return None
+    bz, bx = np.nonzero(full)
+    k = np.argmin((bx + x0 + w / 2 - tx) ** 2 + (bz + z0 + d / 2 - tz) ** 2)
+    return int(bx[k] + x0), int(bz[k] + z0)
 
 
 def sign_post(G, P, blocks, x, y, z, rot, lines):
@@ -2209,6 +2258,270 @@ def xmas_tree(P, blocks, x, g, z, h=6, rng=None):
 
 
 # ---- the pop-up cinema at Caversham Court Gardens, lit at night -----------------------------------------
+
+# ---- The Heights Primary School grounds (the kids' school: a showcase) ---------------------------
+
+HEIGHTS = "w1314689827"           # the school grounds; the building is the w1062444336 landmark
+HEIGHTS_PITCH = "w1314689826"     # its multi-use games area (artificial turf)
+HEIGHTS_GATE = (1845, 2403)       # OSM's access=yes gate node on the footpath from the car park
+
+
+def heights_school(G, P):
+    """A green weldmesh fence round the grounds with a brick-pillared front gate and a name sign, a tarmac
+    playground round the building with hopscotch, a four-square court and a painted snake, the fenced games
+    court in green with white lines, lamp posts, and lights in and round the building so it isn't dark at night."""
+    from scipy import ndimage
+    from houses import connect
+    blocks = {}
+    gr = G["ground"]
+    turn = ring_turn("w1062444336")                               # the building is squared: square its grounds too
+    inside = area_mask(G, HEIGHTS, turn)
+    pitch = area_mask(G, HEIGHTS_PITCH, turn)
+    bld = inside & (G["building"] > 0)
+    walk = np.isin(G["surface"], (3, 4, 5, 6, 9))
+
+    def g(x, z):
+        return int(gr[z, x])
+    # boundary fence, 2 high, with gaps where paths cross and a 3-wide gate (on the boundary nearest OSM's gate)
+    edge = inside & ~ndimage.binary_erosion(inside) & ~bld
+    ez, ex = np.nonzero(edge)
+    j = np.argmin((ex - HEIGHTS_GATE[0]) ** 2 + (ez - HEIGHTS_GATE[1]) ** 2)
+    gx, gz = int(ex[j]), int(ez[j])
+    fence = set()
+    for z, x in zip(*np.nonzero(edge)):
+        if walk[z, x] or (abs(x - gx) <= 2 and abs(z - gz) <= 2):
+            continue
+        for y in (g(x, z) + 1, g(x, z) + 2):
+            fence.add((int(x), y, int(z)))
+    blocks.update(connect(fence, "iron_bars", P, wall=False))
+    # the gate: brick pillars with lanterns, the name on a sign facing the path
+    near = (np.abs(ex - gx) <= 4) & (np.abs(ez - gz) <= 4)
+    along_x = np.ptp(ex[near]) > np.ptp(ez[near])                     # an east-west fence: pillars along x
+    for k in (-2, 2):
+        px_, pz_ = (gx + k, gz) if along_x else (gx, gz + k)
+        for y in range(g(px_, pz_) + 1, g(px_, pz_) + 4):
+            blocks[(px_, y, pz_)] = P("bricks")
+        blocks[(px_, g(px_, pz_) + 4, pz_)] = P("lantern", hanging="false")
+    sx_, sz_ = (gx + 3, gz + 2) if along_x else (gx + 2, gz + 3)     # outside the gate, beside the path
+    sign_post(G, P, blocks, sx_, g(sx_, sz_) + 1, sz_, 12,
+              ["The Heights", "Primary School", "", "Welcome!"])
+    # tarmac playground: open ground within 9 m of the building, inside the fence
+    dist = ndimage.distance_transform_edt(~bld)
+    yard = inside & ~bld & ~pitch & (dist <= 9) & ~ndimage.binary_dilation(edge) & (G["water"] == -999)
+    for z, x in zip(*np.nonzero(yard)):
+        blocks[(int(x), g(x, z), int(z))] = P("gray_concrete")
+    G["surface"][yard] = 9
+    # markings on the yard: hopscotch, a four-square court and a snake, where they fit
+    ok = yard & ~ndimage.binary_dilation(walk & ~yard)
+    spot = open_spot(G, ok, 3, 10)
+    if spot:
+        x0, z0 = spot
+        cols = ["white_concrete", "yellow_concrete", "white_concrete", "yellow_concrete", "white_concrete"]
+        for k in range(5):                                            # 1-2-1-2-1... squares down the middle
+            z = z0 + 2 * k
+            row = [x0 + 1] if k % 2 == 0 else [x0, x0 + 2]
+            for x in row:
+                blocks[(x, g(x, z), z)] = P(cols[k])
+    spot = open_spot(G, ok, 7, 7)
+    if spot:
+        x0, z0 = spot
+        for d_ in range(7):
+            for x, z in ((x0 + d_, z0), (x0 + d_, z0 + 6), (x0, z0 + d_), (x0 + 6, z0 + d_),
+                         (x0 + 3, z0 + d_), (x0 + d_, z0 + 3)):
+                blocks[(x, g(x, z), z)] = P("white_concrete")
+    spot = open_spot(G, ok, 12, 3)
+    if spot:
+        x0, z0 = spot
+        snake = ["red_concrete", "orange_concrete", "yellow_concrete", "lime_concrete", "light_blue_concrete",
+                 "blue_concrete", "purple_concrete", "magenta_concrete"]
+        for k in range(12):
+            z = z0 + (0, 1, 2, 1)[k % 4]
+            blocks[(x0 + k, g(x0 + k, z), z)] = P(snake[k % len(snake)])
+    # games court: green surface, white lines round it and across the middle, a 3-high mesh fence
+    pe = pitch & ~ndimage.binary_erosion(pitch)
+    pin = ndimage.binary_erosion(pitch)
+    line = pin & ~ndimage.binary_erosion(pin)
+    zs, xs = np.nonzero(pitch)
+    mid_z = int(zs.mean())
+    for z, x in zip(*np.nonzero(pin)):
+        blocks[(int(x), g(x, z), int(z))] = P("white_concrete" if line[z, x] or z == mid_z else "green_concrete")
+    cz_, cx_ = np.nonzero(pe)
+    near = np.argmin(dist[cz_, cx_])                                  # the court gate: nearest the school
+    gate_c = (int(cx_[near]), int(cz_[near]))
+    cfence = set()
+    for z, x in zip(cz_, cx_):
+        if abs(x - gate_c[0]) <= 1 and abs(z - gate_c[1]) <= 1:
+            continue
+        for y in range(g(x, z) + 1, g(x, z) + 4):
+            cfence.add((int(x), y, int(z)))
+    blocks.update(connect(cfence, "iron_bars", P, wall=False))
+    # lamp posts round the yard every ~12 m, wall lights round the building, lit rooms inside
+    yz, yx = np.nonzero(yard & (dist >= 7))
+    lamps = []
+    for z, x in zip(yz, yx):
+        if all(abs(x - a) + abs(z - c) >= 12 for a, c in lamps):
+            lamps.append((int(x), int(z)))
+            for y in range(g(x, z) + 1, g(x, z) + 4):
+                blocks[(int(x), y, int(z))] = P("polished_blackstone_wall", up="true", north="none",
+                                                south="none", east="none", west="none")
+            blocks[(int(x), g(x, z) + 4, int(z))] = P("lantern", hanging="false")
+    ring = ~bld & ndimage.binary_dilation(bld) & inside
+    for z, x in zip(*np.nonzero(ring)):
+        if (x + z) % 6 == 0:
+            blocks.setdefault((int(x), g(x, z) + 3, int(z)), P("light", level=13))
+    core = ndimage.binary_erosion(bld, iterations=2)
+    fl = int(np.median(gr[bld]))
+    for z, x in zip(*np.nonzero(core)):
+        if x % 5 == 0 and z % 5 == 0:
+            blocks.setdefault((int(x), fl + 2, int(z)), P("light", level=14))
+            blocks.setdefault((int(x), fl + 5, int(z)), P("light", level=14))
+    # a primary school, not an office: coloured panels between the upper windows, a glazed entrance with a
+    # canopy, and the name over the door
+    hb = int(np.median(G["h_base"][bld]))
+    bedge = bld & ~ndimage.binary_erosion(bld)
+    colours = ["lime_concrete", "yellow_concrete", "light_blue_concrete", "orange_concrete"]
+    for z, x in zip(*np.nonzero(bedge)):
+        if (x + z) % 3 == 0 and ((x + z) // 3) % 2 == 0:
+            for y in range(hb + 5, hb + 8):
+                blocks[(int(x), y, int(z))] = P(colours[((x + z) // 6) % len(colours)])
+    door = min((d_ for d_ in G.get("doorsteps", []) if bld[max(0, d_[2] - 1):d_[2] + 2, max(0, d_[0] - 1):d_[0] + 2].any()),
+               key=lambda d_: abs(d_[0] - gx) + abs(d_[2] - gz), default=None)
+    if door:
+        ox, _, oz = door
+        wx, wz = next((ox + a, oz + c) for a, c in ((1, 0), (-1, 0), (0, 1), (0, -1)) if bld[oz + c, ox + a])
+        dx, dz = ox - wx, oz - wz                                    # outwards
+        lx, lz = dz, dx                                              # along the wall
+        facing = {(1, 0): "east", (-1, 0): "west", (0, 1): "south", (0, -1): "north"}[(dx, dz)]
+        rot = {"east": 12, "west": 4, "south": 0, "north": 8}[facing]
+        for k in (-2, -1, 1, 2):                                     # glazing either side of the door
+            for y in range(hb + 1, hb + 4):
+                blocks[(wx + lx * k, y, wz + lz * k)] = P("light_blue_stained_glass")
+        for k in range(-3, 4):                                       # canopy on the front, fascia above it
+            for o in (1, 2):
+                blocks[(wx + lx * k + dx * o, hb + 4, wz + lz * k + dz * o)] = P("smooth_stone_slab", type="top")
+            blocks[(wx + lx * k, hb + 5, wz + lz * k)] = P("white_concrete")
+        for k, word in zip((-1, 0, 1), ("THE HEIGHTS", "PRIMARY", "SCHOOL")):
+            sx_, sz_ = wx + lx * k + dx, wz + lz * k + dz
+            blocks[(sx_, hb + 5, sz_)] = P("oak_wall_sign", facing=facing)
+            G["block_entities"].setdefault((sx_ // 16, sz_ // 16), []).append(
+                __import__("lock").sign_entity(int(sx_), hb + 5, int(sz_), ["", word]))
+        for k in (-4, 4):                                            # lamp posts either side of the entrance
+            for y in (hb + 1, hb + 2):
+                blocks[(wx + lx * k + dx, y, wz + lz * k + dz)] = P("polished_blackstone_wall", up="true",
+                                                                    north="none", south="none", east="none", west="none")
+            blocks[(wx + lx * k + dx, hb + 3, wz + lz * k + dz)] = P("lantern", hanging="false")
+    zs, xs = np.nonzero(yard | pitch)
+    G.setdefault("no_trees", []).append((int(xs.min()), int(zs.min()), int(xs.max()), int(zs.max())))
+    print(f"Heights school: fence {len(fence)}, yard {int(yard.sum())} cells, lamps {len(lamps)}")
+    return block_stamp(blocks)
+
+
+# ---- play parks: every mapped playground, and one in each park that has none ---------------------
+
+def play_kit(G, P, blocks, x0, z0, name, rng):
+    """A 14 x 10 fenced play area at (x0, z0): swings, a slide off a little tower, a climbing frame, a
+    roundabout, benches, safety matting, a lamp and a sign at the gate (gate in the middle of the south side)."""
+    from houses import connect
+    gr = G["ground"]
+    g = int(np.median(gr[z0:z0 + 10, x0:x0 + 14]))
+    for z in range(z0, z0 + 10):                                      # level floor: bark round the edge, mats
+        for x in range(x0, x0 + 14):
+            for y in range(g + 1, g + 7):
+                blocks[(x, y, z)] = P("air")
+            blocks[(x, g, z)] = P("grass_block")
+            for y in range(int(gr[z, x]) + 1, g + 1):
+                blocks[(x, y, z)] = P("dirt") if y < g else P("grass_block")
+    for z, x in [(z, x) for z in range(z0 + 1, z0 + 5) for x in range(x0 + 1, x0 + 13)] + \
+            [(z, x) for z in range(z0 + 6, z0 + 9) for x in range(x0 + 1, x0 + 7)]:
+        blocks[(x, g, z)] = P("green_concrete" if (x + z) % 2 else "lime_concrete")   # rubber safety tiles
+    fence = {(x, g + 1, z) for x in range(x0, x0 + 14) for z in (z0, z0 + 9)} | \
+            {(x, g + 1, z) for z in range(z0, z0 + 10) for x in (x0, x0 + 13)}
+    fence -= {(x0 + 6, g + 1, z0 + 9), (x0 + 7, g + 1, z0 + 9)}      # the gate
+    blocks.update(connect(fence, "dark_oak_fence", P, wall=False))
+    # swings: an A-frame of posts with a beam, two seats on chains
+    for x in (x0 + 1, x0 + 5):
+        for y in range(g + 1, g + 5):
+            blocks[(x, y, z0 + 2)] = P("red_concrete")
+    for x in range(x0 + 1, x0 + 6):
+        blocks[(x, g + 5, z0 + 2)] = P("red_concrete")
+    for x in (x0 + 2, x0 + 4):
+        for y in (g + 3, g + 4):
+            blocks[(x, y, z0 + 2)] = P("iron_chain", axis="y")
+        blocks[(x, g + 2, z0 + 2)] = P("dark_oak_trapdoor", facing="north", half="top", open="false")
+    # slide: steps up to a roofed tower, a chute down the far side
+    tx = x0 + 8
+    for x in (tx, tx + 1):
+        for z in (z0 + 1, z0 + 2):
+            for y in range(g + 1, g + 6):
+                if y != g + 3 and (y >= g + 5 or (x, z) in ((tx, z0 + 1), (tx + 1, z0 + 2), (tx, z0 + 2), (tx + 1, z0 + 1))):
+                    blocks[(x, y, z)] = P("yellow_concrete") if y == g + 5 else P("spruce_fence")
+            blocks[(x, g + 3, z)] = P("spruce_slab", type="bottom")
+            blocks[(x, g + 1, z)] = P("air")
+            blocks[(x, g + 2, z)] = P("air")
+    blocks[(tx, g + 1, z0 + 3)] = P("spruce_stairs", facing="north", half="bottom", shape="straight")
+    blocks[(tx, g + 2, z0 + 3)] = P("air")
+    blocks[(tx, g + 2, z0 + 2)] = P("spruce_stairs", facing="north", half="bottom", shape="straight")
+    for k, (y, half) in enumerate(((g + 3, "bottom"), (g + 2, "top"), (g + 2, "bottom"), (g + 1, "top"))):
+        blocks[(tx + 2 + k, y, z0 + 1)] = P("smooth_quartz_slab", type=half)
+    # climbing frame: a scaffolding cube with a red top
+    for x in range(x0 + 1, x0 + 4):
+        for z in range(z0 + 6, z0 + 9):
+            for y in range(g + 1, g + 4):
+                blocks[(x, y, z)] = P("scaffolding", distance="0", bottom="false", waterlogged="false")
+    # roundabout: a low red-and-yellow disc round a post
+    for dx in (-1, 0, 1):
+        for dz in (-1, 0, 1):
+            blocks[(x0 + 6 + dx, g + 1, z0 + 7 + dz)] = P("cut_red_sandstone_slab" if (dx + dz) % 2 else
+                                                          "smooth_sandstone_slab", type="bottom")
+    blocks[(x0 + 6, g + 2, z0 + 7)] = P("lightning_rod", facing="up")
+    # benches for the grown-ups, a lamp post and the sign by the gate
+    for x in (x0 + 10, x0 + 11):
+        blocks[(x, g + 1, z0 + 8)] = P("spruce_stairs", facing="south", half="bottom", shape="straight")
+    for y in range(g + 1, g + 4):
+        blocks[(x0 + 12, y, z0 + 6)] = P("polished_blackstone_wall", up="true", north="none", south="none",
+                                         east="none", west="none")
+    blocks[(x0 + 12, g + 4, z0 + 6)] = P("lantern", hanging="false")
+    blocks[(x0 + 9, g + 2, z0 + 6)] = P("light", level=12)
+    sign_post(G, P, blocks, x0 + 5, g + 1, z0 + 10, 0, [name[:15] if name else "Play Area", "Play Area" if name else "",
+                                                     "Under 12s", "Please shut the gate"])
+    G.setdefault("no_trees", []).append((x0 - 1, z0 - 1, x0 + 15, z0 + 12))
+
+
+def play_parks(G, P):
+    osm = json.load(open("build/osm.json"))
+    blocks = {}
+    rng = np.random.default_rng(3)
+    Hh, Ww = G["mask"].shape
+    placed = []
+    pgs = [a for a in osm["areas"] if a["tags"].get("leisure") == "playground"]
+    parks = [a for a in osm["areas"] if a["tags"].get("leisure") in ("park", "recreation_ground")
+             or a["tags"].get("landuse") == "recreation_ground"]
+    from PIL import Image, ImageDraw
+
+    def poly(a):
+        img = Image.new("L", (Ww, Hh), 0)
+        ImageDraw.Draw(img).polygon([xz(*p) for p in a["rings"][0]], fill=1)
+        return np.asarray(img).astype(bool) & G["mask"]
+    for a in pgs + parks:
+        m = poly(a)
+        if m.sum() < (60 if a in pgs else 3000):
+            continue
+        zs, xs = np.nonzero(m)
+        cx, cz = xs.mean(), zs.mean()
+        if a not in pgs and any(abs(cx - p[0]) < 120 and abs(cz - p[1]) < 120 for p in placed):
+            continue                                                  # a park whose playground is already built
+        if a in pgs:                                                  # let the kit spill a little past small ones
+            from scipy import ndimage
+            m = ndimage.binary_dilation(m, iterations=4) & G["mask"]
+        spot = open_spot(G, m & ~np.isin(G["surface"], (3, 4, 5, 6, 9)), 14, 12, (cx, cz))
+        if spot is None:
+            continue
+        play_kit(G, P, blocks, spot[0], spot[1], a["tags"].get("name") or "", rng)
+        placed.append((cx, cz))
+        print("play park:", a["tags"].get("name") or a["id"], spot)
+    print("play parks:", len(placed))
+    return block_stamp(blocks)
+
 
 def cinema(G, P):
     """An outdoor cinema on the lawn (from the user's photo): a big black inflatable screen whose face glows
@@ -2351,7 +2664,7 @@ def xmas_centre(G, P):
                     q = (p0 + (p1 - p0) * k / n).round().astype(int)
                     sag = int(round(1.2 * np.sin(np.pi * k / n)))  # the string droops in the middle
                     if k % 2:
-                        blocks[(int(q[0]), y - sag, int(q[1]))] = P("chain", axis=axis)
+                        blocks[(int(q[0]), y - sag, int(q[1]))] = P("iron_chain", axis=axis)
                     else:
                         c_ = colours[(k // 2) % len(colours)]
                         blocks[(int(q[0]), y - sag, int(q[1]))] = P(c_, axis="y") if "froglight" in c_ else P(c_)

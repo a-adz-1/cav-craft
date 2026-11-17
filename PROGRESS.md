@@ -288,3 +288,16 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
   - Sealed doors: a front door only goes in a straight wall cell (one outside face, wall either side, a room behind), because on a stair-stepped corner you could walk round a closed door. 27 doors checked on Kidmore Road: none has a gap beside it.
   - No flowers or shrubs within 2 blocks of a doorstep.
   - House numbers: buildings.json keeps addr: tags, and address points inside a building pass their number to it (5,377 numbered). A dark oak plaque with the number hangs on the wall beside each front door (5,262 placed). Houses with no number in OSM have none.
+- 2026-11-17 Realism pass, part 1 (the school first):
+  - **The Heights Primary School** (landmark w1062444336). It was built after the LiDAR survey, so it came out as a 1 m wall round an empty floor. Now:
+    - a two-storey flat-roofed school squared to the grid: buff brick, tall window bands, a stone band between floors, coloured panels upstairs
+    - a glazed entrance with a canopy, "THE HEIGHTS / PRIMARY / SCHOOL" over the door, lamp posts either side
+    - grounds (features.heights_school), turned with the building: a weldmesh fence with a brick-pillared gate and name sign, a tarmac yard with hopscotch, a four-square court and a painted snake, the games court in green with white lines and a 3-high fence, lamp posts, lights round and inside the building
+  - **School drive** from Upper Woodcote Road (w37000897) is a 6 m road with pavements both sides (layers.SCHOOL_ROADS).
+  - **New buildings with no LiDAR height** (fit_roof): any building now gets two storeys with a flat roof.
+  - **Squaring**: buildings were counted twice (area and closed line), which doubled group sizes; fixed. Schools, shops, churches and pavilions are squared too, never into a road or pavement. 20,755 outlines.
+  - **Play parks** (features.play_parks): a fenced play area at every mapped playground and in every park with none. 23 built, including Albert Road Recreation Ground. Each has swings, a slide tower, a climbing frame, a roundabout, safety tiles, benches, a lamp and a sign.
+  - **Zebra crossings** squared to the grid: 3-wide stripes kerb to kerb, white slabs over ramp steps, red tactile paving at each end.
+  - **Chains**: the block is iron_chain in 1.21.11, so the earlier chains were missing. Fixed.
+  - **New tool, tools/eye_view.py**: player's-eye pictures from the region files, for checking while the game is busy.
+  - **Server**: the kids can fly in adventure mode (essentials.fly) and Cavcraft allow-flight is true. Their spawn points are outside 206 Kidmore Road.
