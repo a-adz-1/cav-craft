@@ -190,3 +190,7 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 
 ### 2026-11-17: Emmer Green centre
 - From Mapillary/Commons photos: the Milestone Way shopping parade (three-storey flat-roofed brick, shops under a long white canopy: new `canopy` landmark option), the Coral corner shop (red brick, dark tile, blue fascia) and the 203-217a Peppard Road Georgian cottage terrace (red brick, slate).
+- Highdown School: the only photo is an interior one, so it keeps the general school style. The Christchurch Meadows pool is already built by leisure().
+
+### 2026-11-17: allotments
+- features.allotments(): the 5.6 ha of allotments are now 5 m plots split by grass paths, with 177 two-by-two spruce sheds with doors onto the paths, compost bins, water butts and bean canes. Checked in an oblique render of the Henley Road allotments.

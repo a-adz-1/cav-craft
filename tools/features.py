@@ -51,6 +51,7 @@ def setup(G, P, lidar):
     G["stamps"].append(leisure(G, P))
     G["stamps"].append(car_parks(G, P))
     G["stamps"].insert(1, countryside(G, P))
+    G["stamps"].append(allotments(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -1116,4 +1117,45 @@ def countryside(G, P):
             for k in range(3):
                 blocks.setdefault((int(x) + k, g + 1, int(z)), P("oak_log", axis="x"))
     print(f"hedgerows: {int(boundary.sum())} m, woodland floor blocks: {len(blocks) - 2 * int(boundary.sum())}")
+    return block_stamp(blocks)
+
+
+def allotments(G, P):
+    """Allotments as they look: 5 m plots split by grass paths, a shed with a felt roof on about one plot in
+    four, compost bins, water butts and runner-bean canes."""
+    rng = np.random.default_rng(202)
+    s, ground = G["surface"], G["ground"]
+    allot = (s == 12) & (G["building"] == 0)   # surfaces.SURFACE "allotment"
+    blocks = {}
+    shed = P("spruce_planks")
+    roof = P("spruce_slab", type="bottom")
+    zs, xs = np.nonzero(allot)
+    sheds = 0
+    for z, x in zip(zs, xs):
+        z, x = int(z), int(x)
+        g = int(ground[z, x])
+        if x % 6 == 0 or z % 12 == 0:            # grass paths between plots
+            blocks[(x, g, z)] = P("grass_block")
+            blocks[(x, g + 1, z)] = P("short_grass") if rng.random() < 0.3 else P("air")
+            continue
+        r = rng.random()
+        if x % 6 == 1 and z % 12 == 1 and r < 0.25 and allot[z:z + 3, x:x + 3].all():
+            for dx in range(2):                     # 2 x 2 shed, door onto the path
+                for dz in range(2):
+                    gg = int(ground[z + dz, x + dx])
+                    blocks[(x + dx, gg + 1, z + dz)] = shed
+                    blocks[(x + dx, gg + 2, z + dz)] = shed
+                    blocks[(x + dx, gg + 3, z + dz)] = roof
+            blocks[(x, g + 1, z + 1)] = P("spruce_door", facing="west", half="lower", hinge="left", open="false")
+            blocks[(x, g + 2, z + 1)] = P("spruce_door", facing="west", half="upper", hinge="left", open="false")
+            sheds += 1
+        elif r < 0.01:
+            blocks.setdefault((x, g + 1, z), P("composter", level=5))
+        elif r < 0.015:
+            blocks.setdefault((x, g + 1, z), P("barrel", facing="up", open="false"))   # water butt
+        elif r < 0.03 and z % 12 == 6:
+            blocks[(x, g, z)] = P("coarse_dirt")    # bamboo won't stand on farmland
+            for dy in (1, 2):                       # bean canes
+                blocks[(x, g + dy, z)] = P("bamboo", age=0, leaves="small", stage=0)
+    print(f"allotments: {int(allot.sum())} m2, {sheds} sheds")
     return block_stamp(blocks)
