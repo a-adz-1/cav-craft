@@ -2154,23 +2154,22 @@
   "walls": [
    "white_render",
    "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "red_brick"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.5,
   "roof": [
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "slate"
+   "red_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.6,
+  "quoins": 0.3,
+  "note": "The Warren riverside villas",
+  "family": "riverside_villa"
  },
  "Church Road": {
   "walls": [
@@ -2236,111 +2235,106 @@
   "walls": [
    "white_render",
    "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "red_brick"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.5,
   "roof": [
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "slate"
+   "red_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.6,
+  "quoins": 0.3,
+  "note": "The Warren riverside villas",
+  "family": "riverside_villa"
  },
  "Graveney Drive": {
   "walls": [
    "white_render",
    "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "red_brick"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.5,
   "roof": [
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "slate"
+   "red_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.6,
+  "quoins": 0.3,
+  "note": "The Warren riverside villas",
+  "family": "riverside_villa"
  },
  "Ridge Hall Close": {
   "walls": [
    "white_render",
    "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "red_brick"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.5,
   "roof": [
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "slate"
+   "red_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.6,
+  "quoins": 0.3,
+  "note": "The Warren riverside villas",
+  "family": "riverside_villa"
  },
  "Lawrence Avenue Mews": {
   "walls": [
    "white_render",
    "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "red_brick"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.5,
   "roof": [
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "slate"
+   "red_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.6,
+  "quoins": 0.3,
+  "note": "The Warren riverside villas",
+  "family": "riverside_villa"
  },
  "Boundary Lane": {
   "walls": [
    "white_render",
    "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "red_brick"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.5,
   "roof": [
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "slate"
+   "red_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.6,
+  "quoins": 0.3,
+  "note": "The Warren riverside villas",
+  "family": "riverside_villa"
  },
  "Highmoor Road": {
   "walls": [
@@ -2554,23 +2548,22 @@
   "walls": [
    "white_render",
    "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "red_brick"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.5,
   "roof": [
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "slate"
+   "red_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.6,
+  "quoins": 0.3,
+  "note": "The Warren riverside villas",
+  "family": "riverside_villa"
  },
  "Blagrave Lane": {
   "walls": [
@@ -2639,45 +2632,43 @@
   "walls": [
    "white_render",
    "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "red_brick"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.5,
   "roof": [
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "slate"
+   "red_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.6,
+  "quoins": 0.3,
+  "note": "The Warren riverside villas",
+  "family": "riverside_villa"
  },
  "River Road": {
   "walls": [
    "white_render",
    "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "red_brick"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.5,
   "roof": [
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "slate"
+   "red_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.6,
+  "quoins": 0.3,
+  "note": "The Warren riverside villas",
+  "family": "riverside_villa"
  },
  "Hewett Avenue": {
   "walls": [
@@ -2705,23 +2696,22 @@
   "walls": [
    "white_render",
    "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "red_brick"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.5,
   "roof": [
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "slate"
+   "red_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.6,
+  "quoins": 0.3,
+  "note": "The Warren riverside villas",
+  "family": "riverside_villa"
  },
  "Hewett Close": {
   "walls": [

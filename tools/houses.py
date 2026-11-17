@@ -89,7 +89,7 @@ def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95):
     return best[1], eave, ridge, best[2]
 
 
-BAY_FAMILIES = {"victorian_terrace": 2, "victorian_villa": 2, "interwar_semi": 2, "interwar_detached": 2,
+BAY_FAMILIES = {"riverside_villa": 2, "victorian_terrace": 2, "victorian_villa": 2, "interwar_semi": 2, "interwar_detached": 2,
                 "postwar_council": 0}
 
 
@@ -398,7 +398,7 @@ def stamp_factory(G, P):
     return stamp
 
 
-FRONT = {"victorian_terrace": "wall", "victorian_villa": "wall", "cottage": "hedge", "interwar_semi": "hedge",
+FRONT = {"riverside_villa": "hedge", "victorian_terrace": "wall", "victorian_villa": "wall", "cottage": "hedge", "interwar_semi": "hedge",
          "interwar_detached": "hedge", "postwar_council": "hedge", "estate_6070": None, "modern": "wall",
          "town": None}
 
