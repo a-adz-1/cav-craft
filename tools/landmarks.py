@@ -48,6 +48,13 @@ LANDMARKS = {
     # Caversham Hall (civic): red brick
     "w138758857": {"name": "Caversham Hall", "walls": "red_brick", "roof": "slate", "dress": "smooth_sandstone",
                    "windows": "tall", "band": 4},
+    # Caversham Court riverside gazebo: brick-and-flint chequer below, red brick room above with leaded
+    # windows, pyramid clay-tile roof with a weathervane
+    "w139149993": {"name": "Caversham Court gazebo", "walls": "red_brick", "roof": "red_tile", "dress": "andesite",
+                   "windows": "house", "roof_kind": "hip", "band": 2, "vane": True},
+    # Reading Canoe Club boathouse on The Warren
+    "w139149866": {"name": "Reading Canoe Club", "walls": "timber", "roof": "slate", "dress": None,
+                   "windows": "house", "shopfront": "green_concrete"},
     # Caversham Park (the mansion, BBC Monitoring until 2018): pale Bath stone, Corinthian colonnade on the
     # south front, balustraded parapet, three tall storeys
     "w160047105": {"name": "Caversham Park", "walls": "sandstone", "roof": "flat", "dress": "smooth_quartz",

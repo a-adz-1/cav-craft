@@ -71,10 +71,10 @@ def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95):
     off = (np.stack(np.meshgrid(np.arange(rel.shape[1]), np.arange(rel.shape[0])), -1) - c) @ minor
     half = np.abs(off[region]).max() + 0.5
     d_gab = np.where(region, half - np.abs(off), 0)
+    if force in ("hip", "gable"):
+        return force, eave, max(ridge, eave + 2.5), d_hip if force == "hip" else d_gab   # landmarks keep a pitch
     if ridge - eave < 1.2 or vals.size > 900:
         return "flat", eave, ridge, d_hip
-    if force in ("hip", "gable"):
-        return force, eave, ridge, d_hip if force == "hip" else d_gab
     best = None
     for kind, d in (("hip", d_hip), ("gable", d_gab)):
         dm = d[inside].max()
@@ -167,7 +167,7 @@ def prepare(G, P, layers, lidar, buildings):
             if lm["roof"] == "flat":
                 rkind = "flat"
             elif rkind == "flat":
-                rkind = "gable"
+                rkind = lm.get("roof_kind", "gable")
         wname = st["walls"][h % len(st["walls"])]
         upper = st.get("upper") and ((h >> 13) % 100) < st.get("upper_p", 0.5) * 100
         uname = st["upper"][(h >> 17) % len(st["upper"])] if upper else None
@@ -234,6 +234,9 @@ def prepare(G, P, layers, lidar, buildings):
             if lm.get("parapet"):
                 for zl, xl in zip(*np.nonzero(edge)):
                     blocks[(x0 + xl, int(top[zl, xl]) + 1, z0 + zl)] = P(lm["parapet"], up="true")
+            if lm.get("vane"):
+                pk = np.argwhere(inside & (top == top[inside].max()))[0]
+                blocks[(x0 + pk[1], int(top.max()) + 1, z0 + pk[0])] = P("lightning_rod")
             print(f"landmark: {lm['name']} ({rkind} roof, eave {eave:.1f} m, ridge {ridge:.1f} m)")
         edge_all[sub] |= edge
         floors_every[sub] = np.where(inside, 3, floors_every[sub])
@@ -264,7 +267,7 @@ def prepare(G, P, layers, lidar, buildings):
                     for y in range(fl + 4, min(ey, top[zl, xl])):
                         blocks[(x0 + xl, y, z0 + zl)] = P("dark_oak_log")
         # chimney for houses with pitched roofs: on the ridge near one end
-        if rkind != "flat" and not big and kind not in ("garage", "garages", "shed"):
+        if rkind != "flat" and not big and not lm and kind not in ("garage", "garages", "shed"):
             ridge_cells = np.argwhere(inside & (top == top[inside].max()))
             if len(ridge_cells):
                 zl, xl = ridge_cells[0] if (h & 1) else ridge_cells[-1]

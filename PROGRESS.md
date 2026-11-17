@@ -125,3 +125,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 Caversham Park: colonnade now runs the full height of the front. Emmer Green water tower
   (white concrete drum on a grey shaft, height from LiDAR) replaces its house-style stand-in; Caversham war
   memorial (stone cross on a stepped base) by Caversham Bridge. Reinstalled + rezipped.
+- 2026-11-17 Caversham Court riverside gazebo (brick + flint bands, pyramid tile roof, vane) and Reading Canoe Club boathouse. Landmarks keep a pitched roof even when the LiDAR pitch is shallow; no chimneys on landmarks.
