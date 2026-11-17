@@ -162,8 +162,8 @@ for ln in osm["lines"]:
         if hw == "track":
             cls = "track"
         elif t.get("surface") in ("asphalt", "paved", "paving_stones", "concrete", "sett") or (
-                hw == "footway" and t.get("surface") is None and t.get("footway") in ("sidewalk", "crossing")):
-            cls = "footway"
+                hw in ("footway", "pedestrian", "cycleway") and t.get("surface") is None):
+            cls = "footway"   # town footways are paved unless OSM says otherwise; untagged paths stay earth
         else:
             cls = "path"
     elif t.get("railway") in ("rail", "light_rail"):

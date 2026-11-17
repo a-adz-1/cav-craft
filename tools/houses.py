@@ -775,6 +775,35 @@ def front_paths(G, surface, bid):
     Front walls and hedges are laid on grass only, so they leave a gap where the path meets them."""
     road = np.isin(surface, (3, 4, 5))
     _, (rz, rx) = ndimage.distance_transform_edt(~road, return_indices=True)
+    # houses set well back (a wide verge or a slip road in front): a pavement runs along the row ~8 m out from
+    # the doors, joining each house to its neighbours, and the front paths stop at it
+    SET_BACK, OUT = 14, 8
+    far = []
+    for x, _, z in G.get("doorsteps", []):
+        if 0 <= z < surface.shape[0] and 0 <= x < surface.shape[1]:
+            tz, tx = rz[z, x], rx[z, x]
+            dist = np.hypot(tz - z, tx - x)
+            if SET_BACK < dist <= 45:
+                far.append((x + (tx - x) * OUT / dist, z + (tz - z) * OUT / dist))
+    far = np.array(far).reshape(-1, 2)
+    for i, (ax, az) in enumerate(far):
+        d = np.hypot(far[:, 0] - ax, far[:, 1] - az)
+        d[i] = np.inf
+        for j in np.argsort(d)[:2]:                              # the neighbour each side
+            if d[j] > 30:
+                break
+            bx, bz = far[j]
+            for k in range(int(d[j] * 2) + 1):
+                t = k / max(d[j] * 2, 1)
+                cx, cz = ax + (bx - ax) * t, az + (bz - az) * t
+                for ox, oz in ((0, 0), (1, 0), (0, 1), (1, 1)):     # 2 wide
+                    X, Z = int(cx) + ox, int(cz) + oz
+                    if 0 <= Z < surface.shape[0] and 0 <= X < surface.shape[1] and not bid[Z, X] \
+                            and surface[Z, X] == 1:
+                        surface[Z, X] = 5
+    print("set-back rows: pavement along", len(far), "front doors")
+    road = np.isin(surface, (3, 4, 5))
+    _, (rz, rx) = ndimage.distance_transform_edt(~road, return_indices=True)
     n = 0
     for x, _, z in G.get("doorsteps", []):
         if not (0 <= z < surface.shape[0] and 0 <= x < surface.shape[1]):
