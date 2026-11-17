@@ -240,25 +240,31 @@ def prepare(G, P, layers, lidar, buildings):
             print(f"landmark: {lm['name']} ({rkind} roof, eave {eave:.1f} m, ridge {ridge:.1f} m)")
         edge_all[sub] |= edge
         floors_every[sub] = np.where(inside, 3, floors_every[sub])
-        # stairs on the slopes: facing the uphill side
+        # stairs on the slopes: each faces up its own slope (the low side's opposite neighbour is higher);
+        # ridge and hip-corner cells with no clear uphill keep the full block
         if stair and rkind != "flat":
             zz, xx = np.nonzero(inside)
             for zl, xl in zip(zz, xx):
                 y = top[zl, xl]
-                lows = []
-                for name, (dx, dz) in DIRS.items():
-                    a, c = zl + dz, xl + dx
-                    if not (0 <= a < top.shape[0] and 0 <= c < top.shape[1]) or not inside[a, c] or top[a, c] < y:
-                        lows.append(name)
-                if lows and len(lows) < 4 and y > ey - 1 + (0 if rkind == "hip" else 0):
-                    if len(lows) == 1:
-                        face = OPP[lows[0]]
-                    else:
-                        # corner of a hip: face away from the first low side
-                        face = OPP[lows[0]]
-                    blocks[(x0 + xl, int(y), z0 + zl)] = P(stair, facing=face, half="bottom", shape="straight")
-                elif lows and y == ey and rkind == "gable" and edge[zl, xl] and len(lows) < 4:
-                    pass
+                if y <= ey - 1:
+                    continue
+
+                def nb(dx, dz):
+                    a_, c_ = zl + dz, xl + dx
+                    if 0 <= a_ < top.shape[0] and 0 <= c_ < top.shape[1] and inside[a_, c_]:
+                        return top[a_, c_]
+                    return -999
+                def straight(dx, dz):   # the roof edge runs on level both sides (not a zigzag on a diagonal wall)
+                    return nb(dz, dx) == y and nb(-dz, -dx) == y
+                faces = [OPP[name] for name, (dx, dz) in DIRS.items()
+                         if nb(dx, dz) < y and nb(-dx, -dz) > y and straight(dx, dz)]
+                if len(faces) == 1:
+                    blocks[(x0 + xl, int(y), z0 + zl)] = P(stair, facing=faces[0], half="bottom", shape="straight")
+                elif not faces:
+                    lows = [name for name, (dx, dz) in DIRS.items() if nb(dx, dz) < y and straight(dx, dz)]
+                    if len(lows) == 1:   # eaves row: one low side, the rest level
+                        blocks[(x0 + xl, int(y), z0 + zl)] = P(stair, facing=OPP[lows[0]], half="bottom",
+                                                                shape="straight")
         # Tudor beams on the upper storey for some streets
         if (lm and lm.get("tudor_gable")) or (st.get("tudor", 0) and (h % 100) < st["tudor"] * 100):
             zz, xx = np.nonzero(edge)

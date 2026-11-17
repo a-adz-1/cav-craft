@@ -126,3 +126,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
   (white concrete drum on a grey shaft, height from LiDAR) replaces its house-style stand-in; Caversham war
   memorial (stone cross on a stepped base) by Caversham Bridge. Reinstalled + rezipped.
 - 2026-11-17 Caversham Court riverside gazebo (brick + flint bands, pyramid tile roof, vane) and Reading Canoe Club boathouse. Landmarks keep a pitched roof even when the LiDAR pitch is shallow; no chimneys on landmarks.
+- 2026-11-17 Roof stairs: each faces up its own slope, and only on straight runs of roof edge; diagonal (off-grid) houses get full blocks on the zigzag instead of a comb of stairs.
