@@ -84,8 +84,11 @@ def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95, low=Fal
         return force, eave, max(ridge, eave + 2.5), d_hip if force == "hip" else d_gab   # landmarks keep a pitch
     if ridge - eave < 1.2 or vals.size > 900:
         return "flat", eave, ridge, d_hip
+    # one straight ridge only fits a near-rectangle; L- and T-shaped outlines get hips that follow every wing
+    p = (pts - c) @ vt.T
+    rect = len(pts) / ((np.ptp(p[:, 0]) + 1) * (np.ptp(p[:, 1]) + 1))
     best = None
-    for kind, d in (("hip", d_hip), ("gable", d_gab)):
+    for kind, d in (("hip", d_hip), ("gable", d_gab)) if rect >= 0.75 else (("hip", d_hip),):
         dm = d[inside].max()
         k = (ridge - eave) / max(dm - 0.5, 0.5)
         model = np.clip(eave + k * (d - 0.5), eave, ridge)
