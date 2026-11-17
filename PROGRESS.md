@@ -269,3 +269,4 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 - Road ramps everywhere now use polished deepslate slabs: smooth and dark like the tarmac.
 - Checked by walking every road bridge's centre line in the written world: Caversham Bridge is smooth end to end. Reading Bridge has one 1-block step at the zebra on its north end and a 2-block step where it meets a footbridge deck.
 - Builds now run at nice 10 with 4 cores left free, after the PC hung while the user played. mc_view refuses to start while the user's own Prism or Minecraft is open: it would close their game.
+- Server copy swapped to the smoothed build: `mv unload Cavcraft --no-save`, region/ and entities/ replaced from the release, and the server's own level.dat kept (adventure, peaceful, game rules), then `mv load Cavcraft`. Log clean; temp files removed.
