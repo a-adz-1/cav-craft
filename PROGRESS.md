@@ -203,3 +203,6 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 ### 2026-11-17: shared roofs on semis and terraces
 - houses.shared_roofs(): every house is fitted first. Attached houses whose floors are within 1 m are grouped (terraces stepping down a hill keep their steps), and each group gets its median eave and ridge height and its commonest roof kind, so a pair of semis no longer comes out a block or two apart. 3,594 houses in 1,162 groups.
 - Read back from the world files over 1 km x 1.5 km of central Caversham: level attached pairs whose roof tops differ by 2+ blocks went from 15 to 3, and by 1 block from 84 to 34 (most of what's left is chimneys).
+
+### 2026-11-17: road crossings
+- features.crossings(): from OSM crossing and signal nodes inside the world, with nodes mapped on the pavement edge snapped onto the road. 9 zebras (crossing_ref=zebra or crossing=uncontrolled/marked) get white stripes painted per road block, running with the traffic across the full road width, and a Belisha beacon (alternating black and white wall posts, shroomlight globe) on each kerb. 50 signal crossings and junction signals get a black traffic-light pole on each kerb. Most OSM crossings in the box are south of the river in Reading, so outside the world.

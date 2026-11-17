@@ -52,6 +52,7 @@ def setup(G, P, lidar):
     G["stamps"].append(car_parks(G, P))
     G["stamps"].insert(1, countryside(G, P))
     G["stamps"].append(allotments(G, P))
+    G["stamps"].append(crossings(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -1158,4 +1159,79 @@ def allotments(G, P):
             for dy in (1, 2):                       # bean canes
                 blocks[(x, g + dy, z)] = P("bamboo", age=0, leaves="small", stage=0)
     print(f"allotments: {int(allot.sum())} m2, {sheds} sheds")
+    return block_stamp(blocks)
+
+
+def crossings(G, P):
+    """Road crossings from OSM nodes. Zebras: white stripes running with the traffic across the road, and a
+    Belisha beacon (black-and-white pole, orange globe) on each kerb. Signal crossings and junction signals:
+    a black traffic-light pole on each kerb."""
+    osm = json.load(open("build/osm.json"))
+    s, ground, mask = G["surface"], G["ground"], G["mask"]
+    Hh, Ww = mask.shape
+    road = np.isin(s, (3, 4))   # surfaces.SURFACE road, minor_road
+    segs = []
+    for l in osm["lines"]:
+        if l["tags"].get("highway") in ("motorway", "trunk", "primary", "secondary", "tertiary", "unclassified",
+                                        "residential", "service", "living_street"):
+            p = [xz(*q) for q in l["pts"]]
+            segs += [(a[0], a[1], b[0], b[1]) for a, b in zip(p[:-1], p[1:])]
+    S = np.array(segs, float)
+    d = S[:, 2:] - S[:, :2]
+    blocks = {}
+    zebras = signals = 0
+    for nd in osm["nodes"]:
+        t = nd["tags"]
+        hw = t.get("highway")
+        zebra = hw == "crossing" and (t.get("crossing_ref") in ("zebra", "parallel") or t.get("crossing") in ("zebra", "marked", "uncontrolled"))
+        signal = hw == "traffic_signals" or (hw == "crossing" and t.get("crossing") == "traffic_signals")
+        if not (zebra or signal):
+            continue
+        x, z = xz(*nd["pt"])
+        if not (0 <= z < Hh and 0 <= x < Ww) or not mask[z, x]:
+            continue
+        if not road[z, x]:                                   # mapped on the pavement edge: snap onto the road
+            near = np.argwhere(road[max(0, z - 3):z + 4, max(0, x - 3):x + 4])
+            if not len(near):
+                continue
+            j = int(np.argmin(((near - [min(z, 3), min(x, 3)]) ** 2).sum(1)))
+            z, x = int(near[j][0] + max(0, z - 3)), int(near[j][1] + max(0, x - 3))
+        tt = np.clip(((x - S[:, 0]) * d[:, 0] + (z - S[:, 1]) * d[:, 1]) / np.maximum((d ** 2).sum(1), 1e-9), 0, 1)
+        k = int(np.argmin(np.hypot(S[:, 0] + tt * d[:, 0] - x, S[:, 1] + tt * d[:, 1] - z)))
+        ux, uz = d[k] / max(np.hypot(*d[k]), 1e-9)          # along the road
+        vx, vz = -uz, ux                                     # across it
+        kerbs = []
+        for sgn in (1, -1):                                  # walk out to each kerb
+            for r in range(1, 14):
+                cx, cz = int(round(x + vx * r * sgn)), int(round(z + vz * r * sgn))
+                if not (0 <= cz < Hh and 0 <= cx < Ww) or not road[cz, cx]:
+                    kerbs.append((cx, cz, r))
+                    break
+        if len(kerbs) < 2:
+            continue
+        if zebra:
+            for cz in range(max(0, z - 14), min(Hh, z + 15)):    # each road block: along/across the crossing
+                for cx in range(max(0, x - 14), min(Ww, x + 15)):
+                    a, c = (cx - x) * ux + (cz - z) * uz, (cx - x) * vx + (cz - z) * vz
+                    if road[cz, cx] and abs(a) <= 1.5 and -kerbs[1][2] < c < kerbs[0][2] and round(c) % 2 == 0:
+                        blocks[(cx, int(ground[cz, cx]), cz)] = P("white_concrete")
+            zebras += 1
+        else:
+            signals += 1
+        for cx, cz, _ in kerbs:
+            if not (0 <= cz < Hh and 0 <= cx < Ww) or G["building"][cz, cx] or G["water"][cz, cx] != -999:
+                continue
+            g = int(ground[cz, cx])
+            if zebra:
+                for dy in (1, 2, 3):
+                    blocks[(cx, g + dy, cz)] = P("polished_blackstone_wall" if dy % 2 else "diorite_wall", up="true",
+                                                 north="none", south="none", east="none", west="none")
+                blocks[(cx, g + 4, cz)] = P("shroomlight")
+            else:
+                for dy in (1, 2):
+                    blocks[(cx, g + dy, cz)] = P("polished_blackstone_wall", up="true", north="none", south="none",
+                                                 east="none", west="none")
+                blocks[(cx, g + 3, cz)] = P("black_concrete")
+                blocks[(cx, g + 4, cz)] = P("black_concrete")
+    print(f"crossings: {zebras} zebras, {signals} signal poles pairs")
     return block_stamp(blocks)
