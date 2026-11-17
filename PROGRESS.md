@@ -185,3 +185,8 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 - Cause: the first-return DSM includes trees over roofs, so some garages and small houses got 14-22 m spiky roofs; there was also no pitch limit.
 - fit_roof now caps the ridge at 45 deg from the eaves and at 13 m for houses. Garages, sheds and service buildings stay single-storey (eave 2.5 m, ridge at most 4.5 m). Houses with no LiDAR roof (built after the survey) get a plain two-storey gable.
 - Measured over all 9,626 buildings: roofs steeper than ~55 deg went from 75 to 7; houses sunk to a 3 m box went from 151 to 32 (those left are big non-house buildings).
+- Checked with a new oblique render (render_world.py `out.npz` + a projection) because the screen was locked and the game couldn't open a window: Warren-side roofs that had tree spikes are now plain stepped hips.
+- mc_view.py: it looked for the game by searching for text that also appears in shell command lines, so it could wait forever. It now matches only the java process, and closes the game if it never joins.
+
+### 2026-11-17: Emmer Green centre
+- From Mapillary/Commons photos: the Milestone Way shopping parade (three-storey flat-roofed brick, shops under a long white canopy: new `canopy` landmark option), the Coral corner shop (red brick, dark tile, blue fascia) and the 203-217a Peppard Road Georgian cottage terrace (red brick, slate).

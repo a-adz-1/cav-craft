@@ -3,6 +3,7 @@
 .mca files, so it checks what was actually written.
 
     .venv/bin/python tools/render_world.py world/Cavcraft out.png [scale] [x0 z0 x1 z1]
+    (out.npz instead of .png saves the raw colour and height arrays)
 """
 import glob
 import os
@@ -79,6 +80,9 @@ def main():
                                 c = (255, 0, 255)
                             img[Z + zz, X + xx] = c
                             hgt[Z + zz, X + xx] = top[zz, xx]
+    if out.endswith(".npz"):   # raw colours and heights, for other views (e.g. an oblique render)
+        np.savez_compressed(out, img=img, hgt=hgt)
+        return
     shade = np.clip(1 + (hgt - np.roll(hgt, 1, 0)) * 0.06, 0.6, 1.3)
     img = np.clip(img * shade[..., None], 0, 255).astype(np.uint8)
     im = Image.fromarray(img)

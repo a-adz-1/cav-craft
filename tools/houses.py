@@ -278,6 +278,11 @@ def prepare(G, P, layers, lidar, buildings):
                 blocks[(X, fl + 1, Z)] = P("glass_pane") if (X + Z) % 4 else P("dark_oak_planks")
                 blocks[(X, fl + 2, Z)] = P("glass_pane") if (X + Z) % 4 else P("dark_oak_planks")
                 blocks[(X, fl + 3, Z)] = P(shop_colour)
+                if lm and lm.get("canopy"):   # a canopy over the shop windows, one block out
+                    for dx_c, dz_c in DIRS.values():
+                        a_, c_ = zl + dz_c, xl + dx_c
+                        if 0 <= a_ < inside.shape[0] and 0 <= c_ < inside.shape[1] and not inside[a_, c_]:
+                            blocks.setdefault((X + dx_c, fl + 3, Z + dz_c), P(lm["canopy"], type="top"))
             if front.any():
                 stats.setdefault("shopfronts", 0)
                 stats["shopfronts"] += 1

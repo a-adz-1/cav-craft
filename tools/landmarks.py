@@ -107,6 +107,16 @@ LANDMARKS = {
     # south front, balustraded parapet, three tall storeys
     "w160047105": {"name": "Caversham Park", "walls": "sandstone", "roof": "flat", "dress": "smooth_quartz",
                    "windows": "tall", "storey": 4, "parapet": "sandstone_wall", "colonnade": "south"},
+    # Emmer Green shopping parade, Milestone Way: three-storey flat-roofed red-brown brick block, flats over a
+    # row of shops under a long white canopy
+    "w171946174": {"name": "Emmer Green parade", "walls": "red_brick", "roof": "flat", "dress": None,
+                   "windows": "house", "shopfront": "white_concrete", "canopy": "smooth_quartz_slab"},
+    # Coral, Kidmore End Road corner: red brick, dark tile mansard with dormers, blue fascia
+    "w160047130": {"name": "Coral (Emmer Green)", "walls": "red_brick", "roof": "dark_tile", "dress": None,
+                   "windows": "house", "shopfront": "blue_concrete", "roof_kind": "hip"},
+    # 203-217a Peppard Road: Georgian red-brick cottage terrace, slate roof, tall chimneys
+    "w163753434": {"name": "Peppard Road cottages", "walls": "red_brick", "roof": "slate", "dress": None,
+                   "windows": "house", "roof_kind": "gable"},
 }
 
 TOWER_BLOCKS = {"andesite": "andesite", "bricks": "bricks"}

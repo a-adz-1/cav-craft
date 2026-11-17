@@ -18,13 +18,14 @@ import anvil
 INST = os.path.expanduser("~/.local/share/PrismLauncher/instances/1.21.11 Paper")
 SAVE = os.path.join(INST, "minecraft/saves/Cavcraft-test")
 LOG = os.path.join(INST, "minecraft/logs/latest.log")
+GAME = r"^/\S*/java .*minecraft-1\.21\.11-client"   # the game itself, not shells whose text mentions it
 
 world, out = sys.argv[1], sys.argv[2]
 x, y, z, yaw, pitch = map(float, sys.argv[3:8])
 wait = float(sys.argv[8]) if len(sys.argv) > 8 else 25
 daytime = int(sys.argv[9]) if len(sys.argv) > 9 else None   # e.g. 18000 for midnight
 
-while subprocess.run(["pgrep", "-f", "minecraft-1.21.11-client"], capture_output=True).returncode == 0:
+while subprocess.run(["pgrep", "-f", GAME], capture_output=True).returncode == 0:
     time.sleep(1)   # the last game is still closing
 shutil.rmtree(SAVE, ignore_errors=True)
 shutil.copytree(world, SAVE)
@@ -43,11 +44,12 @@ while time.time() - start < 180:
     if os.path.exists(LOG) and os.path.getmtime(LOG) > start and "joined the game" in open(LOG, errors="ignore").read():
         break
 else:
+    subprocess.run(["pkill", "-f", GAME])
     sys.exit("game never joined the world")
 time.sleep(wait)
 raw = out + ".full.png"
 subprocess.run(["spectacle", "-b", "-n", "-a", "-o", raw], check=True)   # the game's window only
-subprocess.run(["pkill", "-f", "minecraft-1.21.11-client"])
+subprocess.run(["pkill", "-f", GAME])
 from PIL import Image
 im = Image.open(raw)
 im.save(out)
