@@ -308,6 +308,35 @@ def prepare(G, P, layers, lidar, buildings):
                     if len(lows) == 1:   # eaves row: one low side, the rest level
                         blocks[(x0 + xl, int(y), z0 + zl)] = P(stair, facing=OPP[lows[0]], half="bottom",
                                                                 shape="straight")
+        # inside: a staircase up to the first floor along one wall, and a few furnishings per floor
+        if kind in HOUSE_KINDS and not big and not lm and ey - fl >= 5:
+            inner = inside & ~edge
+            cells = np.argwhere(inner & ndimage.binary_dilation(edge))   # just inside the walls
+            run = None
+            for zl, xl in cells:
+                for name, (dx, dz) in DIRS.items():
+                    path = [(zl + dz * k, xl + dx * k) for k in range(3)]
+                    if all(0 <= a < inside.shape[0] and 0 <= c < inside.shape[1] and inner[a, c] for a, c in path):
+                        run = (path, name)
+                        break
+                if run:
+                    break
+            if run:
+                path, name = run
+                for k, (a, c) in enumerate(path):
+                    X, Z = x0 + c, z0 + a
+                    blocks[(X, fl + 1 + k, Z)] = P("oak_stairs", facing=name, half="bottom", shape="straight")
+                    for y in range(fl + 2 + k, fl + 5):
+                        blocks.setdefault((X, y, Z), P("air"))          # stairwell through the first floor
+            free = [tuple(v) for v in np.argwhere(inner & ~ndimage.binary_dilation(edge))]
+            rng_h = np.random.default_rng(h)
+            if len(free) >= 6:
+                pick = rng_h.choice(len(free), 4, replace=False)
+                (a1, c1), (a2, c2), (a3, c3), (a4, c4) = (free[i] for i in pick)
+                blocks.setdefault((x0 + c1, fl + 1, z0 + a1), P("crafting_table"))
+                blocks.setdefault((x0 + c2, fl + 1, z0 + a2), P("furnace", facing="north", lit="false"))
+                blocks.setdefault((x0 + c3, fl + 4, z0 + a3), P("red_bed", facing="north", part="head", occupied="false"))
+                blocks.setdefault((x0 + c4, fl + 4, z0 + a4), P("bookshelf"))
         # Tudor beams on the upper storey for some streets
         if (lm and lm.get("tudor_gable")) or (st.get("tudor", 0) and (h % 100) < st["tudor"] * 100):
             zz, xx = np.nonzero(edge)

@@ -152,3 +152,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 Pubs from photos: Travellers Rest (Tudor gables, hipped tile), Prince of Wales (white, black plinth), Red Cow (low red brick); OSM point-only pubs mapped onto the building under them: The Griffin (brick + green fascia), The Crown, The Clifton Arms.
 - 2026-11-17 Chimneys on attached houses sit on the party wall, so terraces get a stack between each pair of houses, like the real thing.
 - 2026-11-17 OSM walls 2 high (garden walls like Caversham Court's), retaining walls 1 high; checked Caversham Court from the river.
+- 2026-11-17 House interiors: oak staircase along an inside wall up through a stairwell to the first floor; crafting table + furnace (kitchen) downstairs, bed + bookshelf upstairs. Checked inside one house in game.
