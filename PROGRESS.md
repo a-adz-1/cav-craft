@@ -279,3 +279,4 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
   - Winter Wonderland's snow had replaced ramp slabs there; snow now stays off them.
   - Reading Bridge: a footbridge mapped beside the road deck sat 2 above it. Road bridges are now built first, and a pavement bridge beside a road takes the nearest road cell's deck height.
 - Result: across 2.1 M neighbouring road/pavement pairs, every step is 0 or half a block (0 drops over 1, 0 full-block steps). Both road bridges are smooth end to end. Caversham Bridge's separately mapped pavements meet the bank with at most a 1-block step.
+- Server copy swapped to the graded-roads build (same method: unload --no-save, replace region/ and entities/, keep the server's level.dat, load). Still adventure mode; log clean.
