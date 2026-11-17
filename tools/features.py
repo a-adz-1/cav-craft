@@ -56,6 +56,7 @@ def setup(G, P, lidar):
     G["stamps"].append(island_paths(G, P))
     G["stamps"].append(winter_wonderland(G, P))
     G["stamps"].append(data_signs(G, P))
+    river_boats(G)
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -513,19 +514,35 @@ def structures(G, P, lidar):
     blocks[(cx, top + 1, cz)] = P("lightning_rod")
     G["building"][cz - 7:cz + 8, cx - 7:cx + 8] = 0
     G["h_wall"][cz - 7:cz + 8, cx - 7:cx + 8] = 0
-    # Caversham war memorial: Portland stone cross on a stepped base
+    # Caversham war memorial, Christchurch Meadows (Commons photos): a tall pale-stone column with a cross carved
+    # near the top, on a two-step plinth on an octagonal paved base, poppy wreaths at its foot
     mx, mz = 3269, 3660
     gm = int(G["ground"][mz, mx])
-    for dx in range(-2, 3):
-        for dz in range(-2, 3):
-            blocks[(mx + dx, gm + 1, mz + dz)] = P("smooth_stone_slab", type="double")
-    for dx in range(-1, 2):
-        for dz in range(-1, 2):
-            blocks[(mx + dx, gm + 2, mz + dz)] = P("polished_diorite")
-    for y in range(gm + 3, gm + 8):
-        blocks[(mx, y, mz)] = P("quartz_pillar", axis="y")
-    for dx in (-1, 1):
-        blocks[(mx + dx, gm + 6, mz)] = P("quartz_block")
+    for dx in range(-4, 6):
+        for dz in range(-4, 6):
+            if abs(dx - 0.5) + abs(dz - 0.5) <= 6.5:                 # octagonal flagstones
+                blocks[(mx + dx, gm, mz + dz)] = P("smooth_stone")
+    for dx in range(-2, 4):                                       # lower step
+        for dz in range(-2, 4):
+            blocks[(mx + dx, gm + 1, mz + dz)] = P("smooth_sandstone_slab", type="bottom")
+    for dx in range(-1, 3):                                       # upper step / plinth
+        for dz in range(-1, 3):
+            blocks[(mx + dx, gm + 1, mz + dz)] = P("smooth_sandstone")
+            blocks[(mx + dx, gm + 2, mz + dz)] = P("cut_sandstone")
+    for y in range(gm + 3, gm + 12):                              # the 2 x 2 column
+        for dx in (0, 1):
+            for dz in (0, 1):
+                blocks[(mx + dx, y, mz + dz)] = P("smooth_sandstone")
+    for dx in (0, 1):                                             # carved cross near the top, on every face
+        for dz in (0, 1):
+            blocks[(mx + dx, gm + 10, mz + dz)] = P("chiseled_sandstone")
+    for dx in (0, 1):
+        for dz in (0, 1):
+            blocks[(mx + dx, gm + 12, mz + dz)] = P("smooth_sandstone_slab", type="bottom")
+    for (dx, dz) in ((-1, 0), (-1, 1), (2, 0), (2, 1), (0, -1), (1, -1), (0, 2), (1, 2)):
+        blocks[(mx + dx, gm + 3, mz + dz)] = P("red_carpet")         # wreaths on the plinth (poppies need soil)
+    for dx, dz in ((-2, 0), (-2, 1), (3, 1), (0, 3)):
+        blocks[(mx + dx, gm + 2, mz + dz)] = P("red_carpet")
     print(f"water tower at {cx},{cz} top y {top}; war memorial at {mx},{mz}")
     return block_stamp(blocks)
 
@@ -1106,30 +1123,80 @@ def car_parks(G, P):
         inside = np.asarray(img).astype(bool) & G["mask"] & (G["building"] == 0) & (G["surface"] == 8)
         if inside.sum() < 40:
             continue
+
+        def paint(X, Z, blk):
+            if 0 <= Z < Hh and 0 <= X < Ww and inside[Z, X]:
+                blocks[(X, int(G["ground"][Z, X]) + (0 if blk == line_blk else 1), Z)] = blk
+                return True
+            return False
+
+        def car(cx, cz, u, nv):
+            """A car 2 wide (along u) x 3 long (along nv), nose into the bay."""
+            g = int(G["ground"][int(round(cz)), int(round(cx))])
+            col = P(CAR_COLOURS[rng.integers(len(CAR_COLOURS))])
+            cells = [(int(round(cx + u[0] * a_ + nv[0] * b_)), int(round(cz + u[1] * a_ + nv[1] * b_)), b_)
+                     for a_ in (-0.5, 0.5) for b_ in (-1, 0, 1)]
+            if all(0 <= Z < Hh and 0 <= X < Ww and inside[Z, X] for X, Z, _ in cells):
+                for X, Z, b_ in cells:
+                    blocks[(X, g + 1, Z)] = col
+                    if b_ <= 0:
+                        blocks[(X, g + 2, Z)] = P("light_gray_stained_glass")
+
+        line_blk = P("white_concrete")
+        # bays come off the car park's mapped aisles: a 5 m line every 3 m either side, cars nose-in between
+        aisles = []
+        for l in osm["lines"]:
+            if l["tags"].get("service") == "parking_aisle" or l["tags"].get("highway") == "service":
+                q = np.array([xz(*p) for p in l["pts"]], float)
+                inn = [(0 <= int(z) < Hh and 0 <= int(x) < Ww and inside[int(z), int(x)]) for x, z in q]
+                if sum(inn) >= 1 and len(q) >= 2:
+                    aisles += [(q[k], q[k + 1]) for k in range(len(q) - 1)]
+        if aisles:
+            for a0, a1 in aisles:
+                L = np.hypot(*(a1 - a0))
+                if L < 4:
+                    continue
+                ang = np.arctan2(*(a1 - a0)[::-1])
+                snap = np.round(ang / (np.pi / 2)) * (np.pi / 2)
+                if abs(ang - snap) < np.radians(20):              # nearly square to the grid: square it up
+                    ang = snap
+                u = np.array([np.cos(ang), np.sin(ang)])
+                nv = np.array([-u[1], u[0]])
+                for side in (1, -1):
+                    nn = nv * side
+                    for t in np.arange(1.5, L - 1, 3.0):
+                        base = a0 + u * t
+                        for r in np.arange(3.5, 8.5, 0.5):        # separator line (aisle is ~6 m wide)
+                            X, Z = (int(round(v)) for v in base + nn * r)
+                            paint(X, Z, line_blk)
+                        if rng.random() < 0.35 and t + 1.5 < L - 1:
+                            cxz = base + u * 1.5 + nn * 6
+                            car(cxz[0], cxz[1], u, nn)
+            n += 1
+            continue
+        # no aisles mapped: rows on the car park's long axis, snapped square to the grid when nearly square
         c = pts.mean(0)
-        u, s_, vt = np.linalg.svd(pts - c, full_matrices=False)
-        major, minor = vt[0], vt[1]
+        u_, s_, vt = np.linalg.svd(pts - c, full_matrices=False)
+        ang = np.arctan2(vt[0][1], vt[0][0])
+        snap = np.round(ang / (np.pi / 2)) * (np.pi / 2)
+        if abs(ang - snap) < np.radians(20):
+            ang = snap
+        major = np.array([np.cos(ang), np.sin(ang)])
+        minor = np.array([-major[1], major[0]])
         zs, xs = np.nonzero(inside)
         rel = np.stack([xs, zs], 1) - c
         along, across = rel @ major, rel @ minor
-        # rows of bays 5 m deep with a 6 m aisle: lines every 2.5 m along, on the bay rows
         row = np.mod(across, 16)
-        line = ((row < 5) | ((row >= 11) & (row < 16))) & (np.mod(along, 2.5) < 0.5)
-        for (x, z), l in zip(zip(xs, zs), line):
+        bays = (row < 5) | (row >= 11)
+        for (x, z), l in zip(zip(xs, zs), bays & (np.mod(along, 3) < 1)):
             if l:
-                blocks[(int(x), int(G["ground"][z, x]), int(z))] = P("white_concrete")
-        # cars in about a third of the bays
-        bay = ((row >= 1) & (row < 4) | (row >= 12) & (row < 15)) & (np.mod(along, 2.5) >= 1) & (np.mod(along, 2.5) < 1.5)
-        for (x, z), b in zip(zip(xs, zs), bay):
-            if b and rng.random() < 0.12:
-                g = int(G["ground"][z, x])
-                col = P(CAR_COLOURS[rng.integers(len(CAR_COLOURS))])
-                for k in (-1, 0, 1):
-                    X, Z = (int(round(v)) for v in np.array([x, z]) + minor * k)
-                    if 0 <= Z < Hh and 0 <= X < Ww and inside[Z, X]:
-                        blocks[(X, g + 1, Z)] = col
-                        if k == 0:
-                            blocks[(X, g + 2, Z)] = P("light_gray_stained_glass")
+                paint(int(x), int(z), line_blk)
+        for f in np.arange(np.floor(along.min() / 3) * 3 + 1.5, along.max(), 3):
+            for rc in (2.5, 13.5):
+                for k in np.arange(np.floor(across.min() / 16) * 16, across.max(), 16):
+                    if rng.random() < 0.35:
+                        cxz = c + major * f + minor * (k + rc)
+                        car(cxz[0], cxz[1], major, minor)
         n += 1
     print("car parks marked:", n)
     return block_stamp(blocks)
@@ -1774,3 +1841,29 @@ def data_signs(G, P):
         G["block_entities"].setdefault((X // 16, Z // 16), []).append(lock.sign_entity(X, g + 1, Z, lines))
         print(f"data sign: {lines[0]} at {X},{g + 1},{Z}")
     return block_stamp(blocks)
+
+
+# ---- rowing boats out on the open water, ready to ride --------------------------------------------------
+
+def river_boats(G, n=40):
+    """Free-floating boats (ordinary Minecraft boats, so they work in Java and Bedrock) dotted along the Thames
+    and on the lakes, away from the banks and at least 40 m apart."""
+    import lock
+    from scipy import ndimage
+    w = G["water"]
+    open_water = (w > -999) & G["mask"] & (ndimage.distance_transform_edt(w > -999) >= 6)
+    open_water &= ~ndimage.binary_dilation(G["br_deck"] > -999, iterations=8)   # not under bridges
+    zs, xs = np.nonzero(open_water)
+    rng = np.random.default_rng(77)
+    placed = []
+    for i in rng.permutation(len(zs)):
+        x, z = int(xs[i]), int(zs[i])
+        if any((x - a) ** 2 + (z - b) ** 2 < 40 ** 2 for a, b in placed):
+            continue
+        b = lock.boat(x + 0.5, int(w[z, x]) + 0.9, z + 0.5, rot=float(rng.uniform(0, 360)))
+        b["Type"] = ["oak", "spruce", "birch", "dark_oak", "mangrove"][len(placed) % 5]
+        lock.add_entity(G, b)
+        placed.append((x, z))
+        if len(placed) >= n:
+            break
+    print(f"river boats: {len(placed)} free-floating")

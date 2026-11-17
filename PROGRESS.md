@@ -225,3 +225,14 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
   - Snow underfoot "for magic" (the user's call). The fair is fenced; the rest of the car park keeps its bays and cars.
 - **South bank extension** (layers.py: mask x 3690-3945, z 4150-4312): Thames Water's Clearwater Court, the Environment Agency's Kings Meadow House and Reading Bridge House as landmarks from Mapillary photos, King's Meadow Road from the lock to them, and a thank-you signpost outside each (features.data_signs).
 - Checked in-game (headless): the weir from downstream and from its deck (bubbles churning), Winter Wonderland from above and through the arch, the EA building, and Clearwater Court from the river.
+
+### 2026-11-17: car parks, war memorial, river boats, furnished houses
+- Car parks: bays now come off each mapped parking aisle: a 5 m line every 3 m either side, with 2 x 3 cars nose-in in about a third of the bays. Aisles within 20 deg of the block grid are squared up, so the lines run straight. Car parks with no mapped aisles use the old rows, also squared up. From above, the Emmer Green car park now shows clean rows of bays round its loop aisle.
+- War memorial (Christchurch Meadows), rebuilt from the Commons photos: a 2 x 2 pale-stone column with a carved band near the top, on a two-step plinth on an octagonal flagstone base, with poppy wreaths (red carpet, since poppies won't stand on stone). The old version was a white quartz cross.
+- 40 free-floating rowing boats on the Thames and the lakes, away from the banks and bridges. These are ordinary boat entities, so they're rideable in Java and survive conversion to Bedrock. Vanilla can't make boats move by themselves.
+- Houses you can live in (houses.furnish):
+  - Downstairs: a kitchen run along a wall (smoker, sink cauldron, worktop, barrel cupboard) and a dining table with two chairs.
+  - Upstairs: a whole double bed, head and foot, with its head against a wall, and a bookshelf.
+  - A lantern hangs from each ceiling, and the hall inside the front door is always kept clear.
+  - Windows are grey stained glass instead of tinted glass: it still reads dark from outside but lets daylight in.
+  - Counted around Gosbrook Road: 83 doors, 70 beds, 64 kitchens, 44 tables. Checked in-game from inside a house.

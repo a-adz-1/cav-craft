@@ -145,6 +145,75 @@ def shared_roofs(buildings, bid, crop):
     return out
 
 
+def furnish(P, blocks, inner, edge, x0, z0, fl, ey, stair_cells, h):
+    """Furniture for a house you can walk into. Downstairs: a kitchen run along one wall (smoker, sink,
+    worktop, cupboard), a dining table with two chairs, a ceiling light. Upstairs: a double bed with its head
+    to a wall, a bookshelf, a ceiling light. Floors are 3 blocks apart (2 clear); only free cells are used."""
+    rng = np.random.default_rng(h)
+    H, W = inner.shape
+    taken = set(stair_cells)
+
+    def ok(a, c):
+        return 0 <= a < H and 0 <= c < W and inner[a, c] and (a, c) not in taken
+
+    def wall_dir(a, c):
+        """The direction (name, dx, dz) from cell (a, c) to an adjacent wall, if any."""
+        for name, (dx, dz) in DIRS.items():
+            if 0 <= a + dz < H and 0 <= c + dx < W and edge[a + dz, c + dx]:
+                return name, dx, dz
+        return None
+    wallside = [tuple(v) for v in np.argwhere(inner) if wall_dir(*v) and ok(*v)]
+    rng.shuffle(wallside)
+    # kitchen: 4 cells along a wall, appliances facing into the room
+    for a, c in wallside:
+        name, dx, dz = wall_dir(a, c)
+        ax, az = dz, dx                                     # along the wall
+        run = [(a + az * k, c + ax * k) for k in range(4)]
+        if all(ok(*v) and wall_dir(*v) and wall_dir(*v)[0] == name for v in run):
+            into = OPP[name]
+            for (ra, rc), blk in zip(run, (P("smoker", facing=into, lit="false"), P("cauldron"),
+                                           P("polished_andesite_slab", type="top"),
+                                           P("barrel", facing="up", open="false"))):
+                blocks.setdefault((x0 + rc, fl + 1, z0 + ra), blk)
+                taken.add((ra, rc))
+            break
+    # dining table (fence post + pressure plate top) with a chair either side
+    free = [tuple(v) for v in np.argwhere(inner & ~ndimage.binary_dilation(edge)) if ok(*v)]
+    rng.shuffle(free)
+    for a, c in free:
+        if ok(a, c - 1) and ok(a, c + 1):
+            blocks.setdefault((x0 + c, fl + 1, z0 + a), P("spruce_fence"))
+            blocks.setdefault((x0 + c, fl + 2, z0 + a), P("spruce_pressure_plate"))
+            blocks.setdefault((x0 + c - 1, fl + 1, z0 + a), P("oak_stairs", facing="west", half="bottom", shape="straight"))
+            blocks.setdefault((x0 + c + 1, fl + 1, z0 + a), P("oak_stairs", facing="east", half="bottom", shape="straight"))
+            taken |= {(a, c), (a, c - 1), (a, c + 1)}
+            break
+    # upstairs: a bed, head against a wall (bed "facing" = from the foot towards the head)
+    colour = ["red", "blue", "white", "light_gray", "green", "pink"][h % 6]
+    for a, c in wallside:
+        if (a, c) in taken:
+            continue
+        name, dx, dz = wall_dir(a, c)
+        fa, fc = a - dz, c - dx
+        if ok(fa, fc):
+            blocks.setdefault((x0 + c, fl + 4, z0 + a), P(colour + "_bed", facing=name, part="head", occupied="false"))
+            blocks.setdefault((x0 + fc, fl + 4, z0 + fa), P(colour + "_bed", facing=name, part="foot", occupied="false"))
+            taken |= {(a, c), (fa, fc)}
+            break
+    for a, c in wallside:
+        if (a, c) not in taken:
+            blocks.setdefault((x0 + c, fl + 4, z0 + a), P("bookshelf"))
+            taken.add((a, c))
+            break
+    # a light hanging from each ceiling (first-floor planks at fl + 3, the next at fl + 6)
+    rest = [v for v in free if v not in taken]
+    if rest:
+        a, c = rest[len(rest) // 2]
+        blocks.setdefault((x0 + c, fl + 2, z0 + a), P("lantern", hanging="true"))
+        if ey - fl >= 7:
+            blocks.setdefault((x0 + c, fl + 5, z0 + a), P("lantern", hanging="true"))
+
+
 BAY_FAMILIES = {"grey_terrace": 2, "riverside_villa": 2, "victorian_terrace": 2, "victorian_villa": 2, "interwar_semi": 2, "interwar_detached": 2,
                 "postwar_council": 0}
 
@@ -462,15 +531,7 @@ def prepare(G, P, layers, lidar, buildings):
                     blocks[(X, fl + 1 + k, Z)] = P("oak_stairs", facing=name, half="bottom", shape="straight")
                     for y in range(fl + 2 + k, fl + 5):
                         blocks.setdefault((X, y, Z), P("air"))          # stairwell through the first floor
-            free = [tuple(v) for v in np.argwhere(inner & ~ndimage.binary_dilation(edge))]
-            rng_h = np.random.default_rng(h)
-            if len(free) >= 6:
-                pick = rng_h.choice(len(free), 4, replace=False)
-                (a1, c1), (a2, c2), (a3, c3), (a4, c4) = (free[i] for i in pick)
-                blocks.setdefault((x0 + c1, fl + 1, z0 + a1), P("crafting_table"))
-                blocks.setdefault((x0 + c2, fl + 1, z0 + a2), P("furnace", facing="north", lit="false"))
-                blocks.setdefault((x0 + c3, fl + 4, z0 + a3), P("red_bed", facing="north", part="head", occupied="false"))
-                blocks.setdefault((x0 + c4, fl + 4, z0 + a4), P("bookshelf"))
+            furnish(P, blocks, inner, edge, x0, z0, fl, ey, set(run[0]) if run else set(), h)
         # flat-roofed blocks: a parapet round the roof edge, a plant room on top of the big ones, and balconies
         # on apartment blocks (a slab ledge + glass rail under every other upper-floor window row)
         if rkind == "flat" and not lm and kind not in ("garage", "garages", "shed", "hut", "carport"):
@@ -552,6 +613,8 @@ def prepare(G, P, layers, lidar, buildings):
                         X, Z = x0 + dx_, z0 + dz_
                         blocks[(X, fl + 1, Z)] = P(door, facing=name, half="lower", hinge="left", open="false")
                         blocks[(X, fl + 2, Z)] = P(door, facing=name, half="upper", hinge="left", open="false")
+                        for y in (fl + 1, fl + 2):                    # the hall inside the door stays clear
+                            blocks[(X - dx, y, Z - dz)] = P("air")
                         G.setdefault("doorsteps", []).append((X + dx, fl, Z + dz))
                         # porch canopy over the door: a slab hood on brackets (Victorian/Edwardian), a tiled
                         # lean-to porch (1930s), a flat timber canopy (1960s)
@@ -592,7 +655,7 @@ BRICK_WALLS = []
 def stamp_factory(G, P):
     BRICK_WALLS[:] = [P(WALLS[k]) for k in ("red_brick", "orange_brick", "buff_brick", "grey_brick")]
     sill_block = P("smooth_stone")
-    glass, floor = P("tinted_glass"), P("oak_planks")   # tinted: windows read dark from outside, like real ones
+    glass, floor = P("gray_stained_glass"), P("oak_planks")   # reads dark from outside like real windows, lets daylight in
     by_chunk = {}
     for (x, y, z), blk in G["h_blocks"].items():
         by_chunk.setdefault((x // 16, z // 16), []).append((x, y, z, blk))
