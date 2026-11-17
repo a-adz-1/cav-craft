@@ -21,11 +21,18 @@ SAVE = os.path.join(INST, "minecraft/saves/Cavcraft-test")
 LOG = os.path.join(INST, "minecraft/logs/latest.log")
 GAME = r"^/\S*/java .*minecraft-1\.21\.11-client"   # the game itself, not shells whose text mentions it
 
+def headless_ok():
+    return subprocess.run(["pgrep", "-x", "prismlauncher"], capture_output=True).returncode != 0 and \
+        subprocess.run(["pgrep", "-f", GAME], capture_output=True).returncode != 0
+
+
 world, out = sys.argv[1], sys.argv[2]
 x, y, z, yaw, pitch = map(float, sys.argv[3:8])
 wait = float(sys.argv[8]) if len(sys.argv) > 8 else 25
 daytime = int(sys.argv[9]) if len(sys.argv) > 9 else None   # e.g. 18000 for midnight
 
+if not headless_ok():
+    sys.exit("the user's own Prism/Minecraft is open: not starting a game (it would be closed afterwards)")
 while subprocess.run(["pgrep", "-f", GAME], capture_output=True).returncode == 0:
     time.sleep(1)   # the last game is still closing
 shutil.rmtree(SAVE, ignore_errors=True)

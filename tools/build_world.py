@@ -48,7 +48,7 @@ TOP = {  # surface class -> top block
     "scrub": GRASS, "cemetery": GRASS, "railway": GRAVEL, "rock": STONE, "wetland": P("mud"), "bridge": STONE,
 }
 ROAD_IDX = [SURFACE.index(n) for n in ("road", "minor_road", "footway")]
-ROAD_SLAB = P("blackstone_slab", type="bottom")   # no concrete slab exists; dark like the tarmac
+ROAD_SLAB = P("polished_deepslate_slab", type="bottom")   # no concrete slab exists; smooth and dark like tarmac
 FOOT_SLAB = P("polished_andesite_slab", type="bottom")
 SUB = {"sand": SAND, "water": DIRT, "railway": GRAVEL, "rock": STONE}
 TOP_LUT = np.array([TOP[n] for n in SURFACE], np.int32)
@@ -199,7 +199,9 @@ def main():
     os.makedirs(os.path.join(out, "entities"))
     hgt, wid = layers["mask"].shape
     jobs = [(rx, rz, out) for rz in range(-(-hgt // 512)) for rx in range(-(-wid // 512))]
-    with mp.get_context("fork").Pool(min(len(jobs), os.cpu_count())) as pool:
+    os.nice(10)   # stay out of the way of whoever is using the PC (and their own Minecraft)
+    procs = int(os.environ.get("CAVCRAFT_JOBS", max(1, os.cpu_count() - 4)))
+    with mp.get_context("fork").Pool(min(len(jobs), procs)) as pool:
         n = sum(pool.map(build_region, jobs))
     sx, sy, sz = G["spawn"]
     anvil.write_level_dat(os.path.join(out, "level.dat"), "Cavcraft", (sx, sy, sz), (wid / 2, hgt / 2), max(wid, hgt) + 64)

@@ -185,6 +185,26 @@ def bridge_setup(G, lidar):
             win = win[win > -999]
             ys.append(np.percentile(win, 30) if win.size else -999)
         ys = ndimage.median_filter(np.array(ys), size=15, mode="nearest")
+        # ease the deck down to the road at both ends: no steeper than 1 block per 4 m (samples are 0.5 m)
+        gs = np.array([G["ground"][z, x] if 0 <= z < Hh and 0 <= x < Ww else -999 for x, z in si], float)
+        dry = np.array([0 <= z < Hh and 0 <= x < Ww and G["water"][z, x] == -999 for x, z in si])
+
+        def street(p, d):
+            """Ground of the street just past a bridge end: first dry cell within 12 m out along the road."""
+            for r in range(1, 13):
+                X, Z = (p + d * r).round().astype(int)
+                if 0 <= Z < Hh and 0 <= X < Ww and G["mask"][Z, X] and G["water"][Z, X] == -999:
+                    return G["ground"][Z, X]
+            return None
+        k = np.arange(len(ys))
+        u0 = (samples[0] - samples[1]) / max(np.hypot(*(samples[0] - samples[1])), 1e-9)
+        u1 = (samples[-1] - samples[-2]) / max(np.hypot(*(samples[-1] - samples[-2])), 1e-9)
+        g0, g1 = street(samples[0], u0), street(samples[-1], u1)
+        if g0 is not None:                                       # ease down to the street at each end
+            ys = np.minimum(ys, g0 + 1 + k / 8)
+        if g1 is not None:
+            ys = np.minimum(ys, g1 + 1 + (len(ys) - 1 - k) / 8)
+        ys = np.where(dry, np.maximum(ys, gs), ys)
         ys = np.round(ys).astype(int)
         r = w / 2
         # arches: over each run of water under the bridge, one arch per ≤45 m, springing from the water at the
@@ -218,7 +238,11 @@ def bridge_setup(G, lidar):
                             arch[Z, X] = so
                             kind[Z, X] = 2 if hw in ("footway", "cycleway", "path", "pedestrian", "steps") else 1
             centre[int(round(z)), int(round(x))] = True
-    # only where the deck is clear of the ground does it need building
+    # where the deck is just one above the road, raise the road instead (its ramps then come from the road
+    # slab rule); only where it is clear of the ground does the deck need building
+    lift = (deck == G["ground"] + 1) & G["mask"] & (G["water"] == -999) & (kind == 1)
+    G["ground"][lift] += 1
+    G["surface"][lift] = 3
     deck[(deck <= G["ground"] + 1) | ~G["mask"]] = -999
     inb = deck > -999
     edge = inb & ~ndimage.binary_erosion(inb)
@@ -232,10 +256,13 @@ def bridge_stamp(G, P):
     concrete = P("light_gray_concrete")
     Y_MIN = -64
 
+    slab = P("polished_deepslate_slab", type="bottom")
+    Hh, Ww = G["mask"].shape
+
     def stamp(b, x0, z0, g, w, s, Y):
         d = G["br_deck"][z0:z0 + 16, x0:x0 + 16]
-        if d.shape != (16, 16) or not (d > -999).any():
-            return
+        if d.shape != (16, 16) or not (G["br_deck"][max(0, z0 - 1):z0 + 17, max(0, x0 - 1):x0 + 17] > -999).any():
+            return                                               # (a chunk touching a deck still gets its ramps)
         k = G["br_kind"][z0:z0 + 16, x0:x0 + 16]
         e = G["br_edge"][z0:z0 + 16, x0:x0 + 16]
         on = d > -999
@@ -246,6 +273,27 @@ def bridge_stamp(G, P):
         a = G["br_arch"][z0:z0 + 16, x0:x0 + 16]
         b[:] = np.where(on & (a > -999) & (Y >= a) & (Y < d - 1), concrete, b)
         b[:] = np.where(on & e & (Y == d + 1), np.where(k == 2, rail, wall)[None], b)
+        # last, or the headroom clearing wipes them: a half slab on the lower side of each one-block step makes a ramp
+        za, xa = max(0, z0 - 1), max(0, x0 - 1)
+        D = G["br_deck"][za:z0 + 17, xa:x0 + 17]
+        Gd = G["ground"][za:z0 + 17, xa:x0 + 17].astype(int)
+        R = np.isin(G["surface"][za:z0 + 17, xa:x0 + 17], (3, 4))
+        Hs = np.where(D > -999, D, np.where(R, Gd, -999))       # walking height: deck, or road
+        oz, ox = z0 - za, x0 - xa
+        for zz in range(16):
+            for xx in range(16):
+                h = Hs[zz + oz, xx + ox]
+                if h == -999:
+                    continue
+                nb = [Hs[zz + oz + dz_, xx + ox + dx_] for dz_, dx_ in ((1, 0), (-1, 0), (0, 1), (0, -1))
+                      if 0 <= zz + oz + dz_ < Hs.shape[0] and 0 <= xx + ox + dx_ < Hs.shape[1]]
+                ondeck = D[zz + oz, xx + ox] > -999
+                if ondeck and e[zz, xx]:
+                    continue                                     # the parapet stands there
+                if h + 1 in nb:
+                    yy = h + 1 + 64
+                    if 0 <= yy < b.shape[0] and b[yy, zz, xx] == 0:   # only into open air
+                        b[yy, zz, xx] = slab
     return stamp
 
 

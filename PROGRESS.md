@@ -261,3 +261,11 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 - Read-only: gamemode adventure (no breaking or placing; buttons, doors, boats and chests still work), peaceful, no PvP, no hunger. The spawn_monsters, spawn_phantoms, spawn_patrols and spawn_wandering_traders game rules are off; spawn_mobs, mob_griefing and weather were already off from level.dat. 1.21.11 uses the new snake_case game rule names.
 - Multiverse-Inventories leaves ungrouped worlds separate (default-ungrouped-worlds: false), the same as rivercraft, so inventories don't carry over.
 - The server log after import is clean.
+
+### 2026-11-17: smooth bridges (user: "the cav bridge will need smoothing out")
+- Bridge decks used to step straight up off the road, and the road ramps used blackstone slabs, which look like rubble.
+- Each road bridge's deck now eases to the street at both ends, at most 1 block per 4 m. It's anchored to the first dry street cell beyond each end; before, Caversham Bridge sagged onto Fry's Island because its mapped ends are over water.
+- Where the deck is only 1 above the road, the road is raised instead. Every remaining 1-block step on or next to a deck gets a half-slab ramp, placed last so the headroom clearing doesn't wipe it, including in chunks that only border a deck.
+- Road ramps everywhere now use polished deepslate slabs: smooth and dark like the tarmac.
+- Checked by walking every road bridge's centre line in the written world: Caversham Bridge is smooth end to end. Reading Bridge has one 1-block step at the zebra on its north end and a 2-block step where it meets a footbridge deck.
+- Builds now run at nice 10 with 4 cores left free, after the PC hung while the user played. mc_view refuses to start while the user's own Prism or Minecraft is open: it would close their game.
