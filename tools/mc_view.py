@@ -22,6 +22,7 @@ LOG = os.path.join(INST, "minecraft/logs/latest.log")
 world, out = sys.argv[1], sys.argv[2]
 x, y, z, yaw, pitch = map(float, sys.argv[3:8])
 wait = float(sys.argv[8]) if len(sys.argv) > 8 else 25
+daytime = int(sys.argv[9]) if len(sys.argv) > 9 else None   # e.g. 18000 for midnight
 
 while subprocess.run(["pgrep", "-f", "minecraft-1.21.11-client"], capture_output=True).returncode == 0:
     time.sleep(1)   # the last game is still closing
@@ -30,6 +31,10 @@ shutil.copytree(world, SAVE)
 lvl = anvil.read_nbt(gzip.open(os.path.join(SAVE, "level.dat")).read())["Data"]
 anvil.write_level_dat(os.path.join(SAVE, "level.dat"), "Cavcraft-test", (lvl["SpawnX"], lvl["SpawnY"], lvl["SpawnZ"]),
                       (lvl["BorderCenterX"], lvl["BorderCenterZ"]), lvl["BorderSize"], player=(x, y, z, yaw, pitch))
+if daytime is not None:
+    anvil.write_level_dat(os.path.join(SAVE, "level.dat"), "Cavcraft-test", (lvl["SpawnX"], lvl["SpawnY"], lvl["SpawnZ"]),
+                          (lvl["BorderCenterX"], lvl["BorderCenterZ"]), lvl["BorderSize"], player=(x, y, z, yaw, pitch),
+                          daytime=daytime)
 start = time.time()
 subprocess.Popen(["prismlauncher", "--launch", "1.21.11 Paper", "--world", "Cavcraft-test"],
                  stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

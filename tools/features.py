@@ -363,8 +363,9 @@ def streets(G, P):
                 if 0 <= x < Ww and 0 <= z < Hh and G["mask"][z, x]:
                     if hw in MARKED and (s % 6) < 3 and G["surface"][z, x] in road_cls:
                         line_cells[z, x] = True
-                    if s % 30 < 1:
-                        q = p + normal * (LIT[hw] / 2 + 1)
+                    if s % 25 < 1:
+                        side = 1 if int(s // 25) % 2 else -1          # alternate sides, like real streets
+                        q = p + normal * side * (LIT[hw] / 2 + 1)
                         lx, lz = int(round(q[0])), int(round(q[1]))
                         if (0 <= lx < Ww and 0 <= lz < Hh and G["mask"][lz, lx] and G["water"][lz, lx] == -999
                                 and G["building"][lz, lx] == 0 and G["surface"][lz, lx] not in road_cls):

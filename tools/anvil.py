@@ -213,7 +213,7 @@ def read_chunk(path, lx, lz):
     return read_nbt(zlib.decompress(data[off + 5:off + 4 + n]))
 
 
-def write_level_dat(path, name, spawn, border_centre, border_size, seed=20261116, player=None):
+def write_level_dat(path, name, spawn, border_centre, border_size, seed=20261116, player=None, daytime=6000):
     """player: optional (x, y, z, yaw, pitch) to start the single player there, flying (for test views)."""
     void = {"type": "minecraft:flat", "settings": {"layers": [], "biome": "minecraft:plains",
                                                    "features": Byte(0), "lakes": Byte(0), "structure_overrides": []}}
@@ -221,7 +221,7 @@ def write_level_dat(path, name, spawn, border_centre, border_size, seed=20261116
         "DataVersion": DATA_VERSION,
         "version": 19133, "initialized": Byte(1), "LevelName": name, "GameType": 1, "Difficulty": Byte(1),
         "hardcore": Byte(0), "allowCommands": Byte(1), "SpawnX": spawn[0], "SpawnY": spawn[1], "SpawnZ": spawn[2],
-        "SpawnAngle": Float(0), "Time": Long(0), "DayTime": Long(6000), "LastPlayed": Long(0),
+        "SpawnAngle": Float(0), "Time": Long(0), "DayTime": Long(daytime), "LastPlayed": Long(0),
         "raining": Byte(0), "thundering": Byte(0), "rainTime": 0, "thunderTime": 0, "clearWeatherTime": 0,
         "Version": {"Id": DATA_VERSION, "Name": "1.21.1", "Series": "main", "Snapshot": Byte(0)},
         "DataPacks": {"Enabled": ["vanilla"], "Disabled": []},
