@@ -55,6 +55,20 @@ LANDMARKS = {
     # Reading Canoe Club boathouse on The Warren
     "w139149866": {"name": "Reading Canoe Club", "walls": "timber", "roof": "slate", "dress": None,
                    "windows": "house", "shopfront": "green_concrete"},
+    # St Barnabas, Emmer Green (1924): red brick, dark plain-tile roof, big traceried west window, bellcote
+    "w155061436": {"name": "St Barnabas Emmer Green", "walls": "red_brick", "roof": "dark_tile", "dress": "bricks",
+                   "windows": "lancet",
+                   "tower": {"size": 2, "top": "pyramid", "walls": "bricks", "dress": "bricks", "extra": 2}},
+    # Our Lady and St Anne, South View Avenue: red brick with stone dressings, tall battlemented tower
+    # with paired belfry lancets
+    "w137356789": {"name": "Our Lady and St Anne", "walls": "red_brick", "roof": "dark_tile",
+                   "dress": "smooth_sandstone", "windows": "lancet", "band": 6,
+                   "tower": {"size": 4, "top": "battlement", "walls": "bricks", "dress": "smooth_sandstone",
+                             "extra": 4}},
+    # Caversham Methodist Church, Ardler Road: red brick, stone-capped buttresses, battlemented tower
+    "w552926965": {"name": "Caversham Methodist Church", "walls": "red_brick", "roof": "dark_tile",
+                   "dress": "smooth_sandstone", "windows": "lancet",
+                   "tower": {"size": 3, "top": "battlement", "walls": "bricks", "dress": "bricks", "extra": 3}},
     # Caversham Park (the mansion, BBC Monitoring until 2018): pale Bath stone, Corinthian colonnade on the
     # south front, balustraded parapet, three tall storeys
     "w160047105": {"name": "Caversham Park", "walls": "sandstone", "roof": "flat", "dress": "smooth_quartz",

@@ -127,3 +127,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
   memorial (stone cross on a stepped base) by Caversham Bridge. Reinstalled + rezipped.
 - 2026-11-17 Caversham Court riverside gazebo (brick + flint bands, pyramid tile roof, vane) and Reading Canoe Club boathouse. Landmarks keep a pitched roof even when the LiDAR pitch is shallow; no chimneys on landmarks.
 - 2026-11-17 Roof stairs: each faces up its own slope, and only on straight runs of roof edge; diagonal (off-grid) houses get full blocks on the zigzag instead of a comb of stairs.
+- 2026-11-17 Churches from Commons photos (tools/look_title.py): St Barnabas Emmer Green (bellcote), Our Lady and St Anne (tall battlemented tower, stone dressings), Caversham Methodist Ardler Road (battlemented tower).
