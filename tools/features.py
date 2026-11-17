@@ -35,6 +35,7 @@ def setup(G, P, lidar):
     G["stamps"].append(credits_sign(G, P))
     G["stamps"].append(barriers(G, P))
     G["stamps"].append(structures(G, P, lidar))
+    moorings(G, P)
     G["trees"] = find_trees(G, lidar["vom"])
     print("trees:", len(G["trees"]))
     G["stamps"].append(tree_stamp(G, P))
@@ -471,3 +472,35 @@ def structures(G, P, lidar):
         blocks[(mx + dx, gm + 6, mz)] = P("quartz_block")
     print(f"water tower at {cx},{cz} top y {top}; war memorial at {mx},{mz}")
     return block_stamp(blocks)
+
+
+# ---- moored boats along the Thames banks (vanilla boats; Fry's Island and the town reach are full of them) ----
+
+def moorings(G, P, n=70):
+    from scipy import ndimage
+    import lock
+    w = G["water"]
+    thames = (w == 35) | (w == 36)
+    land = G["mask"] & (w == -999)
+    bank = thames & ndimage.binary_dilation(land) & ~ndimage.binary_dilation(G["br_deck"] > -999, iterations=10)
+    lockzone = np.zeros_like(bank)
+    lockzone[4140:4200, 4010:4110] = True
+    bank &= ~lockzone
+    zs, xs = np.nonzero(bank)
+    rng = np.random.default_rng(3)
+    picks = []
+    for i in rng.permutation(len(zs)):
+        x, z = xs[i], zs[i]
+        if all(abs(x - a) + abs(z - c) > 18 for a, c in picks):
+            picks.append((x, z))
+        if len(picks) >= n:
+            break
+    kinds = ["oak", "spruce", "birch", "dark_oak", "mangrove", "cherry"]
+    for k, (x, z) in enumerate(picks):
+        # parallel to the bank: face along the shore
+        gz, gx = np.gradient(land[z - 2:z + 3, x - 2:x + 3].astype(float))
+        rot = float(np.degrees(np.arctan2(gz[2, 2], gx[2, 2])))
+        b = lock.boat(x + 0.5, w[z, x] + 0.9, z + 0.5, rot)
+        b["Type"] = kinds[k % len(kinds)]
+        lock.add_entity(G, b)
+    print("moored boats:", len(picks))

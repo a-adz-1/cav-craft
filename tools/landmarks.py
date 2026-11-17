@@ -69,6 +69,18 @@ LANDMARKS = {
     "w552926965": {"name": "Caversham Methodist Church", "walls": "red_brick", "roof": "dark_tile",
                    "dress": "smooth_sandstone", "windows": "lancet",
                    "tower": {"size": 3, "top": "battlement", "walls": "bricks", "dress": "bricks", "extra": 3}},
+    # Fry's Island: Caversham Boat Services' white weatherboarded clubhouse with a black-and-white gable,
+    # and the Island Bohemian Club
+    "w32781426": {"name": "Caversham Boat Services", "walls": "white_render", "roof": "slate", "dress": "spruce_planks",
+                  "windows": "house", "tudor_gable": True, "roof_kind": "gable"},
+    "w32781427": {"name": "Island Bohemian Club", "walls": "white_render", "roof": "slate", "dress": None,
+                  "windows": "house", "roof_kind": "gable"},
+    # Caversham Wharf and Regents Riverside: yellow stock-brick riverside flats with slate roofs, turrets and
+    # balconies
+    "w556518929": {"name": "Caversham Wharf", "walls": "sandstone", "roof": "slate", "dress": "smooth_quartz",
+                   "windows": "tall", "roof_kind": "hip", "band": 3},
+    "w136161991": {"name": "Regents Riverside", "walls": "sandstone", "roof": "slate", "dress": "smooth_quartz",
+                   "windows": "tall", "roof_kind": "hip", "band": 3},
     # Caversham Park (the mansion, BBC Monitoring until 2018): pale Bath stone, Corinthian colonnade on the
     # south front, balustraded parapet, three tall storeys
     "w160047105": {"name": "Caversham Park", "walls": "sandstone", "roof": "flat", "dress": "smooth_quartz",
