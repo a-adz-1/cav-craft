@@ -254,13 +254,65 @@ ground = np.where(water, np.minimum(ground, level - bed_depth), ground)
 level[~water] = -999
 surface[~mask] = S["void"]
 
+HOUSEY = {"house", "semidetached_house", "detached", "terrace", "bungalow", "residential", "garage", "garages",
+          "shed", "yes", "cottage", "hut"}
+
+
+def square_houses(ball):
+    """Houses square to the block grid: each attached group (a terrace, a pair of semis, a house and its
+    garage: outlines that share corners) turns about its own centre to the nearest right angle, so walls are
+    flat instead of stair-stepped. Groups bigger than 1500 m2 (flats, schools) and non-house buildings keep
+    their angle. Returns {id: turned outer ring}."""
+    cand = [a for a in ball if a["tags"].get("building") in HOUSEY and len(a["rings"]) == 1]
+    parent = {a["id"]: a["id"] for a in cand}
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+    owner = {}
+    for a in cand:
+        for p in a["rings"][0]:
+            k = (round(p[0], 1), round(p[1], 1))
+            if k in owner:
+                parent[find(a["id"])] = find(owner[k])
+            else:
+                owner[k] = a["id"]
+    groups = {}
+    for a in cand:
+        groups.setdefault(find(a["id"]), []).append(a)
+    out = {}
+    for g in groups.values():
+        rings = [np.array(a["rings"][0], float) for a in g]
+        area = sum(0.5 * abs(np.dot(r[:-1, 0], r[1:, 1]) - np.dot(r[1:, 0], r[:-1, 1])) for r in rings)
+        if area > 1500:
+            continue
+        # the group's angle: length-weighted mean of its edge directions, folded to a quarter turn
+        seg = np.concatenate([np.diff(r, axis=0) for r in rings])
+        L = np.hypot(seg[:, 0], seg[:, 1])
+        ang = np.arctan2(seg[:, 1], seg[:, 0]) * 4
+        th = np.arctan2((L * np.sin(ang)).sum(), (L * np.cos(ang)).sum()) / 4
+        if abs(np.degrees(th)) < 3:
+            continue
+        c = np.concatenate(rings).mean(0)
+        R = np.array([[np.cos(-th), -np.sin(-th)], [np.sin(-th), np.cos(-th)]])
+        for a, r in zip(g, rings):
+            out[a["id"]] = ((r - c) @ R.T + c).tolist()
+    print("houses squared to the grid:", len(out), "in", sum(1 for g in groups.values()
+                                                                 if g[0]["id"] in out), "groups")
+    return out
+
+
 # ---- buildings --------------------------------------------------------------------------
 bimg = Image.new("I", (W, H), 0)
 bd = ImageDraw.Draw(bimg)
 buildings = [None]
 seen_b = set()
-for a in areas + [{"id": ln["id"], "tags": ln["tags"], "rings": [ln["pts"]]} for ln in osm["lines"]
-                   if ln["tags"].get("building") and ln["pts"][0] == ln["pts"][-1]]:
+ball = areas + [{"id": ln["id"], "tags": ln["tags"], "rings": [ln["pts"]]} for ln in osm["lines"]
+                if ln["tags"].get("building") and ln["pts"][0] == ln["pts"][-1]]
+SQUARED = square_houses(ball)
+for a in ball:
     t = a["tags"]
     if not t.get("building") or t.get("building") in ("no", "roof") or t.get("location") == "underground":
         continue
@@ -271,11 +323,35 @@ for a in areas + [{"id": ln["id"], "tags": ln["tags"], "rings": [ln["pts"]]} for
     if a["id"] in seen_b:
         continue
     seen_b.add(a["id"])
-    buildings.append({"id": a["id"], "tags": {k: v for k, v in t.items() if not k.startswith(("name:", "ref:", "addr:"))}})
+    buildings.append({"id": a["id"], "tags": {k: v for k, v in t.items() if not k.startswith(("name:", "ref:"))}})
+    if a["id"] in SQUARED:
+        continue                                  # drawn below, after the rest, into the cells still free
     bd.polygon(px(ring), fill=len(buildings) - 1)
     for inner in a["rings"][1:]:
         bd.polygon(px(inner), fill=0)
-building = np.asarray(bimg).astype(np.int32) * mask
+building = np.asarray(bimg).astype(np.int32)
+for i, b in enumerate(buildings[1:], start=1):
+    ring = SQUARED.get(b["id"])
+    if ring is None:
+        continue
+    P_ = np.array(px(ring))
+    lo = np.floor(P_.min(0)).astype(int) - 1
+    hi = np.ceil(P_.max(0)).astype(int) + 2
+    im = Image.new("L", tuple(hi - lo), 0)
+    ImageDraw.Draw(im).polygon([tuple(p - lo) for p in P_], fill=1)
+    m = np.asarray(im).astype(bool)
+    z0, x0 = lo[1], lo[0]
+    sz, sx = slice(max(z0, 0), min(z0 + m.shape[0], H)), slice(max(x0, 0), min(x0 + m.shape[1], W))
+    m = m[sz.start - z0:sz.stop - z0, sx.start - x0:sx.stop - x0]
+    building[sz, sx][m & (building[sz, sx] == 0)] = i
+building *= mask
+# address points (OSM often has the number on a node inside the house): give the number to that building
+for nd in osm["nodes"]:
+    num = nd["tags"].get("addr:housenumber")
+    r_, c_ = rc(nd["pt"])
+    if num and 0 <= r_ < H and 0 <= c_ < W and building[r_, c_]:
+        buildings[building[r_, c_]]["tags"].setdefault("addr:housenumber", num)
+print("buildings with a house number:", sum(1 for b in buildings[1:] if b["tags"].get("addr:housenumber")))
 
 json.dump(buildings, open("build/buildings.json", "w"))
 json.dump([{"id": b["id"], "tags": b["tags"], "pts": b["pts"]} for b in bridges], open("build/bridges.json", "w"))

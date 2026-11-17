@@ -641,6 +641,23 @@ def prepare(G, P, layers, lidar, buildings):
             ez, ex = np.nonzero(edge)
             if len(rz) and len(ez):
                 dd = (ez[:, None] + z0 - (rz[None] + oz)) ** 2 + (ex[:, None] + x0 - (rx[None] + ox)) ** 2
+                if not garage:
+                    # a door only in a straight wall: one outside face, wall both sides, a room behind it, so a
+                    # closed door seals the house (on a stair-stepped corner you could walk round it)
+                    def sealed(a, c):
+                        outs = [(dx, dz) for dx, dz in DIRS.values()
+                                if not (0 <= a + dz < inside.shape[0] and 0 <= c + dx < inside.shape[1]
+                                        and inside[a + dz, c + dx])]
+                        if len(outs) != 1:
+                            return False
+                        dx, dz = outs[0]
+                        a2, c2 = a - dz, c - dx
+                        return (0 <= a2 < inside.shape[0] and 0 <= c2 < inside.shape[1] and inside[a2, c2]
+                                and not edge[a2, c2])
+                    ok = np.array([sealed(a, c) for a, c in zip(ez, ex)])
+                    if not ok.any():
+                        continue
+                    dd = np.where(ok[:, None], dd, np.inf)
                 j = int(np.argmin(dd.min(1)))
                 dz_, dx_ = ez[j], ex[j]
                 # which side is outside
@@ -669,6 +686,18 @@ def prepare(G, P, layers, lidar, buildings):
                         for y in (fl + 1, fl + 2):                    # the hall inside the door stays clear
                             blocks[(X - dx, y, Z - dz)] = P("air")
                         G.setdefault("doorsteps", []).append((X + dx, fl, Z + dz))
+                        # the house number on a plaque on the wall beside the door, facing the street
+                        num = t.get("addr:housenumber")
+                        if num and not shop_colour:
+                            for k in (1, -1):
+                                SX, SZ = X + dx + dz * k, Z + dz + dx * k
+                                if 0 <= SZ - dz - z0 < inside.shape[0] and 0 <= SX - dx - x0 < inside.shape[1] \
+                                        and edge[SZ - dz - z0, SX - dx - x0] and (SX, fl + 2, SZ) not in blocks:
+                                    blocks[(SX, fl + 2, SZ)] = P("dark_oak_wall_sign", facing=name)
+                                    G.setdefault("sign_texts", []).append(
+                                        (int(SX), int(fl) + 2, int(SZ), [num.replace(",", " & ").replace(";", " & ")]))
+                                    stats["numbered"] = stats.get("numbered", 0) + 1
+                                    break
                         # porch canopy over the door: a slab hood on brackets (Victorian/Edwardian), a tiled
                         # lean-to porch (1930s), a flat timber canopy (1960s)
                         fam = st.get("family")
@@ -908,6 +937,8 @@ def garden_life(G, P, bid, surface, buildings, d, iz, ix, road, house, droad):
     blocks = G["h_blocks"]
     grass = (surface == 1) & (bid == 0) & house[bid[iz, ix]]
     front = grass & (droad < droad[iz, ix]) & (d <= 2)
+    for x, _, z in G.get("doorsteps", []):                  # nothing planted in or beside a doorway
+        front[max(0, z - 2):z + 3, max(0, x - 2):x + 3] = False
     flowers = [P("poppy"), P("dandelion"), P("blue_orchid"), P("allium"), P("oxeye_daisy"), P("cornflower"),
                P("pink_tulip"), P("red_tulip"), P("white_tulip"), P("lilac", half="lower")]
     shrub = P("azalea_leaves", persistent="true")
