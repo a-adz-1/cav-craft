@@ -129,3 +129,7 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 Roof stairs: each faces up its own slope, and only on straight runs of roof edge; diagonal (off-grid) houses get full blocks on the zigzag instead of a comb of stairs.
 - 2026-11-17 Churches from Commons photos (tools/look_title.py): St Barnabas Emmer Green (bellcote), Our Lady and St Anne (tall battlemented tower, stone dressings), Caversham Methodist Ardler Road (battlemented tower).
 - 2026-11-17 Fry's Island: Caversham Boat Services' white clubhouse with Tudor gable, Island Bohemian Club; Caversham Wharf and Regents Riverside as pale-stone hipped flats; 70 moored boats (six woods) along the Thames banks, clear of bridges and the lock (checked in game).
+- 2026-11-17 Schools get their own style (brick, tall mullioned windows); the domed Victorian house on the
+  Peppard Road school site (copper cupola, white bays). Garden fences (spruce) between neighbouring plots
+  where the nearest house changes, ≤25 m from houses, away from the road (278k blocks). Pavements: 2 m either
+  side of every street over grass; front walls/hedges now sit at the back of the pavement.

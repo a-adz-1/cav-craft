@@ -171,6 +171,9 @@ for ln in osm["lines"]:
     for x, y in pts:
         d.ellipse([x - w / 2, y - w / 2, x + w / 2, y + w / 2], fill=S[cls])
 surface = np.asarray(surf).copy()
+# pavements: 2 m either side of streets, over grass/verge only (OSM rarely maps them as separate ways)
+pave = ndimage.binary_dilation(surface == S["road"], iterations=2) & (surface == S["grass"])
+surface[pave] = S["footway"]
 
 # ---- water levels -----------------------------------------------------------------------
 water = water_all & mask

@@ -157,6 +157,9 @@ def prepare(G, P, layers, lidar, buildings):
         if st is None:
             st = DEFAULT_STYLE if not big else {"walls": ["concrete", "red_brick", "buff_brick", "white_render"],
                                                   "roof": ["flat"], "tudor": 0}
+        if kind in ("school", "kindergarten", "college") or t.get("amenity") in ("school", "kindergarten"):
+            st = {"walls": ["red_brick", "buff_brick", "orange_brick", "red_brick"], "roof": ["flat", "dark_tile", "slate"],
+                  "tudor": 0, "family": "school"}
         if kind in ("church", "chapel") or t.get("amenity") == "place_of_worship":
             st = {"walls": ["stone", "flint"], "roof": ["slate"], "tudor": 0}
         if kind in ("garage", "garages", "shed", "hut", "carport"):
@@ -219,7 +222,7 @@ def prepare(G, P, layers, lidar, buildings):
                 stats.setdefault("shopfronts", 0)
                 stats["shopfronts"] += 1
         church = kind in ("church", "chapel") or t.get("amenity") == "place_of_worship"
-        ws = {"lancet": 1, "tall": 2}.get(lm.get("windows"), 0) if lm else (1 if church else 0)
+        ws = {"lancet": 1, "tall": 2}.get(lm.get("windows"), 0) if lm else (1 if church else 2 if st.get("family") == "school" else 0)
         if ws:
             winstyle[sub] = np.where(inside, ws, winstyle[sub])
         if lm:
@@ -396,6 +399,31 @@ def front_boundaries(G, P, bid, surface, buildings, styles, streets):
     for k, v in connect(walls_at, "brick_wall", P).items():
         blocks.setdefault(k, v)
     print("front garden walls/hedges:", n)
+    garden_fences(G, P, bid, surface, buildings, d, iz, ix, road)
+
+
+def garden_fences(G, P, bid, surface, buildings, d, iz, ix, road):
+    """Fences between neighbouring gardens: where the nearest house changes, on grass within 25 m of the
+    houses, away from the road (fronts are open, walled or hedged instead)."""
+    near = bid[iz, ix]
+    house = np.zeros(len(buildings), bool)
+    for i, b in enumerate(buildings):
+        if b and b["tags"].get("building") in HOUSE_KINDS:
+            house[i] = True
+    ok = (surface == 1) & (bid == 0) & (d <= 25) & house[near]
+    ok &= ndimage.distance_transform_edt(~road) > 6
+    split = np.zeros_like(ok)
+    split[:, :-1] |= near[:, :-1] != near[:, 1:]
+    split[:-1, :] |= near[:-1, :] != near[1:, :]
+    cells = ok & split
+    ground = G["ground"]
+    blocks = G["h_blocks"]
+    fence = {}
+    for z, x in zip(*np.nonzero(cells)):
+        fence[(int(x), int(ground[z, x]) + 1, int(z))] = True
+    for k, v in connect(fence, "spruce_fence", P, wall=False).items():
+        blocks.setdefault(k, v)
+    print("garden fence blocks:", len(fence))
 
 
 def connect(cells, name, P, wall=True):

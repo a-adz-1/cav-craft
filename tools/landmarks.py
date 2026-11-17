@@ -81,6 +81,11 @@ LANDMARKS = {
                    "windows": "tall", "roof_kind": "hip", "band": 3},
     "w136161991": {"name": "Regents Riverside", "walls": "sandstone", "roof": "slate", "dress": "smooth_quartz",
                    "windows": "tall", "roof_kind": "hip", "band": 3},
+    # The Victorian house at the heart of the Peppard Road school site: red brick, white stone bays and
+    # balustrade, two copper-domed turrets
+    "w160826605": {"name": "Peppard Road school (domed house)", "walls": "red_brick", "roof": "slate", "roof_kind": "hip",
+                   "dress": "smooth_quartz", "windows": "tall", "band": 4,
+                   "tower": {"size": 3, "top": "cupola", "walls": "bricks", "dress": "smooth_quartz", "extra": -2}},
     # Caversham Park (the mansion, BBC Monitoring until 2018): pale Bath stone, Corinthian colonnade on the
     # south front, balustraded parapet, three tall storeys
     "w160047105": {"name": "Caversham Park", "walls": "sandstone", "roof": "flat", "dress": "smooth_quartz",
