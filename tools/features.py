@@ -126,6 +126,7 @@ def bridge_setup(G, lidar):
     deck = np.full((Hh, Ww), -999, np.int32)
     kind = np.zeros((Hh, Ww), np.int8)
     centre = np.zeros((Hh, Ww), bool)
+    arch = np.full((Hh, Ww), -999, np.int32)   # underside of the arch (fill from here up to the deck)
     for br in json.load(open("build/bridges.json")):
         t = br["tags"]
         hw = t.get("highway")
@@ -150,26 +151,49 @@ def bridge_setup(G, lidar):
         ys = ndimage.median_filter(np.array(ys), size=15, mode="nearest")
         ys = np.round(ys).astype(int)
         r = w / 2
-        for (x, z), y in zip(samples, ys):
+        # arches: over each run of water under the bridge, one arch per ≤45 m, springing from the water at the
+        # piers and rising to 2 below the deck at mid-span (road bridges only; footbridges are light girders)
+        wet = np.array([G["water"][z, x] > -999 for x, z in si])
+        soffit = np.full(len(si), -999)
+        if hw not in ("footway", "cycleway", "path", "pedestrian", "steps") and wet.any():
+            i = 0
+            while i < len(wet):
+                if not wet[i]:
+                    i += 1
+                    continue
+                j = i
+                while j < len(wet) and wet[j]:
+                    j += 1
+                n = max(1, int(np.ceil((j - i) / 2 / 45)))           # samples are 0.5 m apart
+                bounds = np.linspace(i, j, n + 1)
+                for a, b_ in zip(bounds[:-1], bounds[1:]):
+                    for k in range(int(a), int(b_)):
+                        t = (k - a) / max(b_ - a, 1)
+                        wl = G["water"][si[k, 1], si[k, 0]]
+                        soffit[k] = int(round(wl + (ys[k] - 2 - wl) * (1 - (2 * t - 1) ** 4)))
+                i = j
+        for (x, z), y, so in zip(samples, ys, soffit):
             for dz in range(-int(r) - 1, int(r) + 2):
                 for dx in range(-int(r) - 1, int(r) + 2):
                     if dx * dx + dz * dz <= r * r:
                         X, Z = int(round(x + dx)), int(round(z + dz))
                         if 0 <= X < Ww and 0 <= Z < Hh and y > deck[Z, X]:
                             deck[Z, X] = y
+                            arch[Z, X] = so
                             kind[Z, X] = 2 if hw in ("footway", "cycleway", "path", "pedestrian", "steps") else 1
             centre[int(round(z)), int(round(x))] = True
     # only where the deck is clear of the ground does it need building
     deck[(deck <= G["ground"] + 1) | ~G["mask"]] = -999
     inb = deck > -999
     edge = inb & ~ndimage.binary_erosion(inb)
-    G.update(br_deck=deck, br_kind=kind, br_edge=edge)
+    G.update(br_deck=deck, br_kind=kind, br_edge=edge, br_arch=arch)
     print("bridge cells:", int(inb.sum()))
 
 
 def bridge_stamp(G, P):
     road, foot, under = P("gray_concrete"), P("smooth_stone"), P("stone_bricks")
     wall, rail = P("stone_brick_wall"), P("iron_bars")
+    concrete = P("light_gray_concrete")
     Y_MIN = -64
 
     def stamp(b, x0, z0, g, w, s, Y):
@@ -183,6 +207,8 @@ def bridge_stamp(G, P):
         b[:] = np.where(on & (Y > d) & (Y <= d + 4), 0, b)     # headroom: no leaves on the road
         b[:] = np.where(on & (Y == d), top[None], b)
         b[:] = np.where(on & (Y >= d - 1) & (Y < d), under, b)
+        a = G["br_arch"][z0:z0 + 16, x0:x0 + 16]
+        b[:] = np.where(on & (a > -999) & (Y >= a) & (Y < d - 1), concrete, b)
         b[:] = np.where(on & e & (Y == d + 1), np.where(k == 2, rail, wall)[None], b)
     return stamp
 
