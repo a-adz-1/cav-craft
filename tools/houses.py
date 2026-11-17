@@ -404,7 +404,12 @@ def prepare(G, P, layers, lidar, buildings):
              h_blocks=blocks)
 
 
+BRICK_WALLS = []
+
+
 def stamp_factory(G, P):
+    BRICK_WALLS[:] = [P(WALLS[k]) for k in ("red_brick", "orange_brick", "buff_brick", "grey_brick")]
+    sill_block = P("smooth_stone")
     glass, floor = P("tinted_glass"), P("oak_planks")   # tinted: windows read dark from outside, like real ones
     by_chunk = {}
     for (x, y, z), blk in G["h_blocks"].items():
@@ -441,7 +446,14 @@ def stamp_factory(G, P):
             # churches: tall narrow lancets; civic: tall mullioned pairs
             win |= walls[None] & (ws == 1) & (rel >= 2) & (rel <= 5) & ((X + Z) % 3 == 1)
             win |= walls[None] & (ws == 2) & ((rel % 4 == 1) | (rel % 4 == 2) | (rel % 4 == 3)) & ((X + Z) % 3 != 0)
-            b[:] = np.where(win & (Y > fl) & (Y < top) & ((b == wall[None]) | (b == up[None])), glass, b)
+            placed = win & (Y > fl) & (Y < top) & ((b == wall[None]) | (b == up[None]))
+            b[:] = np.where(placed, glass, b)
+            # pale sills under and lintels over the windows, on brick walls only
+            brickish = np.isin(wall, BRICK_WALLS)[None]
+            sill = np.zeros_like(placed)
+            sill[1:] |= placed[:-1]          # cell above a window = lintel
+            sill[:-1] |= placed[1:]          # cell below = sill
+            b[:] = np.where(sill & ~placed & brickish & (b == wall[None]), sill_block, b)
             lo = G["h_lo"][sl].astype(np.int32)
             b[:] = np.where(inb[None] & (Y >= lo) & (Y <= top), rooftop[None], b)
         for x, y, z, blk in by_chunk.get((x0 // 16, z0 // 16), ()):
