@@ -206,3 +206,10 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 
 ### 2026-11-17: road crossings
 - features.crossings(): from OSM crossing and signal nodes inside the world, with nodes mapped on the pavement edge snapped onto the road. 9 zebras (crossing_ref=zebra or crossing=uncontrolled/marked) get white stripes painted per road block, running with the traffic across the full road width, and a Belisha beacon (alternating black and white wall posts, shroomlight globe) on each kerb. 50 signal crossings and junction signals get a black traffic-light pole on each kerb. Most OSM crossings in the box are south of the river in Reading, so outside the world.
+
+### 2026-11-17: playtesting while the PC is locked
+- mc_view.py now runs the game inside a headless gamescope, the same way as Splitwater's and Fortress United's tools/headless-run.sh. A normal window stops drawing while the session is locked; gamescope's doesn't. It takes the screenshot with `gamescopectl screenshot` (display name read from the game's own environment), then closes the whole gamescope process group. If the user's own Prism is open, it falls back to a normal window and spectacle, because Prism allows only one copy.
+- Verified in-game with the screen locked:
+  - Roofs by the river: no spikes, and the garage is single-storey.
+  - The Emmer Green parade looks like its photo, with the white canopy over the shops.
+  - The lock works both ways. A LOCK_TEST=down build drains the chamber with the upper gate shut and the lower gate open. A downup build refills it with the lower gate shut and the upper gate open.

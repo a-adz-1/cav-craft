@@ -9,6 +9,7 @@ looking yaw/pitch, launches it, waits for the chunks to draw, screenshots the ga
 import gzip
 import os
 import shutil
+import signal
 import subprocess
 import sys
 import time
@@ -37,19 +38,44 @@ if daytime is not None:
                           (lvl["BorderCenterX"], lvl["BorderCenterZ"]), lvl["BorderSize"], player=(x, y, z, yaw, pitch),
                           daytime=daytime)
 start = time.time()
-subprocess.Popen(["prismlauncher", "--launch", "1.21.11 Paper", "--world", "Cavcraft-test"],
-                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+# like Splitwater's and Fortress United's tools/headless-run.sh: inside a headless gamescope the game renders with
+# the PC locked (a normal window stops drawing then). Prism only allows one copy, so that works only when the
+# user's own Prism isn't open; otherwise fall back to a normal window and a desktop screenshot.
+headless = subprocess.run(["pgrep", "-x", "prismlauncher"], capture_output=True).returncode != 0
+launch = ["prismlauncher", "--launch", "1.21.11 Paper", "--world", "Cavcraft-test"]
+if headless:
+    launch = ["gamescope", "--backend", "headless", "-W", "1600", "-H", "900", "--"] + launch
+gs = subprocess.Popen(launch, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
+
+
+def close():
+    subprocess.run(["pkill", "-f", GAME])
+    if headless:
+        time.sleep(3)
+        os.killpg(gs.pid, signal.SIGTERM)   # gamescope, the Prism inside it and anything else it started
 while time.time() - start < 180:
     time.sleep(2)
     if os.path.exists(LOG) and os.path.getmtime(LOG) > start and "joined the game" in open(LOG, errors="ignore").read():
         break
 else:
-    subprocess.run(["pkill", "-f", GAME])
+    close()
     sys.exit("game never joined the world")
 time.sleep(wait)
-raw = out + ".full.png"
-subprocess.run(["spectacle", "-b", "-n", "-a", "-o", raw], check=True)   # the game's window only
-subprocess.run(["pkill", "-f", GAME])
+raw = os.path.abspath(out + ".full.png")
+if headless:
+    # the session's display name, from the game's own environment (gamescope sets it for its children)
+    pid = subprocess.run(["pgrep", "-f", GAME], capture_output=True, text=True).stdout.split()[0]
+    env = dict(v.split("=", 1) for v in open(f"/proc/{pid}/environ").read().split("\0") if "=" in v)
+    subprocess.run(["gamescopectl", "screenshot", raw],
+                   env={**os.environ, "GAMESCOPE_WAYLAND_DISPLAY": env["GAMESCOPE_WAYLAND_DISPLAY"]},
+                   capture_output=True)
+    for _ in range(20):
+        if os.path.exists(raw):
+            break
+        time.sleep(0.5)
+else:
+    subprocess.run(["spectacle", "-b", "-n", "-a", "-o", raw], check=True)   # the game's window only
+close()
 from PIL import Image
 im = Image.open(raw)
 im.save(out)
