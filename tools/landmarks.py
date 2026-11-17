@@ -86,6 +86,16 @@ LANDMARKS = {
     "w160826605": {"name": "Peppard Road school (domed house)", "walls": "red_brick", "roof": "slate", "roof_kind": "hip",
                    "dress": "smooth_quartz", "windows": "tall", "band": 4,
                    "tower": {"size": 3, "top": "cupola", "walls": "bricks", "dress": "smooth_quartz", "extra": -2}},
+    # Travellers Rest, Henley Road: dark brown tile roof, black-and-white Tudor gables and dormers, brick
+    # chimneys, red parasols
+    "w161702612": {"name": "Travellers Rest", "walls": "red_brick", "roof": "brown_tile", "dress": "bricks",
+                   "windows": "house", "tudor_gable": True, "shopfront": "red_concrete", "roof_kind": "hip"},
+    # Prince of Wales (OSM: The Last Crumb), Prospect Street: white-painted, black plinth, slate
+    "w156146312": {"name": "Prince of Wales", "walls": "white_render", "roof": "slate", "dress": "black_concrete",
+                   "windows": "house", "shopfront": "black_concrete", "roof_kind": "gable"},
+    # Red Cow, Star Road: low red brick cottage pub, tile roof, gabled porches
+    "w137733621": {"name": "Red Cow", "walls": "red_brick", "roof": "dark_tile", "dress": "bricks",
+                   "windows": "house", "shopfront": "red_concrete", "roof_kind": "gable"},
     # Caversham Park (the mansion, BBC Monitoring until 2018): pale Bath stone, Corinthian colonnade on the
     # south front, balustraded parapet, three tall storeys
     "w160047105": {"name": "Caversham Park", "walls": "sandstone", "roof": "flat", "dress": "smooth_quartz",
@@ -200,3 +210,33 @@ def colonnade(P, blocks, inside, x0, z0, fl, eave, side):
         blocks[(x, eave, z - dz)] = beam
         blocks[(x, fl, z)] = P("smooth_quartz")
         blocks[(x, fl, z - dz)] = P("smooth_quartz")
+
+# pubs that OSM has only as points: the building under the point takes this style
+PUB_POINTS = {
+    "The Griffin": {"walls": "red_brick", "roof": "dark_tile", "dress": "bricks", "windows": "house",
+                    "shopfront": "green_concrete", "tudor_gable": True},
+    "The Crown": {"walls": "white_render", "roof": "slate", "dress": "black_concrete", "windows": "house",
+                  "shopfront": "black_concrete"},
+    "The Clifton Arms": {"walls": "red_brick", "roof": "slate", "dress": "bricks", "windows": "house",
+                         "shopfront": "blue_concrete"},
+    "The Moderation": {"walls": "white_render", "roof": "slate", "dress": "black_concrete", "windows": "house",
+                       "shopfront": "black_concrete"},
+}
+
+
+def add_pub_points(layers, buildings):
+    """Maps OSM pub points onto the building they stand in, so they get a landmark style."""
+    import json
+    from box import E0, N1
+    osm = json.load(open("build/osm.json"))
+    bid = layers["building"]
+    n = 0
+    for nd in osm["nodes"]:
+        name = nd["tags"].get("name")
+        if name in PUB_POINTS and nd["tags"].get("amenity") == "pub":
+            x, z = int(nd["pt"][0] - E0), int(N1 - nd["pt"][1])
+            if 0 <= z < bid.shape[0] and 0 <= x < bid.shape[1] and bid[z, x]:
+                b = buildings[bid[z, x]]
+                LANDMARKS[b["id"]] = dict(PUB_POINTS[name], name=name, roof_kind="gable")
+                n += 1
+    print("pubs from OSM points:", n)

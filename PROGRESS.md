@@ -149,3 +149,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 New family riverside_villa for The Warren (from Commons river photos): white render, Tudor gables, slate/tile, bays, hedges.
 - 2026-11-17 Commons street survey: 57 more streets matched to Geograph photo titles, all looked at (build/cs_*.jpg) and classified; docs/street_survey.csv now covers 160 streets.
 - 2026-11-17 grey_terrace family (Star Road and the Lower Caversham streets nearest it): tuff-brick walls, red brick quoins and a red band at every floor, slate, bays, brick front walls.
+- 2026-11-17 Pubs from photos: Travellers Rest (Tudor gables, hipped tile), Prince of Wales (white, black plinth), Red Cow (low red brick); OSM point-only pubs mapped onto the building under them: The Griffin (brick + green fascia), The Crown, The Clifton Arms.

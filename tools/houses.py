@@ -141,6 +141,7 @@ def prepare(G, P, layers, lidar, buildings):
     dsm = np.nan_to_num(lidar["dsm"], nan=0.0)
     surface = layers["surface"]
     n = len(buildings)
+    landmarks.add_pub_points(layers, buildings)
     styles = load_styles()
     streets = street_of_buildings()
     objs = ndimage.find_objects(bid)
