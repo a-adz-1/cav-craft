@@ -47,6 +47,10 @@ def setup(G, P, levels):
         water[s] = lvl
         surface[s] = wet
 
+    # nothing from the house builder (front walls, fences, paths' gaps) may stand in the carved lock site
+    rects = [SITE, WEST_POOL, EAST_POOL]
+    for k in [k for k in G["h_blocks"] if any(r[0] <= k[0] <= r[1] and r[2] <= k[2] <= r[3] for r in rects)]:
+        del G["h_blocks"][k]
     carve(*WEST_POOL, up)
     carve(*EAST_POOL, down)
     carve(X0, X1, Z0, Z1, up)                 # chamber, full
@@ -98,13 +102,22 @@ def setup(G, P, levels):
                 blocks[(rx, y, z + dz)] = cmd
                 entities[(rx, y, z + dz)] = command_entity(rx, y, z + dz, c)
             rx += 1
-    if os.environ.get("LOCK_TEST") in ("down", "up"):
-        # test build: a redstone block in place of the button's block, and a scheduled tick on the first
-        # repeater so the line fires as soon as the chunk loads
-        z = 4172 if os.environ["LOCK_TEST"] == "down" else 4176
-        blocks[(4046, y, z)] = P("redstone_block")
-        G.setdefault("block_ticks", {}).setdefault((4047 // 16, z // 16), []).append(
-            {"i": "minecraft:repeater", "x": 4047, "y": y, "z": z, "t": 40, "p": 0})
+    test = os.environ.get("LOCK_TEST", "")
+    if test:
+        # test build: a redstone block in place of a button's block, and a scheduled tick on the line's first
+        # repeater so it fires that many ticks after the chunk loads ("down", "up", or "downup": down at 2 s,
+        # up at 16 s)
+        when = {"down": {4172: 40}, "up": {4176: 40}, "downup": {4172: 40, 4176: 320}}[test]
+        for z, t in when.items():
+            blocks[(4046, y, z)] = P("redstone_block")
+            G.setdefault("block_ticks", {}).setdefault((4047 // 16, z // 16), []).append(
+                {"i": "minecraft:repeater", "x": 4047, "y": y, "z": z, "t": t, "p": 0})
+    # balance beams: white with black ends, one on each wall at each gate, pointing away from the chamber
+    for gx, d in ((GATE_UP, -1), (GATE_DOWN, 1)):
+        for zz in (Z0 - 1, Z1 + 1):
+            for k in range(5):
+                blocks[(gx + d * k, y, zz)] = P("black_concrete") if k == 4 else P("white_concrete")
+            blocks[(gx, y + 1, zz)] = P("white_concrete")
     gate = {(GATE_DOWN, yy, zz): planks for yy in range(bed + 1, top + 1) for zz in range(Z0, Z1 + 1)}
     blocks.update(gate)
 

@@ -141,3 +141,7 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 Waterside: seagrass in the shallows, lily pads on lakes and ponds, long grass along banks; Redgrave Pinsent Rowing Lake gets 7 buoy lines (13.5 m lanes, buoys every 10 m, orange outer lines); white touchlines + halfway line on 24 football/rugby pitches.
 - 2026-11-17 Street checks (Church Street, Emmer Green): garden fences now back gardens only (fronts open, as on the 1960s estates); paved front paths from 9,254 front doors to the pavement, with a gap in the front wall or hedge.
 - 2026-11-17 Road bridges get concrete arches: over each run of water one arch per ≤45 m, springing at the waterline and rising to 2 below the deck (Caversham Bridge, Reading Bridge, island bridges); footbridges stay light decks.
+- 2026-11-17 Lock: white balance beams with black ends at all four gate corners. LOCK_TEST=downup test build
+  (Down fires at 2 s, Up at 16 s), checked from above: Down ran (upper gate shut, chamber at the lower level,
+  lower gate open), then Up ran (lower gate shut, chamber full, upper gate open). BOTH directions verified.
+  Front-wall/fence blocks from the house builder were landing inside the lock pool; now cleared from the site.
