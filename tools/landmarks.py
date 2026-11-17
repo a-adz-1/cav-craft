@@ -106,7 +106,8 @@ LANDMARKS = {
     # Caversham Park (the mansion, BBC Monitoring until 2018): pale Bath stone, Corinthian colonnade on the
     # south front, balustraded parapet, three tall storeys
     "w160047105": {"name": "Caversham Park", "walls": "sandstone", "roof": "flat", "dress": "smooth_quartz",
-                   "windows": "tall", "storey": 4, "parapet": "sandstone_wall", "colonnade": "south"},
+                   "windows": "tall", "storey": 4, "parapet": "sandstone_wall", "colonnade": "south",
+                   "terrace": True},
     # Emmer Green shopping parade, Milestone Way: three-storey flat-roofed red-brown brick block, flats over a
     # row of shops under a long white canopy
     "w171946174": {"name": "Emmer Green parade", "walls": "red_brick", "roof": "flat", "dress": None,

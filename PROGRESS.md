@@ -194,3 +194,4 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 
 ### 2026-11-17: allotments
 - features.allotments(): the 5.6 ha of allotments are now 5 m plots split by grass paths, with 177 two-by-two spruce sheds with doors onto the paths, compost bins, water butts and bean canes. Checked in an oblique render of the Henley Road allotments.
+- Caversham Park: a 6 m paved stone terrace at floor level along the south front, with a sandstone balustrade and steps down to the lawn in the middle (new `terrace` landmark option). No photos exist in Mapillary or Commons, so it's built from the outline.

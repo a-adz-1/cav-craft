@@ -320,6 +320,25 @@ def prepare(G, P, layers, lidar, buildings):
                                 lm["tower"], P(full), P(stair) if stair else None)
             if lm.get("colonnade"):
                 landmarks.colonnade(P, blocks, inside, x0, z0, fl, (ry - 1) if rkind == "flat" else ey, lm["colonnade"])
+            if lm.get("terrace"):
+                # a paved terrace at floor level along the south front, balustraded, steps down at its middle
+                south = np.zeros_like(inside)
+                for k in range(1, 7):
+                    south[k:] |= inside[:-k]
+                south &= ~inside & (bid[z0:z1, x0:x1] == 0)
+                rim = south & ~np.roll(south, -1, 0)
+                mid = int(np.median(np.nonzero(rim)[1])) if rim.any() else -1
+                for zl, xl in zip(*np.nonzero(south)):
+                    X, Z = x0 + xl, z0 + zl
+                    for y in range(int(G["ground"][Z, X]) + 1, fl + 1):
+                        blocks[(X, y, Z)] = P("smooth_stone")
+                    if rim[zl, xl] and abs(xl - mid) > 2:
+                        blocks[(X, fl + 1, Z)] = P("sandstone_wall", up="true", east="low", west="low",
+                                                   north="none", south="none")
+                    elif rim[zl, xl]:
+                        for k in range(fl - int(G["ground"][Z, X])):
+                            blocks[(X, fl - k, Z + k)] = P("sandstone_stairs", facing="north", half="bottom",
+                                                         shape="straight")
             if lm.get("parapet"):
                 for zl, xl in zip(*np.nonzero(edge)):
                     blocks[(x0 + xl, int(top[zl, xl]) + 1, z0 + zl)] = P(lm["parapet"], up="true")
