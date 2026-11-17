@@ -159,3 +159,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 Driveways: a 3-wide gravel drive beside each front path; 3,333 block-built parked cars (concrete body in common car colours, grey glass cabin) on about half the drives.
 - 2026-11-17 Roads and pavements levelled across their width (9 m mean of road heights), so hills step along a road, not across it. Load check: spawn ready <1 s, no lag warnings, world 185 MB.
 - 2026-11-17 Road ramps: a half slab (blackstone on tarmac, andesite on pavements) on the low side of every one-block step along a road, so hills are smooth to walk.
+- 2026-11-17 Christchurch Bridge: 39 m white mast (white concrete, end rod tip) at the Reading end, 8 chain stay cables fanning to anchor points along the bent deck. Mast end chosen from Commons photos (the Caversham end runs down onto the Meadows).

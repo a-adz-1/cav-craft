@@ -39,6 +39,7 @@ def setup(G, P, lidar):
     animals(G, P)
     G["stamps"].append(furniture(G, P))
     G["stamps"].append(cars(G, P))
+    G["stamps"].append(christchurch_mast(G, P))
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
     print("trees:", len(G["trees"]))
@@ -759,4 +760,59 @@ def cars(G, P):
                     blocks[(B, g + 2, A)] = P("light_gray_stained_glass")
         n += 1
     print("parked cars:", n)
+    return block_stamp(blocks)
+
+
+# ---- Christchurch Bridge: the 39 m white mast and its fan of stay cables (from Commons photos) ----------
+
+def christchurch_mast(G, P):
+    br = [b for b in json.load(open("build/bridges.json")) if b["tags"].get("name") == "Christchurch Bridge"
+          and b["tags"].get("highway") == "cycleway"]
+    pts = np.array([xz(*p) for b in br for p in b["pts"]], float)
+    if not len(pts):
+        return block_stamp({})
+    w = G["water"]
+    # the mast stands at the south (Reading) end of the river span; cables fan to the deck across the water
+    over = [p for p in pts if w[int(p[1]), int(p[0])] > -999]
+    span = np.array(over if over else pts)
+    # the river crossing: the two over-water deck points furthest apart (the ramp along the bank is shorter)
+    d = ((span[:, None, :] - span[None, :, :]) ** 2).sum(-1)
+    i, j = np.unravel_index(np.argmax(d), d.shape)
+    south, north = (span[i], span[j]) if span[i][1] > span[j][1] else (span[j], span[i])
+    mx, mz = int(round(south[0])), int(round(south[1])) + 3
+    g = int(G["ground"][mz, mx])
+    top = g + 39
+    blocks = {}
+    for y in range(g + 1, top + 1):
+        blocks[(mx, y, mz)] = P("white_concrete")
+    blocks[(mx, top + 1, mz)] = P("end_rod", facing="up")
+    deck = G["br_deck"]
+    chain = P("chain", axis="y")
+    # anchor points: along the deck itself (it bends mid-river), walking out from the mast end
+    ways = {b["id"]: [xz(*p) for p in b["pts"]] for b in br}
+    path = []
+    for wid in ("w373229922", "w373230004"):
+        path += ways.get(wid, [])
+    if not path:
+        path = [tuple(south), tuple(north)]
+    path = np.array(path, float)
+    if np.hypot(*(path[0] - south)) > np.hypot(*(path[-1] - south)):
+        path = path[::-1]
+    seg = np.hypot(*np.diff(path, axis=0).T)
+    cum = np.concatenate([[0], np.cumsum(seg)])
+    for k in range(1, 9):
+        s_ = cum[-1] * k / 9
+        tx = np.interp(s_, cum, path[:, 0])
+        tz = np.interp(s_, cum, path[:, 1])
+        tx, tz = int(round(tx)), int(round(tz))
+        dy = deck[tz, tx] if deck[tz, tx] > -999 else g + 6
+        ay = top - k * 2
+        n = max(abs(tx - mx), abs(tz - mz), abs(ay - dy))
+        for i in range(n + 1):
+            f = i / n
+            x = int(round(mx + (tx - mx) * f))
+            z = int(round(mz + (tz - mz) * f))
+            y = int(round(ay + (dy + 1 - ay) * f))
+            blocks.setdefault((x, y, z), chain)
+    print(f"Christchurch Bridge mast at {mx},{mz}, top y {top}")
     return block_stamp(blocks)
