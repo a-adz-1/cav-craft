@@ -60,6 +60,7 @@ def setup(G, P, lidar):
     G["stamps"].append(barges(G, P))
     G["stamps"].append(cinema(G, P))
     G["stamps"].append(school_treasure(G, P))
+    G["stamps"].append(xmas_centre(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -2211,4 +2212,104 @@ def school_treasure(G, P):
         sign_post(G, P, blocks, cx + 1, g + 1, cz, 0, ["You found the", "CAVCRAFT", "TREASURE!", "Merry Christmas"])
         n += 1
     print(f"school treasure: {n} schools")
+    return block_stamp(blocks)
+
+
+# ---- Christmas in Caversham centre: lights across the shopping streets, a town tree ----------------------
+
+XMAS_STREETS = ("Church Street", "Prospect Street", "Bridge Street")
+
+
+def xmas_centre(G, P):
+    """Strings of coloured lights hung across the centre's streets every 12 m, from the building on one side to
+    the building on the other at first-floor height, and a big lit tree with a star at the junction."""
+    osm = json.load(open("build/osm.json"))
+    Hh, Ww = G["mask"].shape
+    bid, ground = G["building"], G["ground"]
+    rng = np.random.default_rng(24)
+    blocks = {}
+    strings = 0
+    ends = {}
+    for l in osm["lines"]:
+        name = l["tags"].get("name")
+        if name not in XMAS_STREETS or not l["tags"].get("highway"):
+            continue
+        pts = np.array([xz(*q) for q in l["pts"]], float)
+        ends.setdefault(name, []).append(pts)
+        walked = 0.0
+        for a, b in zip(pts[:-1], pts[1:]):
+            L = np.hypot(*(b - a))
+            if L < 1:
+                continue
+            u = (b - a) / L
+            nv = np.array([-u[1], u[0]])
+            for t in np.arange(0, L, 1.0):
+                walked += 1
+                if int(walked) % 12:
+                    continue
+                c = a + u * t
+                X, Z = int(round(c[0])), int(round(c[1]))
+                if not (0 <= Z < Hh and 0 <= X < Ww) or not G["mask"][Z, X]:
+                    continue
+                hit = []
+                for sg in (1, -1):                                 # the building face each side
+                    for r in range(2, 16):
+                        q = (c + nv * sg * r).round().astype(int)
+                        if not (0 <= q[1] < Hh and 0 <= q[0] < Ww):
+                            break
+                        if bid[q[1], q[0]]:
+                            hit.append(c + nv * sg * (r - 1))
+                            break
+                if len(hit) < 2:
+                    continue
+                y = int(ground[Z, X]) + 6
+                p0, p1 = hit
+                n = int(np.hypot(*(p1 - p0))) + 1
+                axis = "x" if abs(nv[0]) >= abs(nv[1]) else "z"
+                colours = ["ochre_froglight", "verdant_froglight", "pearlescent_froglight", "shroomlight", "sea_lantern"]
+                for k in range(n + 1):
+                    q = (p0 + (p1 - p0) * k / n).round().astype(int)
+                    sag = int(round(1.2 * np.sin(np.pi * k / n)))  # the string droops in the middle
+                    if k % 2:
+                        blocks[(int(q[0]), y - sag, int(q[1]))] = P("chain", axis=axis)
+                    else:
+                        c_ = colours[(k // 2) % len(colours)]
+                        blocks[(int(q[0]), y - sag, int(q[1]))] = P(c_, axis="y") if "froglight" in c_ else P(c_)
+                strings += 1
+    # the town tree: open ground nearest where the streets meet
+    tree = None
+    if len(ends) >= 2:
+        allp = [p for v in ends.values() for arr in v for p in arr]
+        names = list(ends)
+        best = None
+        for pa in [p for arr in ends[names[0]] for p in arr]:
+            for nb in names[1:]:
+                for pb in [p for arr in ends[nb] for p in arr]:
+                    d = np.hypot(*(pa - pb))
+                    if best is None or d < best[0]:
+                        best = (d, pa)
+        jx, jz = best[1]
+        ok = (bid == 0) & (G["water"] == -999) & np.isin(G["surface"], (1, 5, 9))
+        zs, xs = np.nonzero(ok[int(jz) - 25:int(jz) + 25, int(jx) - 25:int(jx) + 25])
+        good = [(x, z) for x, z in zip(xs, zs) if ok[int(jz) - 25 + z - 2:int(jz) - 25 + z + 3,
+                                                      int(jx) - 25 + x - 2:int(jx) - 25 + x + 3].all()]
+        if good:
+            x, z = min(good, key=lambda v: (v[0] - 25) ** 2 + (v[1] - 25) ** 2)
+            tree = (int(jx) - 25 + x, int(jz) - 25 + z)
+            g = int(ground[tree[1], tree[0]])
+            for y in range(g + 1, g + 11):
+                blocks[(tree[0], y, tree[1])] = P("spruce_log", axis="y")
+            for y in range(g + 3, g + 11):
+                r = (g + 11 - y) / 3.2
+                for dz in range(-3, 4):
+                    for dx in range(-3, 4):
+                        if (dx or dz) and np.hypot(dx, dz) <= r + 0.3:
+                            lit = rng.random() < 0.2
+                            blocks[(tree[0] + dx, y, tree[1] + dz)] = (
+                                P(["glowstone", "sea_lantern", "redstone_block", "gold_block"][rng.integers(4)]) if lit
+                                else P("spruce_leaves", persistent="true"))
+            blocks[(tree[0], g + 11, tree[1])] = P("spruce_leaves", persistent="true")
+            blocks[(tree[0], g + 12, tree[1])] = P("glowstone")       # the star
+            blocks[(tree[0], g + 13, tree[1])] = P("end_rod", facing="up")
+    print(f"christmas centre: {strings} strings of lights, town tree at {tree}")
     return block_stamp(blocks)
