@@ -340,6 +340,7 @@ def prepare(G, P, layers, lidar, buildings):
                         break
     print("roofs:", stats)
     G["h_blocks"] = blocks
+    front_paths(G, surface, bid)
     front_boundaries(G, P, bid, surface, buildings, styles, streets)
     # lowest roof block per cell: down to one above the lowest neighbour in the same building, so slopes are solid
     lo = roofY.astype(np.int32)
@@ -402,6 +403,29 @@ FRONT = {"victorian_terrace": "wall", "victorian_villa": "wall", "cottage": "hed
          "town": None}
 
 
+def front_paths(G, surface, bid):
+    """A paved path from each front door straight to the nearest pavement or road, over the front lawn.
+    Front walls and hedges are laid on grass only, so they leave a gap where the path meets them."""
+    road = np.isin(surface, (3, 4, 5))
+    _, (rz, rx) = ndimage.distance_transform_edt(~road, return_indices=True)
+    n = 0
+    for x, _, z in G.get("doorsteps", []):
+        if not (0 <= z < surface.shape[0] and 0 <= x < surface.shape[1]):
+            continue
+        tz, tx = rz[z, x], rx[z, x]
+        steps = int(max(abs(tz - z), abs(tx - x)))
+        if steps > 20:
+            continue
+        for k in range(steps + 1):
+            cz = int(round(z + (tz - z) * k / max(steps, 1)))
+            cx = int(round(x + (tx - x) * k / max(steps, 1)))
+            if bid[cz, cx] or surface[cz, cx] not in (1, 9):
+                break
+            surface[cz, cx] = 9   # "paved": a front path, not pavement (front walls follow pavements only)
+        n += 1
+    print("front paths:", n)
+
+
 def front_boundaries(G, P, bid, surface, buildings, styles, streets):
     """Front garden walls and hedges: on grass right beside the pavement or road, in front of houses, by family
     (Victorian brick walls, interwar privet hedges, open-plan 1960s lawns)."""
@@ -447,7 +471,8 @@ def garden_fences(G, P, bid, surface, buildings, d, iz, ix, road):
         if b and b["tags"].get("building") in HOUSE_KINDS:
             house[i] = True
     ok = (surface == 1) & (bid == 0) & (d <= 25) & house[near]
-    ok &= ndimage.distance_transform_edt(~road) > 6
+    droad = ndimage.distance_transform_edt(~road)
+    ok &= droad > droad[iz, ix] + 1          # behind the house (back gardens only; fronts stay open)
     split = np.zeros_like(ok)
     split[:, :-1] |= near[:, :-1] != near[:, 1:]
     split[:-1, :] |= near[:-1, :] != near[1:, :]
