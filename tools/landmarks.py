@@ -96,6 +96,13 @@ LANDMARKS = {
     # Red Cow, Star Road: low red brick cottage pub, tile roof, gabled porches
     "w137733621": {"name": "Red Cow", "walls": "red_brick", "roof": "dark_tile", "dress": "bricks",
                    "windows": "house", "shopfront": "red_concrete", "roof_kind": "gable"},
+    # Old Grove House, Emmer Green (St Barnabas Road): Victorian flint-and-red-brick house, three steep
+    # tiled gables, tall chimneys; flint garden wall with clipped yews along the road
+    "w155061715": {"name": "Old Grove House", "walls": "flint", "roof": "red_tile", "dress": "bricks",
+                   "windows": "house", "band": 3, "roof_kind": "gable", "yews": True},
+    # BBC Written Archives Centre, Peppard Road: low white-rendered building, slate, brick chimneys
+    "w77517874": {"name": "BBC Written Archives Centre", "walls": "white_render", "roof": "slate", "dress": None,
+                  "windows": "house", "roof_kind": "hip"},
     # Caversham Park (the mansion, BBC Monitoring until 2018): pale Bath stone, Corinthian colonnade on the
     # south front, balustraded parapet, three tall storeys
     "w160047105": {"name": "Caversham Park", "walls": "sandstone", "roof": "flat", "dress": "smooth_quartz",

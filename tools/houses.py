@@ -277,6 +277,18 @@ def prepare(G, P, layers, lidar, buildings):
             if lm.get("parapet"):
                 for zl, xl in zip(*np.nonzero(edge)):
                     blocks[(x0 + xl, int(top[zl, xl]) + 1, z0 + zl)] = P(lm["parapet"], up="true")
+            if lm.get("yews"):
+                # flint wall + a row of clipped yew drums along the nearest road, 2 m inside it
+                rd = np.isin(surface[z0:z1, x0:x1], (3, 5))
+                dist_r = ndimage.distance_transform_edt(~rd)
+                line = (dist_r >= 2) & (dist_r < 3) & ~inside & (bid[z0:z1, x0:x1] == 0)
+                for k, (zl, xl) in enumerate(np.argwhere(line)):
+                    g0 = int(G["ground"][z0 + zl, x0 + xl])
+                    blocks[(x0 + xl, g0 + 1, z0 + zl)] = P("andesite_wall", up="true", north="none", south="none",
+                                                             east="none", west="none")
+                    if k % 3 == 0:
+                        for dy in range(2, 6):
+                            blocks[(x0 + xl, g0 + dy, z0 + zl)] = P("spruce_leaves", persistent="true")
             if lm.get("vane"):
                 pk = np.argwhere(inside & (top == top[inside].max()))[0]
                 blocks[(x0 + pk[1], int(top.max()) + 1, z0 + pk[0])] = P("lightning_rod")
