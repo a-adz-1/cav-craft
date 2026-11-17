@@ -58,9 +58,15 @@ def setup(G, P, lidar):
     G["stamps"].append(data_signs(G, P))
     river_boats(G)
     G["stamps"].append(barges(G, P))
+    G["stamps"].append(cinema(G, P))
+    G["stamps"].append(school_treasure(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
+    for bx0, bz0, bx1, bz1 in G.get("no_trees", []):           # keep crowns off the cinema screen, treasure trees
+        t = G["trees"]
+        r = t[:, 4]
+        G["trees"] = t[~((t[:, 0] >= bx0 - r) & (t[:, 0] <= bx1 + r) & (t[:, 1] >= bz0 - r) & (t[:, 1] <= bz1 + r))]
     print("trees:", len(G["trees"]))
     G["stamps"].append(tree_stamp(G, P))
 
@@ -2069,4 +2075,140 @@ def barges(G, P):
         X, Z = cell(7, 1)
         blocks[(X, wl + 1, Z)] = P("red_bed", facing="north", part="foot", occupied="false") if False else P("barrel", facing="up", open="false")
     print(f"barges: {len(boats)} narrowboats, tea barge {'yes' if tea else 'no'}")
+    return block_stamp(blocks)
+
+
+# ---- small helpers shared by the Christmas extras ----------------------------------------------------------
+
+def area_mask(G, osm_id):
+    from PIL import Image, ImageDraw
+    osm = json.load(open("build/osm.json"))
+    Hh, Ww = G["mask"].shape
+    a = next(a for a in osm["areas"] if a["id"] == osm_id)
+    img = Image.new("L", (Ww, Hh), 0)
+    ImageDraw.Draw(img).polygon([xz(*p) for p in a["rings"][0]], fill=1)
+    return np.asarray(img).astype(bool) & G["mask"]
+
+
+def open_spot(G, inside, w, d, target=None):
+    """The w x d box of open ground (grass or paving, no building or water) inside `inside` nearest target."""
+    ok = inside & (G["building"] == 0) & (G["water"] == -999) & np.isin(G["surface"], (1, 9, 13, 15))
+    zs, xs = np.nonzero(inside)
+    tx, tz = target if target is not None else (xs.mean(), zs.mean())
+    best = None
+    for z in range(zs.min(), zs.max() - d + 1):
+        for x in range(xs.min(), xs.max() - w + 1):
+            if ok[z:z + d, x:x + w].all():
+                dist = (x + w / 2 - tx) ** 2 + (z + d / 2 - tz) ** 2
+                if best is None or dist < best[0]:
+                    best = (dist, x, z)
+    return best[1:] if best else None
+
+
+def sign_post(G, P, blocks, x, y, z, rot, lines):
+    import lock
+    blocks[(int(x), int(y), int(z))] = P("oak_sign", rotation=rot)
+    G["block_entities"].setdefault((int(x) // 16, int(z) // 16), []).append(lock.sign_entity(int(x), int(y), int(z), lines))
+
+
+def xmas_tree(P, blocks, x, g, z, h=6, rng=None):
+    rng = rng or np.random.default_rng(1)
+    for y in range(g + 1, g + h):
+        blocks[(x, y, z)] = P("spruce_log", axis="y")
+    for y in range(g + 2, g + h):
+        r = (g + h - y) / 2.5
+        for dz in range(-2, 3):
+            for dx in range(-2, 3):
+                if (dx or dz) and np.hypot(dx, dz) <= r + 0.3:
+                    lit = rng.random() < 0.18
+                    blocks[(x + dx, y, z + dz)] = (P(["glowstone", "sea_lantern", "redstone_block"][rng.integers(2)]) if lit
+                                                   else P("spruce_leaves", persistent="true"))
+    blocks[(x, g + h, z)] = P("spruce_leaves", persistent="true")
+    blocks[(x, g + h + 1, z)] = P("gold_block")
+
+
+# ---- the pop-up cinema at Caversham Court Gardens, lit at night -----------------------------------------
+
+def cinema(G, P):
+    """An outdoor cinema on the lawn (from the user's photo): a big black inflatable screen whose face glows
+    (sea lanterns) so it's lit at night, black speaker stacks either side, rows of red-and-white deckchairs,
+    red and blue beanbags at the front, festoon lights round the edge and a sign."""
+    inside = area_mask(G, "w183189177")                           # Caversham Court Gardens
+    spot = open_spot(G, inside, 22, 26)
+    if spot is None:
+        print("cinema: no room")
+        return block_stamp({})
+    x0, z0 = spot
+    blocks = {}
+    g = int(np.median(G["ground"][z0:z0 + 26, x0:x0 + 22]))
+    # the screen across the south end, facing north (the audience looks south, towards the river)
+    sz = z0 + 24
+    for x in range(x0 + 2, x0 + 20):
+        for y in range(g + 1, g + 12):
+            face = x0 + 3 <= x <= x0 + 18 and g + 3 <= y <= g + 10
+            blocks[(x, y, sz)] = P("sea_lantern") if face else P("black_concrete")
+            blocks[(x, y, sz + 1)] = P("black_concrete")
+    for x in range(x0 + 4, x0 + 18, 3):                           # hidden lights so the lawn glows in front
+        blocks[(x, g + 2, sz - 3)] = P("light", level=12)
+    for sx in (x0, x0 + 20):                                       # speaker stacks
+        for y in range(g + 1, g + 5):
+            for dx in (0, 1):
+                blocks[(sx + dx, y, sz - 1)] = P("black_concrete") if y != g + 3 else P("gray_concrete")
+    # beanbags at the front, then deckchairs, facing the screen (a stair's back is its "facing" side: north)
+    for x in range(x0 + 3, x0 + 19):
+        if x % 2:
+            blocks[(x, g + 1, sz - 6)] = P("red_wool" if (x // 2) % 2 else "blue_wool")
+            blocks[(x, g + 1, sz - 8)] = P("blue_wool" if (x // 2) % 2 else "red_wool")
+    for r, z in enumerate(range(sz - 11, z0 + 1, -3)):
+        for x in range(x0 + 3, x0 + 19):
+            if (x - x0) % 8 == 6:                                  # aisles
+                continue
+            blocks[(x, g + 1, z)] = P("quartz_stairs" if (x + r) % 2 else "red_nether_brick_stairs",
+                                      facing="north", half="bottom", shape="straight")
+    # festoon lights on posts round the seating
+    for k, (x, z) in enumerate([(x0, z) for z in range(z0, sz, 5)] + [(x0 + 21, z) for z in range(z0, sz, 5)]):
+        gg = int(G["ground"][z, x])
+        for y in (gg + 1, gg + 2, gg + 3):
+            blocks[(x, y, z)] = P("spruce_fence")
+        blocks[(x, gg + 4, z)] = P("lantern", hanging="false")
+    sign_post(G, P, blocks, x0 + 11, int(G["ground"][z0, x0 + 11]) + 1, z0 - 1, 8,
+              ["Caversham Court", "POP-UP CINEMA", "tonight: the", "Christmas film"])
+    G.setdefault("no_trees", []).append((x0 - 2, z0 - 2, x0 + 24, sz + 3))
+    print(f"cinema at {x0},{z0} (screen z {sz})")
+    return block_stamp(blocks)
+
+
+# ---- treasure at every school: a lit tree with a chest of presents under it -----------------------------
+
+SCHOOLS = ["w54890383", "w54896165", "w77517876", "w137356791", "w144371895", "w153747650", "w182216368",
+           "w388293024", "w390632900", "w391622941", "w392621052", "w703348397", "w1314689827"]
+
+
+def school_treasure(G, P):
+    import anvil
+    blocks = {}
+    rng = np.random.default_rng(12)
+    n = 0
+    for sid in SCHOOLS:
+        try:
+            inside = area_mask(G, sid)
+        except StopIteration:
+            continue
+        spot = open_spot(G, inside, 7, 7)
+        if spot is None:
+            continue
+        x, z = spot[0] + 3, spot[1] + 3
+        g = int(G["ground"][z, x])
+        xmas_tree(P, blocks, x, g, z, 6, rng)
+        G.setdefault("no_trees", []).append((x - 4, z - 4, x + 4, z + 5))
+        cx, cz = x, z + 3                                          # the chest, in front of the tree
+        blocks[(cx, g + 1, cz)] = P("chest", facing="south", type="single", waterlogged="false")
+        items = [("diamond", 1), ("cake", 1), ("cookie", 16), ("firework_rocket", 8), ("gold_ingot", 3),
+                 ("glow_berries", 8)]
+        G["block_entities"].setdefault((cx // 16, cz // 16), []).append(
+            {"id": "minecraft:chest", "x": cx, "y": g + 1, "z": cz,
+             "Items": [{"Slot": anvil.Byte(k * 2), "id": "minecraft:" + it, "count": c} for k, (it, c) in enumerate(items)]})
+        sign_post(G, P, blocks, cx + 1, g + 1, cz, 0, ["You found the", "CAVCRAFT", "TREASURE!", "Merry Christmas"])
+        n += 1
+    print(f"school treasure: {n} schools")
     return block_stamp(blocks)

@@ -242,3 +242,12 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 - 25 block-built narrowboats moored along straight stretches of the Thames bank. Each has a black hull, a painted cabin with windows and a stern door (walk-in, wooden floor), a tiller, and pots and logs on the roof. Light blocks are used rather than lanterns so they work in Bedrock too.
 - Whittington's Tea Barge, from the user's photos: moored on Hills Meadow's bank upstream of the weir, next to Winter Wonderland. The bank is slanted there, so it gets a straight paved quay. It's a 22 x 5 wide-beam with a dark green hull and roof, a cream cabin, blue curtains, a gangplank to a side door, tea tables and chairs inside, and a counter with cakes. White tables and chairs stand on the quay, with a "Whittington's Tea Barge" sign. Checked in-game, inside and out.
 - Whittington's, after the user's feedback ("quite extreme", the big paved quay): there's no quay now. It moors at the straightest 20 m of Hills Meadow's bank, and only the water left between it and the bank is decked over as a wooden pontoon on posts. The hull and roof are darker green; tables and chairs stand on the pontoon and bank beside it.
+
+### 2026-11-17: GitHub, gift card, cinema, school treasure
+- Public repo https://github.com/a-adz-1/cav-craft. Before the first push, the beach photo the user had shared (someone else's photo) was stripped from history; the local branch `backup-before-public` keeps the original. The README opens with download-and-play steps for families. Release v0.1 carries Cavcraft.zip.
+- Gift card (tools/card.py):
+  - Front: a credit-card-size original grass-block "CAV CRAFT" logo and a creeper-green QR code with a creeper face, at error correction H. It's checked with zbarimg to decode to the GitHub URL.
+  - Back: an 11-item achievement checklist.
+  - docs/card/cavcraft-cards-a4.pdf has 10 cards a side with cut marks, the back page mirrored for long-edge duplex.
+- Pop-up cinema at Caversham Court Gardens (from the user's photo): a black inflatable screen with a sea-lantern face that glows at night, speaker stacks, striped deckchairs, red and blue beanbags, festoon lanterns and a sign. Trees are kept off it. Checked at night.
+- School treasure: at 13 school grounds, a small lit Christmas tree with a chest under it (diamond, cake, cookies, fireworks, gold, glow berries) and a "You found the CAVCRAFT TREASURE!" sign.
