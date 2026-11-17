@@ -47,6 +47,9 @@ TOP = {  # surface class -> top block
     "allotment": P("farmland", moisture=7), "sports": GRASS, "tennis": P("green_terracotta"), "woodland": GRASS,
     "scrub": GRASS, "cemetery": GRASS, "railway": GRAVEL, "rock": STONE, "wetland": P("mud"), "bridge": STONE,
 }
+ROAD_IDX = [SURFACE.index(n) for n in ("road", "minor_road", "footway")]
+ROAD_SLAB = P("blackstone_slab", type="bottom")   # no concrete slab exists; dark like the tarmac
+FOOT_SLAB = P("polished_andesite_slab", type="bottom")
 SUB = {"sand": SAND, "water": DIRT, "railway": GRAVEL, "rock": STONE}
 TOP_LUT = np.array([TOP[n] for n in SURFACE], np.int32)
 SUB_LUT = np.array([SUB.get(n, DIRT) for n in SURFACE], np.int32)
@@ -90,6 +93,18 @@ def make_chunk(cx, cz):
     sub = (Y >= g - 3) & (Y < g)
     b[:] = np.where(sub, SUB_LUT[s][None], b)
     b[:] = np.where(Y == g, TOP_LUT[s][None], b)
+    # road steps: where a road cell sits a block below a road neighbour, a half slab on it makes a ramp
+    rd = np.isin(s, ROAD_IDX)
+    up = np.zeros((16, 16), bool)
+    for ax, sh in ((0, 1), (0, -1), (1, 1), (1, -1)):
+        nb_g = np.roll(g, sh, ax)
+        nb_r = np.roll(rd, sh, ax)
+        up |= rd & nb_r & (nb_g == g + 1)
+    zz, xx = np.nonzero(up)
+    yy = g[zz, xx] + 1 - Y_MIN
+    ok = (yy >= 0) & (yy < H)
+    slab = np.where(s[zz, xx] == SURFACE.index("footway"), FOOT_SLAB, ROAD_SLAB)
+    b[yy[ok], zz[ok], xx[ok]] = slab[ok]
     b[(Y > g) & (Y <= w)] = WATER
     if "sandy_bed" in G:
         b[:] = np.where(get("sandy_bed", False)[None] & (Y == g), SAND, b)
