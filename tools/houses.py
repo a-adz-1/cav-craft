@@ -507,6 +507,17 @@ def prepare(G, P, layers, lidar, buildings):
                         for k in range(fl - int(G["ground"][Z, X])):
                             blocks[(X, fl - k, Z + k)] = P("sandstone_stairs", facing="north", half="bottom",
                                                          shape="straight")
+            if lm.get("glass_bay"):
+                # a tall glazed bay up the middle of the road-facing wall, framed in the wall's brick
+                d_r = ndimage.distance_transform_edt(~roadish[z0:z1, x0:x1])
+                face = np.argwhere(edge & (d_r <= d_r[edge].min() + 3))
+                if len(face):
+                    zc, xc = face[len(face) // 2]
+                    for zl, xl in face:
+                        if abs(zl - zc) + abs(xl - xc) <= 3:
+                            for y in range(fl + 2, int(top[zl, xl])):
+                                frame = abs(zl - zc) + abs(xl - xc) == 3 or (y - fl) % 4 == 0
+                                blocks[(x0 + xl, y, z0 + zl)] = P(WALLS[lm["walls"]]) if frame else P(lm["glass_bay"])
             if lm.get("parapet"):
                 for zl, xl in zip(*np.nonzero(edge)):
                     blocks[(x0 + xl, int(top[zl, xl]) + 1, z0 + zl)] = P(lm["parapet"], up="true")

@@ -1775,6 +1775,9 @@ def winter_wonderland(G, P):
                 hx_, hz_ = (int(round(v)) for v in at(f, side) + minor * np.sign(side))
                 put(hx_, g + 5, hz_, "red_concrete")
                 put(X, g + 5, Z, "white_concrete")
+    for z, x in zip(*np.nonzero(zone)):                           # hidden lights so the fair glows at night
+        if x % 6 == 0 and z % 6 == 0:
+            blocks.setdefault((int(x), int(ground[z, x]) + 3, int(z)), P("light", level=14))
     rim = zone & ~ndimage.binary_erosion(zone)
     for i, (z, x) in enumerate(np.argwhere(rim)):
         if i % 6 == 0:

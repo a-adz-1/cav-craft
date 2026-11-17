@@ -118,7 +118,7 @@ LANDMARKS = {
     # Kings Meadow House, King's Meadow Road (Environment Agency, whose LiDAR shaped this world): five storeys of
     # red brick, flat roof, rows of arched windows, a tall glazed bay in the middle of the front
     "w136162171": {"name": "Environment Agency (Kings Meadow House)", "walls": "red_brick", "roof": "flat",
-                   "dress": None, "windows": "tall", "band": 3},
+                   "dress": None, "windows": "tall", "band": 3, "glass_bay": "light_blue_stained_glass"},
     # Reading Bridge House: the tall white concrete office tower beside it, ribbon windows
     "w77508239": {"name": "Reading Bridge House", "walls": "white_render", "roof": "flat", "dress": None,
                   "windows": "tall", "shopfront": "white_concrete"},

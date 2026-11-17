@@ -253,3 +253,5 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 - School treasure: at 13 school grounds, a small lit Christmas tree with a chest under it (diamond, cake, cookies, fireworks, gold, glow berries) and a "You found the CAVCRAFT TREASURE!" sign.
 - Christmas in Caversham centre (features.xmas_centre): 32 strings of glowing lights (froglights, shroomlight and sea lanterns on chains, drooping in the middle) hung across Church Street, Prospect Street and Bridge Street every 12 m, from building to building at first-floor height. A big lit town tree with a star stands at the junction. Checked at night.
 - Whittington's: bottle green (dark prismarine) hull and roof, as in the photos (green concrete renders olive); dark waterline strake.
+- Winter Wonderland at night: hidden light blocks every 6 m across the fair, so the snow, chalets and rides glow. Checked at night from above, and it looks great.
+- Environment Agency: a tall glazed bay (light blue glass framed in red brick, mullions every storey) up the middle of the road-facing wall (new `glass_bay` landmark option).
