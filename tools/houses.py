@@ -554,6 +554,57 @@ def garden_fences(G, P, bid, surface, buildings, d, iz, ix, road):
     for k, v in connect(fence, "spruce_fence", P, wall=False).items():
         blocks.setdefault(k, v)
     print("garden fence blocks:", len(fence))
+    garden_life(G, P, bid, surface, buildings, d, iz, ix, road, house, droad)
+
+
+def garden_life(G, P, bid, surface, buildings, d, iz, ix, road, house, droad):
+    """Front gardens: flower beds and shrubs along the house front. Back gardens: a shed near the far end."""
+    rng = np.random.default_rng(71)
+    ground = G["ground"]
+    blocks = G["h_blocks"]
+    grass = (surface == 1) & (bid == 0) & house[bid[iz, ix]]
+    front = grass & (droad < droad[iz, ix]) & (d <= 2)
+    flowers = [P("poppy"), P("dandelion"), P("blue_orchid"), P("allium"), P("oxeye_daisy"), P("cornflower"),
+               P("pink_tulip"), P("red_tulip"), P("white_tulip"), P("lilac", half="lower")]
+    shrub = P("azalea_leaves", persistent="true")
+    nf = 0
+    for z, x in zip(*np.nonzero(front)):
+        r = rng.random()
+        g = int(ground[z, x])
+        if r < 0.45:
+            f = flowers[rng.integers(len(flowers))]
+            blocks.setdefault((int(x), g + 1, int(z)), f)
+            if f == flowers[-1]:
+                blocks.setdefault((int(x), g + 2, int(z)), P("lilac", half="upper"))
+            nf += 1
+        elif r < 0.6:
+            blocks.setdefault((int(x), g + 1, int(z)), shrub)
+    # sheds: for each house, the back-garden cell furthest from the road (within 25 m) gets a 3x2 shed
+    back = grass & (droad > droad[iz, ix] + 6) & (d >= 8) & (d <= 25)
+    owner = np.where(back, bid[iz, ix], 0)
+    from scipy import ndimage
+    idx = ndimage.maximum_position(np.where(back, d, 0), owner, index=np.arange(1, len(buildings)))
+    wall, roof = P("spruce_planks"), P("dark_oak_slab", type="bottom")
+    ns = 0
+    for i, pos in enumerate(idx, start=1):
+        if not house[i] or (i * 2654435761) % 10 >= 6:
+            continue
+        z, x = pos
+        if not back[z, x]:
+            continue
+        g = int(ground[z, x])
+        cells = [(z + a, x + b) for a in (0, 1) for b in (0, 1, 2)]
+        if not all(0 <= a < back.shape[0] and 0 <= b < back.shape[1] and back[a, b] and owner[a, b] == i
+                   for a, b in cells):
+            continue
+        for a, b in cells:
+            blocks[(b, g + 1, a)] = wall
+            blocks[(b, g + 2, a)] = wall
+            blocks[(b, g + 3, a)] = roof
+        blocks[(x + 1, g + 1, z)] = P("spruce_door", facing="north", half="lower", hinge="left", open="false")
+        blocks[(x + 1, g + 2, z)] = P("spruce_door", facing="north", half="upper", hinge="left", open="false")
+        ns += 1
+    print(f"front-garden flowers: {nf}, sheds: {ns}")
 
 
 def connect(cells, name, P, wall=True):
