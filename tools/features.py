@@ -14,6 +14,11 @@ def xz(e, n):
 def setup(G, P, lidar):
     G["stamps"] = []
     G["block_entities"] = {}
+    import lock
+    for x, y, z, lines in G.get("sign_texts", []):   # shop-name signs placed by the house builder
+        pad = [""] * ((4 - len(lines)) // 2)
+        G["block_entities"].setdefault((x // 16, z // 16), []).append(
+            lock.sign_entity(x, y, z, (pad + [l.replace('"', "'") for l in lines])[:4]))
     # spawn on the north bank at Caversham Bridge
     br = [b for b in json.load(open("build/bridges.json")) if "Caversham Bridge" in (b["tags"].get("name"), b["tags"].get("bridge:name"))]
     e, n = np.mean([p for b in br for p in b["pts"]], axis=0)

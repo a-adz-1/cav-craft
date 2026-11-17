@@ -179,3 +179,4 @@ Every building surveyed into docs/buildings.csv; 159 streets classified from Map
 stairs/furniture, shop signs with real names.
 Next ideas: real shop names on fascias (OSM shop names → signs), more landmarks (Highdown School, Emmer Green
 shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Park mansion's south terrace.
+- 2026-11-17 Shop names: 51 shopfronts get a wall sign on the fascia with the real name from OSM (outline tag or the shop point inside it): Tesco Express, Alto Lounge, Stir Fry Caversham, Clay's Hyderabadi Kitchen, Age UK... Build now drops any block entity whose block a later stamp overwrote (the game logged 8 'Invalid block entity' errors before; now 0).

@@ -158,6 +158,16 @@ def prepare(G, P, layers, lidar, buildings):
     roadish = np.isin(surface, (3, 4, 5, 6, 9))
     main_road = surface == 3
     stats = {"flat": 0, "hip": 0, "gable": 0}
+    # shop names from OSM points (most shops are mapped as a point inside the building, not on the outline)
+    shop_names = {}
+    for nd in json.load(open("build/osm.json"))["nodes"]:
+        tt = nd["tags"]
+        if tt.get("name") and (tt.get("shop") or tt.get("amenity") in ("cafe", "restaurant", "fast_food", "pub", "bar",
+                                                                    "bank", "pharmacy", "post_office", "dentist")):
+            from box import E0 as _E0, N1 as _N1
+            xx_, zz_ = int(nd["pt"][0] - _E0), int(_N1 - nd["pt"][1])
+            if 0 <= zz_ < H and 0 <= xx_ < W and bid[zz_, xx_]:
+                shop_names.setdefault(buildings[bid[zz_, xx_]]["id"], tt["name"])
     for i in range(1, n):
         sl = objs[i - 1] if i - 1 < len(objs) else None
         if sl is None or buildings[i] is None:
@@ -261,6 +271,27 @@ def prepare(G, P, layers, lidar, buildings):
             if front.any():
                 stats.setdefault("shopfronts", 0)
                 stats["shopfronts"] += 1
+                # the shop's real name on a sign on the fascia, facing the street
+                sname = t.get("name") or shop_names.get(b["id"])
+                if sname:
+                    fz, fx = np.argwhere(front)[len(np.argwhere(front)) // 2]
+                    for name_, (dx, dz) in DIRS.items():
+                        a_, c_ = fz + dz, fx + dx
+                        if 0 <= a_ < inside.shape[0] and 0 <= c_ < inside.shape[1] and not inside[a_, c_]:
+                            SX, SZ = int(x0 + c_), int(z0 + a_)
+                            blocks[(SX, fl + 3, SZ)] = P("dark_oak_wall_sign", facing=name_)
+                            words = sname.split()
+                            lines, cur = [], ""
+                            for w_ in words:
+                                if len(cur) + len(w_) + 1 > 15 and cur:
+                                    lines.append(cur)
+                                    cur = w_
+                                else:
+                                    cur = (cur + " " + w_).strip()
+                            lines.append(cur)
+                            G.setdefault("sign_texts", []).append((SX, int(fl) + 3, SZ, lines[:4]))
+                            stats["named"] = stats.get("named", 0) + 1
+                            break
         church = kind in ("church", "chapel") or t.get("amenity") == "place_of_worship"
         ws = {"lancet": 1, "tall": 2}.get(lm.get("windows"), 0) if lm else (1 if church else 2 if st.get("family") == "school" else 0)
         if ws:

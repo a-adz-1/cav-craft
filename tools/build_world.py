@@ -65,6 +65,8 @@ PLANTS = {
 }
 
 G = {}   # globals shared with forked workers
+ENTITY_BLOCKS = {"minecraft:sign": {"minecraft:oak_sign", "minecraft:dark_oak_wall_sign", "minecraft:oak_wall_sign"},
+                 "minecraft:command_block": {"minecraft:command_block"}}
 
 
 def make_chunk(cx, cz):
@@ -155,6 +157,15 @@ def build_region(args):
                 continue
             blk = make_chunk(cx, cz)
             if blk is not None:
+                # drop block entities whose block was overwritten by a later stamp (e.g. a neighbour's fascia)
+                ents = G.get("block_entities", {}).get((cx, cz), [])
+                keep = []
+                for e in ents:
+                    want = ENTITY_BLOCKS.get(e["id"])
+                    if want is None or P.entries[blk[e["y"] - Y_MIN, e["z"] - cz * 16, e["x"] - cx * 16]][0] in want:
+                        keep.append(e)
+                if len(keep) != len(ents):
+                    G["block_entities"][(cx, cz)] = keep
                 chunks[(lx, lz)] = anvil.chunk_nbt(cx, cz, blk, P.entries, Y_MIN, G.get("block_entities", {}).get((cx, cz), []),
                                                  G.get("block_ticks", {}).get((cx, cz), []))
     if chunks:
