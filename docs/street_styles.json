@@ -1,25 +1,21 @@
 {
  "De Montfort Road": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Christchurch Bridge": {
   "walls": [
@@ -45,44 +41,39 @@
  },
  "Wolsey Road": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Thames Side": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "cream_render",
-   "grey_brick",
-   "concrete"
+   "cream_render"
   ],
   "roof": [
-   "slate",
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "flat"
+   "slate"
   ],
-  "tudor": 0.05,
-  "quoins": 0.5,
-  "note": "Caversham centre: shops with flats over",
-  "family": "town"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Caversham Road": {
   "walls": [
@@ -246,44 +237,39 @@
  },
  "Brigham Road": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "cream_render",
-   "grey_brick",
-   "concrete"
-  ],
-  "roof": [
-   "slate",
-   "dark_tile",
-   "flat"
-  ],
-  "tudor": 0.05,
-  "quoins": 0.5,
-  "note": "Caversham centre: shops with flats over",
-  "family": "town"
- },
- "Kingfisher Place": {
-  "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
+ },
+ "Kingfisher Place": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "cream_render"
+  ],
+  "roof": [
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
+  ],
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Norman Place": {
   "walls": [
@@ -331,22 +317,21 @@
  },
  "Bristow Court": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "cream_render",
-   "grey_brick",
-   "concrete"
+   "cream_render"
   ],
   "roof": [
-   "slate",
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "flat"
+   "slate"
   ],
-  "tudor": 0.05,
-  "quoins": 0.5,
-  "note": "Caversham centre: shops with flats over",
-  "family": "town"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Gosbrook Road": {
   "walls": [
@@ -372,25 +357,21 @@
  },
  "Harley Road": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Elliotts Way": {
   "walls": [
@@ -416,47 +397,39 @@
  },
  "Cardinal Close": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "The Willows": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Patrick Road": {
   "walls": [
@@ -601,18 +574,21 @@
  },
  "Heron Island": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "red_tile",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "King's Road": {
   "walls": [
@@ -682,18 +658,21 @@
  },
  "Mill Road": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "red_tile",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Piggotts Road": {
   "walls": [
@@ -712,18 +691,21 @@
  },
  "Mill Green": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "red_tile",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Champion Road": {
   "walls": [
@@ -787,18 +769,21 @@
  },
  "Monkley Court": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "red_tile",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Star Road": {
   "walls": [
@@ -854,18 +839,21 @@
  },
  "Deans Farm": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "red_tile",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Talbot Close": {
   "walls": [
@@ -937,27 +925,25 @@
  },
  "Mead Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "grey_brick",
+   "grey_brick",
    "white_render",
-   "timber"
+   "cream_render"
   ],
-  "upper_p": 0.45,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
    "dark_tile"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "quoins": 0.8,
+  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
+  "family": "victorian_terrace"
  },
  "Dickens Close": {
   "walls": [
@@ -1066,26 +1052,21 @@
  },
  "Ruskin": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
    "cream_render"
   ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "slate"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Lower Henley Road": {
   "walls": [
@@ -1255,27 +1236,21 @@
  },
  "Ian Mikardo Way": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
-   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Charles Evans Way": {
   "walls": [
@@ -1303,27 +1278,21 @@
  },
  "Managua Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
-   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Nire Road": {
   "walls": [
@@ -1351,27 +1320,21 @@
  },
  "Rhine Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
-   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Honey Meadow Close": {
   "walls": [
@@ -1425,23 +1388,24 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
    "white_render",
+   "pebbledash",
    "cream_render"
   ],
+  "upper_p": 0.6,
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Anglefield Road": {
   "walls": [
@@ -1493,23 +1457,24 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
    "white_render",
+   "pebbledash",
    "cream_render"
   ],
+  "upper_p": 0.6,
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Ardler Road": {
   "walls": [
@@ -1537,111 +1502,106 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
    "white_render",
+   "pebbledash",
    "cream_render"
   ],
+  "upper_p": 0.6,
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Marsack Street": {
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
    "white_render",
+   "pebbledash",
    "cream_render"
   ],
+  "upper_p": 0.6,
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Montague Street": {
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
    "white_render",
+   "pebbledash",
    "cream_render"
   ],
+  "upper_p": 0.6,
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Brackstone Close": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "St John's Road": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Washington Road": {
   "walls": [
@@ -1669,133 +1629,124 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
    "white_render",
+   "pebbledash",
    "cream_render"
   ],
+  "upper_p": 0.6,
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Alder Road": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Saint John's RoadBanana Moon Day Nursery": {
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
    "white_render",
+   "pebbledash",
    "cream_render"
   ],
+  "upper_p": 0.6,
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Hardy Close": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Marsack street": {
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
    "white_render",
+   "pebbledash",
    "cream_render"
   ],
+  "upper_p": 0.6,
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Southview Park": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Keston Close": {
   "walls": [
@@ -2235,22 +2186,23 @@
   "walls": [
    "white_render",
    "white_render",
-   "cream_render",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.5,
+  "upper_p": 0.3,
   "roof": [
-   "slate",
    "dark_tile",
-   "red_tile"
+   "dark_tile",
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.6,
-  "quoins": 0.3,
-  "note": "The Warren riverside villas",
-  "family": "riverside_villa"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Graveney Drive": {
   "walls": [
@@ -2359,42 +2311,39 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
+   "red_brick",
+   "grey_brick",
    "white_render"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
+   "slate",
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "dark_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Grass Hill": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
    "red_brick",
    "red_brick",
-   "cream_render"
+   "red_brick",
+   "grey_brick",
+   "white_render"
   ],
   "roof": [
-   "brown_tile",
-   "grey_tile",
+   "slate",
+   "slate",
    "dark_tile",
-   "slate"
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Kelmscott Close": {
   "walls": [
@@ -2546,68 +2495,69 @@
  },
  "Westonbirt Drive": {
   "walls": [
-   "white_render",
-   "white_render",
-   "cream_render",
-   "red_brick"
-  ],
-  "upper": [
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "grey_brick",
    "white_render"
   ],
-  "upper_p": 0.5,
   "roof": [
    "slate",
+   "slate",
    "dark_tile",
-   "red_tile"
+   "dark_tile"
   ],
-  "tudor": 0.6,
-  "quoins": 0.3,
-  "note": "The Warren riverside villas",
-  "family": "riverside_villa"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Blagrave Lane": {
   "walls": [
-   "white_render",
-   "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick"
   ],
   "upper": [
-   "white_render"
+   "tile_hung",
+   "white_render",
+   "timber"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.45,
   "roof": [
-   "dark_tile",
-   "dark_tile",
    "brown_tile",
-   "slate"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.0,
+  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
+  "family": "estate_6070"
  },
  "Chazey Road": {
   "walls": [
-   "white_render",
-   "white_render",
    "red_brick",
    "red_brick",
-   "cream_render"
-  ],
-  "upper": [
+   "pebbledash",
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper": [
+   "white_render",
+   "pebbledash",
+   "cream_render"
+  ],
+  "upper_p": 0.6,
   "roof": [
    "dark_tile",
    "dark_tile",
-   "brown_tile",
-   "slate"
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Mapledene": {
   "walls": [
@@ -2632,45 +2582,25 @@
   "walls": [
    "white_render",
    "white_render",
-   "cream_render",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.5,
+  "upper_p": 0.3,
   "roof": [
-   "slate",
    "dark_tile",
-   "red_tile"
+   "dark_tile",
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.6,
-  "quoins": 0.3,
-  "note": "The Warren riverside villas",
-  "family": "riverside_villa"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "River Road": {
-  "walls": [
-   "white_render",
-   "white_render",
-   "cream_render",
-   "red_brick"
-  ],
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.5,
-  "roof": [
-   "slate",
-   "dark_tile",
-   "red_tile"
-  ],
-  "tudor": 0.6,
-  "quoins": 0.3,
-  "note": "The Warren riverside villas",
-  "family": "riverside_villa"
- },
- "Hewett Avenue": {
   "walls": [
    "white_render",
    "white_render",
@@ -2692,26 +2622,52 @@
   "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
   "family": "interwar_detached"
  },
- "High Meadow": {
+ "Hewett Avenue": {
   "walls": [
-   "white_render",
-   "white_render",
-   "cream_render",
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
    "red_brick"
   ],
   "upper": [
+   "tile_hung",
+   "white_render",
+   "timber"
+  ],
+  "upper_p": 0.45,
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "dark_tile"
+  ],
+  "tudor": 0.0,
+  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
+  "family": "estate_6070"
+ },
+ "High Meadow": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "pebbledash",
    "white_render"
   ],
-  "upper_p": 0.5,
-  "roof": [
-   "slate",
-   "dark_tile",
-   "red_tile"
+  "upper": [
+   "white_render",
+   "pebbledash",
+   "cream_render"
   ],
-  "tudor": 0.6,
-  "quoins": 0.3,
-  "note": "The Warren riverside villas",
-  "family": "riverside_villa"
+  "upper_p": 0.6,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
+  ],
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Hewett Close": {
   "walls": [
@@ -2851,31 +2807,39 @@
   "walls": [
    "red_brick",
    "red_brick",
+   "red_brick",
+   "grey_brick",
    "white_render"
   ],
   "roof": [
    "slate",
-   "red_tile",
+   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Clifton Park Road": {
   "walls": [
    "red_brick",
    "red_brick",
+   "red_brick",
+   "grey_brick",
    "white_render"
   ],
   "roof": [
    "slate",
-   "red_tile",
+   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Priest Hill": {
   "walls": [
@@ -2883,21 +2847,18 @@
    "red_brick",
    "red_brick",
    "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "white_render"
   ],
   "roof": [
    "slate",
    "slate",
-   "slate",
-   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Hemdean Rise": {
   "walls": [
@@ -2905,21 +2866,18 @@
    "red_brick",
    "red_brick",
    "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "white_render"
   ],
   "roof": [
    "slate",
    "slate",
-   "slate",
-   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Hemdean Road": {
   "walls": [
@@ -2942,27 +2900,22 @@
  },
  "The Mount": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "grey_brick",
+   "white_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
+   "slate",
+   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Chester Street": {
   "walls": [
@@ -2992,21 +2945,18 @@
    "red_brick",
    "red_brick",
    "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "white_render"
   ],
   "roof": [
    "slate",
    "slate",
-   "slate",
-   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Rectory Road": {
   "walls": [
@@ -3036,21 +2986,18 @@
    "red_brick",
    "red_brick",
    "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "white_render"
   ],
   "roof": [
    "slate",
    "slate",
-   "slate",
-   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Auburn Court": {
   "walls": [
@@ -3157,24 +3104,20 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
+   "red_brick",
+   "grey_brick",
    "white_render"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
+   "slate",
+   "slate",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "dark_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Darell Road": {
   "walls": [
@@ -3201,41 +3144,43 @@
    "red_brick",
    "red_brick",
    "grey_brick",
-   "white_render"
+   "grey_brick",
+   "white_render",
+   "cream_render"
   ],
   "roof": [
    "slate",
    "slate",
-   "dark_tile",
+   "slate",
+   "slate",
    "dark_tile"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.0,
+  "quoins": 0.8,
+  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
+  "family": "victorian_terrace"
  },
  "Matlock Road": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
    "white_render",
-   "pebbledash",
+   "white_render",
+   "red_brick",
+   "red_brick",
    "cream_render"
   ],
-  "upper_p": 0.6,
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
   "roof": [
    "dark_tile",
    "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Ilkley Road": {
   "walls": [
@@ -3262,6 +3207,28 @@
  },
  "Buxton Avenue": {
   "walls": [
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
+  ],
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "slate"
+  ],
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
+ },
+ "Harrogate Road": {
+  "walls": [
    "red_brick",
    "red_brick",
    "red_brick",
@@ -3278,30 +3245,6 @@
   "quoins": 0.6,
   "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
   "family": "victorian_villa"
- },
- "Harrogate Road": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
  },
  "Woburn Close": {
   "walls": [
@@ -3329,27 +3272,26 @@
  },
  "Richmond Road": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "pebbledash",
+   "white_render"
   ],
   "upper": [
-   "tile_hung",
    "white_render",
-   "timber"
+   "pebbledash",
+   "cream_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.6,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Kidmore Road": {
   "walls": [
@@ -3376,59 +3318,59 @@
    "red_brick",
    "red_brick",
    "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "white_render"
   ],
   "roof": [
    "slate",
    "slate",
-   "slate",
-   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Oakley Road": {
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "pebbledash",
    "white_render"
   ],
-  "roof": [
-   "slate",
-   "slate",
-   "dark_tile",
-   "dark_tile"
+  "upper": [
+   "white_render",
+   "pebbledash",
+   "cream_render"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "upper_p": 0.6,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
+  ],
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "St. Andrew's Road": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "The Cloisters": {
   "walls": [
@@ -3436,21 +3378,18 @@
    "red_brick",
    "red_brick",
    "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "white_render"
   ],
   "roof": [
    "slate",
    "slate",
-   "slate",
-   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Knighton Close": {
   "walls": [
@@ -3458,21 +3397,18 @@
    "red_brick",
    "red_brick",
    "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "white_render"
   ],
   "roof": [
    "slate",
    "slate",
-   "slate",
-   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Victoria Road": {
   "walls": [
@@ -3502,78 +3438,72 @@
    "red_brick",
    "red_brick",
    "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "white_render"
   ],
   "roof": [
    "slate",
    "slate",
-   "slate",
-   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Orwell Close": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Dellwood Park": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Chelford Way": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Blagrave Farm Lane": {
   "walls": [
@@ -3619,87 +3549,93 @@
  },
  "Woodcote Way": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "pebbledash",
+   "white_render"
   ],
   "upper": [
-   "tile_hung",
    "white_render",
-   "timber"
+   "pebbledash",
+   "cream_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.6,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Conisboro Avenue": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
    "cream_render"
   ],
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
   "roof": [
-   "brown_tile",
-   "grey_tile",
    "dark_tile",
+   "dark_tile",
+   "brown_tile",
    "slate"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Queensborough Drive": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
    "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Fernbrook Road": {
-  "walls": [
-   "orange_brick",
-   "orange_brick",
+   "white_render",
    "red_brick",
    "red_brick",
    "cream_render"
   ],
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
   "roof": [
-   "brown_tile",
-   "grey_tile",
    "dark_tile",
+   "dark_tile",
+   "brown_tile",
    "slate"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
+ },
+ "Fernbrook Road": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
+   "white_render",
+   "pebbledash",
+   "cream_render"
+  ],
+  "upper_p": 0.6,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
+  ],
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Westdene Crescent": {
   "walls": [
@@ -3775,39 +3711,48 @@
  },
  "Geoffreyson Road": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
    "red_brick",
    "red_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
+   "white_render",
+   "pebbledash",
    "cream_render"
   ],
+  "upper_p": 0.6,
   "roof": [
-   "brown_tile",
-   "grey_tile",
    "dark_tile",
-   "slate"
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Pinewood Drive": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
    "cream_render"
   ],
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
   "roof": [
-   "brown_tile",
-   "grey_tile",
    "dark_tile",
+   "dark_tile",
+   "brown_tile",
    "slate"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Regency Heights": {
   "walls": [
@@ -3829,27 +3774,25 @@
  },
  "Conisboro Way": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Gurney Close": {
   "walls": [
@@ -3919,75 +3862,71 @@
  },
  "Shepherds Lane": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "pebbledash",
+   "white_render"
   ],
   "upper": [
-   "tile_hung",
    "white_render",
-   "timber"
+   "pebbledash",
+   "cream_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.6,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "The Grange": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "pebbledash",
+   "white_render"
   ],
   "upper": [
-   "tile_hung",
    "white_render",
-   "timber"
+   "pebbledash",
+   "cream_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.6,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Hilltop Road": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Tokers Green Lane": {
   "walls": [
@@ -4015,49 +3954,43 @@
  },
  "King's Meadow Road": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Morecambe Avenue": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Silverthorne Drive": {
   "walls": [
@@ -4109,46 +4042,48 @@
  },
  "Carlton Road": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Haldane Road": {
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "pebbledash",
    "white_render"
   ],
-  "roof": [
-   "slate",
-   "slate",
-   "dark_tile",
-   "dark_tile"
+  "upper": [
+   "white_render",
+   "pebbledash",
+   "cream_render"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "upper_p": 0.6,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
+  ],
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Saint David's Close": {
   "walls": [
@@ -4171,155 +4106,182 @@
  },
  "Uplands Road": {
   "walls": [
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "cream_render"
+  ],
+  "upper": [
    "white_render"
   ],
+  "upper_p": 0.3,
   "roof": [
-   "slate",
-   "slate",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Ashcroft Close": {
   "walls": [
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "cream_render"
+  ],
+  "upper": [
    "white_render"
   ],
+  "upper_p": 0.3,
   "roof": [
-   "slate",
-   "slate",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Lymington Gate": {
   "walls": [
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "cream_render"
+  ],
+  "upper": [
    "white_render"
   ],
+  "upper_p": 0.3,
   "roof": [
-   "slate",
-   "slate",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Kelvedon Way": {
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "pebbledash",
    "white_render"
   ],
-  "roof": [
-   "slate",
-   "slate",
-   "dark_tile",
-   "dark_tile"
+  "upper": [
+   "white_render",
+   "pebbledash",
+   "cream_render"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "upper_p": 0.6,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
+  ],
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Tyler Close": {
   "walls": [
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "cream_render"
+  ],
+  "upper": [
    "white_render"
   ],
+  "upper_p": 0.3,
   "roof": [
-   "slate",
-   "slate",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Wrenfield Drive": {
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "pebbledash",
    "white_render"
   ],
-  "roof": [
-   "slate",
-   "slate",
-   "dark_tile",
-   "dark_tile"
+  "upper": [
+   "white_render",
+   "pebbledash",
+   "cream_render"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "upper_p": 0.6,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
+  ],
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Hunters Chase": {
   "walls": [
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "cream_render"
+  ],
+  "upper": [
    "white_render"
   ],
+  "upper_p": 0.3,
   "roof": [
-   "slate",
-   "slate",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Tymawr": {
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "pebbledash",
    "white_render"
   ],
-  "roof": [
-   "slate",
-   "slate",
-   "dark_tile",
-   "dark_tile"
+  "upper": [
+   "white_render",
+   "pebbledash",
+   "cream_render"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "upper_p": 0.6,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
+  ],
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Brill Close": {
   "walls": [
@@ -4346,22 +4308,25 @@
  },
  "Glyncastle": {
   "walls": [
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "cream_render"
+  ],
+  "upper": [
    "white_render"
   ],
+  "upper_p": 0.3,
   "roof": [
-   "slate",
-   "slate",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Sheridan Avenue": {
   "walls": [
@@ -4388,41 +4353,48 @@
  },
  "Ammanford": {
   "walls": [
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "cream_render"
+  ],
+  "upper": [
    "white_render"
   ],
+  "upper_p": 0.3,
   "roof": [
-   "slate",
-   "slate",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Charlotte Close": {
   "walls": [
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "pebbledash",
    "white_render"
   ],
-  "roof": [
-   "slate",
-   "slate",
-   "dark_tile",
-   "dark_tile"
+  "upper": [
+   "white_render",
+   "pebbledash",
+   "cream_render"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "upper_p": 0.6,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
+  ],
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Blaenavon": {
   "walls": [
@@ -4445,27 +4417,25 @@
  },
  "Kidmore Court": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Woodberry Close": {
   "walls": [
@@ -4515,203 +4485,178 @@
  },
  "Midsummer Meadow": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Winterberry Way": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Bramblings": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Mardy": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Gravel Hill": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "white_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
+   "slate",
+   "red_tile",
    "dark_tile"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
+  "family": "cottage"
  },
  "Badgers Rise": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
    "cream_render"
   ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "slate"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Blaenant": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Morlais": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Treforgan": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Briar Close": {
   "walls": [
@@ -4829,22 +4774,25 @@
  },
  "Tylorstown": {
   "walls": [
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
+   "cream_render"
+  ],
+  "upper": [
    "white_render"
   ],
+  "upper_p": 0.3,
   "roof": [
-   "slate",
-   "slate",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
-  "family": "victorian_villa"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Cwmcarn": {
   "walls": [
@@ -4920,51 +4868,33 @@
  },
  "Aberaman": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "white_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
+   "slate",
+   "red_tile",
    "dark_tile"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
+  "family": "cottage"
  },
  "Hafod": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "white_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
+   "slate",
+   "red_tile",
    "dark_tile"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
+  "family": "cottage"
  },
  "Penn Close": {
   "walls": [
@@ -5007,51 +4937,33 @@
  },
  "Merthyr Vale": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "white_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
+   "slate",
+   "red_tile",
    "dark_tile"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
+  "family": "cottage"
  },
  "Cherwell Road": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "white_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
+   "slate",
+   "red_tile",
    "dark_tile"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
+  "family": "cottage"
  },
  "Emmer Green, Reading,": {
   "walls": [
@@ -5234,18 +5146,27 @@
  },
  "Scott Close": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "white_render"
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick"
   ],
+  "upper": [
+   "tile_hung",
+   "white_render",
+   "timber"
+  ],
+  "upper_p": 0.45,
   "roof": [
-   "slate",
-   "red_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
    "dark_tile"
   ],
   "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
+  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
+  "family": "estate_6070"
  },
  "St Barnabas Road": {
   "walls": [
@@ -5273,27 +5194,25 @@
  },
  "Eric Avenue": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Soane End": {
   "walls": [
@@ -5321,6 +5240,43 @@
  },
  "Old Barn Close": {
   "walls": [
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
+  ],
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "slate"
+  ],
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
+ },
+ "Barnes Road": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "white_render"
+  ],
+  "roof": [
+   "slate",
+   "red_tile",
+   "dark_tile"
+  ],
+  "tudor": 0.0,
+  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
+  "family": "cottage"
+ },
+ "Chaucer Close": {
+  "walls": [
    "buff_brick",
    "buff_brick",
    "orange_brick",
@@ -5342,36 +5298,6 @@
   "tudor": 0.0,
   "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
   "family": "estate_6070"
- },
- "Barnes Road": {
-  "walls": [
-   "red_brick",
-   "red_brick",
-   "white_render"
-  ],
-  "roof": [
-   "slate",
-   "red_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
- },
- "Chaucer Close": {
-  "walls": [
-   "red_brick",
-   "red_brick",
-   "white_render"
-  ],
-  "roof": [
-   "slate",
-   "red_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
  },
  "Surley Place": {
   "walls": [
@@ -5452,6 +5378,46 @@
  },
  "Southdown Road": {
   "walls": [
+   "red_brick",
+   "white_render",
+   "white_render",
+   "buff_brick"
+  ],
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.4,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
+  ],
+  "tudor": 0.0,
+  "note": "1940s-50s semis and short terraces (Rotherfield Way): render, plain tile, chimneys, hedges",
+  "family": "postwar_council"
+ },
+ "Evesham Road": {
+  "walls": [
+   "red_brick",
+   "white_render",
+   "white_render",
+   "buff_brick"
+  ],
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.4,
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
+  ],
+  "tudor": 0.0,
+  "note": "1940s-50s semis and short terraces (Rotherfield Way): render, plain tile, chimneys, hedges",
+  "family": "postwar_council"
+ },
+ "Bellingham Walk": {
+  "walls": [
    "buff_brick",
    "buff_brick",
    "orange_brick",
@@ -5473,44 +5439,6 @@
   "tudor": 0.0,
   "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
   "family": "estate_6070"
- },
- "Evesham Road": {
-  "walls": [
-   "red_brick",
-   "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
-  "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
-  ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
- },
- "Bellingham Walk": {
-  "walls": [
-   "red_brick",
-   "red_brick",
-   "white_render"
-  ],
-  "roof": [
-   "slate",
-   "red_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
  },
  "Grove Cottages": {
   "walls": [
@@ -5581,21 +5509,26 @@
  },
  "Newlands Avenue": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
    "red_brick",
    "red_brick",
+   "pebbledash",
+   "white_render"
+  ],
+  "upper": [
+   "white_render",
+   "pebbledash",
    "cream_render"
   ],
+  "upper_p": 0.6,
   "roof": [
-   "brown_tile",
-   "grey_tile",
    "dark_tile",
-   "slate"
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Berrylands Road": {
   "walls": [
@@ -5625,21 +5558,18 @@
    "red_brick",
    "red_brick",
    "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "white_render"
   ],
   "roof": [
    "slate",
    "slate",
-   "slate",
-   "slate",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "big Victorian/Edwardian detached and semis, gables, tall chimneys",
+  "family": "victorian_villa"
  },
  "Buckingham Drive": {
   "walls": [
@@ -5667,21 +5597,23 @@
  },
  "Knights Way": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
    "red_brick",
-   "red_brick",
-   "cream_render"
+   "white_render",
+   "white_render",
+   "buff_brick"
   ],
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.4,
   "roof": [
-   "brown_tile",
-   "grey_tile",
    "dark_tile",
-   "slate"
+   "dark_tile",
+   "brown_tile"
   ],
   "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "note": "1940s-50s semis and short terraces (Rotherfield Way): render, plain tile, chimneys, hedges",
+  "family": "postwar_council"
  },
  "Kidmore End Road": {
   "walls": [
@@ -5764,27 +5696,26 @@
  },
  "Balmore Drive": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "pebbledash",
+   "white_render"
   ],
   "upper": [
-   "tile_hung",
    "white_render",
-   "timber"
+   "pebbledash",
+   "cream_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.6,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.2,
+  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
+  "family": "interwar_semi"
  },
  "Picton Way": {
   "walls": [
@@ -6940,26 +6871,21 @@
  },
  "Almond Drive": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
    "cream_render"
   ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "slate"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Lowfield Road": {
   "walls": [
@@ -7011,26 +6937,25 @@
  },
  "Hawthorne Road": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
    "white_render",
-   "pebbledash",
+   "white_render",
+   "red_brick",
+   "red_brick",
    "cream_render"
   ],
-  "upper_p": 0.6,
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
   "roof": [
    "dark_tile",
    "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "brown_tile",
+   "slate"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Caversham Park Road": {
   "walls": [
@@ -7150,25 +7075,27 @@
  },
  "Crawshay Drive": {
   "walls": [
-   "white_render",
-   "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick"
   ],
   "upper": [
-   "white_render"
+   "tile_hung",
+   "white_render",
+   "timber"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.45,
   "roof": [
-   "dark_tile",
-   "dark_tile",
    "brown_tile",
-   "slate"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.0,
+  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
+  "family": "estate_6070"
  },
  "Brooklyn Drive": {
   "walls": [
@@ -7211,25 +7138,27 @@
  },
  "Greenleas Avenue": {
   "walls": [
-   "white_render",
-   "white_render",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick"
   ],
   "upper": [
-   "white_render"
+   "tile_hung",
+   "white_render",
+   "timber"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.45,
   "roof": [
-   "dark_tile",
-   "dark_tile",
    "brown_tile",
-   "slate"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.0,
+  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
+  "family": "estate_6070"
  },
  "Courtenay Drive": {
   "walls": [
@@ -8921,27 +8850,21 @@
  },
  "Corfe Mews": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
-   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Farnham Drive": {
   "walls": [
@@ -8993,26 +8916,21 @@
  },
  "Bramber Mews": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
    "cream_render"
   ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "slate"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Kendal Avenue": {
   "walls": [
@@ -9040,27 +8958,21 @@
  },
  "Earlsfield Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
-   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Lomond Avenue": {
   "walls": [
@@ -9088,26 +9000,21 @@
  },
  "Blackwater Close": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
    "cream_render"
   ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "slate"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Pevensey Avenue": {
   "walls": [
@@ -9279,51 +9186,39 @@
  },
  "Chestnut Avenue": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
-   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Devon Drive": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
-   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Shakespeare Close": {
   "walls": [
@@ -9375,27 +9270,21 @@
  },
  "Dacre Avenue": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
-   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Grove Mews": {
   "walls": [
@@ -9417,25 +9306,21 @@
  },
  "Lynmouth Road": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
    "cream_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "brown_tile",
+   "grey_tile",
+   "dark_tile",
+   "slate"
   ],
   "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Waterman Place": {
   "walls": [
@@ -9523,26 +9408,21 @@
  },
  "Martin Cooper Close": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
    "cream_render"
   ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "slate"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Pendennis Avenue": {
   "walls": [
@@ -9570,26 +9450,21 @@
  },
  "Willow view": {
   "walls": [
+   "orange_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
    "cream_render"
   ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "grey_tile",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "slate"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0.0,
+  "note": "1980s onward closes and flats",
+  "family": "modern"
  },
  "Grobler's Way": {
   "walls": [
@@ -9761,27 +9636,25 @@
  },
  "Putting Green": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "The Fairway": {
   "walls": [
@@ -9860,50 +9733,46 @@
  },
  "Eagle Way": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  },
  "Saunders Drive": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "cream_render"
   ],
   "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.45,
+  "upper_p": 0.3,
   "roof": [
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.35,
+  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
+  "family": "interwar_detached"
  }
 }

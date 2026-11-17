@@ -147,3 +147,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
   Front-wall/fence blocks from the house builder were landing inside the lock pool; now cleared from the site.
 - 2026-11-17 Lock keeper's hut from Commons photos (dark timber, white windows, hipped mud-brick-tile roof, brick plinth) beside the upper gate; black bollards every 6 m along both lock walls.
 - 2026-11-17 New family riverside_villa for The Warren (from Commons river photos): white render, Tudor gables, slate/tile, bays, hedges.
+- 2026-11-17 Commons street survey: 57 more streets matched to Geograph photo titles, all looked at (build/cs_*.jpg) and classified; docs/street_survey.csv now covers 160 streets.
