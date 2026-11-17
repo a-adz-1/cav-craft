@@ -41,6 +41,7 @@ def setup(G, P, lidar):
     G["stamps"].append(cars(G, P))
     G["stamps"].append(christchurch_mast(G, P))
     G["stamps"].append(churchyards(G, P))
+    G["stamps"].append(street_signs(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -866,3 +867,48 @@ def marina(G, P):
         b["Type"] = ["oak", "birch", "spruce", "cherry"][k % 4]
         lock.add_entity(G, b)
     print("marina boats:", len(picks))
+
+
+# ---- street name signs at each end of every named road ---------------------------------------------
+
+def street_signs(G, P):
+    import lock
+    osm = json.load(open("build/osm.json"))
+    Hh, Ww = G["mask"].shape
+    from scipy import ndimage
+    soft = G["mask"] & ~np.isin(G["surface"], (3, 4, 6, 18)) & (G["building"] == 0) & (G["water"] == -999)
+    _, (sz, sx) = ndimage.distance_transform_edt(~soft, return_indices=True)
+    ends = {}
+    for ln in osm["lines"]:
+        t = ln["tags"]
+        if t.get("highway") not in ("primary", "secondary", "tertiary", "residential", "unclassified",
+                                    "living_street") or not t.get("name"):
+            continue
+        for p in (ln["pts"][0], ln["pts"][-1]):
+            ends.setdefault(t["name"], []).append(xz(*p))
+    blocks = {}
+    n = 0
+    for name, pts in ends.items():
+        placed = []
+        for x, z in pts:
+            if not (0 <= z < Hh and 0 <= x < Ww) or not G["mask"][z, x]:
+                continue
+            if any(abs(x - a) + abs(z - c) < 60 for a, c in placed):
+                continue
+            px, pz = int(sx[z, x]), int(sz[z, x])
+            if abs(px - x) + abs(pz - z) > 12 or (px, pz) in [(k[0], k[2]) for k in blocks]:
+                continue
+            placed.append((x, z))
+            g = int(G["ground"][pz, px])
+            # face the road: rotation 0 = sign text faces south; pick from direction to the road point
+            ang = (np.degrees(np.arctan2(x - px, -(z - pz)))) % 360   # 0 = north
+            rot = int(round(((ang + 180) % 360) / 22.5)) % 16
+            blocks[(px, g + 1, pz)] = P("dark_oak_fence")
+            blocks[(px, g + 2, pz)] = P("oak_sign", rotation=rot)
+            words = name.split(" ")
+            lines = [name] if len(name) <= 15 else [" ".join(words[:len(words) // 2]), " ".join(words[len(words) // 2:])]
+            G["block_entities"].setdefault((px // 16, pz // 16), []).append(
+                lock.sign_entity(px, g + 2, pz, [""] + lines + ([""] if len(lines) == 1 else [])))
+            n += 1
+    print("street name signs:", n)
+    return block_stamp(blocks)
