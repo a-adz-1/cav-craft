@@ -89,7 +89,7 @@ def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95):
     return best[1], eave, ridge, best[2]
 
 
-BAY_FAMILIES = {"riverside_villa": 2, "victorian_terrace": 2, "victorian_villa": 2, "interwar_semi": 2, "interwar_detached": 2,
+BAY_FAMILIES = {"grey_terrace": 2, "riverside_villa": 2, "victorian_terrace": 2, "victorian_villa": 2, "interwar_semi": 2, "interwar_detached": 2,
                 "postwar_council": 0}
 
 
@@ -226,6 +226,12 @@ def prepare(G, P, layers, lidar, buildings):
         wallmat[sub] = np.where(inside, P(WALLS[wname]), wallmat[sub])
         if uname and uname != wname:
             upmat[sub] = np.where(inside, P(WALLS[uname]), upmat[sub])
+        # grey-brick terraces: red brick band at every floor and over the windows
+        if st.get("family") == "grey_terrace":
+            zz, xx = np.nonzero(edge)
+            for zl, xl in zip(zz, xx):
+                for y in range(fl + 3, int(top[zl, xl]), 3):
+                    blocks.setdefault((x0 + xl, y, z0 + zl), P("bricks"))
         # brick quoins on the corners of grey-brick and rendered houses
         if wname in ("grey_brick", "white_render", "cream_render") and st.get("quoins", 0) > ((h >> 21) % 100) / 100:
             corner = edge & (ndimage.convolve(inside.astype(int), np.ones((3, 3), int), mode="constant") <= 4)
@@ -398,7 +404,7 @@ def stamp_factory(G, P):
     return stamp
 
 
-FRONT = {"riverside_villa": "hedge", "victorian_terrace": "wall", "victorian_villa": "wall", "cottage": "hedge", "interwar_semi": "hedge",
+FRONT = {"grey_terrace": "wall", "riverside_villa": "hedge", "victorian_terrace": "wall", "victorian_villa": "wall", "cottage": "hedge", "interwar_semi": "hedge",
          "interwar_detached": "hedge", "postwar_council": "hedge", "estate_6070": None, "modern": "wall",
          "town": None}
 

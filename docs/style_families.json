@@ -191,5 +191,16 @@
   "tudor": 0.6,
   "quoins": 0.3,
   "note": "The Warren riverside villas"
+ },
+ "grey_terrace": {
+  "walls": [
+   "grey_brick"
+  ],
+  "roof": [
+   "slate"
+  ],
+  "tudor": 0,
+  "quoins": 1.0,
+  "note": "Reading silver-grey brick terraces with red brick quoins, bands and window heads, slate, bays (Star Road, parts of Lower Caversham)"
  }
 }

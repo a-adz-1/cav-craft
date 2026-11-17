@@ -787,25 +787,15 @@
  },
  "Star Road": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "grey_brick"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0,
+  "quoins": 1.0,
+  "note": "Reading silver-grey brick terraces with red brick quoins, bands and window heads, slate, bays (Star Road, parts of Lower Caversham)",
+  "family": "grey_terrace"
  },
  "Brook Lea": {
   "walls": [
@@ -857,25 +847,15 @@
  },
  "Talbot Close": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "grey_brick"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0,
+  "quoins": 1.0,
+  "note": "Reading silver-grey brick terraces with red brick quoins, bands and window heads, slate, bays (Star Road, parts of Lower Caversham)",
+  "family": "grey_terrace"
  },
  "Amersham Road": {
   "walls": [
@@ -925,47 +905,27 @@
  },
  "Mead Close": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "grey_brick"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0,
+  "quoins": 1.0,
+  "note": "Reading silver-grey brick terraces with red brick quoins, bands and window heads, slate, bays (Star Road, parts of Lower Caversham)",
+  "family": "grey_terrace"
  },
  "Dickens Close": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "grey_brick",
-   "grey_brick",
-   "white_render",
-   "cream_render"
+   "grey_brick"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "dark_tile"
+   "slate"
   ],
-  "tudor": 0.0,
-  "quoins": 0.8,
-  "note": "Reading red brick and silver-grey brick with red dressings, some painted; slate; bays; low brick front walls",
-  "family": "victorian_terrace"
+  "tudor": 0,
+  "quoins": 1.0,
+  "note": "Reading silver-grey brick terraces with red brick quoins, bands and window heads, slate, bays (Star Road, parts of Lower Caversham)",
+  "family": "grey_terrace"
  },
  "Caleta Close": {
   "walls": [
