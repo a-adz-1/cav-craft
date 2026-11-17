@@ -312,6 +312,8 @@ def prepare(G, P, layers, lidar, buildings):
                             break
         church = kind in ("church", "chapel") or t.get("amenity") == "place_of_worship"
         ws = {"lancet": 1, "tall": 2}.get(lm.get("windows"), 0) if lm else (1 if church else 2 if st.get("family") == "school" else 0)
+        if kind in ("garage", "garages"):
+            ws = 3   # no windows
         if ws:
             winstyle[sub] = np.where(inside, ws, winstyle[sub])
         if lm:
@@ -465,8 +467,9 @@ def prepare(G, P, layers, lidar, buildings):
                 for y in range(int(top[zl, xl]) - 1, int(top[zl, xl]) + 2):
                     blocks[(x0 + xl, y, z0 + zl)] = P("bricks")
                 blocks[(x0 + xl, int(top[zl, xl]) + 2, z0 + zl)] = P("flower_pot")
-        # front door: the wall cell nearest a road/path, on the outside face
-        if kind not in ("garage", "garages", "shed", "hut") and inside.sum() >= 12:
+        # front door: the wall cell nearest a road/path, on the outside face (garages: an up-and-over door)
+        garage = kind in ("garage", "garages")
+        if kind not in ("shed", "hut") and inside.sum() >= 12:
             rz, rx = np.nonzero(roadish[z0 - 15 if z0 >= 15 else 0:z1 + 15, x0 - 15 if x0 >= 15 else 0:x1 + 15])
             oz, ox = (z0 - 15 if z0 >= 15 else 0), (x0 - 15 if x0 >= 15 else 0)
             ez, ex = np.nonzero(edge)
@@ -477,6 +480,21 @@ def prepare(G, P, layers, lidar, buildings):
                 # which side is outside
                 for name, (dx, dz) in DIRS.items():
                     a, c = dz_ + dz, dx_ + dx
+                    if 0 <= a < inside.shape[0] and 0 <= c < inside.shape[1] and not inside[a, c] and garage:
+                        # white up-and-over doors on the road-facing wall: one 2 wide on a garage, a row with a
+                        # pier between each on a block of lock-ups
+                        line = [(a2, c2) for a2, c2 in zip(*np.nonzero(edge)) if abs((a2 - dz_) * dz + (c2 - dx_) * dx) <= 2
+                                and not (0 <= a2 + dz < inside.shape[0] and 0 <= c2 + dx < inside.shape[1]
+                                         and inside[a2 + dz, c2 + dx])]
+                        line.sort(key=lambda v: v[1] * abs(dz) + v[0] * abs(dx))   # along the wall
+                        k0 = next(k for k, v in enumerate(line) if v == (dz_, dx_))
+                        doors = line[1:-1] if kind == "garages" else line[max(0, min(k0 - 1, len(line) - 2)):][:2]
+                        for k, (a2, c2) in enumerate(doors):
+                            if kind == "garages" and k % 3 == 2:
+                                continue
+                            for y in (fl + 1, fl + 2):
+                                blocks[(x0 + c2, y, z0 + a2)] = P("white_concrete")
+                        break
                     if 0 <= a < inside.shape[0] and 0 <= c < inside.shape[1] and not inside[a, c]:
                         door = DOORS[(h >> 9) % len(DOORS)]
                         X, Z = x0 + dx_, z0 + dz_
