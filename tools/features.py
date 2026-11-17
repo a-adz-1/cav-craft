@@ -38,6 +38,7 @@ def setup(G, P, lidar):
     moorings(G, P)
     animals(G, P)
     G["stamps"].append(furniture(G, P))
+    G["stamps"].append(cars(G, P))
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
     print("trees:", len(G["trees"]))
@@ -724,3 +725,38 @@ def animals(G, P, per_ha=1.5, cap=6):
 def anvil_float(v):
     import anvil
     return anvil.Float(v)
+
+
+# ---- parked cars on driveways (block-built: a body, glass cabin, black wheels) ------------------------
+
+CAR_COLOURS = ["white_concrete", "black_concrete", "gray_concrete", "light_gray_concrete", "blue_concrete",
+               "red_concrete", "light_blue_concrete", "white_concrete", "gray_concrete", "black_concrete"]
+
+
+def cars(G, P):
+    rng = np.random.default_rng(41)
+    blocks = {}
+    n = 0
+    for z, x, along_x in G.get("drives", []):
+        if rng.random() > 0.55 or not (0 <= z < G["mask"].shape[0] and 0 <= x < G["mask"].shape[1]):
+            continue
+        if G["surface"][z, x] != 7:
+            continue
+        g = int(G["ground"][z, x])
+        body = P(CAR_COLOURS[rng.integers(len(CAR_COLOURS))])
+        # 4 long x 2 wide; along the drive direction
+        cells = [(z + (0 if along_x else k), x + (k if along_x else 0)) for k in (-2, -1, 0, 1)]
+        ok = all(0 <= a < G["mask"].shape[0] and 0 <= b < G["mask"].shape[1] and G["building"][a, b] == 0
+                 for a, b in cells)
+        if not ok:
+            continue
+        for k, (a, b) in enumerate(cells):
+            for w in (0, 1):
+                A, B = (a + w, b) if along_x else (a, b + w)
+                end = k in (0, 3)
+                blocks[(B, g + 1, A)] = P("black_concrete") if end and w == 0 and False else body
+                if not end:
+                    blocks[(B, g + 2, A)] = P("light_gray_stained_glass")
+        n += 1
+    print("parked cars:", n)
+    return block_stamp(blocks)

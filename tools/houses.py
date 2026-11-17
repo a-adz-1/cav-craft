@@ -475,6 +475,23 @@ def front_paths(G, surface, bid):
                 break
             surface[cz, cx] = 9   # "paved": a front path, not pavement (front walls follow pavements only)
         n += 1
+        # driveway: 3 wide, parallel to the path, 4 m to one side, across the front garden (track = gravel)
+        if steps < 3:
+            continue
+        dz_, dx_ = (tz - z) / steps, (tx - x) / steps
+        side = (-dx_, dz_)
+        for off in (4, 5, 6):
+            for k in range(steps + 1):
+                cz = int(round(z + dz_ * k + side[0] * off))
+                cx = int(round(x + dx_ * k + side[1] * off))
+                if not (0 <= cz < surface.shape[0] and 0 <= cx < surface.shape[1]):
+                    break
+                if bid[cz, cx] or surface[cz, cx] not in (1, 7):
+                    continue
+                surface[cz, cx] = 7
+        drives = G.setdefault("drives", [])
+        drives.append((int(round(z + dz_ * (steps // 2) + side[0] * 5)), int(round(x + dx_ * (steps // 2) + side[1] * 5)),
+                       abs(dx_) > abs(dz_)))
     print("front paths:", n)
 
 
