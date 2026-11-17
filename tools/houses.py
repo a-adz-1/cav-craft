@@ -349,6 +349,35 @@ def prepare(G, P, layers, lidar, buildings):
                 blocks.setdefault((x0 + c2, fl + 1, z0 + a2), P("furnace", facing="north", lit="false"))
                 blocks.setdefault((x0 + c3, fl + 4, z0 + a3), P("red_bed", facing="north", part="head", occupied="false"))
                 blocks.setdefault((x0 + c4, fl + 4, z0 + a4), P("bookshelf"))
+        # flat-roofed blocks: a parapet round the roof edge, a plant room on top of the big ones, and balconies
+        # on apartment blocks (a slab ledge + glass rail under every other upper-floor window row)
+        if rkind == "flat" and not lm and kind not in ("garage", "garages", "shed", "hut", "carport"):
+            cap = P("smooth_stone_slab", type="bottom")
+            for zl, xl in zip(*np.nonzero(edge)):
+                blocks.setdefault((x0 + xl, int(top[zl, xl]) + 1, z0 + zl), cap)
+            if inside.sum() > 300:
+                core = np.argwhere(inside & (ndimage.distance_transform_edt(inside) >= 4))
+                if len(core):
+                    zc, xc = core[len(core) // 2]
+                    for dz in range(-2, 3):
+                        for dx in range(-2, 3):
+                            a_, c_ = zc + dz, xc + dx
+                            if 0 <= a_ < inside.shape[0] and 0 <= c_ < inside.shape[1] and inside[a_, c_]:
+                                blocks[(x0 + c_, int(top[a_, c_]) + 1, z0 + a_)] = P("light_gray_concrete")
+                                blocks[(x0 + c_, int(top[a_, c_]) + 2, z0 + a_)] = P("light_gray_concrete")
+            if kind == "apartments" and ry - fl >= 8:
+                front = edge & ndimage.binary_dilation(roadish[z0:z1, x0:x1], iterations=15)
+                for zl, xl in zip(*np.nonzero(front)):
+                    for name, (dx, dz) in DIRS.items():
+                        a_, c_ = zl + dz, xl + dx
+                        if 0 <= a_ < inside.shape[0] and 0 <= c_ < inside.shape[1] and not inside[a_, c_] and \
+                                bid[z0 + a_, x0 + c_] == 0:
+                            for y in range(fl + 3, ry - 1, 3):
+                                if ((x0 + xl) + (z0 + zl)) % 4 in (1, 2):
+                                    blocks.setdefault((x0 + c_, y, z0 + a_), P("smooth_stone_slab", type="top"))
+                                    blocks.setdefault((x0 + c_, y + 1, z0 + a_), P(
+                                        "glass_pane", north="true", south="true", east="true", west="true"))
+                            break
         # Tudor beams on the upper storey for some streets
         if (lm and lm.get("tudor_gable")) or (st.get("tudor", 0) and (h % 100) < st["tudor"] * 100):
             zz, xx = np.nonzero(edge)
