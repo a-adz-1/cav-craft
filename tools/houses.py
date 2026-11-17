@@ -415,6 +415,21 @@ def prepare(G, P, layers, lidar, buildings):
                         blocks[(X, fl + 1, Z)] = P(door, facing=name, half="lower", hinge="left", open="false")
                         blocks[(X, fl + 2, Z)] = P(door, facing=name, half="upper", hinge="left", open="false")
                         G.setdefault("doorsteps", []).append((X + dx, fl, Z + dz))
+                        # porch canopy over the door: a slab hood on brackets (Victorian/Edwardian), a tiled
+                        # lean-to porch (1930s), a flat timber canopy (1960s)
+                        fam = st.get("family")
+                        if not lm and not shop_colour:
+                            OX, OZ = X + dx, Z + dz
+                            if fam in ("victorian_terrace", "victorian_villa", "grey_terrace", "riverside_villa"):
+                                blocks[(OX, fl + 3, OZ)] = P("stone_brick_slab", type="top")
+                            elif fam in ("interwar_semi", "interwar_detached", "postwar_council"):
+                                for k in (-1, 0, 1):
+                                    PX, PZ = OX + dz * k, OZ + dx * k
+                                    blocks.setdefault((PX, fl + 3, PZ), P(stair, facing=OPP[name], half="bottom",
+                                                                          shape="straight") if stair else P(full))
+                            elif fam in ("estate_6070", "modern"):
+                                for k in (-1, 0, 1):
+                                    blocks.setdefault((OX + dz * k, fl + 3, OZ + dx * k), P("spruce_slab", type="bottom"))
                         if st.get("family") in BAY_FAMILIES and not lm and not shop_colour:
                             add_bay(P, blocks, inside, bid[z0:z1, x0:x1], dz_, dx_, dx, dz, x0, z0, fl,
                                     ey, P(WALLS[wname]), P(full), st["family"], stats)

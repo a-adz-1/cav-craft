@@ -170,3 +170,12 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 49 surface car parks: white bay lines (5 m bays, 6 m aisles, along the car park's long axis) and cars in ~12% of bays.
 - 2026-11-17 Regression: full clean rebuild from the OSM extracts and EA tiles (osm_extract → lidar_mosaic → layers → survey catalogue → styles → build_world) in 2 min, anvil self-check ok, lock Down+Up test re-run on the final world: both directions work.
 - 2026-11-17 Countryside: hedgerows round farmland edges; woodland floor (bushes, large ferns, blue flowers, fallen logs) through all OSM woods.
+- 2026-11-17 Porches: stone hood over Victorian doors, tiled lean-to porch on 1930s/postwar houses, timber canopy on 1960s+ estates.
+
+## Status (end of 2026-11-17 session)
+Java world complete and installed (Prism "1.21.11 Paper" → saves/Cavcraft; build/Cavcraft.zip 42 MB).
+Every building surveyed into docs/buildings.csv; 159 streets classified from Mapillary + Commons photos;
+~35 landmarks from photos; lock verified both ways. Not done: Bedrock conversion (user's call), interiors beyond
+stairs/furniture, shop signs with real names.
+Next ideas: real shop names on fascias (OSM shop names → signs), more landmarks (Highdown School, Emmer Green
+shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Park mansion's south terrace.
