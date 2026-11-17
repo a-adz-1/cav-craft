@@ -26,7 +26,7 @@ COL = {"grass_block": (110, 160, 70), "water": (60, 90, 200), "gray_concrete": (
        "stone_bricks": (120, 120, 120), "spruce_planks": (110, 80, 50), "dark_oak_planks": (65, 45, 25),
        "oak_leaves": (60, 120, 40), "birch_leaves": (90, 130, 60), "spruce_leaves": (40, 80, 50),
        "oak_log": (100, 80, 50), "bedrock": (20, 20, 20), "birch_log": (200, 200, 190),
-       "dark_oak_leaves": (40, 90, 30), "dark_oak_log": (60, 45, 30), "white_wool": (255, 255, 255), "orange_wool": (255, 130, 0), "seagrass": (40, 120, 60), "lily_pad": (40, 140, 40), "tall_grass": (90, 140, 60), "dandelion": (230, 210, 40), "poppy": (200, 40, 30)}
+       "dark_oak_leaves": (40, 90, 30), "dark_oak_log": (60, 45, 30), "white_wool": (255, 255, 255), "orange_wool": (255, 130, 0), "seagrass": (40, 120, 60), "lily_pad": (40, 140, 40), "tall_grass": (90, 140, 60), "red_nether_bricks": (110, 30, 30), "red_nether_brick_stairs": (110, 30, 30), "mud_bricks": (140, 110, 90), "mud_brick_stairs": (140, 110, 90), "deepslate_tile_stairs": (55, 55, 60), "brick_stairs": (150, 85, 70), "cobbled_deepslate": (75, 75, 80), "cobbled_deepslate_stairs": (75, 75, 80), "blackstone": (40, 35, 40), "tuff_bricks": (110, 110, 100), "smooth_sandstone": (215, 200, 150), "dandelion": (230, 210, 40), "poppy": (200, 40, 30)}
 
 
 def main():

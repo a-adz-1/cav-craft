@@ -15,6 +15,30 @@ no generated terrain outside Caversham.
   Bridge" and "Up to Caversham Bridge". There's a boat in the chamber.
 - Caversham Lakes beach: `/tp 6060 37 3520`.
 
+Places worth a visit (`/tp x y z`):
+
+| Place | Teleport |
+|---|---|
+| St Peter's Church and Caversham Court gazebo | `/tp 2860 56 3330` |
+| Caversham Library clock tower, Church Street shops | `/tp 3330 52 3410` |
+| Star Road grey-brick terraces, Red Cow | `/tp 4448 45 3470` |
+| Fry's Island, boat clubhouse, moored boats | `/tp 3330 52 3830` |
+| Reading Rowing Club | `/tp 2997 45 3570` |
+| The Warren riverside villas | `/tp 1880 55 3175` |
+| Caversham Park mansion | `/tp 4463 110 2000` |
+| Emmer Green water tower | `/tp 4185 105 745` |
+| Redgrave Pinsent Rowing Lake lanes | `/tp 6000 60 2900` |
+
+![The whole world from above](docs/preview-world.png)
+
+## How the buildings were made
+Every building is its OpenStreetMap outline with a roof fitted to the Environment Agency LiDAR (hipped, gabled
+or flat, at the measured eave and ridge heights). Street by street, the style (brick, render, tile-hanging,
+Tudor gables, bays, front walls or hedges) comes from looking at Mapillary street photos and Geograph photos on
+Wikimedia Commons: `docs/street_survey.csv` (159 streets surveyed; the rest follow their nearest surveyed
+street). About 30 landmarks (churches, pubs, the library, the lock, the water tower...) are built individually
+from their photos in `tools/landmarks.py`. Photos are reference only and are not in the repo or the world.
+
 ## Rebuild
     uv venv .venv && uv pip install --python .venv/bin/python numpy tifffile imagecodecs pyproj shapely pillow osmium scipy
     # data: Geofabrik berkshire + oxfordshire .osm.pbf in .downloads/osm, EA LiDAR tiles (splitwater/.downloads/ea)
