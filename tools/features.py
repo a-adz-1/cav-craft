@@ -36,6 +36,7 @@ def setup(G, P, lidar):
     G["stamps"].append(barriers(G, P))
     G["stamps"].append(structures(G, P, lidar))
     moorings(G, P)
+    animals(G, P)
     G["stamps"].append(furniture(G, P))
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -669,3 +670,50 @@ def waterside(G, P):
                     lines += 1
     print(f"waterside plants + lanes: {len(blocks)} blocks, {n} lane buoys, {lines} pitch-line blocks")
     return block_stamp(blocks)
+
+
+# ---- grazing animals in meadows (vanilla mobs as saved entities; spawning is off so these are all there are) ----
+
+def animals(G, P, per_ha=1.5, cap=6):
+    from PIL import Image, ImageDraw
+    import lock
+    osm = json.load(open("build/osm.json"))
+    Hh, Ww = G["mask"].shape
+    rng = np.random.default_rng(31)
+    total = {}
+    for a in osm["areas"]:
+        t = a["tags"]
+        if t.get("landuse") == "meadow":
+            kinds = ["cow", "cow", "sheep"]
+        elif t.get("leisure") == "horse_riding" or t.get("landuse") == "paddock":
+            kinds = ["horse"]
+        else:
+            continue
+        img = Image.new("L", (Ww, Hh), 0)
+        ImageDraw.Draw(img).polygon([xz(*p) for p in a["rings"][0]], fill=1)
+        inside = np.asarray(img).astype(bool) & G["mask"] & (G["water"] == -999) & (G["building"] == 0)
+        zs, xs = np.nonzero(inside)
+        if len(zs) < 400:
+            continue
+        n = min(cap, int(len(zs) / 10000 * per_ha) + 1)
+        kind = kinds[rng.integers(len(kinds))]
+        for i in rng.choice(len(zs), n, replace=False):
+            x, z = xs[i], zs[i]
+            e = {"id": "minecraft:" + kind, "Pos": [x + 0.5, float(G["ground"][z, x] + 1), z + 0.5],
+                 "Motion": [0.0, 0.0, 0.0], "Rotation": [anvil_float(rng.uniform(0, 360)), anvil_float(0)],
+                 "UUID": lock.uuid_ints(), "OnGround": lock.anvil.Byte(1), "Air": lock.anvil.Short(300),
+                 "FallDistance": anvil_float(0), "Fire": lock.anvil.Short(-1), "Health": anvil_float(10),
+                 "PersistenceRequired": lock.anvil.Byte(1), "Invulnerable": lock.anvil.Byte(0), "PortalCooldown": 0}
+            if kind == "sheep":
+                e["Color"] = lock.anvil.Byte(0)
+            if kind == "horse":
+                e["Variant"] = int(rng.integers(0, 7))
+                e["Tame"] = lock.anvil.Byte(0)
+            lock.add_entity(G, e)
+            total[kind] = total.get(kind, 0) + 1
+    print("animals:", total)
+
+
+def anvil_float(v):
+    import anvil
+    return anvil.Float(v)
