@@ -43,6 +43,7 @@ def setup(G, P, lidar):
     G["stamps"].append(churchyards(G, P))
     G["stamps"].append(street_signs(G, P))
     G["stamps"].append(weirs(G, P))
+    G["stamps"].append(leisure(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -947,4 +948,82 @@ def weirs(G, P):
                 k += 1
         n += 1
     print("weirs built:", n)
+    return block_stamp(blocks)
+
+
+# ---- playgrounds, tennis nets, swimming pools ---------------------------------------------------------
+
+def leisure(G, P):
+    from PIL import Image, ImageDraw
+    osm = json.load(open("build/osm.json"))
+    Hh, Ww = G["mask"].shape
+    rng = np.random.default_rng(81)
+    blocks = {}
+    stats = {}
+
+    def poly(a):
+        img = Image.new("L", (Ww, Hh), 0)
+        ImageDraw.Draw(img).polygon([xz(*p) for p in a["rings"][0]], fill=1)
+        return np.asarray(img).astype(bool) & G["mask"] & (G["building"] == 0)
+
+    for a in osm["areas"]:
+        t = a["tags"]
+        kind = t.get("leisure")
+        if kind not in ("playground", "pitch", "swimming_pool"):
+            continue
+        pts = np.array([xz(*p) for p in a["rings"][0]], float)
+        cx, cz = pts.mean(0).astype(int)
+        if not (0 <= cz < Hh and 0 <= cx < Ww) or not G["mask"][cz, cx]:
+            continue
+        inside = poly(a)
+        if inside.sum() < 6:
+            continue
+        zs, xs = np.nonzero(inside)
+        if kind == "playground":
+            # bark surface, a swing frame, a slide, a climbing frame
+            for z, x in zip(zs, xs):
+                blocks[(int(x), int(G["ground"][z, x]), int(z))] = P("coarse_dirt")
+            g = int(G["ground"][cz, cx])
+            for dx in (-2, 2):
+                for y in range(g + 1, g + 5):
+                    blocks[(cx + dx, y, cz)] = P("red_concrete")
+            for dx in range(-2, 3):
+                blocks[(cx + dx, g + 5, cz)] = P("red_concrete")
+            for dx in (-1, 1):
+                for y in (g + 3, g + 4):
+                    blocks[(cx + dx, y, cz)] = P("chain", axis="y")
+                blocks[(cx + dx, g + 2, cz)] = P("oak_slab", type="top")
+            sx, sz = cx + 5, cz
+            for k in range(4):
+                blocks[(sx + k, g + 4 - k, sz)] = P("yellow_concrete") if k == 0 else P(
+                    "smooth_quartz_stairs", facing="west", half="bottom", shape="straight")
+            for y in range(g + 1, g + 4):
+                blocks[(sx - 1, y, sz)] = P("ladder", facing="west")
+            blocks[(sx, g + 1, sz)] = P("blue_concrete")
+            blocks[(sx, g + 2, sz)] = P("blue_concrete")
+            blocks[(sx, g + 3, sz)] = P("blue_concrete")
+            stats["playgrounds"] = stats.get("playgrounds", 0) + 1
+        elif kind == "pitch" and t.get("sport") == "tennis":
+            # net across the middle of the court's short axis
+            c = pts.mean(0)
+            u, s_, vt = np.linalg.svd(pts - c, full_matrices=False)
+            half = np.abs((pts - c) @ vt[1]).max()
+            for k in np.linspace(-half, half, int(2 * half) + 1):
+                x, z = (int(round(v)) for v in c + vt[1] * k)
+                if 0 <= z < Hh and 0 <= x < Ww and inside[z, x]:
+                    blocks[(x, int(G["ground"][z, x]) + 1, z)] = P("white_stained_glass_pane", north="true",
+                                                                   south="true", east="true", west="true")
+            stats["tennis nets"] = stats.get("tennis nets", 0) + 1
+        elif kind == "swimming_pool":
+            g = int(np.median(G["ground"][zs, xs]))
+            edge = inside & ~__import__("scipy.ndimage", fromlist=["x"]).binary_erosion(inside)
+            for z, x in zip(zs, xs):
+                if edge[z, x]:
+                    blocks[(int(x), g, int(z))] = P("smooth_quartz")
+                else:
+                    blocks[(int(x), g - 2, int(z))] = P("light_blue_concrete")
+                    blocks[(int(x), g - 1, int(z))] = P("water", level=0)
+                    blocks[(int(x), g, int(z))] = P("water", level=0)
+            stats["pools"] = stats.get("pools", 0) + 1
+    print("leisure:", stats)
     return block_stamp(blocks)

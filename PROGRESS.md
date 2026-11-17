@@ -165,3 +165,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 Street name signs: 960 signs on posts at the ends of named roads (≥60 m apart), facing the road, long names over two lines; checked one reads correctly in game.
 - 2026-11-17 Caversham Weir built along its OSM line: concrete wall to the upper water level, slab walkway, iron-bar railing, a sluice frame with gate every 5 m.
 - 2026-11-17 Smooth-stone sills under and lintels over every window on brick-walled buildings.
+- 2026-11-17 Leisure: 9 playgrounds (bark, red swing frame with chain swings, slide with ladder), nets on 18 tennis courts, 10 outdoor swimming pools (quartz edge, light-blue tank).
