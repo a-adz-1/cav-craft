@@ -155,3 +155,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 House interiors: oak staircase along an inside wall up through a stairwell to the first floor; crafting table + furnace (kitchen) downstairs, bed + bookshelf upstairs. Checked inside one house in game.
 - 2026-11-17 Animals: cows and sheep (persistent, so they never despawn) in OSM meadows, ~1.5 per hectare, up to 6 per field; 21 placed (Mapledurham fields west, Emmer Green, Caversham Park). Checked a sheep loads in game.
 - 2026-11-17 Old Grove House, Emmer Green (flint + red brick bands, steep tiled gables) with its flint road wall and row of clipped yew drums (from Geograph photos); BBC Written Archives Centre (low white render, hipped slate).
+- 2026-11-17 Street trees: 1,705 LiDAR canopy peaks over roads/pavements had trunks in the road; trunks now move to the nearest verge or garden (crowns still overhang, as real ones do).

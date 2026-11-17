@@ -53,8 +53,15 @@ def find_trees(G, vom):
     v = ndimage.gaussian_filter(v, 1.0)
     peak = (v == ndimage.maximum_filter(v, size=7)) & (v >= 3.0)
     peak &= G["mask"] & (G["building"] == 0) & (G["water"] == -999) & (G["surface"] != 10)   # no trees on the beach
+    # a street tree's canopy peak can sit over the road: move its trunk to the nearest verge/garden cell
+    hard = np.isin(G["surface"], (3, 4, 5, 6, 8, 9, 18))
     zs, xs = np.nonzero(peak)
     hs = v[zs, xs]
+    soft = G["mask"] & ~hard & (G["building"] == 0) & (G["water"] == -999)
+    _, (sz, sx) = ndimage.distance_transform_edt(~soft, return_indices=True)
+    moved = hard[zs, xs]
+    zs, xs = np.where(moved, sz[zs, xs], zs), np.where(moved, sx[zs, xs], xs)
+    print("street trees moved off the road:", int(moved.sum()))
     # crown radius: how far the canopy stays above half the peak height, sampled on 8 rays
     r = np.full(len(zs), 1.0)
     for dz, dx in ((0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1)):
