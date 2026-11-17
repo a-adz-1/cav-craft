@@ -168,3 +168,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 Leisure: 9 playgrounds (bark, red swing frame with chain swings, slide with ladder), nets on 18 tennis courts, 10 outdoor swimming pools (quartz edge, light-blue tank).
 - 2026-11-17 Flat roofs: stone parapet round every flat-roofed building, a plant room on big ones; apartment blocks (≥8 m) get balconies (slab + glass rail) on the street side every storey.
 - 2026-11-17 49 surface car parks: white bay lines (5 m bays, 6 m aisles, along the car park's long axis) and cars in ~12% of bays.
+- 2026-11-17 Regression: full clean rebuild from the OSM extracts and EA tiles (osm_extract → lidar_mosaic → layers → survey catalogue → styles → build_world) in 2 min, anvil self-check ok, lock Down+Up test re-run on the final world: both directions work.
