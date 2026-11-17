@@ -262,6 +262,9 @@ def bridge_setup(G, lidar):
     deck[(deck <= G["ground"] + 1) | ~G["mask"]] = -999
     inb = deck > -999
     edge = inb & ~ndimage.binary_erosion(inb)
+    # no parapet where the street carries on off the deck, or it walls the road off like a fort
+    street = np.isin(G["surface"], (3, 4, 5)) & G["mask"] & (G["water"] == -999) & ~inb
+    edge &= ~ndimage.binary_dilation(street)
     G.update(br_deck=deck, br_kind=kind, br_edge=edge, br_arch=arch)
     print("bridge cells:", int(inb.sum()))
 
