@@ -43,7 +43,7 @@ def tex_colour(name, tdir, cache={}):
              "grass_block": "grass_block_top", "red_carpet": "red_wool", "white_carpet": "white_wool",
              "polished_deepslate": "polished_deepslate", "smooth_sandstone": "sandstone_top",
              "cut_red_sandstone": "cut_red_sandstone", "glass": "glass", "iron_chain": "iron_chain"}
-    cands = [alias.get(base, base), base, base + "_top", base + "_side", base + "_planks", base + "_block",
+    cands = [alias.get(base, base), base, base + "s", base + "_top", base + "_side", base + "_planks", base + "_block",
              base.replace("_log", "_log_top"), base + "_0", name]
     col = None
     for c in cands:

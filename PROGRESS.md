@@ -301,3 +301,12 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
   - **Chains**: the block is iron_chain in 1.21.11, so the earlier chains were missing. Fixed.
   - **New tool, tools/eye_view.py**: player's-eye pictures from the region files, for checking while the game is busy.
   - **Server**: the kids can fly in adventure mode (essentials.fly) and Cavcraft allow-flight is true. Their spawn points are outside 206 Kidmore Road.
+- 2026-11-17 Realism pass, part 2 (finishing the review list):
+  - **Town-centre blocks squared**: groups over 1,500 m² now turn to the grid too when their walls all agree on one angle (16 more blocks in the map, up to 20,000 m²). Terraces that bend round a corner keep their angle, because turning them as one would push the ends into the road.
+  - **More house numbers**: unnumbered houses on the same side of the same street as numbered ones carry the numbering on, filling gaps (12, ?, ?, 18) and running past either end of a numbered run in the same step (odds/evens, or 1-by-1). That added 326 houses, about 5,700 numbered in all. Streets where OSM has fewer than two numbers on a side stay blank, because there's nothing to count from.
+  - **Pavements follow OSM sidewalk tags**: sidewalk=no/none/separate, sidewalk=left/right and sidewalk:left/right/both are all read. A side with no pavement, or with its own mapped footway, gets none (OSM marks about 570 roads with no pavement on one or both sides, and about 400 with a separately mapped footway).
+  - **House styles**: every street already has a style from the photo survey (159 classified from Mapillary and Commons, the rest from the nearest photographed street of the same era), so no new photos were needed.
+  - Checked: road_check 0 drops over 1; eye_view on Hemdean Road shows pavements, low brick front walls and houses matching the Mapillary sheet; the big Church Street block has straight walls. eye_view now finds plural textures (bricks, tiles).
+
+## Status: review list done (2026-11-17)
+All of the user's review items are done: school and drive, square houses and town blocks, sealed doors, footpaths and pavements (with sidewalk tags), house numbers (where OSM can give them), play parks, zebra crossings. Only the Bedrock conversion is still open, and that's the user's call.

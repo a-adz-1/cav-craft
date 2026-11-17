@@ -148,6 +148,19 @@ ROAD_WIDTH = {"motorway": 12, "trunk": 10, "primary": 9, "secondary": 8, "tertia
 # the drive from Upper Woodcote Road down to The Heights Primary School: a proper two-way road with pavements
 SCHOOL_ROADS = {"w37000897": 6}
 PATH_WIDTH = {"footway": 2, "cycleway": 2, "path": 2, "bridleway": 2, "steps": 2, "track": 3, "pedestrian": 4}
+
+
+def has_sidewalk(t, side):
+    """Whether OSM gives this side of the road a pavement of its own (unknown: yes)."""
+    v = t.get("sidewalk:" + side) or t.get("sidewalk:both")
+    if v is None:
+        v = {"both": "yes", "left": "yes" if side == "left" else "no",
+             "right": "yes" if side == "right" else "no"}.get(t.get("sidewalk"), t.get("sidewalk", "yes"))
+    return v == "yes"
+
+
+nopave = Image.new("L", (W, H), 0)
+nd_ = ImageDraw.Draw(nopave)
 bridges = []
 for ln in osm["lines"]:
     t = ln["tags"]
@@ -178,9 +191,19 @@ for ln in osm["lines"]:
     d.line(pts, fill=S[cls], width=w)
     for x, y in pts:
         d.ellipse([x - w / 2, y - w / 2, x + w / 2, y + w / 2], fill=S[cls])
+    if cls == "road":
+        for side, sgn in (("left", 1), ("right", -1)):
+            if not has_sidewalk(t, side):
+                q = np.array(ln["pts"], float)
+                for a, b in zip(q[:-1], q[1:]):
+                    tv = (b - a) / max(np.hypot(*(b - a)), 1e-6)
+                    off = np.array([-tv[1], tv[0]]) * sgn * (w / 2 + 1.5)
+                    nd_.line(px([a + off, b + off]), fill=1, width=3)
 surface = np.asarray(surf).copy()
-# pavements: 2 m either side of streets, over grass/verge only (OSM rarely maps them as separate ways)
-pave = ndimage.binary_dilation(surface == S["road"], iterations=2) & (surface == S["grass"])
+# pavements: 2 m either side of streets, over grass/verge only (OSM rarely maps them as separate ways), except
+# where OSM says that side has none or has its own mapped footway
+pave = ndimage.binary_dilation(surface == S["road"], iterations=2) & (surface == S["grass"]) & \
+    ~np.asarray(nopave).astype(bool)
 surface[pave] = S["footway"]
 
 # ---- water levels -----------------------------------------------------------------------
@@ -265,8 +288,9 @@ HOUSEY = {"house", "semidetached_house", "detached", "terrace", "bungalow", "res
 def square_houses(ball):
     """Houses square to the block grid: each attached group (a terrace, a pair of semis, a house and its
     garage: outlines that share corners) turns about its own centre to the nearest right angle, so walls are
-    flat instead of stair-stepped. Groups bigger than 1500 m2 (flats, schools) and non-house buildings keep
-    their angle. Returns {id: turned outer ring}."""
+    flat instead of stair-stepped. Groups over 1500 m2 (flats, schools, shop blocks) turn only when their walls
+    all agree on one angle (not a terrace round a bend); non-house buildings keep their angle. Returns
+    {id: turned outer ring}."""
     cand = list({a["id"]: a for a in ball[::-1]
                  if a["tags"].get("building") in HOUSEY and len(a["rings"]) == 1}.values())   # each id once
     parent = {a["id"]: a["id"] for a in cand}
@@ -291,13 +315,15 @@ def square_houses(ball):
     for g in groups.values():
         rings = [np.array(a["rings"][0], float) for a in g]
         area = sum(0.5 * abs(np.dot(r[:-1, 0], r[1:, 1]) - np.dot(r[1:, 0], r[:-1, 1])) for r in rings)
-        if area > 1500:
-            continue
         # the group's angle: length-weighted mean of its edge directions, folded to a quarter turn
         seg = np.concatenate([np.diff(r, axis=0) for r in rings])
         L = np.hypot(seg[:, 0], seg[:, 1])
         ang = np.arctan2(seg[:, 1], seg[:, 0]) * 4
-        th = np.arctan2((L * np.sin(ang)).sum(), (L * np.cos(ang)).sum()) / 4
+        S, C = (L * np.sin(ang)).sum(), (L * np.cos(ang)).sum()
+        th = np.arctan2(S, C) / 4
+        agree = np.hypot(S, C) / L.sum()          # 1 = every wall on one grid, low = round a bend
+        if area > 20000 or (area > 1500 and agree < 0.9):
+            continue
         if abs(np.degrees(th)) < 3:
             continue
         c = np.concatenate(rings).mean(0)
@@ -358,6 +384,77 @@ for nd in osm["nodes"]:
     if num and 0 <= r_ < H and 0 <= c_ < W and building[r_, c_]:
         buildings[building[r_, c_]]["tags"].setdefault("addr:housenumber", num)
 print("buildings with a house number:", sum(1 for b in buildings[1:] if b["tags"].get("addr:housenumber")))
+
+
+def fill_numbers():
+    """Unnumbered houses on the same side of the same street as numbered ones carry the numbering on: the
+    numbers in between (12, ?, ?, 18), and past either end of the run in the same step (odds/evens by 2, or
+    1-by-1 streets). Rows with no numbers at all stay blank."""
+    from scipy.spatial import cKDTree
+    pts, way, s_, tan = [], [], [], []
+    for wi, ln in enumerate(osm["lines"]):
+        if not (ln["tags"].get("highway") and ln["tags"].get("name")):
+            continue
+        p = np.array(ln["pts"], float)
+        acc = 0.0
+        for a, b in zip(p[:-1], p[1:]):
+            L = np.hypot(*(b - a))
+            for f in np.arange(0, L, 2.0):
+                pts.append(a + (b - a) * f / L); way.append(wi); s_.append(acc + f); tan.append((b - a) / L)
+            acc += L
+    tree = cKDTree(np.array(pts))
+    way, s_, tan, pts = np.array(way), np.array(s_), np.array(tan), np.array(pts)
+    n = len(buildings)
+    cnt = np.bincount(building.ravel(), minlength=n)
+    rr, cc = np.indices(building.shape)
+    cz = np.bincount(building.ravel(), rr.ravel(), n) / np.maximum(cnt, 1)
+    cx = np.bincount(building.ravel(), cc.ravel(), n) / np.maximum(cnt, 1)
+    homes = {"house", "semidetached_house", "detached", "terrace", "bungalow", "residential", "yes", "cottage"}
+    rows = {}
+    for i in range(1, n):
+        t = buildings[i]["tags"]
+        if cnt[i] < 25 or t.get("building") not in homes or t.get("name") or t.get("amenity") or t.get("shop"):
+            continue
+        e, nn = E0 + cx[i] + 0.5, N1 - cz[i] - 0.5
+        d, k = tree.query((e, nn))
+        if d > 40:
+            continue
+        name = osm["lines"][way[k]]["tags"]["name"]
+        if t.get("addr:street") and t["addr:street"] != name:
+            continue
+        side = np.sign(tan[k][0] * (nn - pts[k][1]) - tan[k][1] * (e - pts[k][0]))
+        rows.setdefault((way[k], side), []).append((s_[k], i))
+    filled = 0
+    for row in rows.values():
+        row.sort()
+        num = [buildings[i]["tags"].get("addr:housenumber") for _, i in row]
+        known = [j for j, v in enumerate(num) if v and v.isdigit()]
+        if len(known) < 2:
+            continue
+
+        def put(j, v):
+            nonlocal filled
+            if v >= 1:
+                buildings[row[j][1]]["tags"]["addr:housenumber"] = str(v)
+                filled += 1
+        for a, b in zip(known[:-1], known[1:]):
+            na, nb = int(num[a]), int(num[b])
+            step = (2 if (nb - na) % 2 == 0 else 1) * (1 if nb > na else -1)
+            if b - a > 1 and not any(num[a + 1:b]) and abs(nb - na) >= abs(step) * (b - a):
+                for j in range(a + 1, b):
+                    put(j, na + step * (j - a))
+        for end, nxt, rng in ((known[0], known[1], range(known[0] - 1, -1, -1)),
+                              (known[-1], known[-2], range(known[-1] + 1, len(row)))):
+            step = int(num[end]) - int(num[nxt])
+            step = step // abs(step) * (2 if step % 2 == 0 else 1) if step else 0
+            for k, j in enumerate(rng, start=1):
+                if num[j] or not step:
+                    break
+                put(j, int(num[end]) + step * k)
+    print("house numbers carried on from neighbours:", filled)
+
+
+fill_numbers()
 
 json.dump(buildings, open("build/buildings.json", "w"))
 json.dump([{"id": b["id"], "tags": b["tags"], "pts": b["pts"]} for b in bridges], open("build/bridges.json", "w"))
