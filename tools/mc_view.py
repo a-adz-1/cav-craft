@@ -23,6 +23,8 @@ world, out = sys.argv[1], sys.argv[2]
 x, y, z, yaw, pitch = map(float, sys.argv[3:8])
 wait = float(sys.argv[8]) if len(sys.argv) > 8 else 25
 
+while subprocess.run(["pgrep", "-f", "minecraft-1.21.11-client"], capture_output=True).returncode == 0:
+    time.sleep(1)   # the last game is still closing
 shutil.rmtree(SAVE, ignore_errors=True)
 shutil.copytree(world, SAVE)
 lvl = anvil.read_nbt(gzip.open(os.path.join(SAVE, "level.dat")).read())["Data"]

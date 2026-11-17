@@ -89,6 +89,39 @@ def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95):
     return best[1], eave, ridge, best[2]
 
 
+BAY_FAMILIES = {"victorian_terrace": 2, "victorian_villa": 2, "interwar_semi": 2, "interwar_detached": 2,
+                "postwar_council": 0}
+
+
+def add_bay(P, blocks, inside, bidcrop, dz_, dx_, dx, dz, x0, z0, fl, ey, wall, roof, family, stats):
+    """A bay window beside the front door: 3 wide, 1 out from the wall, glazed on its three faces, up one or
+    two storeys (Victorian and 1930s houses), with a tiled cap."""
+    storeys = BAY_FAMILIES[family]
+    if not storeys:
+        return
+    ax, az = dz, dx            # along the wall
+    for sign, k0 in ((1, 1), (-1, 1), (1, 2), (-1, 2), (1, 0), (-1, 0)):
+        cells = [(dz_ + az * sign * k, dx_ + ax * sign * k) for k in (k0 + 1, k0 + 2, k0 + 3)]
+        ok = all(0 <= a < inside.shape[0] and 0 <= c < inside.shape[1] and inside[a, c] for a, c in cells)
+        out = [(a + dz, c + dx) for a, c in cells]
+        ok &= all(0 <= a < inside.shape[0] and 0 <= c < inside.shape[1] and bidcrop[a, c] == 0 for a, c in out)
+        if not ok:
+            continue
+        top = min(fl + 3 * storeys, ey - 1)
+        pane = P("glass_pane", **{k: "true" if k in (("east", "west") if dx == 0 else ("north", "south")) else "false"
+                                  for k in ("north", "south", "east", "west")})
+        for i, (a, c) in enumerate(out):
+            X, Z = x0 + c, z0 + a
+            for y in range(fl + 1, top + 1):
+                corner = i != 1
+                sill = (y - fl) % 3 == 0 or y == fl + 1
+                blocks[(X, y, Z)] = wall if corner or sill else pane
+            blocks[(X, fl, Z)] = wall
+            blocks[(X, top + 1, Z)] = roof
+        stats["bays"] = stats.get("bays", 0) + 1
+        return
+
+
 def load_styles():
     path = "docs/street_styles.json"
     return json.load(open(path)) if os.path.exists(path) else {}
@@ -301,6 +334,9 @@ def prepare(G, P, layers, lidar, buildings):
                         blocks[(X, fl + 1, Z)] = P(door, facing=name, half="lower", hinge="left", open="false")
                         blocks[(X, fl + 2, Z)] = P(door, facing=name, half="upper", hinge="left", open="false")
                         G.setdefault("doorsteps", []).append((X + dx, fl, Z + dz))
+                        if st.get("family") in BAY_FAMILIES and not lm and not shop_colour:
+                            add_bay(P, blocks, inside, bid[z0:z1, x0:x1], dz_, dx_, dx, dz, x0, z0, fl,
+                                    ey, P(WALLS[wname]), P(full), st["family"], stats)
                         break
     print("roofs:", stats)
     G["h_blocks"] = blocks

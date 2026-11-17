@@ -133,3 +133,7 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
   Peppard Road school site (copper cupola, white bays). Garden fences (spruce) between neighbouring plots
   where the nearest house changes, ≤25 m from houses, away from the road (278k blocks). Pavements: 2 m either
   side of every street over grass; front walls/hedges now sit at the back of the pavement.
+- 2026-11-17 Street furniture from OSM points: 46 post boxes, 123 bus stops (shelters where tagged), 166 benches,
+  157 bins, bollards, gates, phone boxes, cycle racks, info boards, recycling. Bay windows (3 wide, 1 out,
+  two storeys, tiled cap) beside the front door on ~1,000 Victorian and 1930s houses. mc_view waits for the
+  previous game to close.

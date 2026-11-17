@@ -36,6 +36,7 @@ def setup(G, P, lidar):
     G["stamps"].append(barriers(G, P))
     G["stamps"].append(structures(G, P, lidar))
     moorings(G, P)
+    G["stamps"].append(furniture(G, P))
     G["trees"] = find_trees(G, lidar["vom"])
     print("trees:", len(G["trees"]))
     G["stamps"].append(tree_stamp(G, P))
@@ -504,3 +505,73 @@ def moorings(G, P, n=70):
         b["Type"] = kinds[k % len(kinds)]
         lock.add_entity(G, b)
     print("moored boats:", len(picks))
+
+
+# ---- street furniture from OSM points ----------------------------------------------------------
+
+def furniture(G, P):
+    osm = json.load(open("build/osm.json"))
+    Hh, Ww = G["mask"].shape
+    blocks = {}
+    n = {}
+    red = P("red_concrete")
+    for nd in osm["nodes"]:
+        t = nd["tags"]
+        x, z = xz(*nd["pt"])
+        if not (0 <= z < Hh and 0 <= x < Ww) or not G["mask"][z, x] or G["water"][z, x] != -999:
+            continue
+        g = int(G["ground"][z, x])
+        a, hw, bar = t.get("amenity"), t.get("highway"), t.get("barrier")
+        kind = None
+        if a == "post_box":
+            blocks[(x, g + 1, z)] = red
+            blocks[(x, g + 2, z)] = P("red_concrete")
+            blocks[(x, g + 3, z)] = P("red_terracotta")          # Royal Mail pillar box with a darker cap
+            kind = "post box"
+        elif a == "bench":
+            blocks[(x, g + 1, z)] = P("dark_oak_stairs", facing="north", half="bottom", shape="straight")
+            kind = "bench"
+        elif a == "waste_basket":
+            blocks[(x, g + 1, z)] = P("composter", level=0)
+            kind = "bin"
+        elif hw == "bus_stop":
+            for dy in (1, 2, 3):
+                blocks[(x, g + dy, z)] = P("iron_bars", north="false", south="false", east="false", west="false")
+            blocks[(x, g + 4, z)] = P("red_concrete")
+            if t.get("shelter") == "yes":
+                for dx in (-1, 0, 1):
+                    for dy in (1, 2):
+                        blocks[(x + dx, g + dy, z + 1)] = P("glass_pane", east="true", west="true", north="false",
+                                                            south="false")
+                    blocks[(x + dx, g + 3, z + 1)] = P("smooth_stone_slab", type="bottom")
+                    blocks[(x + dx, g + 3, z)] = P("smooth_stone_slab", type="bottom")
+            kind = "bus stop"
+        elif t.get("man_made") == "telephone_box" or a == "telephone":
+            for dy in (1, 2):
+                for dx, dz in ((0, 0),):
+                    blocks[(x, g + dy, z)] = P("red_stained_glass")
+            blocks[(x, g + 3, z)] = red
+            kind = "phone box"
+        elif bar == "bollard":
+            blocks[(x, g + 1, z)] = P("polished_blackstone_wall", up="true", north="none", south="none",
+                                      east="none", west="none")
+            kind = "bollard"
+        elif bar in ("gate", "swing_gate"):
+            blocks[(x, g + 1, z)] = P("oak_fence_gate", facing="north", open="false", in_wall="false",
+                                      powered="false")
+            kind = "gate"
+        elif a in ("bicycle_parking",):
+            blocks[(x, g + 1, z)] = P("iron_bars", north="false", south="false", east="true", west="true")
+            kind = "cycle rack"
+        elif t.get("tourism") == "information" and t.get("information") in ("board", "map"):
+            blocks[(x, g + 1, z)] = P("dark_oak_fence", north="false", south="false", east="false", west="false",
+                                      waterlogged="false")
+            blocks[(x, g + 2, z)] = P("dark_oak_wall_sign", facing="south")
+            kind = "info board"
+        elif a == "recycling":
+            blocks[(x, g + 1, z)] = P("green_shulker_box", facing="up")
+            kind = "recycling"
+        if kind:
+            n[kind] = n.get(kind, 0) + 1
+    print("street furniture:", n)
+    return block_stamp(blocks)
