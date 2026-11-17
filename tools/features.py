@@ -45,6 +45,7 @@ def setup(G, P, lidar):
     G["stamps"].append(weirs(G, P))
     G["stamps"].append(leisure(G, P))
     G["stamps"].append(car_parks(G, P))
+    G["stamps"].insert(1, countryside(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -1074,4 +1075,40 @@ def car_parks(G, P):
                             blocks[(X, g + 2, Z)] = P("light_gray_stained_glass")
         n += 1
     print("car parks marked:", n)
+    return block_stamp(blocks)
+
+
+# ---- countryside: hedgerows round fields, undergrowth in woods -----------------------------------------
+
+def countryside(G, P):
+    from scipy import ndimage
+    rng = np.random.default_rng(101)
+    s = G["surface"]
+    field = np.isin(s, (11,)) | ((s == 1) & (G["building"] == 0))
+    farm = np.isin(s, (11,))
+    # hedgerow on the boundary of farmland where it meets anything else (not water or roads)
+    boundary = farm & ndimage.binary_dilation(~farm & ~np.isin(s, (2, 3, 4, 5)) & G["mask"])
+    blocks = {}
+    hedge = P("oak_leaves", persistent="true")
+    for z, x in zip(*np.nonzero(boundary)):
+        g = int(G["ground"][z, x])
+        blocks[(int(x), g + 1, int(z))] = hedge
+        blocks[(int(x), g + 2, int(z))] = hedge
+    # woodland floor: ferns, bushes, fallen logs, bluebells-ish
+    wood = (s == 15) & (G["building"] == 0)
+    zs, xs = np.nonzero(wood)
+    picks = rng.random(len(zs))
+    for z, x, r in zip(zs, xs, picks):
+        g = int(G["ground"][z, x])
+        if r < 0.04:
+            blocks.setdefault((int(x), g + 1, int(z)), P("oak_leaves", persistent="true"))
+        elif r < 0.08:
+            blocks.setdefault((int(x), g + 1, int(z)), P("large_fern", half="lower"))
+            blocks.setdefault((int(x), g + 2, int(z)), P("large_fern", half="upper"))
+        elif r < 0.09:
+            blocks.setdefault((int(x), g + 1, int(z)), P("blue_orchid"))
+        elif r < 0.0915:
+            for k in range(3):
+                blocks.setdefault((int(x) + k, g + 1, int(z)), P("oak_log", axis="x"))
+    print(f"hedgerows: {int(boundary.sum())} m, woodland floor blocks: {len(blocks) - 2 * int(boundary.sum())}")
     return block_stamp(blocks)
