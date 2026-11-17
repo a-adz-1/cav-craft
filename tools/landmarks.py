@@ -8,6 +8,8 @@ import numpy as np
 
 # walls/roof use the names in houses.WALLS / houses.ROOFS
 LANDMARKS = {
+    # Emmer Green water tower: built by features.structures instead
+    "w171331924": {"name": "water tower", "skip": True},
     # St Peter's, Church Road: knapped flint with stone dressings, old red clay tiles, square west tower with
     # string courses, belfry lancets and a battlemented parapet
     "w139149858": {"name": "St Peter's Church", "walls": "flint", "roof": "red_tile", "dress": "stone_bricks",

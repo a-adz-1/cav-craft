@@ -34,6 +34,7 @@ def setup(G, P, lidar):
     G["stamps"].extend(streets(G, P))
     G["stamps"].append(credits_sign(G, P))
     G["stamps"].append(barriers(G, P))
+    G["stamps"].append(structures(G, P, lidar))
     G["trees"] = find_trees(G, lidar["vom"])
     print("trees:", len(G["trees"]))
     G["stamps"].append(tree_stamp(G, P))
@@ -424,4 +425,49 @@ def barriers(G, P):
     blocks.update(houses.connect(conn[kinds["wall"][0]], "cobblestone_wall", P))
     blocks.update(houses.connect(conn[kinds["fence"][0]], "oak_fence", P, wall=False))
     print("barrier blocks:", len(blocks))
+    return block_stamp(blocks)
+
+
+# ---- structures that aren't houses: the Emmer Green water tower, war memorial ---------------
+
+def structures(G, P, lidar):
+    dsm = np.nan_to_num(lidar["dsm"], nan=0.0)
+    blocks = {}
+    # water tower (Phillimore Road photos): a pale concrete drum on a narrow shaft
+    wt = json.load(open("build/buildings.json"))
+    idx = next(i for i, b in enumerate(wt) if b and b["id"] == "w171331924")
+    zz, xx = np.nonzero(G["building"] == idx)
+    cx, cz = int(round(xx.mean())), int(round(zz.mean()))
+    g = int(G["ground"][cz, cx])
+    top = int(round(np.percentile(dsm[zz, xx], 90)))
+    top = max(top, g + 18)
+    for y in range(g + 1, top + 1):
+        tank = y > top - 7
+        r = 5.5 if tank else 2.5
+        for dz in range(-6, 7):
+            for dx in range(-6, 7):
+                d = (dx * dx + dz * dz) ** 0.5
+                if d <= r:
+                    shell = d > r - 1.2 or y in (top, top - 7)
+                    blocks[(cx + dx, y, cz + dz)] = P("white_concrete" if tank else "light_gray_concrete") if shell \
+                        else P("air")
+    for dx, dz in ((0, 3), (0, -3), (3, 0), (-3, 0)):
+        blocks[(cx + dx, top - 3, cz + dz)] = P("white_concrete")
+    blocks[(cx, top + 1, cz)] = P("lightning_rod")
+    G["building"][cz - 7:cz + 8, cx - 7:cx + 8] = 0
+    G["h_wall"][cz - 7:cz + 8, cx - 7:cx + 8] = 0
+    # Caversham war memorial: Portland stone cross on a stepped base
+    mx, mz = 3269, 3660
+    gm = int(G["ground"][mz, mx])
+    for dx in range(-2, 3):
+        for dz in range(-2, 3):
+            blocks[(mx + dx, gm + 1, mz + dz)] = P("smooth_stone_slab", type="double")
+    for dx in range(-1, 2):
+        for dz in range(-1, 2):
+            blocks[(mx + dx, gm + 2, mz + dz)] = P("polished_diorite")
+    for y in range(gm + 3, gm + 8):
+        blocks[(mx, y, mz)] = P("quartz_pillar", axis="y")
+    for dx in (-1, 1):
+        blocks[(mx + dx, gm + 6, mz)] = P("quartz_block")
+    print(f"water tower at {cx},{cz} top y {top}; war memorial at {mx},{mz}")
     return block_stamp(blocks)

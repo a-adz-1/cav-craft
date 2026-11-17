@@ -122,3 +122,6 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
   Hounds (brick, Tudor gable, black fascia), White Horse (green fascia), Black Horse; Reading Rowing Club (white
   boathouse); Caversham Hall. Fixed: buildings were kept only if their first corner was inside the world, which
   dropped Reading Rowing Club; now by centre.
+- 2026-11-17 Caversham Park: colonnade now runs the full height of the front. Emmer Green water tower
+  (white concrete drum on a grey shaft, height from LiDAR) replaces its house-style stand-in; Caversham war
+  memorial (stone cross on a stepped base) by Caversham Bridge. Reinstalled + rezipped.

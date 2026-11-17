@@ -135,7 +135,7 @@ def prepare(G, P, layers, lidar, buildings):
         z0, z1 = max(0, sl[0].start - 12), min(H, sl[0].stop + 12)
         x0, x1 = max(0, sl[1].start - 12), min(W, sl[1].stop + 12)
         inside = bid[z0:z1, x0:x1] == i
-        if inside.sum() < 4:
+        if inside.sum() < 4 or landmarks.LANDMARKS.get(b["id"], {}).get("skip"):
             continue
         g = ground[z0:z1, x0:x1]
         fl = int(round(g[inside].mean()))
@@ -230,7 +230,7 @@ def prepare(G, P, layers, lidar, buildings):
                 landmarks.tower(P, blocks, inside, fl, fl + int(round(rel[pk])), (x0 + pk[1], z0 + pk[0]),
                                 lm["tower"], P(full), P(stair) if stair else None)
             if lm.get("colonnade"):
-                landmarks.colonnade(P, blocks, inside, x0, z0, fl, ey, lm["colonnade"])
+                landmarks.colonnade(P, blocks, inside, x0, z0, fl, (ry - 1) if rkind == "flat" else ey, lm["colonnade"])
             if lm.get("parapet"):
                 for zl, xl in zip(*np.nonzero(edge)):
                     blocks[(x0 + xl, int(top[zl, xl]) + 1, z0 + zl)] = P(lm["parapet"], up="true")
