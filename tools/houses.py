@@ -317,9 +317,13 @@ def prepare(G, P, layers, lidar, buildings):
                         blocks[(x0 + xl, y, z0 + zl)] = P("dark_oak_log")
         # chimney for houses with pitched roofs: on the ridge near one end
         if rkind != "flat" and not big and not lm and kind not in ("garage", "garages", "shed"):
-            ridge_cells = np.argwhere(inside & (top == top[inside].max()))
+            ridge = inside & (top >= top[inside].max() - 1)
+            # attached houses: the stack sits on the party wall (the ridge cell next to the neighbour)
+            party = ridge & ndimage.binary_dilation((bid[z0:z1, x0:x1] > 0) & ~inside)
+            ridge_cells = np.argwhere(party) if party.any() else np.argwhere(ridge & (top == top[inside].max()))
             if len(ridge_cells):
-                zl, xl = ridge_cells[0] if (h & 1) else ridge_cells[-1]
+                zl, xl = ridge_cells[len(ridge_cells) // 2] if party.any() else (
+                    ridge_cells[0] if (h & 1) else ridge_cells[-1])
                 for y in range(int(top[zl, xl]) - 1, int(top[zl, xl]) + 2):
                     blocks[(x0 + xl, y, z0 + zl)] = P("bricks")
                 blocks[(x0 + xl, int(top[zl, xl]) + 2, z0 + zl)] = P("flower_pot")
