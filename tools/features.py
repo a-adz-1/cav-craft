@@ -44,6 +44,7 @@ def setup(G, P, lidar):
     G["stamps"].append(street_signs(G, P))
     G["stamps"].append(weirs(G, P))
     G["stamps"].append(leisure(G, P))
+    G["stamps"].append(car_parks(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -1026,4 +1027,51 @@ def leisure(G, P):
                     blocks[(int(x), g, int(z))] = P("water", level=0)
             stats["pools"] = stats.get("pools", 0) + 1
     print("leisure:", stats)
+    return block_stamp(blocks)
+
+
+# ---- car parks: white bay lines, a few parked cars ---------------------------------------------------
+
+def car_parks(G, P):
+    from PIL import Image, ImageDraw
+    osm = json.load(open("build/osm.json"))
+    Hh, Ww = G["mask"].shape
+    rng = np.random.default_rng(91)
+    blocks = {}
+    n = 0
+    for a in osm["areas"]:
+        if a["tags"].get("amenity") != "parking" or a["tags"].get("parking") in ("underground", "multi-storey"):
+            continue
+        pts = np.array([xz(*p) for p in a["rings"][0]], float)
+        img = Image.new("L", (Ww, Hh), 0)
+        ImageDraw.Draw(img).polygon([tuple(p) for p in pts], fill=1)
+        inside = np.asarray(img).astype(bool) & G["mask"] & (G["building"] == 0) & (G["surface"] == 8)
+        if inside.sum() < 40:
+            continue
+        c = pts.mean(0)
+        u, s_, vt = np.linalg.svd(pts - c, full_matrices=False)
+        major, minor = vt[0], vt[1]
+        zs, xs = np.nonzero(inside)
+        rel = np.stack([xs, zs], 1) - c
+        along, across = rel @ major, rel @ minor
+        # rows of bays 5 m deep with a 6 m aisle: lines every 2.5 m along, on the bay rows
+        row = np.mod(across, 16)
+        line = ((row < 5) | ((row >= 11) & (row < 16))) & (np.mod(along, 2.5) < 0.5)
+        for (x, z), l in zip(zip(xs, zs), line):
+            if l:
+                blocks[(int(x), int(G["ground"][z, x]), int(z))] = P("white_concrete")
+        # cars in about a third of the bays
+        bay = ((row >= 1) & (row < 4) | (row >= 12) & (row < 15)) & (np.mod(along, 2.5) >= 1) & (np.mod(along, 2.5) < 1.5)
+        for (x, z), b in zip(zip(xs, zs), bay):
+            if b and rng.random() < 0.12:
+                g = int(G["ground"][z, x])
+                col = P(CAR_COLOURS[rng.integers(len(CAR_COLOURS))])
+                for k in (-1, 0, 1):
+                    X, Z = (int(round(v)) for v in np.array([x, z]) + minor * k)
+                    if 0 <= Z < Hh and 0 <= X < Ww and inside[Z, X]:
+                        blocks[(X, g + 1, Z)] = col
+                        if k == 0:
+                            blocks[(X, g + 2, Z)] = P("light_gray_stained_glass")
+        n += 1
+    print("car parks marked:", n)
     return block_stamp(blocks)
