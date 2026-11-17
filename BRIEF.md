@@ -16,7 +16,7 @@ Status: **not started** — this is the brief only.
   Include their **beach** (sand down to the water); check OSM for
   `natural=beach` / `leisure=beach_resort` there, else trace it from aerial
   imagery. It may have closed since — build it as it was in
-  [docs/caversham-lakes-beach.webp](docs/caversham-lakes-beach.webp) either
+  a photo the owner shared (not in the repo: someone else's photo) either
   way: wide sand sloping gently into shallow water, a buoy rope marking the
   swim area, sun loungers (white slabs/stairs) and parasols on the sand, a
   row of wooden beach huts/kiosk at the back, trees around, a small footbridge

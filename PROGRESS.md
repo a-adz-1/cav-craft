@@ -16,7 +16,7 @@
 6. [x] Buildings from footprints + LiDAR heights
 7. [x] Trees from VOM
 8. [x] Bridges, roads, paths detail
-9. [x] Caversham Lakes beach (as in docs/caversham-lakes-beach.webp)
+9. [x] Caversham Lakes beach (as in the owner's reference photo)
 9b. [x] Block-built swans on the Thames (no mods)
 10. [x] Working Caversham Lock (command blocks)
 11. [x] Spawn, credits sign, level.dat polish

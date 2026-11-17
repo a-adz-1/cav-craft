@@ -5,7 +5,18 @@ All of Caversham (Heights, Emmer Green, Caversham Park Village, Lower Caversham)
 islands, Caversham Lakes with the beach, and a working Caversham Lock. Not Reading: the world stops just past the
 south bank. Y in the world = metres above sea level (Ordnance Datum).
 
-## Play it
+## Download and play (free)
+1. Download **Cavcraft.zip** from the [latest release](https://github.com/a-adz-1/cav-craft/releases/latest).
+2. Unzip it. You get a folder called `Cavcraft`.
+3. Put that folder in your Minecraft Java `saves` folder:
+   - Windows: press Win+R, type `%appdata%\.minecraft\saves`, press Enter
+   - Mac: in Finder, Go → Go to Folder → `~/Library/Application Support/minecraft/saves`
+   - Linux: `~/.minecraft/saves`
+4. Start Minecraft Java Edition (1.21 or newer) → Singleplayer → **Cavcraft**.
+
+Bedrock Edition (tablets, consoles, Windows Bedrock) is coming later.
+
+## Play it (from a checkout)
 Copy `world/Cavcraft` (or unzip `build/Cavcraft.zip`) into your Minecraft `saves` folder. Made for 1.21.1 format;
 any newer Java Edition upgrades it on first open (tested in 1.21.11). Creative mode, cheats on, no mob spawning,
 no generated terrain outside Caversham.
@@ -28,6 +39,11 @@ Places worth a visit (`/tp x y z`):
 | Caversham Park mansion | `/tp 4463 110 2000` |
 | Emmer Green water tower | `/tp 4185 105 745` |
 | Redgrave Pinsent Rowing Lake lanes | `/tp 6000 60 2900` |
+| Reading Winter Wonderland (Hills Meadow) | `/tp 3830 42 4081` |
+| Whittington's Tea Barge | `/tp 3895 40 4110` |
+| Caversham Weir footbridge | `/tp 3993 40 4112` |
+| War memorial, Christchurch Meadows | `/tp 3262 44 3672` |
+| Environment Agency and Thames Water | `/tp 3812 50 4292` |
 
 ![The whole world from above](docs/preview-world.png)
 
