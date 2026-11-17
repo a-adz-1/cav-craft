@@ -47,8 +47,9 @@ DEFAULT_STYLE = {"walls": ["red_brick", "red_brick", "white_render", "pebbledash
                  "roof": ["dark_tile", "slate", "brown_tile"], "tudor": 0.0}
 
 
-def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95):
-    """rel: DSM - floor (m) over the building's crop; returns (kind, eave, ridge, dist field)."""
+def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95, low=False):
+    """rel: DSM - floor (m) over the building's crop; returns (kind, eave, ridge, dist field).
+    low: single-storey outbuildings (garages, sheds), which the DSM often confuses with trees over them."""
     vals = rel[inside]
     if vals.size < 6:
         return "flat", 3, 3, np.zeros_like(rel)
@@ -57,8 +58,16 @@ def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95):
     d_in = ndimage.distance_transform_edt(inside)
     ring = inside & (d_in > 1.5) & (d_in <= 2.5)
     eave = float(np.percentile(rel[ring], 25)) if ring.sum() > 3 else float(np.percentile(vals, 30))
+    if low:
+        eave, ridge = 2.5, min(ridge, 4.5)
+    elif force is None and ridge < 2.5 and vals.size <= 300:
+        force, eave, ridge = "gable", 5.6, 8.5   # built after the LiDAR survey: a plain two-storey house
+    elif force is None:
+        # tree canopy over a roof reads as a tall spike: no house roof rises more than 45 deg from its eaves,
+        # and no ordinary house is taller than 13 m
+        ridge = min(ridge, 13.0 if vals.size <= 300 else 99.0, max(eave, 5.6) + max(float(d_in.max()) - 0.5, 1.0))
     # a house with a real upstairs has eaves at 4.5 m or more; only low ridges (bungalows) sit lower
-    eave = max(5.6 if ridge >= 7 else 2.5, min(eave, ridge))   # two storeys: walls to y+6, windows on both
+    eave = max(5.6 if ridge >= 7 and not low else 2.5, min(eave, ridge))   # two storeys: walls to y+6
     region = inside | (attached if attached is not None else False)
     lab, _ = ndimage.label(region)
     region = lab == np.bincount(lab[inside]).argmax()
@@ -193,7 +202,8 @@ def prepare(G, P, layers, lidar, buildings):
             rkind, eave, ridge, d = fit_roof(rel, inside, edge, attached, force=lm.get("roof_kind", "gable"),
                                              ridge_pct=70 if "tower" in lm else 95)
         else:
-            rkind, eave, ridge, d = fit_roof(rel, inside, edge, attached)
+            rkind, eave, ridge, d = fit_roof(rel, inside, edge, attached,
+                                             low=kind in ("garage", "garages", "shed", "hut", "carport", "service"))
         stats[rkind] += 1
         h = zlib.crc32(b["id"].encode())
         st = styles.get(streets.get(b["id"].lstrip("wr"), ""), None) or styles.get(streets.get(b["id"], ""), None)

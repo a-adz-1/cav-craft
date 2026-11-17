@@ -180,3 +180,8 @@ stairs/furniture, shop signs with real names.
 Next ideas: real shop names on fascias (OSM shop names → signs), more landmarks (Highdown School, Emmer Green
 shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Park mansion's south terrace.
 - 2026-11-17 Shop names: 51 shopfronts get a wall sign on the fascia with the real name from OSM (outline tag or the shop point inside it): Tesco Express, Alto Lounge, Stir Fry Caversham, Clay's Hyderabadi Kitchen, Age UK... Build now drops any block entity whose block a later stamp overwrote (the game logged 8 'Invalid block entity' errors before; now 0).
+
+### 2026-11-17: odd roofs fixed
+- Cause: the first-return DSM includes trees over roofs, so some garages and small houses got 14-22 m spiky roofs; there was also no pitch limit.
+- fit_roof now caps the ridge at 45 deg from the eaves and at 13 m for houses. Garages, sheds and service buildings stay single-storey (eave 2.5 m, ridge at most 4.5 m). Houses with no LiDAR roof (built after the survey) get a plain two-storey gable.
+- Measured over all 9,626 buildings: roofs steeper than ~55 deg went from 75 to 7; houses sunk to a 3 m box went from 151 to 32 (those left are big non-house buildings).
