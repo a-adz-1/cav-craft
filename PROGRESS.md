@@ -255,3 +255,9 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 - Whittington's: bottle green (dark prismarine) hull and roof, as in the photos (green concrete renders olive); dark waterline strake.
 - Winter Wonderland at night: hidden light blocks every 6 m across the fair, so the snow, chalets and rides glow. Checked at night from above, and it looks great.
 - Environment Agency: a tall glazed bay (light blue glass framed in red brick, mullions every storey) up the middle of the road-facing wall (new `glass_bay` landmark option).
+
+### 2026-11-17: on the family Multiverse server
+- The server is Paper 1.21.11 at 10.0.0.36 with Multiverse-Core 5.6.1. Cavcraft was downloaded there from the v0.1 release into /home/minecraft/server/Cavcraft and loaded with `mv import Cavcraft normal`. The server read the flat void settings from level.dat (FLAT, no structures).
+- Read-only: gamemode adventure (no breaking or placing; buttons, doors, boats and chests still work), peaceful, no PvP, no hunger. The spawn_monsters, spawn_phantoms, spawn_patrols and spawn_wandering_traders game rules are off; spawn_mobs, mob_griefing and weather were already off from level.dat. 1.21.11 uses the new snake_case game rule names.
+- Multiverse-Inventories leaves ungrouped worlds separate (default-ungrouped-worlds: false), the same as rivercraft, so inventories don't carry over.
+- The server log after import is clean.
