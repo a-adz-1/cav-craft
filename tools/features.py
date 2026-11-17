@@ -426,8 +426,8 @@ def credits_sign(G, P):
 
 def barriers(G, P):
     osm = json.load(open("build/osm.json"))
-    kinds = {"hedge": (P("oak_leaves", persistent="true"), 2), "wall": (P("cobblestone_wall"), 1),
-             "fence": (P("oak_fence"), 1)}
+    kinds = {"hedge": (P("oak_leaves", persistent="true"), 2), "wall": (P("cobblestone_wall"), 2),
+             "fence": (P("oak_fence"), 1), "retaining_wall": (P("cobblestone_wall"), 1)}
     Hh, Ww = G["mask"].shape
     blocks = {}
     conn = {kinds["wall"][0]: {}, kinds["fence"][0]: {}}
