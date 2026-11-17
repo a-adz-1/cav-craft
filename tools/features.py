@@ -40,6 +40,8 @@ def setup(G, P, lidar):
     G["stamps"].append(furniture(G, P))
     G["stamps"].append(cars(G, P))
     G["stamps"].append(christchurch_mast(G, P))
+    G["stamps"].append(churchyards(G, P))
+    marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
     print("trees:", len(G["trees"]))
@@ -816,3 +818,51 @@ def christchurch_mast(G, P):
             blocks.setdefault((x, y, z), chain)
     print(f"Christchurch Bridge mast at {mx},{mz}, top y {top}")
     return block_stamp(blocks)
+
+
+# ---- churchyard gravestones, marina boats -----------------------------------------------------------
+
+def churchyards(G, P):
+    rng = np.random.default_rng(51)
+    cem = (G["surface"] == 17) & G["mask"] & (G["building"] == 0)
+    zs, xs = np.nonzero(cem)
+    blocks = {}
+    stones = [P("stone_brick_wall", up="true", north="none", south="none", east="none", west="none"),
+              P("cobblestone_wall", up="true", north="none", south="none", east="none", west="none"),
+              P("andesite_wall", up="true", north="none", south="none", east="none", west="none"),
+              P("stone_brick_slab", type="bottom")]
+    n = 0
+    for z, x in zip(zs, xs):
+        if x % 3 == 0 and z % 4 == 0 and rng.random() < 0.6:     # rows, like a real churchyard
+            blocks[(int(x), int(G["ground"][z, x]) + 1, int(z))] = stones[rng.integers(len(stones))]
+            n += 1
+    print("gravestones:", n)
+    return block_stamp(blocks)
+
+
+def marina(G, P):
+    import lock
+    from PIL import Image, ImageDraw
+    osm = json.load(open("build/osm.json"))
+    m = next((a for a in osm["areas"] if a["tags"].get("leisure") == "marina"), None)
+    if not m:
+        return
+    Hh, Ww = G["mask"].shape
+    img = Image.new("L", (Ww, Hh), 0)
+    ImageDraw.Draw(img).polygon([xz(*p) for p in m["rings"][0]], fill=1)
+    area = np.asarray(img).astype(bool) & (G["water"] > -999)
+    from scipy import ndimage
+    edge = area & ndimage.binary_dilation(~area)
+    zs, xs = np.nonzero(edge)
+    rng = np.random.default_rng(61)
+    picks = []
+    for i in rng.permutation(len(zs)):
+        if all(abs(xs[i] - a) + abs(zs[i] - c) > 7 for a, c in picks):
+            picks.append((xs[i], zs[i]))
+        if len(picks) >= 40:
+            break
+    for k, (x, z) in enumerate(picks):
+        b = lock.boat(x + 0.5, G["water"][z, x] + 0.9, z + 0.5, float(rng.uniform(0, 360)))
+        b["Type"] = ["oak", "birch", "spruce", "cherry"][k % 4]
+        lock.add_entity(G, b)
+    print("marina boats:", len(picks))
