@@ -30,6 +30,22 @@ LANDMARKS = {
     # St John the Baptist, Gosbrook Road (behind railings): red and grey brick
     "w138758862": {"name": "St John the Baptist", "walls": "red_brick", "roof": "slate", "dress": "stone_bricks",
                    "windows": "lancet"},
+    # The Fox and Hounds, Gosbrook Road: red brick, brown tile, black-and-white Tudor gable, black pub fascia
+    # with gold lettering over white-framed windows
+    "w137356792": {"name": "The Fox and Hounds", "walls": "red_brick", "roof": "brown_tile", "dress": "bricks",
+                   "windows": "house", "shopfront": "black_concrete", "tudor_gable": True},
+    # The White Horse, Emmer Green: red brick, old tile, green signboard fascia
+    "w160047093": {"name": "The White Horse", "walls": "red_brick", "roof": "red_tile", "dress": "bricks",
+                   "windows": "house", "shopfront": "green_concrete"},
+    # The Black Horse, Kidmore End Road
+    "w171190554": {"name": "The Black Horse", "walls": "white_render", "roof": "red_tile", "dress": "bricks",
+                   "windows": "house", "shopfront": "black_concrete"},
+    # Reading Rowing Club: white-clad boathouse, shallow slate roof, boat bays to the river
+    "w136161988": {"name": "Reading Rowing Club", "walls": "white_render", "roof": "slate", "dress": "white_concrete",
+                   "windows": "house", "shopfront": "blue_concrete"},
+    # Caversham Hall (civic): red brick
+    "w138758857": {"name": "Caversham Hall", "walls": "red_brick", "roof": "slate", "dress": "smooth_sandstone",
+                   "windows": "tall", "band": 4},
     # Caversham Park (the mansion, BBC Monitoring until 2018): pale Bath stone, Corinthian colonnade on the
     # south front, balustraded parapet, three tall storeys
     "w160047105": {"name": "Caversham Park", "walls": "sandstone", "roof": "flat", "dress": "smooth_quartz",

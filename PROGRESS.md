@@ -116,3 +116,9 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
   Landmark roofs are gabled with the ridge taken below the tower's height. Reinstalled + rezipped.
 - Next: more landmarks (Caversham Court gazebo, Reading Rowing Club, Fox and Hounds, Prospect pub, schools,
   Heights water tower), Caversham Park front, shopfronts on Church Street / Prospect Street / Bridge Street.
+- 2026-11-17 User: "Don't stop until the credits run out… don't ask me again" (saved to memory).
+- 2026-11-17 Shopfronts: shops, pubs, cafés and town-family buildings near main roads get a glazed ground floor
+  (panes + dark oak mullions) and a coloured fascia on the road side (100 buildings). Pubs from photos: Fox and
+  Hounds (brick, Tudor gable, black fascia), White Horse (green fascia), Black Horse; Reading Rowing Club (white
+  boathouse); Caversham Hall. Fixed: buildings were kept only if their first corner was inside the world, which
+  dropped Reading Rowing Club; now by centre.

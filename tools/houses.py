@@ -37,6 +37,8 @@ WALLS = {
     "tile_hung": "red_terracotta", "glass": "light_blue_stained_glass", "flint": "andesite",
     "sandstone": "smooth_sandstone",
 }
+FASCIAS = ["black_concrete", "blue_concrete", "green_concrete", "red_concrete", "white_concrete", "cyan_concrete",
+           "gray_concrete", "purple_concrete", "orange_concrete"]
 DOORS = ["oak_door", "spruce_door", "dark_oak_door", "birch_door", "jungle_door"]
 
 HOUSE_KINDS = {"house", "detached", "semidetached_house", "terrace", "bungalow", "residential", "yes",
@@ -120,6 +122,7 @@ def prepare(G, P, layers, lidar, buildings):
     floors_every = np.zeros((H, W), np.int8)
     winstyle = np.zeros((H, W), np.int8)     # 0 houses (2x2), 1 lancets, 2 tall mullioned
     roadish = np.isin(surface, (3, 4, 5, 6, 9))
+    main_road = surface == 3
     stats = {"flat": 0, "hip": 0, "gable": 0}
     for i in range(1, n):
         sl = objs[i - 1] if i - 1 < len(objs) else None
@@ -195,12 +198,33 @@ def prepare(G, P, layers, lidar, buildings):
                 for y in range(fl + 1, int(top[zl, xl])):
                     blocks.setdefault((x0 + xl, y, z0 + zl), P("bricks"))
         roofmat[sub] = np.where(inside, P(full), roofmat[sub])
+        # shopfronts: glazed ground floor with a coloured fascia on the road side of shops, pubs, cafés
+        shop_colour = (lm or {}).get("shopfront")
+        if not shop_colour and (kind in ("retail", "commercial", "supermarket") or t.get("shop") or
+                                t.get("amenity") in ("pub", "cafe", "restaurant", "bar", "fast_food", "bank",
+                                                     "pharmacy", "post_office")):
+            shop_colour = FASCIAS[(h >> 7) % len(FASCIAS)]
+        if not shop_colour and st.get("family") == "town" and inside.sum() < 400:
+            near_main = ndimage.binary_dilation(main_road[z0:z1, x0:x1], iterations=12)
+            if (near_main & inside).any() and (h % 3):
+                shop_colour = FASCIAS[(h >> 7) % len(FASCIAS)]
+        if shop_colour:
+            front = edge & ndimage.binary_dilation(roadish[z0:z1, x0:x1], iterations=4)
+            for zl, xl in zip(*np.nonzero(front)):
+                X, Z = x0 + xl, z0 + zl
+                blocks[(X, fl + 1, Z)] = P("glass_pane") if (X + Z) % 4 else P("dark_oak_planks")
+                blocks[(X, fl + 2, Z)] = P("glass_pane") if (X + Z) % 4 else P("dark_oak_planks")
+                blocks[(X, fl + 3, Z)] = P(shop_colour)
+            if front.any():
+                stats.setdefault("shopfronts", 0)
+                stats["shopfronts"] += 1
         church = kind in ("church", "chapel") or t.get("amenity") == "place_of_worship"
-        ws = {"lancet": 1, "tall": 2}.get(lm.get("windows")) if lm else (1 if church else 0)
+        ws = {"lancet": 1, "tall": 2}.get(lm.get("windows"), 0) if lm else (1 if church else 0)
         if ws:
             winstyle[sub] = np.where(inside, ws, winstyle[sub])
         if lm:
-            landmarks.dressings(P, blocks, inside, edge, x0, z0, fl, top, lm)
+            if lm.get("dress"):
+                landmarks.dressings(P, blocks, inside, edge, x0, z0, fl, top, lm)
             if "tower" in lm:
                 pk = np.unravel_index(np.argmax(np.where(inside, rel, -99)), rel.shape)
                 landmarks.tower(P, blocks, inside, fl, fl + int(round(rel[pk])), (x0 + pk[1], z0 + pk[0]),
@@ -233,7 +257,7 @@ def prepare(G, P, layers, lidar, buildings):
                 elif lows and y == ey and rkind == "gable" and edge[zl, xl] and len(lows) < 4:
                     pass
         # Tudor beams on the upper storey for some streets
-        if st.get("tudor", 0) and (h % 100) < st["tudor"] * 100:
+        if (lm and lm.get("tudor_gable")) or (st.get("tudor", 0) and (h % 100) < st["tudor"] * 100):
             zz, xx = np.nonzero(edge)
             for zl, xl in zip(zz, xx):
                 if (x0 + xl + z0 + zl) % 3 == 0:

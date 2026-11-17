@@ -246,7 +246,7 @@ for a in areas + [{"id": ln["id"], "tags": ln["tags"], "rings": [ln["pts"]]} for
     if not t.get("building") or t.get("building") in ("no", "roof") or t.get("location") == "underground":
         continue
     ring = a["rings"][0]
-    cr, cc_ = rc(ring[0])
+    cr, cc_ = rc(np.mean(ring, axis=0))           # centre, not the first corner (that can sit on the river edge)
     if not (0 <= cr < H and 0 <= cc_ < W) or not mask[cr, cc_]:
         continue
     if a["id"] in seen_b:
