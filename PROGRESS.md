@@ -236,3 +236,8 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
   - A lantern hangs from each ceiling, and the hall inside the front door is always kept clear.
   - Windows are grey stained glass instead of tinted glass: it still reads dark from outside but lets daylight in.
   - Counted around Gosbrook Road: 83 doors, 70 beds, 64 kitchens, 44 tables. Checked in-game from inside a house.
+
+### 2026-11-17: churches at night, barges, Whittington's Tea Barge
+- Churches (lancet windows): stained glass in blue, red, yellow, purple and light blue, and an open nave with no upper floors. Inside are oak pews either side of a central aisle facing the east-end altar, which has lit candles. Hidden light blocks inside make the windows glow at night, and hidden floodlights stand 2 m off the walls at ground level and at +6, +11 and +16 to reach towers and gables. Checked at night: St Peter's is floodlit with glowing windows.
+- 25 block-built narrowboats moored along straight stretches of the Thames bank. Each has a black hull, a painted cabin with windows and a stern door (walk-in, wooden floor), a tiller, and pots and logs on the roof. Light blocks are used rather than lanterns so they work in Bedrock too.
+- Whittington's Tea Barge, from the user's photos: moored on Hills Meadow's bank upstream of the weir, next to Winter Wonderland. The bank is slanted there, so it gets a straight paved quay. It's a 22 x 5 wide-beam with a dark green hull and roof, a cream cabin, blue curtains, a gangplank to a side door, tea tables and chairs inside, and a counter with cakes. White tables and chairs stand on the quay, with a "Whittington's Tea Barge" sign. Checked in-game, inside and out.

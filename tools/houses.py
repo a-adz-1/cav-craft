@@ -145,6 +145,46 @@ def shared_roofs(buildings, bid, crop):
     return out
 
 
+def church_dress(P, blocks, inside, edge, x0, z0, fl, ground, bidcrop):
+    """Inside a church: rows of oak pews facing the altar either side of a central aisle, a white altar with
+    lit candles at the east end, and hidden lights so the stained glass glows at night. Outside: hidden
+    floodlights (light blocks) a couple of metres off the walls, lighting the stone."""
+    zz, xx = np.nonzero(inside)
+    c = np.array([xx.mean(), zz.mean()])
+    _, _, vt = np.linalg.svd(np.stack([xx, zz], 1) - c, full_matrices=False)
+    ang = np.arctan2(vt[0][1], vt[0][0])
+    ang = np.round(ang / (np.pi / 2)) * (np.pi / 2)              # the nave, squared to the grid
+    u = np.array([np.cos(ang), np.sin(ang)]).round().astype(int)
+    if u[0] < 0 or (u[0] == 0 and u[1] < 0):
+        u = -u                                                   # point the nave east (or south): altar end
+    v = np.array([-u[1], u[0]])
+    toward = {(1, 0): "east", (-1, 0): "west", (0, 1): "south", (0, -1): "north"}
+    deep = ndimage.distance_transform_edt(inside)
+    rel = np.stack([xx, zz], 1) - c
+    along, across = rel @ u, rel @ v
+    end = along.max()
+    for (x, z), a, b_ in zip(zip(xx, zz), along, across):
+        if deep[z, x] < 2:
+            continue
+        X, Z = x0 + x, z0 + z
+        if end - a < 1.5 and abs(b_) < 1.6:                     # the altar, with candles
+            blocks[(X, fl + 1, Z)] = P("white_concrete")
+            blocks[(X, fl + 2, Z)] = P("white_candle", candles=3, lit="true")
+        elif end - a > 4 and round(a) % 2 == 0 and abs(b_) >= 1.5:
+            # pews: seats facing the altar (a stair's back is on its "facing" side, away from the altar)
+            blocks[(X, fl + 1, Z)] = P("oak_stairs", facing=toward[tuple(-u)], half="bottom", shape="straight")
+        if round(a) % 4 == 0 and round(b_) % 4 == 0:
+            blocks.setdefault((X, fl + 4, Z), P("light", level=12))  # glowing windows at night
+    # floodlights: hidden light blocks 2 m out from the walls, every 3rd cell round the outside
+    ring = ndimage.binary_dilation(inside, iterations=2) & ~ndimage.binary_dilation(inside, iterations=1) & (bidcrop == 0)
+    for k, (z, x) in enumerate(np.argwhere(ring)):
+        if k % 3 == 0:
+            blocks.setdefault((x0 + x, int(ground[z, x]) + 1, z0 + z), P("light", level=15))
+        if k % 6 == 0:                                           # higher up, to reach the tower and gables
+            for dy in (6, 11, 16):
+                blocks.setdefault((x0 + x, int(ground[z, x]) + dy, z0 + z), P("light", level=15))
+
+
 def furnish(P, blocks, inner, edge, x0, z0, fl, ey, stair_cells, h):
     """Furniture for a house you can walk into. Downstairs: a kitchen run along one wall (smoker, sink,
     worktop, cupboard), a dining table with two chairs, a ceiling light. Upstairs: a double bed with its head
@@ -437,6 +477,8 @@ def prepare(G, P, layers, lidar, buildings):
             ws = 3   # no windows
         if ws:
             winstyle[sub] = np.where(inside, ws, winstyle[sub])
+        if ws == 1:
+            church_dress(P, blocks, inside, edge, x0, z0, fl, G["ground"][z0:z1, x0:x1], bid[z0:z1, x0:x1])
         if lm:
             if lm.get("dress"):
                 landmarks.dressings(P, blocks, inside, edge, x0, z0, fl, top, lm)
@@ -650,10 +692,13 @@ def prepare(G, P, layers, lidar, buildings):
 
 
 BRICK_WALLS = []
+STAINED = None
 
 
 def stamp_factory(G, P):
     BRICK_WALLS[:] = [P(WALLS[k]) for k in ("red_brick", "orange_brick", "buff_brick", "grey_brick")]
+    global STAINED
+    STAINED = np.array([P(c + "_stained_glass") for c in ("blue", "red", "yellow", "blue", "purple", "light_blue")])
     sill_block = P("smooth_stone")
     glass, floor = P("gray_stained_glass"), P("oak_planks")   # reads dark from outside like real windows, lets daylight in
     by_chunk = {}
@@ -678,7 +723,7 @@ def stamp_factory(G, P):
             b[:] = np.where(inb[None] & (Y <= fl) & (Y > g), dirt, b)              # fill under the floor
             b[:] = np.where(inb[None] & (Y == fl), floor, b)
             rel = Y - fl
-            storey_floor = inb & ~edge
+            storey_floor = inb & ~edge & (G["h_win"][sl] != 1)    # churches: one open nave, no upper floors
             b[:] = np.where(storey_floor[None] & (rel > 0) & (rel % 3 == 0) & (Y < top - 1), floor, b)
             walls = edge & inb
             b[:] = np.where(walls[None] & (Y > fl) & (Y < top), wall[None], b)
@@ -693,6 +738,8 @@ def stamp_factory(G, P):
             win |= walls[None] & (ws == 2) & ((rel % 4 == 1) | (rel % 4 == 2) | (rel % 4 == 3)) & ((X + Z) % 3 != 0)
             placed = win & (Y > fl) & (Y < top) & ((b == wall[None]) | (b == up[None]))
             b[:] = np.where(placed, glass, b)
+            # churches: stained glass in the lancets
+            b[:] = np.where(placed & (ws == 1), STAINED[(X * 7 + Y * 3 + Z * 5) % len(STAINED)], b)
             # pale sills under and lintels over the windows, on brick walls only
             brickish = np.isin(wall, BRICK_WALLS)[None]
             sill = np.zeros_like(placed)

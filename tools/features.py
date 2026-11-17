@@ -57,6 +57,7 @@ def setup(G, P, lidar):
     G["stamps"].append(winter_wonderland(G, P))
     G["stamps"].append(data_signs(G, P))
     river_boats(G)
+    G["stamps"].append(barges(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -1867,3 +1868,195 @@ def river_boats(G, n=40):
         if len(placed) >= n:
             break
     print(f"river boats: {len(placed)} free-floating")
+
+
+# ---- moored narrowboats and Whittington's Tea Barge, block-built so you can walk aboard ------------------
+
+NARROWBOAT_COLOURS = [("green_concrete", "red_concrete"), ("red_terracotta", "yellow_terracotta"),
+                      ("blue_terracotta", "white_concrete"), ("cyan_terracotta", "black_concrete"),
+                      ("red_concrete", "green_concrete"), ("light_blue_terracotta", "white_concrete")]
+TEA_BARGE = (3912, 4117)   # stern of Whittington's on Hills Meadow's bank (north bank, upstream of the weir)
+
+
+def find_moorings(G, L, Wd, n, x_range=None, spacing=35, rng=None, bank_side=None, z_range=None):
+    """Straight stretches of Thames bank a boat L long x Wd wide fits against, squared to the grid:
+    [(x, z, ux, uz, vx, vz)], origin at the stern on the bank side, u along the boat, v away from the bank."""
+    w = G["water"]
+    river = (w == 35) | (w == 36)
+    land = G["mask"] & (w == -999)
+    clear = ~np.zeros_like(river)
+    if "br_deck" in G:
+        from scipy import ndimage
+        clear = ~ndimage.binary_dilation(G["br_deck"] > -999, iterations=10)
+    import lock
+    lx0, lx1, lz0, lz1 = lock.SITE
+    Hh, Ww = river.shape
+    zs, xs = np.nonzero(river & np.roll(land, 1, 0) | river & np.roll(land, -1, 0) | river & np.roll(land, 1, 1) |
+                        river & np.roll(land, -1, 1))
+    order = (rng or np.random.default_rng(5)).permutation(len(zs))
+    out = []
+    for i in order:
+        x, z = int(xs[i]), int(zs[i])
+        if x_range and not (x_range[0] <= x <= x_range[1]):
+            continue
+        if z_range and not (z_range[0] <= z <= z_range[1]):
+            continue
+        if lx0 - 30 <= x <= lx1 + 30 and lz0 - 30 <= z <= lz1 + 30:
+            continue
+        if any((x - a) ** 2 + (z - b) ** 2 < spacing ** 2 for a, b, *_ in out):
+            continue
+        for (ux, uz) in ((1, 0), (0, 1)):
+            for side in (1, -1):
+                vx, vz = uz * side, ux * side                    # away from the bank
+                if bank_side and (vx, vz) != bank_side:
+                    continue
+                cells = [(x + ux * a + vx * b, z + uz * a + vz * b) for a in range(L) for b in range(Wd)]
+                bank = [(x + ux * a - vx, z + uz * a - vz) for a in range(L)]
+                if not all(0 <= cz < Hh and 0 <= cx < Ww and river[cz, cx] and clear[cz, cx] for cx, cz in cells):
+                    continue
+                if sum(0 <= cz < Hh and 0 <= cx < Ww and land[cz, cx] for cx, cz in bank) < 0.7 * L:
+                    continue
+                if len({int(w[cz, cx]) for cx, cz in cells}) != 1:
+                    continue
+                out.append((x, z, ux, uz, vx, vz))
+                break
+            else:
+                continue
+            break
+        if len(out) >= n:
+            break
+    return out
+
+
+def hull(P, blocks, G, site, L, Wd, hull_c, cabin_c, trim_c, cabin=(3, 3), side_door=None):
+    """A barge at its mooring: hull floor at the water line, gunwales, a cabin with windows and a stern door,
+    a pointed bow, a tiller on the stern deck. Returns (wl, cell(i, j) -> (x, z))."""
+    x, z, ux, uz, vx, vz = site
+    wl = int(G["water"][z, x])
+
+    def cell(i, j):
+        return x + ux * i + vx * j, z + uz * i + vz * j
+    c0, c1 = cabin[0], L - cabin[1]
+    for i in range(L):
+        for j in range(Wd):
+            X, Z = cell(i, j)
+            if i == L - 1 and j in (0, Wd - 1):
+                continue                                          # pointed bow
+            edge = j in (0, Wd - 1) or i in (0, L - 1) or (i == L - 2 and j in (1, Wd - 2) and Wd > 3)
+            blocks[(X, wl, Z)] = P(hull_c) if edge else P("spruce_planks")   # floorboards inside
+            blocks[(X, wl - 1, Z)] = P("black_concrete")          # below the water line
+            in_cabin = c0 <= i < c1
+            if in_cabin:
+                wall = edge or i in (c0, c1 - 1)
+                for y in (wl + 1, wl + 2):
+                    if wall:
+                        door = (i == c0 and j == Wd // 2) or (side_door is not None and j == 0 and
+                                                              i in (side_door, side_door + 1))
+                        win = y == wl + 2 and (i - c0) % 3 == 1
+                        blocks[(X, y, Z)] = P("air") if door else (
+                            P("glass_pane", north="true", south="true", east="true", west="true") if win else P(cabin_c))
+                    else:
+                        blocks[(X, y, Z)] = P("air")
+                blocks[(X, wl + 3, Z)] = P(trim_c) if edge else P("smooth_stone_slab", type="bottom")
+            else:
+                for y in (wl + 1, wl + 2):
+                    blocks[(X, y, Z)] = P("air")
+                if edge:
+                    blocks[(X, wl + 1, Z)] = P(hull_c + "") if hull_c.endswith("concrete") else P(hull_c)
+    sx, sz = cell(0, Wd // 2)
+    blocks[(sx, wl + 1, sz)] = P("spruce_fence")                  # the tiller
+    blocks[(sx, wl + 2, sz)] = P("spruce_fence")
+    return wl, cell
+
+
+def barges(G, P):
+    rng = np.random.default_rng(31)
+    blocks = {}
+    # Whittington's Tea Barge (Hills Meadow): a 20 x 5 wide-beam, dark green hull, cream cabin, tables inside
+    # Whittington's lies along Hills Meadow's bank, which runs on a slant there: build it a straight quay (a paved
+    # towpath filled out to the barge's side) so it moors square to the grid, as the lock does with the ground
+    tea = TEA_BARGE + (1, 0, 0, 1)                                # stern at (x, z), along +x, away from the bank +z
+    x0_, z0_ = TEA_BARGE
+    for i in range(-3, 25):
+        X = x0_ + i
+        land_g = None
+        for Z in range(z0_ - 1, z0_ - 30, -1):
+            if G["water"][Z, X] == -999:
+                land_g = int(G["ground"][Z, X])
+                break
+        if land_g is None:
+            continue
+        for Z in range(Z + 1, z0_):
+            G["water"][Z, X] = -999
+            G["ground"][Z, X] = land_g
+            G["surface"][Z, X] = 9                                # paved
+    if True:
+        wl, cell = hull(P, blocks, G, tea, 22, 5, "green_concrete", "birch_planks", "green_concrete",
+                        cabin=(3, 2), side_door=9)
+        for i in range(3, 20):                                    # dark green roof, blue curtains by the windows
+            for j in range(5):
+                X, Z = cell(i, j)
+                blocks[(X, wl + 3, Z)] = P("green_concrete")
+            if (i - 3) % 3 == 1:
+                for j in (1, 3):
+                    X, Z = cell(i + 1, j)
+                    blocks.setdefault((X, wl + 2, Z), P("blue_wool"))
+        # white plastic tables and chairs on the bank, and the A-board
+        for k, i in enumerate((2, 6, 14, 18)):
+            tX, tZ = cell(i, -3)
+            if 0 <= tZ < G["mask"].shape[0] and G["water"][tZ, tX] == -999:
+                g = int(G["ground"][tZ, tX])
+                blocks[(tX, g + 1, tZ)] = P("birch_fence")
+                blocks[(tX, g + 2, tZ)] = P("white_carpet")
+                for d in (-1, 1):
+                    cX, cZ = cell(i + d, -3)
+                    blocks[(cX, int(G["ground"][cZ, cX]) + 1, cZ)] = P(
+                        "quartz_stairs", facing={(1, 0): "east", (-1, 0): "west", (0, 1): "south",
+                                                 (0, -1): "north"}[(tea[2] * d, tea[3] * d)], half="bottom",
+                        shape="straight")
+        for i in range(5, 17, 3):                                 # tea tables with a chair either end
+            X, Z = cell(i, 2)
+            blocks[(X, wl + 1, Z)] = P("spruce_fence")
+            blocks[(X, wl + 2, Z)] = P("white_carpet")
+            for di, face in ((-1, None), (1, None)):
+                cX, cZ = cell(i + di, 2)
+                blocks[(cX, wl + 1, cZ)] = P("oak_stairs", facing={(1, 0): "east", (-1, 0): "west", (0, 1): "south",
+                                                                     (0, -1): "north"}[(tea[2] * di, tea[3] * di)],
+                                             half="bottom", shape="straight")
+        for j in (1, 2, 3):                                       # the counter with cakes, at the bow end
+            X, Z = cell(18, j)
+            blocks[(X, wl + 1, Z)] = P("spruce_planks")
+            blocks[(X, wl + 2, Z)] = P("cake", bites=0)
+        for i in (6, 12):
+            X, Z = cell(i, 2)
+            blocks[(X, wl + 2, Z)] = blocks.get((X, wl + 2, Z), P("white_carpet"))
+            lX, lZ = cell(i + 1, 1)
+            blocks[(lX, wl + 2, lZ)] = P("lantern", hanging="true") if False else P("light", level=13)
+        # gangplank from the bank to the side door, and a red life ring on the cabin side
+        for k in (1, 2):
+            gX, gZ = cell(9, -k)
+            gX2, gZ2 = cell(10, -k)
+            for (a_, b_) in ((gX, gZ), (gX2, gZ2)):
+                blocks[(a_, max(wl, int(G["ground"][b_, a_])) , b_)] = P("spruce_slab", type="top")
+        rX, rZ = cell(4, -1 if False else 0)
+        sX, sZ = cell(12, -1)
+        g = int(G["ground"][sZ, sX])
+        blocks[(sX, max(g, wl) + 1, sZ)] = P("oak_sign", rotation={(0, 1): 0, (0, -1): 8, (1, 0): 12, (-1, 0): 4}[(-tea[4], -tea[5])])
+        import lock
+        G["block_entities"].setdefault((sX // 16, sZ // 16), []).append(
+            lock.sign_entity(int(sX), int(max(g, wl) + 1), int(sZ), ["Whittington's", "Tea Barge", "afternoon tea", "come aboard"]))
+        print(f"tea barge at {tea[0]},{tea[1]}")
+    # narrowboats moored along the Thames
+    boats = find_moorings(G, 17, 3, 25, rng=rng, spacing=45)
+    boats = [b for b in boats if not tea or (b[0] - tea[0]) ** 2 + (b[1] - tea[1]) ** 2 > 40 ** 2]
+    for k, site in enumerate(boats):
+        cab, trim = NARROWBOAT_COLOURS[k % len(NARROWBOAT_COLOURS)]
+        wl, cell = hull(P, blocks, G, site, 17, 3, "black_concrete", cab, trim, cabin=(3, 3))
+        for i in (5, 9, 12):                                      # clutter on the roof: pots, a bike, logs
+            X, Z = cell(i, 1)
+            blocks[(X, wl + 4, Z)] = P(["flower_pot", "potted_red_tulip", "oak_log"][(i + k) % 3],
+                                       **({"axis": "x"} if (i + k) % 3 == 2 else {}))
+        X, Z = cell(7, 1)
+        blocks[(X, wl + 1, Z)] = P("red_bed", facing="north", part="foot", occupied="false") if False else P("barrel", facing="up", open="false")
+    print(f"barges: {len(boats)} narrowboats, tea barge {'yes' if tea else 'no'}")
+    return block_stamp(blocks)
