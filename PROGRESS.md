@@ -163,3 +163,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
 - 2026-11-17 Churchyards and cemeteries (incl. Caversham/Henley Road cemetery): rows of headstones (stone walls) and ledger slabs, 9.4k; Thames & Kennet Marina: 40 moored boats round the basin.
 - 2026-11-17 Gardens: flower beds (tulips, cornflowers, alliums, lilac...) and azalea shrubs in the 2 m along house fronts; 440 timber sheds at the far end of back gardens.
 - 2026-11-17 Street name signs: 960 signs on posts at the ends of named roads (≥60 m apart), facing the road, long names over two lines; checked one reads correctly in game.
+- 2026-11-17 Caversham Weir built along its OSM line: concrete wall to the upper water level, slab walkway, iron-bar railing, a sluice frame with gate every 5 m.

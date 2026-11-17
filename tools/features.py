@@ -42,6 +42,7 @@ def setup(G, P, lidar):
     G["stamps"].append(christchurch_mast(G, P))
     G["stamps"].append(churchyards(G, P))
     G["stamps"].append(street_signs(G, P))
+    G["stamps"].append(weirs(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -911,4 +912,39 @@ def street_signs(G, P):
                 lock.sign_entity(px, g + 2, pz, [""] + lines + ([""] if len(lines) == 1 else [])))
             n += 1
     print("street name signs:", n)
+    return block_stamp(blocks)
+
+
+# ---- Caversham Weir: concrete sill, sluice frames and a railed walkway along the OSM weir lines ---------
+
+def weirs(G, P):
+    osm = json.load(open("build/osm.json"))
+    Hh, Ww = G["mask"].shape
+    up = json.load(open("build/levels.json"))["up"]
+    blocks = {}
+    n = 0
+    for ln in osm["lines"]:
+        if ln["tags"].get("waterway") != "weir" or "Caversham" not in ln["tags"].get("name", "Caversham Weir"):
+            continue
+        pts = np.array([xz(*p) for p in ln["pts"]], float)
+        if not all(0 <= z < Hh and 0 <= x < Ww and G["mask"][int(z), int(x)] for x, z in pts):
+            continue
+        k = 0
+        for a, b in zip(pts[:-1], pts[1:]):
+            L = int(np.hypot(*(b - a))) + 1
+            for t in np.linspace(0, 1, L + 1):
+                x, z = (int(round(v)) for v in a + (b - a) * t)
+                bed = int(G["ground"][z, x])
+                for y in range(bed + 1, up + 1):
+                    blocks[(x, y, z)] = P("light_gray_concrete")      # the weir wall, crest at the top level
+                blocks[(x, up + 1, z)] = P("smooth_stone_slab", type="bottom")   # walkway
+                if k % 5 == 0:
+                    for y in range(up + 1, up + 4):
+                        blocks[(x, y, z)] = P("gray_concrete")          # sluice frame
+                    blocks[(x, up + 4, z)] = P("iron_trapdoor", facing="north", half="top", open="false")
+                else:
+                    blocks[(x, up + 2, z)] = P("iron_bars", north="true", south="true", east="true", west="true")
+                k += 1
+        n += 1
+    print("weirs built:", n)
     return block_stamp(blocks)
