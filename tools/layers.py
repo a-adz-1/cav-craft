@@ -100,6 +100,9 @@ river[:, cols.max() + 1:] = False
 mask = north | river | (barrier & ~thames & ndimage.binary_dilation(north, iterations=6))
 mask = ndimage.binary_fill_holes(mask)                       # islands in the river
 mask |= ndimage.binary_dilation(river, iterations=30) & ~north  # south bank strip so bridges land
+# the people whose data built this world: Thames Water's Clearwater Court and the Environment Agency's Kings
+# Meadow House, with King's Meadow Road from the lock to both (Minecraft x 3690-3945, z 4150-4312)
+mask[4150:4313, 3690:3946] = True
 mask &= np.isfinite(dtm)
 lab, n = ndimage.label(mask)
 mask = lab == np.bincount(lab.ravel()[lab.ravel() > 0]).argmax()

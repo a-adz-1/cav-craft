@@ -65,7 +65,8 @@ PLANTS = {
 }
 
 G = {}   # globals shared with forked workers
-ENTITY_BLOCKS = {"minecraft:sign": {"minecraft:oak_sign", "minecraft:dark_oak_wall_sign", "minecraft:oak_wall_sign"},
+ENTITY_BLOCKS = {"minecraft:sign": {"minecraft:oak_sign", "minecraft:dark_oak_wall_sign", "minecraft:oak_wall_sign",
+                                   "minecraft:spruce_wall_sign"},
                  "minecraft:command_block": {"minecraft:command_block"}}
 
 

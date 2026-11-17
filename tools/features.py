@@ -53,6 +53,9 @@ def setup(G, P, lidar):
     G["stamps"].insert(1, countryside(G, P))
     G["stamps"].append(allotments(G, P))
     G["stamps"].append(crossings(G, P))
+    G["stamps"].append(island_paths(G, P))
+    G["stamps"].append(winter_wonderland(G, P))
+    G["stamps"].append(data_signs(G, P))
     marina(G, P)
     G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
@@ -928,9 +931,14 @@ def street_signs(G, P):
 # ---- Caversham Weir: concrete sill, sluice frames and a railed walkway along the OSM weir lines ---------
 
 def weirs(G, P):
+    """Caversham Weir as in the Commons photos: a row of sluice bays between concrete piers, a raised metal
+    footbridge along the top with railings both sides, tall white gate frames on the upstream side, the white
+    control hut over the middle, and white water (bubble columns over soul sand) churning below it."""
     osm = json.load(open("build/osm.json"))
     Hh, Ww = G["mask"].shape
-    up = json.load(open("build/levels.json"))["up"]
+    lv = json.load(open("build/levels.json"))
+    up, down = lv["up"], lv["down"]
+    water = G["water"]
     blocks = {}
     n = 0
     for ln in osm["lines"]:
@@ -939,22 +947,64 @@ def weirs(G, P):
         pts = np.array([xz(*p) for p in ln["pts"]], float)
         if not all(0 <= z < Hh and 0 <= x < Ww and G["mask"][int(z), int(x)] for x, z in pts):
             continue
-        k = 0
+        cells = []
         for a, b in zip(pts[:-1], pts[1:]):
             L = int(np.hypot(*(b - a))) + 1
             for t in np.linspace(0, 1, L + 1):
-                x, z = (int(round(v)) for v in a + (b - a) * t)
-                bed = int(G["ground"][z, x])
-                for y in range(bed + 1, up + 1):
-                    blocks[(x, y, z)] = P("light_gray_concrete")      # the weir wall, crest at the top level
-                blocks[(x, up + 1, z)] = P("smooth_stone_slab", type="bottom")   # walkway
-                if k % 5 == 0:
-                    for y in range(up + 1, up + 4):
-                        blocks[(x, y, z)] = P("gray_concrete")          # sluice frame
-                    blocks[(x, up + 4, z)] = P("iron_trapdoor", facing="north", half="top", open="false")
-                else:
-                    blocks[(x, up + 2, z)] = P("iron_bars", north="true", south="true", east="true", west="true")
-                k += 1
+                c = tuple(int(round(v)) for v in a + (b - a) * t)
+                if not cells or c != cells[-1]:
+                    cells.append(c)
+        d = pts[-1] - pts[0]
+        nx, nz = (-1, 0) if abs(d[1]) > abs(d[0]) else (0, -1)      # across the weir, on the grid
+        mid = np.array(cells[len(cells) // 2])
+
+        def lvl(k):
+            x, z = (mid + [nx * k, nz * k]).astype(int)
+            return water[z, x] if 0 <= z < Hh and 0 <= x < Ww else -999
+        if lvl(4) < lvl(-4):                                        # make (nx, nz) point upstream
+            nx, nz = -nx, -nz
+        for k, (x, z) in enumerate(cells):
+            def at(o):
+                return x + nx * o, z + nz * o
+            bed = int(G["ground"][z, x])
+            pier = k % 5 == 0
+            for o in (0, 1):                                        # the weir body; piers are stone
+                X, Z = at(o)
+                for y in range(bed + 1, up + (2 if pier else 1)):
+                    blocks[(X, y, Z)] = P("stone_bricks" if pier else ("gray_concrete" if y >= up - 1 else
+                                                                       "light_gray_concrete"))
+            for o in (-1, 0, 1, 2):                                 # deck: top slabs, walking level up+2
+                X, Z = at(o)
+                blocks[(X, up + 1, Z)] = P("smooth_stone_slab", type="top")
+            for o in (-1, 2):                                       # railings
+                X, Z = at(o)
+                blocks[(X, up + 2, Z)] = P("iron_bars", north="true", south="true", east="true", west="true")
+            if pier:                                                # gate frame over the upstream side
+                X, Z = at(2)
+                for y in range(up + 2, up + 7):
+                    blocks[(X, y, Z)] = P("white_concrete")
+                blocks[(X, up + 7, Z)] = P("smooth_quartz_slab", type="bottom")
+            X, Z = at(2)
+            blocks[(X, up + 6, Z)] = P("white_concrete")             # the frames' top beam
+            for o in range(3, 8):                                   # white water below
+                X, Z = at(-o)
+                if not (0 <= Z < Hh and 0 <= X < Ww) or water[Z, X] == -999:
+                    continue
+                g = int(G["ground"][Z, X])
+                blocks[(X, g, Z)] = P("soul_sand")
+                for y in range(g + 1, int(water[Z, X]) + 1):
+                    blocks[(X, y, Z)] = P("bubble_column", drag="false")
+        # control hut over the middle of the weir, on the gate frames
+        k0 = len(cells) // 2
+        for k in range(k0 - 2, k0 + 3):
+            x, z = cells[k]
+            for o in (0, 1, 2):
+                X, Z = x + nx * o, z + nz * o
+                for y in range(up + 7, up + 10):
+                    edge = k in (k0 - 2, k0 + 2) or o in (0, 2)
+                    blocks[(X, y, Z)] = (P("white_concrete") if not edge or y != up + 8 or k == k0 else
+                                         P("glass_pane", north="true", south="true", east="true", west="true"))
+                blocks[(X, up + 10, Z)] = P("light_gray_concrete")
         n += 1
     print("weirs built:", n)
     return block_stamp(blocks)
@@ -1234,4 +1284,493 @@ def crossings(G, P):
                 blocks[(cx, g + 3, cz)] = P("black_concrete")
                 blocks[(cx, g + 4, cz)] = P("black_concrete")
     print(f"crossings: {zebras} zebras, {signals} signal poles pairs")
+    return block_stamp(blocks)
+
+
+# ---- Caversham Lock island and View Island: lamps, benches, railings, a carved head ------------------------
+
+LOCK_PATHS = (3880, 4180, 3940, 4200)   # x0, x1, z0, z1 round the lock, the weir and View Island
+
+
+def island_paths(G, P):
+    """The paths round the lock island, over the weir and through View Island, from the Commons photos: black
+    Victorian lamp posts, blue benches facing the water, black railings where the path meets the water, and
+    one of View Island's chainsaw-carved wooden heads in the trees."""
+    osm = json.load(open("build/osm.json"))
+    x0, x1, z0, z1 = LOCK_PATHS
+    Hh, Ww = G["mask"].shape
+    s, ground, water = G["surface"], G["ground"], G["water"]
+    rng = np.random.default_rng(55)
+    blocks = {}
+    lamps = benches = rails = 0
+    post = P("polished_blackstone_wall", up="true", north="none", south="none", east="none", west="none")
+    for l in osm["lines"]:
+        if l["tags"].get("highway") not in ("footway", "cycleway", "path") or l["tags"].get("bridge"):
+            continue
+        pts = np.array([xz(*q) for q in l["pts"]], float)
+        if not ((pts[:, 0] > x0) & (pts[:, 0] < x1) & (pts[:, 1] > z0) & (pts[:, 1] < z1)).any():
+            continue
+        walked = 0.0
+        for a, b in zip(pts[:-1], pts[1:]):
+            seg = np.hypot(*(b - a))
+            if seg < 0.5:
+                continue
+            u = (b - a) / seg
+            nrm = np.array([-u[1], u[0]])
+            for t in np.arange(0, seg, 1.0):
+                c = a + u * t
+                walked += 1
+                if not (x0 < c[0] < x1 and z0 < c[1] < z1):
+                    continue
+                X, Z = int(round(c[0])), int(round(c[1]))
+                if not (0 <= Z < Hh and 0 <= X < Ww) or not G["mask"][Z, X] or water[Z, X] != -999:
+                    continue
+                # which side is the water? (look 6 m either way)
+                wet = []
+                for sg in (1, -1):
+                    q = (c + nrm * sg * np.arange(2, 7)[:, None]).round().astype(int)
+                    ok = (q[:, 1] >= 0) & (q[:, 1] < Hh) & (q[:, 0] >= 0) & (q[:, 0] < Ww)
+                    wet.append(ok.all() and (water[q[:, 1], q[:, 0]] != -999).any())
+                side = 1 if wet[0] else (-1 if wet[1] else 0)
+                if int(walked) % 18 == 0:                       # lamp post on the landward side
+                    lx, lz = (c - nrm * (side or 1) * 2).round().astype(int)
+                    if 0 <= lz < Hh and 0 <= lx < Ww and water[lz, lx] == -999 and not G["building"][lz, lx]:
+                        g = int(ground[lz, lx])
+                        for dy in (1, 2, 3):
+                            blocks[(int(lx), g + dy, int(lz))] = post
+                        blocks[(int(lx), g + 4, int(lz))] = P("lantern", hanging="false")
+                        lamps += 1
+                if side and int(walked) % 40 == 9:              # bench facing the water
+                    bx, bz = (c + nrm * side * 2).round().astype(int)
+                    if 0 <= bz < Hh and 0 <= bx < Ww and water[bz, bx] == -999 and not G["building"][bz, bx]:
+                        facing = {(1, 0): "west", (-1, 0): "east", (0, 1): "north", (0, -1): "south"}[
+                            tuple(int(v) for v in np.sign(np.round(nrm * side)))] if abs(nrm[0]) < 0.3 or abs(nrm[1]) < 0.3 else None
+                        if facing:
+                            g = int(ground[bz, bx])
+                            # stairs face away from where you sit: a seat facing the water has its back landward
+                            back = {"west": "east", "east": "west", "north": "south", "south": "north"}[facing]
+                            ax_ = (0, 1) if facing in ("east", "west") else (1, 0)
+                            for k in (0, 1):
+                                blocks[(int(bx) + ax_[0] * k, g + 1, int(bz) + ax_[1] * k)] = P(
+                                    "warped_stairs", facing=back, half="bottom", shape="straight")
+                            benches += 1
+                if side:                                        # railing on the bank edge, past the verge
+                    for r in range(2, 6):
+                        q = (c + nrm * side * r).round().astype(int)
+                        if not (0 <= q[1] < Hh and 0 <= q[0] < Ww):
+                            break
+                        if water[q[1], q[0]] != -999:
+                            e = (c + nrm * side * (r - 1)).round().astype(int)
+                            if water[e[1], e[0]] == -999 and not G["building"][e[1], e[0]] and s[e[1], e[0]] not in (3, 4, 5, 6, 9):
+                                blocks.setdefault((int(e[0]), int(ground[e[1], e[0]]) + 1, int(e[1])), P(
+                                    "iron_bars", north="true", south="true", east="true", west="true"))
+                                rails += 1
+                            break
+    # a carved head in View Island's trees (as in the photos): weathered wood, eyes and a big nose
+    vz = np.argwhere((s[3960:4100, 4000:4200] == 15) & (water[3960:4100, 4000:4200] == -999))
+    if len(vz):
+        hz, hx = vz[len(vz) // 2] + [3960, 4000]
+        g = int(ground[hz, hx])
+        for dx in (0, 1):
+            for dz in (0, 1):
+                for dy in (1, 2, 3):
+                    blocks[(int(hx) + dx, g + dy, int(hz) + dz)] = P("stripped_spruce_wood", axis="y")
+        blocks[(int(hx), g + 3, int(hz) - 1)] = P("spruce_button", face="wall", facing="north", powered="false")
+        blocks[(int(hx) + 1, g + 3, int(hz) - 1)] = P("spruce_button", face="wall", facing="north", powered="false")
+        blocks[(int(hx), g + 2, int(hz) - 1)] = P("stripped_spruce_log", axis="z")   # the nose
+    print(f"lock island paths: {lamps} lamps, {benches} benches, {rails} railing blocks")
+    return block_stamp(blocks)
+
+
+# ---- Reading Winter Wonderland on Hills Meadow car park (7 Nov 2026 - 3 Jan 2027) -----------------------
+
+WONDERLAND = "w28963401"   # Hills Meadow car park
+
+
+def winter_wonderland(G, P):
+    """Reading's Winter Wonderland on Hills Meadow car park, from the user's photos: the white observation wheel
+    (white gondolas, red-and-white legs, a ring of coloured lights), an ice rink under an open-sided white tent,
+    wooden chalets with lit eaves, a harlequin helter-skelter, the yellow Coaster, the jungle funhouse with its
+    blue spiral slide, striped prize stalls, a Catch-a-Fish stall, the Apres Bar deck, candy canes, lit trees,
+    red carpet down the avenue and the red oval entrance arch with nutcrackers. Snow underfoot, for magic."""
+    from PIL import Image, ImageDraw
+    osm = json.load(open("build/osm.json"))
+    Hh, Ww = G["mask"].shape
+    area = next(a for a in osm["areas"] if a["id"] == WONDERLAND)
+    img = Image.new("L", (Ww, Hh), 0)
+    ImageDraw.Draw(img).polygon([xz(*p) for p in area["rings"][0]], fill=1)
+    site = np.asarray(img).astype(bool) & G["mask"] & (G["building"] == 0)
+    used = np.zeros_like(site)
+    ground = G["ground"]
+    rng = np.random.default_rng(1225)
+    blocks = {}
+    ents = []
+
+    def put(x, y, z, name, **kw):
+        blocks[(int(x), int(y), int(z))] = P(name, **kw)
+
+    zs, xs = np.nonzero(site)
+    mid = np.array([xs.mean(), zs.mean()])
+    _, _, vt = np.linalg.svd(np.stack([xs, zs], 1) - mid, full_matrices=False)
+    major, minor = vt[0], vt[1]
+    span = np.ptp(np.stack([xs, zs], 1) @ major)
+
+    def at(f, off=0.0):
+        """A point f of the way along the site's long axis (-0.5 .. 0.5), off metres across it."""
+        return mid + major * f * span + minor * off
+
+    def place(w, d, pad=2, target=None):
+        """The free spot nearest target (default the middle) that fits a w x d footprint (+ pad all round)."""
+        cx, cz = target if target is not None else mid
+        best = None
+        for z in range(zs.min(), zs.max() - d + 1, 2):
+            for x in range(xs.min(), xs.max() - w + 1, 2):
+                box = np.s_[z - pad:z + d + pad, x - pad:x + w + pad]
+                if site[box].all() and not used[box].any():
+                    dist = (z + d / 2 - cz) ** 2 + (x + w / 2 - cx) ** 2
+                    if best is None or dist < best[0]:
+                        best = (dist, x, z)
+        if best is None:
+            return None
+        _, x, z = best
+        used[z - pad:z + d + pad, x - pad:x + w + pad] = True
+        return x, z
+
+    g0 = int(np.median(ground[site]))
+    zs, xs = np.nonzero(site)
+    # the giant wheel: 32 m across, in an x-y plane, A-frame legs, coloured gondolas, lights on the rim
+    wx, wz = place(36, 10, 3, at(0.32))
+    hx, hz, hy, R = wx + 18, wz + 5, g0 + 22, 16
+    for t in np.linspace(0, 2 * np.pi, 400, endpoint=False):
+        put(round(hx + R * np.cos(t)), round(hy + R * np.sin(t)), hz, "white_concrete")
+    for k in range(16):                                           # spokes
+        t = 2 * np.pi * k / 16
+        for r in np.arange(1, R, 0.5):
+            put(round(hx + r * np.cos(t)), round(hy + r * np.sin(t)), hz, "iron_bars", north="true", south="true",
+                east="false", west="false")
+    colours = ["red", "blue", "yellow", "lime", "orange", "magenta", "light_blue", "white"]
+    for t in np.linspace(0, 2 * np.pi, 400, endpoint=False):    # coloured light ring just inside the rim
+        put(round(hx + (R - 1) * np.cos(t)), round(hy + (R - 1) * np.sin(t)), hz,
+            ["lime", "light_blue", "cyan", "light_blue"][int(t * 4) % 4] + "_stained_glass")
+    for k in range(32):                                           # lamps round the rim
+        t = 2 * np.pi * k / 32 + 0.05
+        put(round(hx + R * np.cos(t)), round(hy + R * np.sin(t)), hz, "sea_lantern")
+    for k in range(20):                                           # white gondolas hang just below the rim
+        t = 2 * np.pi * k / 20
+        gx, gy = round(hx + (R + 1) * np.cos(t)), round(hy + (R + 1) * np.sin(t)) - 2
+        for dz in (-1, 0, 1):
+            put(gx, gy, hz + dz, "white_concrete")
+            put(gx, gy + 1, hz + dz, "glass_pane", north="false", south="false", east="true", west="true")
+            put(gx, gy + 2, hz + dz, "smooth_quartz_slab", type="bottom")
+    for dz in (-4, 4):                                            # A-frame legs to the hub, red and white
+        for side in (-1, 1):
+            for r in np.arange(0, 1, 0.02):
+                y = round(g0 + 1 + (hy - g0 - 1) * r)
+                put(round(hx + side * 9 * (1 - r)), y, hz + round(dz * (1 - r)),
+                    "red_concrete" if (y // 3) % 2 else "white_concrete")
+    put(hx, hy, hz, "sea_lantern")
+    for dz in (-1, 1):
+        put(hx, hy, hz + dz, "light_blue_concrete")
+    # the ice rink: a white marquee 30 x 20 with a real ice floor, rink boards, glazed sides
+    rx, rz = place(30, 20, 3, at(0.0))
+    for z in range(rz, rz + 20):
+        for x in range(rx, rx + 30):
+            for y in range(g0 + 1, int(ground[z, x]) + 1):       # level the floor where the car park rises
+                put(x, y, z, "air")
+            edge = x in (rx, rx + 29) or z in (rz, rz + 19)
+            put(x, g0, z, "packed_ice" if not edge else "smooth_stone")
+            if x in (rx + 1, rx + 28) or z in (rz + 1, rz + 18):
+                if not edge:
+                    put(x, g0, z, "blue_ice")                     # the rink's edge ice
+            ridge = min(z - rz, rz + 19 - z)                      # pitched roof rising to the middle
+            if edge and (x - rx) % 6 == 0 and (z - rz) % 19 == 0 or edge and x in (rx, rx + 29) and (z - rz) % 6 == 0:
+                for y in range(g0 + 1, g0 + 6):                   # tent poles; the sides stay open
+                    put(x, y, z, "white_concrete")
+            put(x, g0 + 6 + min(ridge, 8) // 2, z, "white_wool")
+            if edge:
+                put(x, g0 + 5, z, "white_wool")                   # the valance round the eaves
+        for x in (rx + 2, rx + 27):                               # rink boards
+            put(x, g0 + 1, z, "spruce_fence")
+    for x in range(rx + 2, rx + 28):
+        for z in (rz + 2, rz + 17):
+            put(x, g0 + 1, z, "spruce_fence")
+    for x in range(rx + 3, rx + 27, 4):                           # lights under the roof
+        put(x, g0 + 8, rz + 10, "sea_lantern")
+    sign_at = (rx + 15, g0 + 4, rz + 20)
+    put(rx + 15, g0 + 4, rz + 19, "white_concrete")
+    put(*sign_at, "spruce_wall_sign", facing="south")
+    ents.append(sign_at + (["ICE RINK", "", "skate on real", "ice"],))
+    # a carousel: round platform, striped canopy
+    cx_, cz_ = place(11, 11, 2, at(-0.3))
+    ccx, ccz = cx_ + 5, cz_ + 5
+    for dz in range(-5, 6):
+        for dx in range(-5, 6):
+            r = np.hypot(dx, dz)
+            if r <= 5.4:
+                put(ccx + dx, g0 + 1, ccz + dz, "smooth_quartz_slab", type="bottom")
+                put(ccx + dx, g0 + 6 + (r < 3.5) + (r < 1.5), ccz + dz,
+                    "red_wool" if (int(np.degrees(np.arctan2(dz, dx)) // 30)) % 2 else "white_wool")
+                if 3.5 < r <= 4.5 and (dx + dz) % 3 == 0:
+                    for y in range(g0 + 2, g0 + 6):
+                        put(ccx + dx, y, ccz + dz, "end_rod", facing="up")      # brass poles
+                    put(ccx + dx, g0 + 3, ccz + dz, colours[(dx * 3 + dz) % len(colours)] + "_concrete")
+    for y in range(g0 + 2, g0 + 9):
+        put(ccx, y, ccz, "gold_block")
+    # market chalets: spruce huts with a serving hatch, snow on the roof, a lantern
+    # a helter-skelter: a striped tower with a slide spiralling down it
+    hsx, hsz = place(7, 7, 2, at(-0.15, 18))
+    tx, tz = hsx + 3, hsz + 3
+    tg = int(ground[tz, tx])
+    for y in range(tg + 1, tg + 15):
+        for dz in (-1, 0, 1):
+            for dx in (-1, 0, 1):
+                put(tx + dx, y, tz + dz, "red_concrete" if (y // 2 + dx + dz) % 2 else "yellow_concrete")
+    for k in range(56):                                           # the slide: slabs round the tower, 1 down per 4
+        t = k * np.pi / 8
+        put(round(tx + 2.4 * np.cos(t)), tg + 14 - k // 4, round(tz + 2.4 * np.sin(t)), "yellow_terracotta")
+    for dz in range(-2, 3):
+        for dx in range(-2, 3):
+            put(tx + dx, tg + 15 + (abs(dx) < 2 and abs(dz) < 2), tz + dz, "gold_block" if abs(dx) == 2 or abs(dz) == 2 else "red_wool")
+    put(tx, tg + 17, tz, "red_wool")
+    put(tx, tg + 18, tz, "white_banner", rotation=0)
+    chalets = 0
+    lane = [(f, side * 9) for f in np.linspace(-0.42, 0.42, 16) for side in (-1, 1)]   # an avenue of chalets
+    for k in range(32):
+        spot = place(4, 3, 1, at(*lane[k]))
+        if spot is None:
+            break
+        x, z = spot
+        g0 = int(ground[z:z + 3, x:x + 4].max())                 # each chalet on its own patch of ground
+        for dz in range(3):
+            for dx in range(4):
+                edge = dx in (0, 3) or dz in (0, 2)
+                for y in (g0 + 1, g0 + 2):
+                    if edge:
+                        hatch = dz == 2 and dx in (1, 2) and y == g0 + 2
+                        put(x + dx, y, z + dz, "air" if hatch else "spruce_planks")
+                put(x + dx, g0 + 3, z + dz, "spruce_slab", type="bottom")
+                put(x + dx, g0 + 4, z + dz, "snow", layers=2)
+        put(x + 1, g0 + 1, z + 2, "spruce_slab", type="top")     # counter
+        put(x + 2, g0 + 1, z + 2, "spruce_slab", type="top")
+        for dx in range(4):                                       # fairy lights along the front eave
+            put(x + dx, g0 + 2, z + 3, "end_rod", facing="south") if dx in (0, 3) else None
+        put(x + 1, g0 + 3, z + 3, "lantern", hanging="false")
+        chalets += 1
+    # the Coaster: a yellow track on posts in an oval with a dip, little cars on it
+    spot = place(26, 12, 2, at(0.2, -20))
+    if spot:
+        x0_, z0_ = spot
+        cxo, czo = x0_ + 13, z0_ + 6
+        for k in range(160):
+            t = 2 * np.pi * k / 160
+            X, Z = round(cxo + 12 * np.cos(t)), round(czo + 5 * np.sin(t))
+            h = int(ground[Z, X]) + 3 + round(1.5 * np.sin(2 * t))
+            put(X, h, Z, "yellow_concrete")
+            if k % 8 == 0:
+                for y in range(int(ground[Z, X]) + 1, h):
+                    put(X, y, Z, "yellow_terracotta" if y % 2 else "white_concrete")
+        for k in (0, 1, 2):
+            t = 2 * np.pi * (k + 40) / 160
+            X, Z = round(cxo + 12 * np.cos(t)), round(czo + 5 * np.sin(t))
+            put(X, int(ground[Z, X]) + 4 + round(1.5 * np.sin(2 * t)), Z, "red_concrete")
+        put(x0_, int(ground[z0_, x0_]) + 5, z0_ - 1, "yellow_wall_banner", facing="north")
+    # the jungle funhouse: three storeys of balconies, lit arches, a blue slide spiralling down the side
+    spot = place(12, 7, 2, at(-0.05, 22))
+    if spot:
+        x0_, z0_ = spot
+        fg = int(ground[z0_:z0_ + 7, x0_:x0_ + 12].max())
+        for dz in range(7):
+            for dx in range(9):
+                for y in range(fg + 1, fg + 12):
+                    front = dz == 6
+                    if dx in (0, 8) or dz in (0, 6) or (y - fg) % 4 == 0:
+                        blk = "lime_terracotta" if not front else (
+                            "yellow_concrete" if (y - fg) % 4 == 0 else "glowstone" if dx % 2 else "green_concrete")
+                        put(x0_ + dx, y, z0_ + dz, blk)
+                put(x0_ + dx, fg + 12, z0_ + dz, "orange_terracotta")
+            for dx in range(9):
+                for k in (1, 2, 3):                               # yellow balcony rails
+                    put(x0_ + dx, fg + 4 * k - 3 + 1, z0_ + 7, "yellow_stained_glass_pane") if k > 1 else None
+        for k in range(36):                                       # blue spiral slide down the east side
+            t = k * np.pi / 6
+            put(round(x0_ + 10 + 1.6 * np.cos(t)), fg + 11 - k * 10 // 36, round(z0_ + 3 + 1.6 * np.sin(t)),
+                "light_blue_concrete")
+        put(x0_ + 4, fg + 13, z0_ + 6, "lime_concrete")
+        put(x0_ + 4, fg + 13, z0_ + 7, "spruce_wall_sign", facing="south")
+        ents.append((x0_ + 4, fg + 13, z0_ + 7, ["", "JUNGLE", "WORLD", ""]))
+    # prize stalls under red-and-yellow striped tents, and the round Catch-a-Fish stall
+    for k in range(4):
+        spot = place(5, 5, 1, at(-0.25 + 0.18 * k, -16 if k % 2 else 16))
+        if spot is None:
+            break
+        x0_, z0_ = spot
+        sg = int(ground[z0_ + 2, x0_ + 2])
+        for dz in range(5):
+            for dx in range(5):
+                if dx in (0, 4) and dz in (0, 4):
+                    for y in range(sg + 1, sg + 4):
+                        put(x0_ + dx, y, z0_ + dz, "white_concrete")
+                put(x0_ + dx, sg + 4 + (0 < dx < 4 and 0 < dz < 4) + (dx == 2 and dz == 2), z0_ + dz,
+                    "red_wool" if dx % 2 else "yellow_wool")
+                if dz in (1, 3) and 0 < dx < 4:
+                    put(x0_ + dx, sg + 1, z0_ + dz, "spruce_slab", type="top")    # counters
+                if dz == 2 and 0 < dx < 4:
+                    put(x0_ + dx, sg + 1, z0_ + dz, colours[(dx + k) % len(colours)] + "_wool")   # prizes
+    spot = place(7, 7, 1, at(-0.38, 10))
+    if spot:
+        cfx, cfz = spot[0] + 3, spot[1] + 3
+        fg = int(ground[cfz, cfx])
+        for dz in range(-3, 4):
+            for dx in range(-3, 4):
+                r = np.hypot(dx, dz)
+                if r <= 3.4:
+                    put(cfx + dx, fg + 1, cfz + dz, "light_blue_concrete" if r > 2.4 else "water", **({} if r > 2.4 else {"level": 0}))
+                    put(cfx + dx, fg + 5 + (r < 2), cfz + dz, "yellow_wool" if (dx + dz) % 2 else "white_wool")
+                    if 2.4 < r <= 3.4 and (dx * dz) % 3 == 0 and abs(dx) + abs(dz) > 2:
+                        for y in range(fg + 2, fg + 5):
+                            put(cfx + dx, y, cfz + dz, "end_rod", facing="up")
+        put(cfx, fg + 2, cfz, "yellow_concrete")                 # a duck
+        put(cfx + 1, fg + 2, cfz, "lily_pad")
+    # the Apres Bar: a raised wooden deck behind a picket fence, with a lit roof and tables
+    spot = place(9, 7, 1, at(0.42, 0))
+    if spot:
+        x0_, z0_ = spot
+        bg = int(ground[z0_:z0_ + 7, x0_:x0_ + 9].max())
+        for dz in range(7):
+            for dx in range(9):
+                put(x0_ + dx, bg + 1, z0_ + dz, "spruce_slab", type="bottom")
+                edge = dx in (0, 8) or dz in (0, 6)
+                if edge and not (dz == 6 and dx in (4,)):
+                    put(x0_ + dx, bg + 2, z0_ + dz, "spruce_fence")
+                if 1 < dx < 7 and 1 < dz < 5:
+                    put(x0_ + dx, bg + 6, z0_ + dz, "spruce_planks")
+                if dx in (2, 6) and dz in (2, 4):
+                    for y in range(bg + 2, bg + 6):
+                        put(x0_ + dx, y, z0_ + dz, "spruce_log", axis="y")
+        for dx in range(2, 7):
+            put(x0_ + dx, bg + 5, z0_ + 5, "end_rod", facing="south")
+        for tx_ in (3, 5):
+            put(x0_ + tx_, bg + 2, z0_ + 3, "spruce_fence")
+            put(x0_ + tx_, bg + 3, z0_ + 3, "spruce_pressure_plate")
+        put(x0_ + 4, bg + 6, z0_ + 6, "orange_concrete")
+        put(x0_ + 4, bg + 6, z0_ + 7, "spruce_wall_sign", facing="south")
+        ents.append((x0_ + 4, bg + 6, z0_ + 7, ["", "Apres Bar", "", ""]))
+    # Christmas trees with lights and a star
+    trees = 0
+    for k in range(10):
+        spot = place(5, 5, 1, at(rng.uniform(-0.45, 0.45), rng.uniform(-20, 20)))
+        if spot is None:
+            break
+        x, z = spot[0] + 2, spot[1] + 2
+        g0 = int(ground[z, x])
+        for y in range(g0 + 1, g0 + 11):
+            put(x, y, z, "spruce_log", axis="y")
+        for y in range(g0 + 3, g0 + 11):
+            r = (g0 + 11 - y) / 3.5
+            for dz in range(-2, 3):
+                for dx in range(-2, 3):
+                    if (dx or dz) and np.hypot(dx, dz) <= r + 0.3:
+                        lit = rng.random() < 0.15
+                        put(x + dx, y, z + dz, ("glowstone" if rng.random() < 0.5 else "sea_lantern") if lit else
+                            "spruce_leaves", **({} if lit else {"persistent": "true"}))
+        put(x, g0 + 11, z, "spruce_leaves", persistent="true")
+        put(x, g0 + 12, z, "gold_block")
+        trees += 1
+    # the fair fills only part of the car park (the rest stays parking): a fenced zone round the attractions,
+    # cleared of parked cars, snow underfoot, and festoon lights on posts round its edge
+    from scipy import ndimage
+    zone = ndimage.binary_dilation(used, iterations=5) & site
+    zone = ndimage.binary_fill_holes(ndimage.binary_closing(zone, iterations=6)) & site
+    zs, xs = np.nonzero(zone)
+    rel_ = np.stack([xs, zs], 1) - mid
+    avenue = np.abs(rel_ @ minor) < 2.5                           # red carpet down the middle of the fair
+    for z, x, av in zip(zs, xs, avenue):
+        g = int(ground[z, x])
+        if (int(x), g + 1, int(z)) in blocks:                    # an attraction stands here
+            continue
+        put(x, g + 1, z, "red_carpet" if av else "snow", **({} if av else {"layers": 1}))
+        blocks.setdefault((int(x), g + 2, int(z)), P("air"))     # car roofs from the car-park stamp
+    for f in np.linspace(-0.4, 0.4, 9):                           # candy canes along the avenue
+        for side in (-3.5, 3.5):
+            X, Z = (int(round(v)) for v in at(f, side))
+            if 0 <= Z < Hh and 0 <= X < Ww and zone[Z, X] and not used[Z, X]:
+                g = int(ground[Z, X])
+                for y in range(g + 1, g + 5):
+                    put(X, y, Z, "red_concrete" if y % 2 else "white_concrete")
+                hx_, hz_ = (int(round(v)) for v in at(f, side) + minor * np.sign(side))
+                put(hx_, g + 5, hz_, "red_concrete")
+                put(X, g + 5, Z, "white_concrete")
+    rim = zone & ~ndimage.binary_erosion(zone)
+    for i, (z, x) in enumerate(np.argwhere(rim)):
+        if i % 6 == 0:
+            g = int(ground[z, x])
+            for y in (g + 1, g + 2, g + 3):
+                put(x, y, z, "spruce_fence")
+            put(x, g + 4, z, "lantern", hanging="false")
+    # entrance arch on the side nearest Caversham Bridge road (the site's west corner)
+    zs, xs = np.nonzero(zone)
+    ez, ex = zs[np.argmin(xs)], xs.min() + 1
+    g = int(ground[ez, ex])
+    for dz in (-4, 4):                                            # posts: grey panels with a nutcracker on each
+        for y in range(g + 1, g + 7):
+            put(ex, y, ez + dz, "light_gray_concrete")
+        put(ex - 1, g + 1, ez + dz, "white_concrete")             # nutcracker: white boots,
+        put(ex - 1, g + 2, ez + dz, "blue_concrete")              # blue trousers,
+        put(ex - 1, g + 3, ez + dz, "red_concrete")               # red tunic,
+        put(ex - 1, g + 4, ez + dz, "white_terracotta")           # face,
+        put(ex - 1, g + 5, ez + dz, "black_concrete")             # tall black hat
+    for dz in range(-4, 5):                                       # the top beam, gold-edged
+        put(ex, g + 7, ez + dz, "light_gray_concrete")
+        put(ex, g + 8, ez + dz, "gold_block" if abs(dz) == 4 else "light_gray_concrete")
+    for dz in range(-2, 3):                                       # the red oval sign over the middle
+        for y in range(g + 7, g + 10 + (abs(dz) < 2)):
+            put(ex - 1, y, ez + dz, "red_concrete")
+    put(ex - 1, g + 11, ez, "sea_lantern")                        # the floodlight on top
+    put(ex - 2, g + 8, ez, "spruce_wall_sign", facing="west")
+    ents.append((ex - 2, g + 8, ez, ["WINTER", "WONDERLAND", "Reading", "7 Nov - 3 Jan"]))
+    import lock
+    for x, y, z, lines in ents:
+        x, y, z = int(x), int(y), int(z)
+        G["block_entities"].setdefault((x // 16, z // 16), []).append(lock.sign_entity(x, y, z, lines))
+    print(f"winter wonderland: wheel at {hx},{hz}, rink at {rx},{rz}, entrance at {ex},{g},{ez}, {chalets} chalets, {trees} trees")
+    return block_stamp(blocks)
+
+
+# ---- thank-you signs at the two organisations whose data built the world -----------------------------------
+
+DATA_SIGNS = {"w136162171": ["Environment Agency", "Kings Meadow House", "thanks for the", "LiDAR!"],
+              "w77508260": ["Thames Water", "Clearwater Court", "thanks for", "the river!"]}
+
+
+def data_signs(G, P):
+    """A signpost outside each building, on the open ground nearest its road."""
+    import lock
+    from scipy import ndimage
+    B = json.load(open("build/buildings.json"))
+    idx = {b["id"]: i for i, b in enumerate(B) if b}
+    blocks = {}
+    for oid, lines in DATA_SIGNS.items():
+        if oid not in idx:
+            continue
+        inside = G["building"] == idx[oid]
+        zz, xx = np.nonzero(inside)
+        z0, z1, x0, x1 = zz.min() - 25, zz.max() + 25, xx.min() - 25, xx.max() + 25
+        sub = np.s_[z0:z1, x0:x1]
+        road = np.isin(G["surface"][sub], (3, 4))
+        d_b = ndimage.distance_transform_edt(~inside[sub])
+        d_r = ndimage.distance_transform_edt(~road)
+        ok = (d_b > 2) & (d_b < 4) & (G["building"][sub] == 0) & (G["water"][sub] == -999) & ~road
+        if not ok.any():
+            continue
+        z, x = np.unravel_index(np.argmin(np.where(ok, d_r, 1e9)), d_r.shape)
+        X, Z = int(x + x0), int(z + z0)
+        # face the sign toward the road: the direction of the nearest road cell, as a 16-step rotation
+        rz, rx = np.unravel_index(np.argmin(np.where(road, np.hypot(np.arange(road.shape[0])[:, None] - z,
+                                                                       np.arange(road.shape[1])[None] - x), 1e9)),
+                                  road.shape)
+        rot = int(round(np.degrees(np.arctan2(-(rx - x), rz - z)) / 22.5)) % 16   # 0 = facing south (+z)
+        g = int(G["ground"][Z, X])
+        blocks[(X, g + 1, Z)] = P("oak_sign", rotation=rot)
+        G["block_entities"].setdefault((X // 16, Z // 16), []).append(lock.sign_entity(X, g + 1, Z, lines))
+        print(f"data sign: {lines[0]} at {X},{g + 1},{Z}")
     return block_stamp(blocks)

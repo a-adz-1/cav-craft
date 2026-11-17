@@ -115,6 +115,16 @@ LANDMARKS = {
     # Coral, Kidmore End Road corner: red brick, dark tile mansard with dormers, blue fascia
     "w160047130": {"name": "Coral (Emmer Green)", "walls": "red_brick", "roof": "dark_tile", "dress": None,
                    "windows": "house", "shopfront": "blue_concrete", "roof_kind": "hip"},
+    # Kings Meadow House, King's Meadow Road (Environment Agency, whose LiDAR shaped this world): five storeys of
+    # red brick, flat roof, rows of arched windows, a tall glazed bay in the middle of the front
+    "w136162171": {"name": "Environment Agency (Kings Meadow House)", "walls": "red_brick", "roof": "flat",
+                   "dress": None, "windows": "tall", "band": 3},
+    # Reading Bridge House: the tall white concrete office tower beside it, ribbon windows
+    "w77508239": {"name": "Reading Bridge House", "walls": "white_render", "roof": "flat", "dress": None,
+                  "windows": "tall", "shopfront": "white_concrete"},
+    # Clearwater Court, Vastern Road (Thames Water): pale stone, columns, blue glass, five storeys
+    "w77508260": {"name": "Thames Water (Clearwater Court)", "walls": "sandstone", "roof": "flat",
+                  "dress": "smooth_quartz", "windows": "tall", "band": 3},
     # 203-217a Peppard Road: Georgian red-brick cottage terrace, slate roof, tall chimneys
     "w163753434": {"name": "Peppard Road cottages", "walls": "red_brick", "roof": "slate", "dress": None,
                    "windows": "house", "roof_kind": "gable"},

@@ -213,3 +213,15 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
   - Roofs by the river: no spikes, and the garage is single-storey.
   - The Emmer Green parade looks like its photo, with the white canopy over the shops.
   - The lock works both ways. A LOCK_TEST=down build drains the chamber with the upper gate shut and the lower gate open. A downup build refills it with the lower gate shut and the upper gate open.
+
+### 2026-11-17: the weir, the island paths, Winter Wonderland, Thames Water and the EA (user's requests)
+- **Caversham Weir** (features.weirs, from Commons photos): concrete sluice bays between stone-brick piers every 5 m, a 4-wide raised footbridge with iron railings both sides, tall white gate frames with a top beam on the upstream side, the white control hut on the frames over the middle, and white water below (a band of bubble columns over soul sand, which churns at the surface).
+- **Lock island, weir and View Island paths** (features.island_paths): 97 black Victorian lamp posts, 9 benches facing the water, 417 railing blocks along the water's edge, and one of View Island's chainsaw-carved wooden heads in the trees.
+- **Reading Winter Wonderland** on Hills Meadow car park (features.winter_wonderland; it runs 7 Nov 2026 to 3 Jan 2027). Built from the user's photos:
+  - The white observation wheel, 32 m across, with 20 white gondolas, a coloured light ring and red-and-white legs.
+  - An ice rink of packed and blue ice under an open-sided white tent.
+  - 32 chalets with lit eaves, the harlequin helter-skelter, the yellow Coaster, the jungle funhouse with its blue spiral slide, striped prize stalls, a Catch-a-Fish pool, the Apres Bar deck, candy canes and lit Christmas trees.
+  - Red carpet down the avenue, and the red oval entrance arch with a nutcracker on each post.
+  - Snow underfoot "for magic" (the user's call). The fair is fenced; the rest of the car park keeps its bays and cars.
+- **South bank extension** (layers.py: mask x 3690-3945, z 4150-4312): Thames Water's Clearwater Court, the Environment Agency's Kings Meadow House and Reading Bridge House as landmarks from Mapillary photos, King's Meadow Road from the lock to them, and a thank-you signpost outside each (features.data_signs).
+- Checked in-game (headless): the weir from downstream and from its deck (bubbles churning), Winter Wonderland from above and through the arch, the EA building, and Clearwater Court from the river.
