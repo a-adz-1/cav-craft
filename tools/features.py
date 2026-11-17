@@ -2008,12 +2008,12 @@ def barges(G, P):
             if Z == b_ + 1 and i % 4 == 0:
                 blocks[(x0_ + i, wl_ - 1, Z)] = P("spruce_log", axis="y")
     if True:
-        wl, cell = hull(P, blocks, G, tea, L_tea, 5, "green_terracotta", "birch_planks", "green_terracotta",
+        wl, cell = hull(P, blocks, G, tea, L_tea, 5, "dark_prismarine", "birch_planks", "dark_prismarine",
                         cabin=(3, 2), side_door=8)
         for i in range(3, L_tea - 2):                             # dark green roof, blue curtains by the windows
             for j in range(5):
                 X, Z = cell(i, j)
-                blocks[(X, wl + 3, Z)] = P("green_terracotta")
+                blocks[(X, wl + 3, Z)] = P("dark_prismarine")    # bottle green, as in the photos
             if (i - 3) % 3 == 1:
                 for j in (1, 3):
                     X, Z = cell(i + 1, j)
@@ -2050,6 +2050,12 @@ def barges(G, P):
             blocks[(X, wl + 2, Z)] = blocks.get((X, wl + 2, Z), P("white_carpet"))
             lX, lZ = cell(i + 1, 1)
             blocks[(lX, wl + 2, lZ)] = P("lantern", hanging="true") if False else P("light", level=13)
+        # a black rubbing strake round the hull at the water line, and dark window frames (spruce trapdoor shutters)
+        for i in range(L_tea - 1):
+            for j in (-1, 5):
+                X, Z = cell(i, j)
+                if G["water"][Z, X] > -999 and (X, wl, Z) not in blocks:
+                    blocks[(X, wl, Z)] = P("dark_oak_slab", type="bottom")
         # gangplank from the bank to the side door
         for k in (1, 2):
             gX, gZ = cell(8, -k)
