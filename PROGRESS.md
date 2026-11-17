@@ -138,3 +138,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
   two storeys, tiled cap) beside the front door on ~1,000 Victorian and 1930s houses. mc_view waits for the
   previous game to close.
 - 2026-11-17 Night check (mc_view takes a daytime arg): lamps every 25 m alternating sides now light the streets. Tried lit house windows (light blocks + stained glass): not visible at block scale, dropped.
+- 2026-11-17 Waterside: seagrass in the shallows, lily pads on lakes and ponds, long grass along banks; Redgrave Pinsent Rowing Lake gets 7 buoy lines (13.5 m lanes, buoys every 10 m, orange outer lines); white touchlines + halfway line on 24 football/rugby pitches.

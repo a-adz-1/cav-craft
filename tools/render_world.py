@@ -26,7 +26,7 @@ COL = {"grass_block": (110, 160, 70), "water": (60, 90, 200), "gray_concrete": (
        "stone_bricks": (120, 120, 120), "spruce_planks": (110, 80, 50), "dark_oak_planks": (65, 45, 25),
        "oak_leaves": (60, 120, 40), "birch_leaves": (90, 130, 60), "spruce_leaves": (40, 80, 50),
        "oak_log": (100, 80, 50), "bedrock": (20, 20, 20), "birch_log": (200, 200, 190),
-       "dark_oak_leaves": (40, 90, 30), "dark_oak_log": (60, 45, 30), "dandelion": (230, 210, 40), "poppy": (200, 40, 30)}
+       "dark_oak_leaves": (40, 90, 30), "dark_oak_log": (60, 45, 30), "white_wool": (255, 255, 255), "orange_wool": (255, 130, 0), "seagrass": (40, 120, 60), "lily_pad": (40, 140, 40), "tall_grass": (90, 140, 60), "dandelion": (230, 210, 40), "poppy": (200, 40, 30)}
 
 
 def main():

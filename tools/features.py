@@ -37,6 +37,7 @@ def setup(G, P, lidar):
     G["stamps"].append(structures(G, P, lidar))
     moorings(G, P)
     G["stamps"].append(furniture(G, P))
+    G["stamps"].insert(0, waterside(G, P))   # first, so swans, boats-in-lanes and bridges win
     G["trees"] = find_trees(G, lidar["vom"])
     print("trees:", len(G["trees"]))
     G["stamps"].append(tree_stamp(G, P))
@@ -575,4 +576,70 @@ def furniture(G, P):
         if kind:
             n[kind] = n.get(kind, 0) + 1
     print("street furniture:", n)
+    return block_stamp(blocks)
+
+
+# ---- waterside life, the rowing lake's race lanes, pitch markings ----------------------------------
+
+def waterside(G, P):
+    from scipy import ndimage
+    rng = np.random.default_rng(21)
+    w, g = G["water"], G["ground"]
+    water = w > -999
+    land = G["mask"] & ~water
+    shore = water & ndimage.binary_dilation(land)
+    blocks = {}
+    # reeds and grass along the edge, lily pads on still water (lakes and ponds, not the Thames)
+    river = (w == 35) | (w == 36)
+    zs, xs = np.nonzero(shore)
+    for z, x in zip(zs, xs):
+        r = rng.random()
+        depth = w[z, x] - g[z, x]
+        if r < 0.25 and depth <= 2:
+            blocks[(x, int(g[z, x]) + 1, z)] = P("seagrass")
+        elif r < 0.30 and not river[z, x]:
+            blocks[(x, int(w[z, x]) + 1, z)] = P("lily_pad")
+    edge = land & ndimage.binary_dilation(water)
+    zs, xs = np.nonzero(edge & (G["surface"] == 1))
+    for z, x in zip(zs, xs):
+        if rng.random() < 0.35:
+            y = int(g[z, x]) + 1
+            blocks[(x, y, z)] = P("tall_grass", half="lower")
+            blocks[(x, y + 1, z)] = P("tall_grass", half="upper")
+    # Redgrave Pinsent Rowing Lake: 6 buoyed lanes 13.5 m apart down the long axis, white buoys every 10 m
+    osm = json.load(open("build/osm.json"))
+    lake = next(a for a in osm["areas"] if a["tags"].get("name") == "Redgrave Pinsent Rowing Lake")
+    pts = np.array([xz(*p) for p in lake["rings"][0]], float)
+    c = pts.mean(0)
+    u, s_, vt = np.linalg.svd(pts - c, full_matrices=False)
+    major, minor = vt[0], vt[1]
+    along = (pts - c) @ major
+    lvl = None
+    n = 0
+    for lane in range(7):
+        off = (lane - 3) * 13.5
+        for t in np.arange(along.min() + 60, along.max() - 60, 10):
+            x, z = (int(round(v)) for v in c + major * t + minor * off)
+            if 0 <= z < w.shape[0] and 0 <= x < w.shape[1] and w[z, x] > -999:
+                blocks[(x, int(w[z, x]), z)] = P("white_wool") if lane % 6 else P("orange_wool")
+                n += 1
+    # pitch markings: a white line round each football/rugby pitch and across the middle
+    lines = 0
+    for a in osm["areas"]:
+        t = a["tags"]
+        if t.get("leisure") != "pitch" or t.get("sport") not in ("soccer", "football", "rugby_union", "rugby"):
+            continue
+        pts = np.array([xz(*p) for p in a["rings"][0]], float)
+        seg = list(zip(pts[:-1], pts[1:]))
+        c2 = pts.mean(0)
+        u2, s2, vt2 = np.linalg.svd(pts - c2, full_matrices=False)
+        half = np.abs((pts - c2) @ vt2[1]).max()
+        seg.append((c2 - vt2[1] * half, c2 + vt2[1] * half))
+        for p0, p1 in seg:
+            for k in np.linspace(0, 1, int(np.hypot(*(p1 - p0))) + 1):
+                x, z = (int(round(v)) for v in p0 + (p1 - p0) * k)
+                if 0 <= z < w.shape[0] and 0 <= x < w.shape[1] and G["mask"][z, x] and G["surface"][z, x] in (1, 13):
+                    blocks[(x, int(g[z, x]), z)] = P("white_concrete")
+                    lines += 1
+    print(f"waterside plants + lanes: {len(blocks)} blocks, {n} lane buoys, {lines} pitch-line blocks")
     return block_stamp(blocks)
