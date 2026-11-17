@@ -118,6 +118,29 @@ def setup(G, P, levels):
             for k in range(5):
                 blocks[(gx + d * k, y, zz)] = P("black_concrete") if k == 4 else P("white_concrete")
             blocks[(gx, y + 1, zz)] = P("white_concrete")
+    # lock keeper's hut (from photos): dark timber, white windows, hipped tile roof, red brick plinth, by the
+    # upper gate on the south side; and black bollards along both walls
+    hx, hz = X0 + 2, Z1 + 9
+    for dx in range(4):
+        for dz in range(4):
+            edge = dx in (0, 3) or dz in (0, 3)
+            blocks[(hx + dx, y, hz + dz)] = P("bricks")
+            for dy in (1, 2, 3):
+                blk = P("dark_oak_planks") if edge else P("air")
+                if edge and dy == 2 and (dx in (1, 2) or dz in (1, 2)):
+                    blk = P("white_stained_glass")
+                blocks[(hx + dx, y + dy, hz + dz)] = blk
+    blocks[(hx + 1, y + 1, hz)] = P("dark_oak_door", facing="north", half="lower", hinge="left", open="false")
+    blocks[(hx + 1, y + 2, hz)] = P("dark_oak_door", facing="north", half="upper", hinge="left", open="false")
+    for dx in range(-1, 5):
+        for dz in range(-1, 5):
+            ring = min(dx + 1, dz + 1, 4 - dx, 4 - dz)
+            blocks[(hx + dx, y + 4 + (ring > 0) + (ring > 1), hz + dz)] = P("mud_bricks")
+    for x in range(X0, X1 + 1, 6):
+        for zz in (Z0 - 2, Z1 + 2):
+            blocks[(x, y, zz)] = P("polished_blackstone_wall", up="true", north="none", south="none", east="none",
+                                   west="none")
+    blocks[(hx + 4, y + 1, hz - 1)] = P("blue_concrete")    # "LOCK" sign board
     gate = {(GATE_DOWN, yy, zz): planks for yy in range(bed + 1, top + 1) for zz in range(Z0, Z1 + 1)}
     blocks.update(gate)
 

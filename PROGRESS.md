@@ -145,3 +145,4 @@ Not verified: pressing the lock buttons by hand (input can't be sent to the game
   (Down fires at 2 s, Up at 16 s), checked from above: Down ran (upper gate shut, chamber at the lower level,
   lower gate open), then Up ran (lower gate shut, chamber full, upper gate open). BOTH directions verified.
   Front-wall/fence blocks from the house builder were landing inside the lock pool; now cleared from the site.
+- 2026-11-17 Lock keeper's hut from Commons photos (dark timber, white windows, hipped mud-brick-tile roof, brick plinth) beside the upper gate; black bollards every 6 m along both lock walls.
