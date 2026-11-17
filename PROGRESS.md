@@ -199,3 +199,7 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 
 ### 2026-11-17: garages
 - Garages and lock-ups no longer get house windows. A garage gets a 2-wide white up-and-over door on the wall nearest the road; a block of lock-ups (`garages`) gets a row of doors with a brick pier between each. Read back from the region files: the Harley Road lock-ups (w137356891) have 9 door cells along the road side.
+
+### 2026-11-17: shared roofs on semis and terraces
+- houses.shared_roofs(): every house is fitted first. Attached houses whose floors are within 1 m are grouped (terraces stepping down a hill keep their steps), and each group gets its median eave and ridge height and its commonest roof kind, so a pair of semis no longer comes out a block or two apart. 3,594 houses in 1,162 groups.
+- Read back from the world files over 1 km x 1.5 km of central Caversham: level attached pairs whose roof tops differ by 2+ blocks went from 15 to 3, and by 1 block from 84 to 34 (most of what's left is chimneys).

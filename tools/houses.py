@@ -101,6 +101,50 @@ def fit_roof(rel, inside, edge, attached=None, force=None, ridge_pct=95, low=Fal
     return best[1], eave, ridge, best[2]
 
 
+def shared_roofs(buildings, bid, crop):
+    """Attached houses (semis, terraces) on the same level share one roof: the group's median eave and ridge
+    height above datum and its commonest roof kind. Fitted one by one, the halves of a pair of semis come out
+    a block or two apart from noise. Returns {building index: (kind, eave y, ridge y)} (y in metres AOD)."""
+    fits = {}
+    for i in range(1, len(buildings)):
+        b = buildings[i]
+        if b is None or b["tags"].get("building", "yes") not in HOUSE_KINDS or landmarks.LANDMARKS.get(b["id"]):
+            continue
+        c_ = crop(i)
+        if c_ is None or c_[4].sum() > 400:
+            continue
+        inside, fl, rel, edge, attached = c_[4:]
+        kind, eave, ridge, _ = fit_roof(rel, inside, edge, attached)
+        fits[i] = (kind, fl + eave, fl + ridge, fl)
+    parent = {i: i for i in fits}
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+    for a, b in ((bid[:, :-1], bid[:, 1:]), (bid[:-1], bid[1:])):
+        m = (a != b) & (a > 0) & (b > 0)
+        for p, q in set(zip(a[m].tolist(), b[m].tolist())):
+            if p in fits and q in fits and abs(fits[p][3] - fits[q][3]) <= 1:   # a terrace stepping down a hill keeps its steps
+                parent[find(p)] = find(q)
+    groups = {}
+    for i in fits:
+        groups.setdefault(find(i), []).append(i)
+    out = {}
+    for members in groups.values():
+        if len(members) < 2:
+            continue
+        kinds = [fits[i][0] for i in members]
+        kind = max(set(kinds), key=kinds.count)
+        eave = float(np.median([fits[i][1] for i in members]))
+        ridge = float(np.median([fits[i][2] for i in members]))
+        for i in members:
+            out[i] = (kind, eave, ridge)
+    print(f"shared roofs: {len(out)} houses in {sum(len(m) > 1 for m in groups.values())} attached groups")
+    return out
+
+
 BAY_FAMILIES = {"grey_terrace": 2, "riverside_villa": 2, "victorian_terrace": 2, "victorian_villa": 2, "interwar_semi": 2, "interwar_detached": 2,
                 "postwar_council": 0}
 
@@ -180,30 +224,38 @@ def prepare(G, P, layers, lidar, buildings):
             xx_, zz_ = int(nd["pt"][0] - _E0), int(_N1 - nd["pt"][1])
             if 0 <= zz_ < H and 0 <= xx_ < W and bid[zz_, xx_]:
                 shop_names.setdefault(buildings[bid[zz_, xx_]]["id"], tt["name"])
-    for i in range(1, n):
+    def crop(i):
         sl = objs[i - 1] if i - 1 < len(objs) else None
         if sl is None or buildings[i] is None:
-            continue
-        b = buildings[i]
-        t = b["tags"]
-        kind = t.get("building", "yes")
-        # crop with a 1-cell margin
+            return None
+        # crop with a margin
         z0, z1 = max(0, sl[0].start - 12), min(H, sl[0].stop + 12)
         x0, x1 = max(0, sl[1].start - 12), min(W, sl[1].stop + 12)
         inside = bid[z0:z1, x0:x1] == i
-        if inside.sum() < 4 or landmarks.LANDMARKS.get(b["id"], {}).get("skip"):
-            continue
-        g = ground[z0:z1, x0:x1]
-        fl = int(round(g[inside].mean()))
-        rel = dsm[z0:z1, x0:x1] - fl
+        if inside.sum() < 4 or landmarks.LANDMARKS.get(buildings[i]["id"], {}).get("skip"):
+            return None
+        fl = int(round(ground[z0:z1, x0:x1][inside].mean()))
         edge = inside & ~ndimage.binary_erosion(inside)
         # attached neighbours (semis, terraces) count as roof, not as outside: the roof runs over the party wall
-        attached = (bid[z0:z1, x0:x1] > 0)
+        return z0, z1, x0, x1, inside, fl, dsm[z0:z1, x0:x1] - fl, edge, bid[z0:z1, x0:x1] > 0
+
+    shared = shared_roofs(buildings, bid, crop)
+    for i in range(1, n):
+        c_ = crop(i)
+        if c_ is None:
+            continue
+        z0, z1, x0, x1, inside, fl, rel, edge, attached = c_
+        b = buildings[i]
+        t = b["tags"]
+        kind = t.get("building", "yes")
         lm = landmarks.LANDMARKS.get(b["id"])
         if lm and lm["roof"] != "flat":
             # landmarks: gabled; a tower's height mustn't set the nave's ridge
             rkind, eave, ridge, d = fit_roof(rel, inside, edge, attached, force=lm.get("roof_kind", "gable"),
                                              ridge_pct=70 if "tower" in lm else 95)
+        elif i in shared:
+            rkind, eave, ridge = shared[i][0], shared[i][1] - fl, shared[i][2] - fl
+            d = fit_roof(rel, inside, edge, attached, force=rkind)[3] if rkind != "flat" else np.zeros_like(rel)
         else:
             rkind, eave, ridge, d = fit_roof(rel, inside, edge, attached,
                                              low=kind in ("garage", "garages", "shed", "hut", "carport", "service"))
