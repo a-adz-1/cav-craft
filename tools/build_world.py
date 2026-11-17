@@ -96,14 +96,9 @@ def make_chunk(cx, cz):
     sub = (Y >= g - 3) & (Y < g)
     b[:] = np.where(sub, SUB_LUT[s][None], b)
     b[:] = np.where(Y == g, TOP_LUT[s][None], b)
-    # road steps: where a road cell sits a block below a road neighbour, a half slab on it makes a ramp
-    rd = np.isin(s, ROAD_IDX)
-    up = np.zeros((16, 16), bool)
-    for ax, sh in ((0, 1), (0, -1), (1, 1), (1, -1)):
-        nb_g = np.roll(g, sh, ax)
-        nb_r = np.roll(rd, sh, ax)
-        up |= rd & nb_r & (nb_g == g + 1)
-    zz, xx = np.nonzero(up)
+    # road steps: a half slab on each road cell that sits a block below a road neighbour makes a ramp
+    # (worked out for the whole world in ramp_cells, so steps across chunk borders get one too)
+    zz, xx = np.nonzero(get("ramp", False))
     yy = g[zz, xx] + 1 - Y_MIN
     ok = (yy >= 0) & (yy < H)
     slab = np.where(s[zz, xx] == SURFACE.index("footway"), FOOT_SLAB, ROAD_SLAB)
@@ -146,6 +141,17 @@ def make_chunk(cx, cz):
     b[:] = np.where(edge_cells[None] & (b == WATER), GLASS, b)
     b[:, ~m] = AIR
     return b
+
+
+def ramp_cells(ground, surface):
+    """Road cells (road, minor road, pavement) with a road neighbour exactly one block higher."""
+    g = ground.astype(np.int32)
+    rd = np.isin(surface, ROAD_IDX)
+    up = np.zeros_like(rd)
+    for a, b in ((np.s_[:, :-1], np.s_[:, 1:]), (np.s_[:, 1:], np.s_[:, :-1]),
+                 (np.s_[:-1, :], np.s_[1:, :]), (np.s_[1:, :], np.s_[:-1, :])):
+        up[a] |= rd[a] & rd[b] & (g[b] == g[a] + 1)
+    return up
 
 
 def build_region(args):
@@ -191,6 +197,7 @@ def main():
     import features
     features.setup(G, P, lidar)
     G["stamps"].insert(0, houses.stamp_factory(G, P))
+    G["ramp"] = ramp_cells(G["ground"], G["surface"])
     print(f"prepared in {time.time() - t0:.0f}s, palette {len(P.entries)}")
 
     if os.path.exists(out):

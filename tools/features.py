@@ -31,6 +31,10 @@ def setup(G, P, lidar):
     G["spawn"] = (x, int(G["ground"][z, x]) + 1, z)
 
     bridge_setup(G, lidar)
+    # bridge_setup raises some road: grade the roads again so those lifts ease in, before anything stands on them
+    from grade import road_grade
+    rd = np.isin(G["surface"], (3, 4, 5)) & G["mask"] & (G["water"] == -999)
+    G["ground"][:] = np.floor(road_grade(G["ground"].astype(np.float32), rd, 0.5) + 0.5)
     import lock
     lock.setup(G, P, json.load(open("build/levels.json")))
     G["stamps"].append(beach(G, P))
@@ -163,7 +167,10 @@ def bridge_setup(G, lidar):
     kind = np.zeros((Hh, Ww), np.int8)
     centre = np.zeros((Hh, Ww), bool)
     arch = np.full((Hh, Ww), -999, np.int32)   # underside of the arch (fill from here up to the deck)
-    for br in json.load(open("build/bridges.json")):
+    FOOT = ("footway", "cycleway", "path", "pedestrian", "steps")
+    # road bridges first: a footbridge mapped alongside a road bridge (its pavement) takes the road's deck
+    # rather than sitting beside it at its own height
+    for br in sorted(json.load(open("build/bridges.json")), key=lambda b: b["tags"].get("highway") in FOOT):
         t = br["tags"]
         hw = t.get("highway")
         if hw not in BRIDGE_WIDTH:
@@ -233,6 +240,15 @@ def bridge_setup(G, lidar):
                 for dx in range(-int(r) - 1, int(r) + 2):
                     if dx * dx + dz * dz <= r * r:
                         X, Z = int(round(x + dx)), int(round(z + dz))
+                        if hw in FOOT and 0 <= X < Ww and 0 <= Z < Hh:
+                            near = np.s_[max(0, Z - 3):Z + 4, max(0, X - 3):X + 4]
+                            if (kind[near] == 1).any():          # a road's pavement: flush with the road deck
+                                rz_, rx_ = np.nonzero(kind[near] == 1)
+                                j_ = np.argmin((rz_ + max(0, Z - 3) - Z) ** 2 + (rx_ + max(0, X - 3) - X) ** 2)
+                                rd_ = deck[near][rz_[j_], rx_[j_]]       # the nearest road cell's deck
+                                if kind[Z, X] != 1:
+                                    deck[Z, X], arch[Z, X], kind[Z, X] = rd_, so, 2
+                                continue
                         if 0 <= X < Ww and 0 <= Z < Hh and y > deck[Z, X]:
                             deck[Z, X] = y
                             arch[Z, X] = so
@@ -1807,10 +1823,14 @@ def winter_wonderland(G, P):
     zs, xs = np.nonzero(zone)
     rel_ = np.stack([xs, zs], 1) - mid
     avenue = np.abs(rel_ @ minor) < 2.5                           # red carpet down the middle of the fair
+    road_s = np.isin(G["surface"], (3, 4, 5))
     for z, x, av in zip(zs, xs, avenue):
         g = int(ground[z, x])
         if (int(x), g + 1, int(z)) in blocks:                    # an attraction stands here
             continue
+        if road_s[z, x] and any(road_s[z + dz, x + dx] and ground[z + dz, x + dx] == g + 1
+                                for dz, dx in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+            continue                                              # a road ramp slab stays (snow can't sit on it)
         put(x, g + 1, z, "red_carpet" if av else "snow", **({} if av else {"layers": 1}))
         blocks.setdefault((int(x), g + 2, int(z)), P("air"))     # car roofs from the car-park stamp
     for f in np.linspace(-0.4, 0.4, 9):                           # candy canes along the avenue

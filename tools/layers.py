@@ -19,6 +19,7 @@ from PIL import Image, ImageDraw
 from scipy import ndimage
 
 from box import E0, N0, E1, N1
+from grade import road_grade
 
 from surfaces import SURFACE
 S = {n: i for i, n in enumerate(SURFACE)}
@@ -242,7 +243,11 @@ rw = road_cells.astype(np.float32)
 num = ndimage.uniform_filter(ground_f * rw, size=9)
 den = ndimage.uniform_filter(rw, size=9)
 ground_f = np.where(road_cells & (den > 0), num / np.maximum(den, 1e-6), ground_f)
-ground = np.round(ground_f).astype(np.int16)
+# no road steeper than half a block per metre (real roads are far gentler; LiDAR noise and embankment edges
+# aren't): the midpoint of the highest and lowest surfaces that meet that limit everywhere along the roads,
+# so every climb comes out as slab, block, slab, block and never two full steps in a row
+ground_f = road_grade(ground_f, road_cells, 0.5)
+ground = np.floor(ground_f + 0.5).astype(np.int16)
 dist = ndimage.distance_transform_edt(water)
 bed_depth = np.minimum(np.where(thames, 4, 6), 1 + dist / 3).astype(np.int16)
 ground = np.where(water, np.minimum(ground, level - bed_depth), ground)

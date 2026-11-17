@@ -270,3 +270,12 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 - Checked by walking every road bridge's centre line in the written world: Caversham Bridge is smooth end to end. Reading Bridge has one 1-block step at the zebra on its north end and a 2-block step where it meets a footbridge deck.
 - Builds now run at nice 10 with 4 cores left free, after the PC hung while the user played. mc_view refuses to start while the user's own Prism or Minecraft is open: it would close their game.
 - Server copy swapped to the smoothed build: `mv unload Cavcraft --no-save`, region/ and entities/ replaced from the release, and the server's own level.dat kept (adventure, peaceful, game rules), then `mv load Cavcraft`. Log clean; temp files removed.
+
+### 2026-11-17: road review (user: "never drop down by more than 1 block at a time, as smooth as possible like a real road")
+- New tools/road_check.py reads the built world and finds the walking height of every road and pavement cell, with slabs as half blocks. Cells with something standing on them (buildings, cars, lamps, bridge structure) are skipped. It reports every neighbouring pair by step size and exits 1 if any step is over the limit (ROAD_LIMIT, default 1).
+- What it found:
+  - 128 places with a 1.5-block jump. The road ramp slabs were worked out per chunk with wrap-around, so steps across chunk borders got no slab. The fix is build_world.ramp_cells, computed once for the whole world, with a self-check.
+  - Full 1-block steps where a road climbed on two cells in a row. tools/grade.py now limits every road to half a block per metre: the midpoint of the upper and lower envelopes, then rounded, which guarantees no two full steps in a row. layers.py grades the roads (2,705 cells moved, max 0.9 m), and features grades them again after bridges raise some road, before anything is placed on it.
+  - Winter Wonderland's snow had replaced ramp slabs there; snow now stays off them.
+  - Reading Bridge: a footbridge mapped beside the road deck sat 2 above it. Road bridges are now built first, and a pavement bridge beside a road takes the nearest road cell's deck height.
+- Result: across 2.1 M neighbouring road/pavement pairs, every step is 0 or half a block (0 drops over 1, 0 full-block steps). Both road bridges are smooth end to end. Caversham Bridge's separately mapped pavements meet the bank with at most a 1-block step.
