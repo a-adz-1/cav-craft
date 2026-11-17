@@ -231,7 +231,15 @@ level[gap & ~lock_poly] = grown[gap & ~lock_poly]
 G_LEVELS = {"up": UP, "down": DOWN}
 surface[water] = S["water"]
 
-ground = np.where(np.isfinite(dtm), np.round(dtm), 0).astype(np.int16)
+ground_f = np.where(np.isfinite(dtm), dtm, 0).astype(np.float32)
+# roads: level across their width (each cell takes the mean height of the road within 4 m), so a road on a
+# hillside steps up along its length only, not side to side
+road_cells = np.isin(surface, (S["road"], S["minor_road"], S["footway"]))
+rw = road_cells.astype(np.float32)
+num = ndimage.uniform_filter(ground_f * rw, size=9)
+den = ndimage.uniform_filter(rw, size=9)
+ground_f = np.where(road_cells & (den > 0), num / np.maximum(den, 1e-6), ground_f)
+ground = np.round(ground_f).astype(np.int16)
 dist = ndimage.distance_transform_edt(water)
 bed_depth = np.minimum(np.where(thames, 4, 6), 1 + dist / 3).astype(np.int16)
 ground = np.where(water, np.minimum(ground, level - bed_depth), ground)
