@@ -25,10 +25,16 @@ LANDMARKS = {
     "w139051670": {"name": "Caversham Baptist Church", "walls": "red_brick", "roof": "slate",
                    "dress": "smooth_sandstone", "windows": "lancet", "band": 4,
                    "tower": {"size": 4, "top": "pyramid", "walls": "bricks", "dress": "smooth_sandstone"}},
-    # Caversham Heights Methodist Church, Highmoor Road: red brick, clay tile, corner tower with a tiled spire
-    "w139821746": {"name": "Caversham Heights Methodist Church", "walls": "red_brick", "roof": "red_tile",
-                   "dress": "smooth_sandstone", "windows": "lancet",
-                   "tower": {"size": 3, "top": "spire", "walls": "bricks", "dress": "bricks", "extra": 8}},
+    # Caversham Heights Methodist Church, Highmoor Road (street photos): red brick with stone bands, a tall
+    # dark plain-tile roof, a square corner tower with a louvred belfry and a tiled spire
+    "w139821746": {"name": "Caversham Heights Methodist Church", "walls": "red_brick", "roof": "dark_tile",
+                   "dress": "smooth_sandstone", "windows": "lancet", "band": 5,
+                   "tower": {"size": 5, "top": "spire", "walls": "bricks", "dress": "smooth_sandstone", "extra": -6}},
+    # St Andrew's, Albert Road (1910; Commons photo): brown rubble stone with pale stone dressings, a big
+    # traceried gable window, a small bellcote on the gable, grey roof
+    "w141175173": {"name": "St Andrew's Church", "walls": "buff_brick", "roof": "slate", "dress": "smooth_sandstone",
+                   "windows": "lancet",
+                   "tower": {"size": 2, "top": "pyramid", "walls": "mud_bricks", "dress": "smooth_sandstone", "extra": 1}},
     # St John the Baptist, Gosbrook Road (behind railings): red and grey brick
     "w138758862": {"name": "St John the Baptist", "walls": "red_brick", "roof": "slate", "dress": "stone_bricks",
                    "windows": "lancet"},

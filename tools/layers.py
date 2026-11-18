@@ -20,6 +20,7 @@ from scipy import ndimage
 
 from box import E0, N0, E1, N1
 from grade import road_grade
+import roads
 
 from surfaces import SURFACE
 S = {n: i for i, n in enumerate(SURFACE)}
@@ -145,8 +146,7 @@ for a in groups["sports"]:
 ROAD_WIDTH = {"motorway": 12, "trunk": 10, "primary": 9, "secondary": 8, "tertiary": 7,
               "unclassified": 6, "residential": 6, "living_street": 5, "service": 4,
               "motorway_link": 6, "trunk_link": 6, "primary_link": 6, "secondary_link": 6, "tertiary_link": 6}
-# the drive from Upper Woodcote Road down to The Heights Primary School: a proper two-way road with pavements
-SCHOOL_ROADS = {"w37000897": 6}
+SCHOOL_ROADS = roads.SCHOOL_ROADS
 PATH_WIDTH = {"footway": 2, "cycleway": 2, "path": 2, "bridleway": 2, "steps": 2, "track": 3, "pedestrian": 4}
 
 
@@ -162,6 +162,8 @@ def has_sidewalk(t, side):
 nopave = Image.new("L", (W, H), 0)
 nd_ = ImageDraw.Draw(nopave)
 bridges = []
+strokes = []                                      # (rank, points in cells, width, class): painted low rank first
+RANK = {"path": 0, "track": 0, "footway": 1, "railway": 2, "minor_road": 3, "road": 4}
 for ln in osm["lines"]:
     t = ln["tags"]
     hw = t.get("highway")
@@ -187,19 +189,40 @@ for ln in osm["lines"]:
         continue
     if ln["id"] in SCHOOL_ROADS:
         cls, w = "road", SCHOOL_ROADS[ln["id"]]
-    pts = px(ln["pts"])
-    d.line(pts, fill=S[cls], width=w)
-    for x, y in pts:
-        d.ellipse([x - w / 2, y - w / 2, x + w / 2, y + w / 2], fill=S[cls])
+    if ln["id"] in roads.HEIGHTS_SKIP:
+        continue
+    q = np.array(ln["pts"], float) if t.get("service") == "parking_aisle" else roads.smooth(ln["pts"])   # bends rounded
+    strokes.append((RANK[cls], np.array(px(q)), w, cls))
     if cls == "road":
         for side, sgn in (("left", 1), ("right", -1)):
             if not has_sidewalk(t, side):
-                q = np.array(ln["pts"], float)
                 for a, b in zip(q[:-1], q[1:]):
                     tv = (b - a) / max(np.hypot(*(b - a)), 1e-6)
                     off = np.array([-tv[1], tv[0]]) * sgn * (w / 2 + 1.5)
                     nd_.line(px([a + off, b + off]), fill=1, width=3)
 surface = np.asarray(surf).copy()
+for _, q, w, cls in sorted(strokes, key=lambda v: v[0]):     # a footpath never paints across a road
+    roads.paint(surface, q, w, S[cls])
+# turning circles at the ends of closes (a round head 15 across; a loop has a grass island in the middle)
+for nd in osm["nodes"]:
+    kind = nd["tags"].get("highway")
+    if kind in ("turning_circle", "turning_loop"):
+        c = np.array(px([nd["pt"]])[0])
+        r_, c_ = rc(nd["pt"])
+        if not (0 <= r_ < H and 0 <= c_ < W) or surface[r_, c_] not in (S["road"], S["minor_road"]):
+            continue                                # (only where the road itself was drawn: not on a bridge)
+        cls = surface[r_, c_]
+        roads.paint(surface, [c, c + (0.01, 0)], 15 if kind == "turning_circle" else 20, cls)
+        if kind == "turning_loop":
+            roads.paint(surface, [c, c + (0.01, 0)], 6, S["grass"])
+# The Heights Primary School forecourt (roads.HEIGHTS_SITE)
+for bx0, bx1, bz0, bz1 in roads.HEIGHTS_CLEAR:
+    box_ = surface[bz0:bz1 + 1, bx0:bx1 + 1]
+    box_[np.isin(box_, (S["parking"], S["minor_road"], S["footway"], S["path"], S["tennis"], S["sports"]))] = S["grass"]
+site = np.zeros((H, W), bool)
+for cls, sx0, sx1, sz0, sz1 in roads.HEIGHTS_SITE:
+    surface[sz0:sz1 + 1, sx0:sx1 + 1] = S[cls]
+    site[sz0:sz1 + 1, sx0:sx1 + 1] = True
 # pavements: 2 m either side of streets, over grass/verge only (OSM rarely maps them as separate ways), except
 # where OSM says that side has none or has its own mapped footway
 pave = ndimage.binary_dilation(surface == S["road"], iterations=2) & (surface == S["grass"]) & \
@@ -265,11 +288,11 @@ surface[water] = S["water"]
 ground_f = np.where(np.isfinite(dtm), dtm, 0).astype(np.float32)
 # roads: level across their width (each cell takes the mean height of the road within 4 m), so a road on a
 # hillside steps up along its length only, not side to side
-road_cells = np.isin(surface, (S["road"], S["minor_road"], S["footway"]))
+road_cells = np.isin(surface, (S["road"], S["minor_road"], S["footway"])) | site
 rw = road_cells.astype(np.float32)
-num = ndimage.uniform_filter(ground_f * rw, size=9)
-den = ndimage.uniform_filter(rw, size=9)
-ground_f = np.where(road_cells & (den > 0), num / np.maximum(den, 1e-6), ground_f)
+num = ndimage.gaussian_filter(ground_f * rw, 4)    # (and smooth along it: each one-block step is one clean line
+den = ndimage.gaussian_filter(rw, 4)               # across the road, with no dips and bumps from LiDAR noise)
+ground_f = np.where(road_cells & (den > 1e-3), num / np.maximum(den, 1e-6), ground_f)
 # no road steeper than half a block per metre (real roads are far gentler; LiDAR noise and embankment edges
 # aren't): the midpoint of the highest and lowest surfaces that meet that limit everywhere along the roads,
 # so every climb comes out as slab, block, slab, block and never two full steps in a row
@@ -283,6 +306,9 @@ surface[~mask] = S["void"]
 
 HOUSEY = {"house", "semidetached_house", "detached", "terrace", "bungalow", "residential", "garage", "garages",
           "shed", "yes", "cottage", "hut", "school", "kindergarten", "retail", "commercial", "church", "pavilion"}
+
+
+TURN = {}     # id -> [angle, centre x, centre z] each squared building was turned by (to read LiDAR under it)
 
 
 def square_houses(ball):
@@ -330,6 +356,7 @@ def square_houses(ball):
         R = np.array([[np.cos(-th), -np.sin(-th)], [np.sin(-th), np.cos(-th)]])
         for a, r in zip(g, rings):
             out[a["id"]] = ((r - c) @ R.T + c).tolist()
+            TURN[a["id"]] = [float(th), float(c[0] - E0), float(N1 - c[1])]
     print("houses squared to the grid:", len(out), "in", sum(1 for g in groups.values()
                                                                  if g[0]["id"] in out), "groups")
     return out
@@ -355,6 +382,8 @@ for a in ball:
         continue
     seen_b.add(a["id"])
     buildings.append({"id": a["id"], "tags": {k: v for k, v in t.items() if not k.startswith(("name:", "ref:"))}})
+    if a["id"] in TURN:
+        buildings[-1]["turn"] = TURN[a["id"]]
     if a["id"] in SQUARED:
         continue                                  # drawn below, after the rest, into the cells still free
     bd.polygon(px(ring), fill=len(buildings) - 1)

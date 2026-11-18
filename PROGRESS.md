@@ -311,3 +311,17 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 ## Status: review list done (2026-11-17)
 All of the user's review items are done: school and drive, square houses and town blocks, sealed doors, footpaths and pavements (with sidewalk tags), house numbers (where OSM can give them), play parks, zebra crossings. Only the Bedrock conversion is still open, and that's the user's call.
 - 2026-11-18 Release v0.1 zip updated and server copy swapped to the realism pass 2 build (same method: unload --no-save, replace region/ and entities/, keep the server's level.dat, load). Nobody was online. Log clean, still peaceful.
+- 2026-11-18 Caversham Heights pass, part 1 (user: "focus on cav heights, make the roads smooth, make any road markings make sense, review the heights school and church images"; "the road up to the school needs editing too"):
+  - **Smooth roads** (tools/roads.py, layers): every road's mapped centre line is rounded at its bends (Chaikin) and drawn 4x finer, keeping cells at least half covered, so edges are even at any angle and widths don't wobble. Footpaths never paint across a road. Road heights are smoothed along the road (Gaussian, 4 m), so each one-block step is one clean line across the road. road_check still 0 drops over 1.
+  - **Turning circles**: OSM turning_circle nodes become a round head 15 across at the end of the close (turning_loop: 20 across with a grass island).
+  - **Road markings** (features.streets): the centre line stops 7 m short of junctions between main roads, crossings, signals, mini-roundabouts and the road's own ends. Every side road gets a dashed give-way line where it meets a road at least as big (569). Mini-roundabouts get a white dot.
+  - **The Heights Primary School site**, laid out from an Esri aerial photo (new tools/aerial.py) and squared to the grid like the school:
+    - the drive runs into a forecourt aisle with the staff car park to the west and the pavilion car park to the east, marked bays and parked cars, and a zebra with beacons from the drive's pavement to a paved plaza at the school gate
+    - a 4 m path runs south from the plaza between the school fence and the field, replacing OSM's thin diagonal path; the field path runs along the south fence
+    - the fence now leaves the car park outside; the gate is on the east side at the plaza
+    - roof: grey parapet, sedum green roof, rows of solar panels on the west half; a white canopy on the south side
+    - the tennis club: red surround, four green courts two by two with lines and nets, a mesh fence
+  - **Squared houses read the right LiDAR**: a house turned to the grid used to read heights from under its turned outline, which is partly garden. Each cell now reads from where that part of the house really stands (buildings.json "turn"), so roof heights, bungalows and towers come out right.
+  - **Attached houses share one look**: both halves of a pair of semis and every house in a terrace get the same walls and roof. Mock-Tudor houses get a white upper floor under the beams.
+  - **Churches**: Caversham Heights Methodist (from street photos): red brick with stone bands, dark tile roof, a 5 m corner tower with a spire. St Andrew's, Albert Road (new landmark, from a Commons photo): brown stone, pale dressings, slate roof, lancets, a bellcote.
+  - New tools: tools/aerial.py (aerial photo of a box), tools/top_view.py (the built world from above in true colours). eye_view textures now live in .downloads/tex.

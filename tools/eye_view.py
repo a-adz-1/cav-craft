@@ -17,6 +17,7 @@ from PIL import Image
 import anvil
 
 W, H, FOV, RANGE = 480, 270, 75, 90
+TEX = ".downloads/tex/assets/minecraft/textures/block"   # the client jar's block textures, unzipped
 SKY = np.array([150, 190, 240], float)
 PASS = {"air", "cave_air", "light", "void_air", "barrier", "structure_void"}
 THIN = {"short_grass", "tall_grass", "fern", "large_fern", "poppy", "dandelion", "blue_orchid", "allium",
@@ -166,4 +167,4 @@ def render(world, x, y, z, yaw, pitch, out, tdir):
 if __name__ == "__main__":
     a = sys.argv
     render(a[1], float(a[2]), float(a[3]), float(a[4]), float(a[5]), float(a[6]), a[7],
-           a[8] if len(a) > 8 else "/tmp/claude-1000/-home-adz-Projects-cavcraft/af00789e-03fb-4c93-9d9d-8ce788c60b72/scratchpad/tex/assets/minecraft/textures/block")
+           a[8] if len(a) > 8 else TEX)

@@ -466,47 +466,109 @@ MARKED = {"primary", "secondary", "tertiary"}
 LIT = {"primary": 9, "secondary": 8, "tertiary": 7, "residential": 6, "unclassified": 6}
 
 
+RANK = {"primary": 5, "secondary": 4, "tertiary": 3, "unclassified": 2, "residential": 2, "living_street": 1}
+WIDTH = {"primary": 9, "secondary": 8, "tertiary": 7, "unclassified": 6, "residential": 6, "living_street": 5}
+
+
 def streets(G, P):
+    """Road markings and street lamps. A dashed centre line on the main roads, which stops short of junctions
+    with other main roads, of crossings and of the road's own end; a dashed give-way line across every side
+    road where it meets a road at least as big (and at roundabout entries); a white dot on mini-roundabouts."""
+    import roads
     osm = json.load(open("build/osm.json"))
     Hh, Ww = G["mask"].shape
     line_cells = np.zeros((Hh, Ww), bool)
     blocks = {}
     post, lamp = P("dark_oak_fence"), P("lantern")
     road_cls = (3, 4)   # surfaces: road, minor_road
-    lamps = 0
+    lamps = give = 0
+    ways = []
     for ln in osm["lines"]:
         t = ln["tags"]
-        hw = t.get("highway")
-        if hw not in LIT or (t.get("bridge") not in (None, "no")) or t.get("tunnel") not in (None, "no"):
+        hw = "residential" if ln["id"] in roads.SCHOOL_ROADS else t.get("highway")
+        if hw not in RANK or (t.get("bridge") not in (None, "no")) or t.get("tunnel") not in (None, "no"):
             continue
-        pts = np.array([xz(e, n) for e, n in ln["pts"]], float)
+        ways.append((hw, t, [tuple(q) for q in ln["pts"]], np.array([xz(e, n) for e, n in roads.smooth(ln["pts"])])))
+    # who passes through each mapped point (a road running on through it, not ending there), and the main ones
+    through, ends = {}, {}
+    for hw, t, raw, pts in ways:
+        ring = raw[0] == raw[-1]
+        for k, q in enumerate(raw):
+            if ring or 0 < k < len(raw) - 1:
+                through[q] = max(through.get(q, 0), RANK[hw])
+            else:
+                ends.setdefault(q, []).append(hw)
+    for q, hs in ends.items():                     # two roads meeting end to end at a third's end: a junction too
+        if len(hs) >= 3 and q not in through:
+            through[q] = sorted(RANK[h] for h in hs)[-2]
+    clear = [np.array(xz(*q)) for q, r in through.items() if r >= 3]          # main-road junctions
+    clear += [np.array(xz(*nd["pt"])) for nd in osm["nodes"]
+              if nd["tags"].get("highway") in ("crossing", "mini_roundabout", "traffic_signals")]
+    from scipy.spatial import cKDTree
+    clear_tree = cKDTree(np.array(clear))
+
+    def inside(x, z):
+        return 0 <= x < Ww and 0 <= z < Hh and G["mask"][z, x]
+
+    for hw, t, raw, pts in ways:
+        seg = np.diff(pts, axis=0)
+        L = np.hypot(seg[:, 0], seg[:, 1])
+        total = float(L.sum())
+        marked = hw in MARKED and t.get("junction") not in ("roundabout", "circular")
         walked = 0.0
-        for a, b in zip(pts[:-1], pts[1:]):
-            seg = b - a
-            L = float(np.hypot(*seg))
-            if L == 0:
+        for a, sg, ln_ in zip(pts[:-1], seg, L):
+            if ln_ == 0:
                 continue
-            d = seg / L
+            d = sg / ln_
             normal = np.array([-d[1], d[0]])
-            for k in np.arange(0, L, 1.0):
-                p = a + d * k
-                x, z = int(round(p[0])), int(round(p[1]))
-                s = walked + k
-                if 0 <= x < Ww and 0 <= z < Hh and G["mask"][z, x]:
-                    if hw in MARKED and (s % 6) < 3 and G["surface"][z, x] in road_cls:
+            for k in np.arange(0, ln_, 1.0):
+                p_ = a + d * k
+                x, z = int(round(p_[0])), int(round(p_[1]))
+                s_ = walked + k
+                if inside(x, z):
+                    if (marked and (s_ % 6) < 3 and 7 < s_ < total - 7 and G["surface"][z, x] in road_cls
+                            and clear_tree.query(p_)[0] > 7):
                         line_cells[z, x] = True
-                    if s % 25 < 1:
-                        side = 1 if int(s // 25) % 2 else -1          # alternate sides, like real streets
-                        q = p + normal * side * (LIT[hw] / 2 + 1)
+                    if hw in LIT and s_ % 25 < 1:
+                        side = 1 if int(s_ // 25) % 2 else -1          # alternate sides, like real streets
+                        q = p_ + normal * side * (LIT[hw] / 2 + 1)
                         lx, lz = int(round(q[0])), int(round(q[1]))
-                        if (0 <= lx < Ww and 0 <= lz < Hh and G["mask"][lz, lx] and G["water"][lz, lx] == -999
+                        if (inside(lx, lz) and G["water"][lz, lx] == -999
                                 and G["building"][lz, lx] == 0 and G["surface"][lz, lx] not in road_cls):
                             g = int(G["ground"][lz, lx])
                             for dy in (1, 2, 3):
                                 blocks[(lx, g + dy, lz)] = post
                             blocks[(lx, g + 4, lz)] = lamp
                             lamps += 1
-            walked += L
+            walked += ln_
+        # give way where this road ends on a road at least as big that runs on through
+        if raw[0] == raw[-1] or total < 12:
+            continue
+        for end, q0, q1 in ((raw[0], pts[0], pts[1]), (raw[-1], pts[-1], pts[-2])):
+            if through.get(end, 0) < RANK[hw]:
+                continue
+            d = (q1 - q0) / max(np.hypot(*(q1 - q0)), 1e-6)
+            if abs(d[0]) > abs(d[1]):               # across the road, square to the grid like the crossings
+                d, across = np.array([np.sign(d[0]), 0.0]), np.array([0.0, 1.0])
+            else:
+                d, across = np.array([0.0, np.sign(d[1])]), np.array([1.0, 0.0])
+            for back in range(4, 12):               # the first row back from the junction that is all side road
+                c = q0 + d * back
+                row = [(int(round(c[0] + across[0] * j)), int(round(c[1] + across[1] * j))) for j in range(-7, 8)]
+                on = [inside(x, z) and G["surface"][z, x] in road_cls for x, z in row]
+                run = [j for j in range(15) if on[j]]
+                if on[7] and run and len(run) <= WIDTH[hw] + 2 and run[-1] - run[0] == len(run) - 1:
+                    for j in run[::2]:
+                        line_cells[row[j][1], row[j][0]] = True
+                    give += 1
+                    break
+    for nd in osm["nodes"]:
+        if nd["tags"].get("highway") == "mini_roundabout":
+            x, z = (int(round(v)) for v in xz(*nd["pt"]))
+            for dx in (-1, 0, 1):
+                for dz in (-1, 0, 1):
+                    if inside(x + dx, z + dz) and G["surface"][z + dz, x + dx] in road_cls:
+                        line_cells[z + dz, x + dx] = True
     G["road_line"] = line_cells
     white = P("white_concrete")
 
@@ -514,7 +576,7 @@ def streets(G, P):
         m = G["road_line"][z0:z0 + 16, x0:x0 + 16]
         if m.shape == (16, 16) and m.any():
             b[:] = np.where(m[None] & (Y == g), white, b)
-    print("street lamps:", lamps, "centre-line cells:", int(line_cells.sum()))
+    print("street lamps:", lamps, "centre-line cells:", int(line_cells.sum()), "give-way lines:", give)
     return [stamp, block_stamp(blocks)]
 
 
@@ -1156,7 +1218,7 @@ def leisure(G, P):
             blocks[(sx, g + 2, sz)] = P("blue_concrete")
             blocks[(sx, g + 3, sz)] = P("blue_concrete")
             stats["playgrounds"] = stats.get("playgrounds", 0) + 1
-        elif kind == "pitch" and t.get("sport") == "tennis":
+        elif kind == "pitch" and t.get("sport") == "tennis" and a["id"] != "w450242572":   # (heights_school's)
             # net across the middle of the court's short axis
             c = pts.mean(0)
             u, s_, vt = np.linalg.svd(pts - c, full_matrices=False)
@@ -1194,6 +1256,8 @@ def car_parks(G, P):
     for a in osm["areas"]:
         if a["tags"].get("amenity") != "parking" or a["tags"].get("parking") in ("underground", "multi-storey"):
             continue
+        if a["id"] == "w450242574":
+            continue                                # The Heights forecourt: laid out by heights_school
         pts = np.array([xz(*p) for p in a["rings"][0]], float)
         img = Image.new("L", (Ww, Hh), 0)
         ImageDraw.Draw(img).polygon([tuple(p) for p in pts], fill=1)
@@ -2263,20 +2327,25 @@ def xmas_tree(P, blocks, x, g, z, h=6, rng=None):
 
 HEIGHTS = "w1314689827"           # the school grounds; the building is the w1062444336 landmark
 HEIGHTS_PITCH = "w1314689826"     # its multi-use games area (artificial turf)
-HEIGHTS_GATE = (1845, 2403)       # OSM's access=yes gate node on the footpath from the car park
+HEIGHTS_GATE = (1828, 2379)       # on the east fence, where the plaza from the car park zebra meets it
+HEIGHTS_NORTH = 2375              # the fence's north side: the staff car park lies outside it
 
 
 def heights_school(G, P):
-    """A green weldmesh fence round the grounds with a brick-pillared front gate and a name sign, a tarmac
-    playground round the building with hopscotch, a four-square court and a painted snake, the fenced games
-    court in green with white lines, lamp posts, and lights in and round the building so it isn't dark at night."""
+    """The school site, from the aerial photo. A weldmesh fence round the grounds with a brick-pillared gate and
+    a name sign on the plaza; a tarmac playground round the building with hopscotch, a four-square court and a
+    painted snake; the fenced games court in green with white lines; a white canopy on the south side; a green
+    roof with solar panels; the forecourt's marked parking bays, parked cars and zebra; lamp posts and lights."""
+    import roads
     from scipy import ndimage
     from houses import connect
     blocks = {}
     gr = G["ground"]
     turn = ring_turn("w1062444336")                               # the building is squared: square its grounds too
     inside = area_mask(G, HEIGHTS, turn)
-    pitch = area_mask(G, HEIGHTS_PITCH, turn)
+    inside[:HEIGHTS_NORTH] = False
+    inside[:, HEIGHTS_GATE[0] + 1:] = False
+    pitch = area_mask(G, HEIGHTS_PITCH, turn) & inside
     bld = inside & (G["building"] > 0)
     walk = np.isin(G["surface"], (3, 4, 5, 6, 9))
 
@@ -2302,7 +2371,7 @@ def heights_school(G, P):
         for y in range(g(px_, pz_) + 1, g(px_, pz_) + 4):
             blocks[(px_, y, pz_)] = P("bricks")
         blocks[(px_, g(px_, pz_) + 4, pz_)] = P("lantern", hanging="false")
-    sx_, sz_ = (gx + 3, gz + 2) if along_x else (gx + 2, gz + 3)     # outside the gate, beside the path
+    sx_, sz_ = (gx + 3, gz + 2) if along_x else (gx + 1, gz + 3)     # outside the gate, beside the path
     sign_post(G, P, blocks, sx_, g(sx_, sz_) + 1, sz_, 12,
               ["The Heights", "Primary School", "", "Welcome!"])
     # tarmac playground: open ground within 9 m of the building, inside the fence
@@ -2310,7 +2379,9 @@ def heights_school(G, P):
     yard = inside & ~bld & ~pitch & (dist <= 9) & ~ndimage.binary_dilation(edge) & (G["water"] == -999)
     for z, x in zip(*np.nonzero(yard)):
         blocks[(int(x), g(x, z), int(z))] = P("gray_concrete")
-    G["surface"][yard] = 9
+    G["surface"][yard | pitch] = 9                                    # (no grass tufts or flowers on them)
+    tx0, tx1, tz0, tz1 = roads.HEIGHTS_TENNIS
+    G["surface"][tz0:tz1 + 1, tx0:tx1 + 1] = 9
     # markings on the yard: hopscotch, a four-square court and a snake, where they fit
     ok = yard & ~ndimage.binary_dilation(walk & ~yard)
     spot = open_spot(G, ok, 3, 10)
@@ -2410,8 +2481,89 @@ def heights_school(G, P):
                 blocks[(wx + lx * k + dx, y, wz + lz * k + dz)] = P("polished_blackstone_wall", up="true",
                                                                     north="none", south="none", east="none", west="none")
             blocks[(wx + lx * k + dx, hb + 3, wz + lz * k + dz)] = P("lantern", hanging="false")
+    # roof, as the aerial shows it: a grey parapet round a sedum green roof, solar panels in rows on the west half
+    top = G["h_roof"]
+    deck = ndimage.binary_erosion(bld, iterations=2)
+    zs, xs = np.nonzero(deck)
+    xmid = (xs.min() + xs.max()) // 2
+    for z, x in zip(zs, xs):
+        y = int(top[z, x])
+        if x < xmid - 2 and (z - zs.min()) % 3 != 2 and x > xs.min() and z > zs.min():
+            blocks[(int(x), y + 1, int(z))] = P("daylight_detector", inverted="false", power=0)
+        else:
+            blocks[(int(x), y, int(z))] = P("moss_block")
+    # the white canopy over the outdoor classroom on the south side, and a white shelter strip along the wall
+    sz0 = int(np.nonzero(bld[:, xmid + 4])[0].max()) + 1             # first row south of the main block
+    cx0 = xmid - 2
+    quartz, qslab = P("quartz_block"), P("smooth_quartz_slab", type="top")
+    for dx in range(12):
+        for dz in range(12):
+            x, z = cx0 + dx, sz0 + dz
+            if bld[z, x]:
+                continue
+            ring = min(dx, 11 - dx, dz, 11 - dz)
+            if ring == 0 and dx in (0, 11) and dz in (0, 11):
+                for y in range(hb + 1, hb + 4):
+                    blocks[(x, y, z)] = P("quartz_pillar", axis="y")
+            blocks[(x, hb + 4 + min(ring, 4) // 2, z)] = qslab if ring % 2 == 0 else P("smooth_quartz_slab", type="bottom")
+            blocks[(x, g(x, z), z)] = P("light_gray_concrete")
+    for x in range(int(xs.min()), int(xs.max()) + 3):
+        for z in (sz0, sz0 + 1):
+            if not bld[z, x] and not (cx0 <= x < cx0 + 12):
+                blocks.setdefault((x, hb + 4, z), qslab)
+    # forecourt: bay lines every 3 with parked cars nose-in, the zebra, bollards along the plaza edge
+    rng = np.random.default_rng(7)
+    white = P("white_concrete")
+    for bx0, bx1, bz0, bz1, nose in roads.HEIGHTS_BAYS:
+        for x in range(bx0, bx1 + 1):
+            if (x - bx0) % 3 == 0:
+                for z in range(bz0, bz1 + 1):
+                    blocks[(x, g(x, z), z)] = white
+            elif (x - bx0) % 3 == 1 and x + 1 <= bx1 and rng.random() < 0.5:
+                col = P(CAR_COLOURS[rng.integers(len(CAR_COLOURS))])
+                zc = (bz0 + bz1) // 2
+                for xx in (x, x + 1):
+                    for k in (-1, 0, 1):
+                        blocks[(xx, g(xx, zc + k) + 1, zc + k)] = col
+                        if k != nose:                               # cabin over the back two thirds
+                            blocks[(xx, g(xx, zc + k) + 2, zc + k)] = P("light_gray_stained_glass")
+    # the tennis club: a red surround, four green courts two by two with white lines and nets, a mesh fence
+    tx0, tx1, tz0, tz1 = roads.HEIGHTS_TENNIS
+    tfence = set()
+    for x in range(tx0, tx1 + 1):
+        for z in range(tz0, tz1 + 1):
+            blocks[(x, g(x, z), z)] = P("red_terracotta")
+            if x in (tx0, tx1) or z in (tz0, tz1):
+                if not (x == tx0 and abs(z - (tz0 + 3)) <= 1):          # gate towards the pavilion
+                    tfence.update((x, y, z) for y in range(g(x, z) + 1, g(x, z) + 4))
+    for cx in (tx0 + 4, tx0 + 23):
+        for cz in (tz0 + 5, tz0 + 39):
+            for dx in range(11):
+                for dz in range(24):
+                    line = dx in (0, 10) or dz in (0, 23, 6, 17) or (dx == 5 and 6 <= dz <= 17)
+                    x, z = cx + dx, cz + dz
+                    blocks[(x, g(x, z), z)] = white if line else P("green_concrete")
+            for dx in range(-1, 12):                                    # the net
+                x, z = cx + dx, cz + 12
+                blocks[(x, g(x, z) + 1, z)] = P("white_stained_glass_pane", north="false", south="false",
+                                                east="true", west="true")
+    blocks.update(connect(tfence, "iron_bars", P, wall=False))
+    zx0, zx1, zz0, zz1 = roads.HEIGHTS_ZEBRA
+    for z in range(zz0, zz1 + 1):
+        for x in range(zx0, zx1 + 1):
+            if (z - zz0) % 2 == 0:
+                blocks[(x, g(x, z), z)] = white
+    for x, z in ((zx0 - 1, zz0 - 1), (zx1 + 1, zz0 - 1), (zx0 - 1, zz1 + 1), (zx1 + 1, zz1 + 1)):   # beacons
+        for y in range(g(x, z) + 1, g(x, z) + 4):
+            blocks[(x, y, z)] = P("black_concrete" if (y - g(x, z)) % 2 else "white_concrete")
+        blocks[(x, g(x, z) + 4, z)] = P("ochre_froglight", axis="y")
+    for x in range(1843, 1861, 3):                                    # bollards between the plaza and the aisle
+        blocks[(x, g(x, 2368) + 1, 2368)] = P("polished_blackstone_wall", up="true", north="none", south="none",
+                                              east="none", west="none")
     zs, xs = np.nonzero(yard | pitch)
     G.setdefault("no_trees", []).append((int(xs.min()), int(zs.min()), int(xs.max()), int(zs.max())))
+    x0_, x1_, z0_, z1_ = roads.HEIGHTS_BOX
+    G["no_trees"].append((x0_, z0_ + 5, x1_, z1_))
     print(f"Heights school: fence {len(fence)}, yard {int(yard.sum())} cells, lamps {len(lamps)}")
     return block_stamp(blocks)
 

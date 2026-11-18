@@ -335,6 +335,9 @@ def prepare(G, P, layers, lidar, buildings):
             xx_, zz_ = int(nd["pt"][0] - _E0), int(_N1 - nd["pt"][1])
             if 0 <= zz_ < H and 0 <= xx_ < W and bid[zz_, xx_]:
                 shop_names.setdefault(buildings[bid[zz_, xx_]]["id"], tt["name"])
+    comp, ncomp = ndimage.label(bid > 0)
+    lead = ndimage.minimum(bid, comp, index=np.arange(1, ncomp + 1)) if ncomp else np.zeros(0)
+
     def crop(i):
         sl = objs[i - 1] if i - 1 < len(objs) else None
         if sl is None or buildings[i] is None:
@@ -348,7 +351,17 @@ def prepare(G, P, layers, lidar, buildings):
         fl = int(round(ground[z0:z1, x0:x1][inside].mean()))
         edge = inside & ~ndimage.binary_erosion(inside)
         # attached neighbours (semis, terraces) count as roof, not as outside: the roof runs over the party wall
-        return z0, z1, x0, x1, inside, fl, dsm[z0:z1, x0:x1] - fl, edge, bid[z0:z1, x0:x1] > 0
+        top = dsm[z0:z1, x0:x1]
+        if buildings[i].get("turn"):
+            # squared to the grid: the LiDAR still has the house at its real angle, so read each cell's height
+            # from where that part of the house really stands
+            th, cx, cz = buildings[i]["turn"]
+            zz, xx = np.mgrid[z0:z1, x0:x1]
+            dx, dz = xx - cx, zz - cz
+            xo = np.clip(np.rint(cx + np.cos(th) * dx + np.sin(th) * dz).astype(int), 0, W - 1)
+            zo = np.clip(np.rint(cz - np.sin(th) * dx + np.cos(th) * dz).astype(int), 0, H - 1)
+            top = dsm[zo, xo]
+        return z0, z1, x0, x1, inside, fl, top - fl, edge, bid[z0:z1, x0:x1] > 0
 
     shared = shared_roofs(buildings, bid, crop)
     for i in range(1, n):
@@ -391,10 +404,15 @@ def prepare(G, P, layers, lidar, buildings):
                 rkind = "flat"
             elif rkind == "flat":
                 rkind = lm.get("roof_kind", "gable")
-        wname = st["walls"][h % len(st["walls"])]
-        upper = st.get("upper") and ((h >> 13) % 100) < st.get("upper_p", 0.5) * 100
-        uname = st["upper"][(h >> 17) % len(st["upper"])] if upper else None
-        rname = st["roof"][(h >> 5) % len(st["roof"])]
+        # one look for the whole attached group: both halves of a pair of semis, every house of a terrace
+        hm = zlib.crc32(buildings[int(lead[comp[z0:z1, x0:x1][inside][0] - 1])]["id"].encode()) if not big else h
+        wname = st["walls"][hm % len(st["walls"])]
+        upper = st.get("upper") and ((hm >> 13) % 100) < st.get("upper_p", 0.5) * 100
+        uname = st["upper"][(hm >> 17) % len(st["upper"])] if upper else None
+        rname = st["roof"][(hm >> 5) % len(st["roof"])]
+        tudor = bool(lm and lm.get("tudor_gable")) or bool(st.get("tudor", 0) and ((hm >> 9) % 100) < st["tudor"] * 100)
+        if tudor and not lm:
+            uname = "white_render"                  # black beams on white, over whatever the ground floor is
         if rkind == "flat":
             rname = "flat" if big or lm else "felt"
         elif rname == "flat":
@@ -617,7 +635,7 @@ def prepare(G, P, layers, lidar, buildings):
                                         "glass_pane", north="true", south="true", east="true", west="true"))
                             break
         # Tudor beams on the upper storey for some streets
-        if (lm and lm.get("tudor_gable")) or (st.get("tudor", 0) and (h % 100) < st["tudor"] * 100):
+        if tudor:
             zz, xx = np.nonzero(edge)
             for zl, xl in zip(zz, xx):
                 if (x0 + xl + z0 + zl) % 3 == 0:
@@ -890,7 +908,7 @@ def front_boundaries(G, P, bid, surface, buildings, styles, streets):
         if not b or b["tags"].get("building") not in HOUSE_KINDS:
             continue
         st = styles.get(streets.get(b["id"], ""), {})
-        kind = FRONT.get(st.get("family"), None)
+        kind = st["front"] if "front" in st else FRONT.get(st.get("family"), None)   # surveyed, or by era
         if not kind or (x * 7 + z * 13) % 11 == 0:   # gaps for gates and drives
             continue
         g = int(ground[z, x])
