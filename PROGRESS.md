@@ -310,3 +310,4 @@ shops parade), Christchurch Meadows paddling pool, allotment sheds, Caversham Pa
 
 ## Status: review list done (2026-11-17)
 All of the user's review items are done: school and drive, square houses and town blocks, sealed doors, footpaths and pavements (with sidewalk tags), house numbers (where OSM can give them), play parks, zebra crossings. Only the Bedrock conversion is still open, and that's the user's call.
+- 2026-11-18 Release v0.1 zip updated and server copy swapped to the realism pass 2 build (same method: unload --no-save, replace region/ and entities/, keep the server's level.dat, load). Nobody was online. Log clean, still peaceful.
