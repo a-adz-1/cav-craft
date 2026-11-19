@@ -447,14 +447,15 @@ def prepare(G, P, layers, lidar, buildings):
         roofmat[sub] = np.where(inside, P(full), roofmat[sub])
         # shopfronts: glazed ground floor with a coloured fascia on the road side of shops, pubs, cafés
         shop_colour = (lm or {}).get("shopfront")
+        fascias = st.get("fascias") or FASCIAS      # the street's own, where Street View saw them
         if not shop_colour and (kind in ("retail", "commercial", "supermarket") or t.get("shop") or
                                 t.get("amenity") in ("pub", "cafe", "restaurant", "bar", "fast_food", "bank",
                                                      "pharmacy", "post_office")):
-            shop_colour = FASCIAS[(h >> 7) % len(FASCIAS)]
+            shop_colour = fascias[(h >> 7) % len(fascias)]
         if not shop_colour and st.get("family") == "town" and inside.sum() < 400:
             near_main = ndimage.binary_dilation(main_road[z0:z1, x0:x1], iterations=12)
             if (near_main & inside).any() and (h % 3):
-                shop_colour = FASCIAS[(h >> 7) % len(FASCIAS)]
+                shop_colour = fascias[(h >> 7) % len(fascias)]
         if shop_colour:
             front = edge & ndimage.binary_dilation(roadish[z0:z1, x0:x1], iterations=4)
             for zl, xl in zip(*np.nonzero(front)):

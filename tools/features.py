@@ -483,11 +483,12 @@ def streets(G, P):
     road_cls = (3, 4)   # surfaces: road, minor_road
     lamps = give = 0
     # smaller streets the Street View survey saw a centre line on get one too
+    import glob
     import os
     import re
     lined = set()
-    if os.path.exists("docs/heights_survey.json"):
-        for name, v in json.load(open("docs/heights_survey.json")).items():
+    for path in ["docs/heights_survey.json"] + sorted(glob.glob(".downloads/ref/sv/*/result.json")):
+        for name, v in (json.load(open(path)) if os.path.exists(path) else {}).items():
             txt = v.get("road", "").lower()
             if "centre line" in txt and not re.search(r"\b(no|without|lacks?)\b[^,;.]*centre line", txt):
                 lined.add(name)
