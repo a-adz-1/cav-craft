@@ -1,0 +1,7 @@
+This is a RERUN of a section that was cut short when Google Maps stopped loading. Follow BRIEF.txt with these changes:
+- Only survey the streets that DIR/result.json marks "confidence": "none" with a note containing "not surveyed" (any capitalisation), or that are in views.tsv but missing from result.json. Use their views from views.tsv.
+- Don't redo streets already surveyed, and don't overwrite their entries or their screenshots. Load DIR/result.json, replace only the rerun streets' entries, and write the whole file back after every street or two.
+- Append to DIR/notes.md (don't replace it): a "Rerun" section with the views that never loaded.
+- If Google Maps starts coming up as blank white pages again (several in a row, also in a fresh tab), stop: leave the remaining streets marked "not surveyed", save, close your tab and report.
+- Close your own tab with tabs_close when you're completely done.
+Tips from earlier helpers: panoramas often stay black after 5 s; what works is navigate, wait 5 s, a tiny 0.1-scale screenshot to make the page draw, wait 3 s, then the 0.6-scale screenshot you save. Retry once if still black. A browser_batch holds at most 25 actions (about 5 views). If batches fail with "pane not displayed", take one or two views per batch and redo. Keep any helper scripts you write inside DIR.

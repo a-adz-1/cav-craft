@@ -137,3 +137,9 @@ Google Maps stopped loading in the browser pane (blank white pages, net::ERR_BLO
 - Hewett Close__1_141
 - Blaenavon__0_083
 - Blaenavon__0_323
+
+## Rerun
+All 136 views loaded (Woodcote Road 0_035/0_275 kept from the first run, the other 134 captured now). No views were skipped.
+- Panoramas often came up black at the first 0.1-scale screenshot but drew by the 0.6 one; the pane sometimes reported "not displayed" mid-batch, which lost that batch's images, so those views were simply redone.
+- Some views snapped to a neighbouring panorama: Chazey Road 4_* are on Blagrave Lane (no houses); Little Woodcote Close has no Street View inside the close, its views show the A4074 junction and Knowle Close; Tymawr 1_* and Midsummer Meadow 1_242 reuse the same panorama as view 0.
+- Rhigos and Midsummer Meadow imagery is from 2012.

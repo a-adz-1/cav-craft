@@ -108,3 +108,10 @@ Google Maps blocked in the browser pane (blank white pages, net::ERR_BLOCKED_BY_
 - Symeon Place	1_242	https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=51.470821,-0.984156&heading=242&pitch=5&fov=90
 - Tylorstown	0_234	https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=51.481945,-0.983641&heading=234&pitch=5&fov=90
 - Tylorstown	0_114	https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=51.481945,-0.983641&heading=114&pitch=5&fov=90
+
+## Rerun
+Rerun of the 25 "not surveyed" streets (Buxton Avenue .. Tylorstown). Browser pane was intermittently hidden ("pane not displayed"); those views were retried after a short wait and all came through.
+Views that never loaded:
+- Blagrave Farm Lane	1_244	"No Street View imagery available here" (retried with 1_124 at the same point: same result)
+- Blagrave Farm Lane	1_124	"No Street View imagery available here"
+Note: Symeon Place 0_241 and 1_242 snapped to the same panorama, so they show nearly the same view.

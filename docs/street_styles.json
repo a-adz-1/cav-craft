@@ -4086,18 +4086,18 @@
  },
  "The Warren": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
    "white_render",
    "white_render",
    "white_render",
    "white_render",
-   "white_render"
+   "white_render",
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
    "dark_tile",
@@ -4107,22 +4107,22 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile"
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
+  "tudor": 0,
   "quoins": 0.3,
-  "note": "A narrow leafy lane where large detached houses are almost entirely hidden behind tall hedges, brick walls, fences and mature trees; wall and roof proportions are guesses from glimpses.",
+  "note": "Wooded lane below the cliff: dense trees, hedges, high walls and fences hide almost every house; the few glimpsed are large detached houses, one modern white-rendered. Mostly greenery, brick boundary walls and close-boarded/metal fences.",
   "family": "riverside_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.2,
-  "front": "hedge"
+  "upper_p": 0.1,
+  "front": "wall"
  },
  "Church Road": {
   "walls": [
@@ -4135,9 +4135,9 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
    "white_render",
-   "white_render"
+   "white_render",
+   "timber"
   ],
   "roof": [
    "slate",
@@ -4145,24 +4145,24 @@
    "slate",
    "slate",
    "slate",
+   "slate",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.2,
+  "tudor": 0.15,
   "quoins": 0.5,
-  "note": "A busy main road with Victorian red-brick buildings under slate roofs, a 1960s brick flat block, and a black-and-white mock-Tudor house above flint walls and hedges.",
+  "note": "Hill road by St Peter s church: Georgian/Victorian red-brick houses with slate roofs and stone dressings, a mock-Tudor Edwardian house, a 1960s three-storey red-brick flat block, all behind old flint-and-brick walls, railings and thick hedges and trees.",
   "family": "town",
   "source": "street view",
   "upper": [
-   "white_render"
+   "timber"
   ],
-  "upper_p": 0.2
+  "upper_p": 0.2,
+  "front": "wall"
  },
  "Buckside": {
   "walls": [
@@ -4268,36 +4268,36 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render",
    "cream_render",
-   "cream_render",
-   "cream_render",
-   "cream_render",
-   "orange_brick",
-   "orange_brick",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "Wooded avenue of large detached houses and bungalows on big plots, almost entirely hidden by hedges, gates and mature trees; a red-tiled bungalow, a cream rendered house and a new orange-brick house were glimpsed.",
+  "tudor": 0,
+  "note": "Very leafy avenue of large detached houses set deep in big gardens behind tall hedges, timber fences and mature trees; the few houses glimpsed are red brick or white render with dark or brown tile roofs, one a mossy-roofed bungalow.",
   "family": "interwar_detached",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "white_render"
   ],
-  "upper_p": 0.1,
+  "upper_p": 0.2,
   "front": "hedge"
  },
  "Graveney Drive": {
@@ -4309,30 +4309,34 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
+   "white_render",
+   "white_render",
+   "white_render",
    "white_render",
    "white_render"
   ],
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile"
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "A wooded drive with a few 1960s red-brick detached houses on sloping front lawns, the rest hidden by trees and banks.",
+  "tudor": 0,
+  "note": "Short 1960s-70s cul-de-sac of detached houses, red brick with some white-rendered upper floors and plain gables, on open lawns; the entrance is heavily wooded with an old stone wall, so few houses are visible.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
   "front": null
  },
  "Ridge Hall Close": {
@@ -4527,41 +4531,42 @@
  },
  "Grass Hill": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
    "white_render",
    "white_render",
    "white_render",
-   "white_render"
+   "white_render",
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "A steep, narrow, heavily wooded lane where only glimpses of red-brick and white-painted detached houses show through the trees and hedges.",
-  "family": "interwar_detached",
+  "tudor": 0.1,
+  "quoins": 0.6,
+  "note": "Steep wooded lane, mostly trees, ivy banks, hedges and timber fences; the few houses glimpsed are large detached Edwardian/Arts-and-Crafts houses, white-rendered or red brick with dark roofs, set back behind five-bar gates and high hedges.",
+  "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.2,
   "front": "hedge"
  },
  "Kelmscott Close": {
@@ -4576,7 +4581,8 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
+   "orange_brick",
+   "orange_brick",
    "white_render"
   ],
   "roof": [
@@ -4586,22 +4592,21 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "Small close of 1950s-60s red-brick detached houses with white windows, one chalet with a dark tile-hung gable, behind hedges and low brick walls with grass verges and big trees.",
-  "family": "postwar_council",
+  "tudor": 0,
+  "note": "1960s-70s close of red-brick detached houses, some with dark tile-hung or hung-slate upper floors and dormers, attached garages and a few chalet-style houses. Low brick walls, hedges and open lawns around a grass island; mature trees.",
+  "family": "estate_6070",
   "source": "street view",
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.2,
-  "front": "hedge"
+  "upper_p": 0.35
  },
  "Symeon Place": {
   "walls": [
@@ -4626,16 +4631,20 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "slate",
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "2000s development of three-storey red-brick blocks of flats and townhouses with cream rendered ground floors and bays, balconies and hipped roofs, set in communal lawns with clipped hedges.",
+  "tudor": 0,
+  "note": "2000s development of three-storey red-brick flat blocks and town houses with cream-rendered ground floors, small balconies, dark tile roofs and a brick carport, on open lawns with low hedges and big mature trees (copper beech).",
   "family": "modern",
   "source": "street view",
+  "upper": [
+   "red_brick"
+  ],
+  "upper_p": 0.3,
   "front": null
  },
  "St. Peter's Avenue": {
@@ -4647,10 +4656,11 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "white_render",
+   "red_brick",
    "orange_brick",
    "orange_brick",
+   "white_render",
+   "white_render",
    "cream_render"
   ],
   "roof": [
@@ -4660,34 +4670,34 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "red_tile",
    "red_tile"
   ],
-  "tudor": 0.25,
+  "tudor": 0.3,
   "quoins": 0.6,
-  "note": "Main road of Edwardian and interwar red-brick houses with bay windows and some black-and-white gables, behind tall hedges and close-board fences, plus a modern orange-brick block and the odd bungalow.",
+  "note": "Mostly large Edwardian and interwar detached houses in red brick, many with white-rendered upper floors or gables with black mock-Tudor timbering and dark plain-tile roofs, set behind tall hedges and big trees; a few 1960s-70s brown/orange brick flats and a care home break it up.",
   "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.25,
+  "upper_p": 0.4,
   "front": "hedge"
  },
  "Wychcotes": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
    "orange_brick",
@@ -4700,17 +4710,21 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "Small 1960s close of brown-brick detached houses and bungalows with low brown roofs among big cedars, hedges and grass banks; little was visible in the two views.",
+  "tudor": 0,
+  "note": "Only two views: a small 1960s-70s group of red/orange-brick low-rise blocks and houses with shallow tiled roofs, and a chalet bungalow almost hidden behind a thick ivy hedge. Big cedars and conifers, grass banks.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.1,
   "front": "hedge"
  },
  "Woodcote Road": {
@@ -4722,10 +4736,11 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "white_render",
+   "red_brick",
    "orange_brick",
    "orange_brick",
+   "white_render",
+   "white_render",
    "cream_render"
   ],
   "roof": [
@@ -4735,22 +4750,22 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "red_tile",
    "red_tile"
   ],
-  "tudor": 0.25,
+  "tudor": 0.3,
   "quoins": 0.6,
-  "note": "Main road of Edwardian and interwar red-brick houses with bay windows and some black-and-white gables, behind tall hedges and close-board fences, plus a modern orange-brick block and the odd bungalow.",
+  "note": "Mostly large Edwardian and interwar detached houses in red brick, many with white-rendered upper floors or gables with black mock-Tudor timbering and dark plain-tile roofs, set behind tall hedges and big trees; a few 1960s-70s brown/orange brick flats and a care home break it up.",
   "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.25,
+  "upper_p": 0.4,
   "front": "hedge"
  },
  "St. Peter's Hill": {
@@ -4776,16 +4791,20 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "slate",
+   "slate"
   ],
-  "tudor": 0.0,
-  "note": "2000s development of three-storey red-brick blocks of flats and townhouses with cream rendered ground floors and bays, balconies and hipped roofs, set in communal lawns with clipped hedges.",
+  "tudor": 0,
+  "note": "2000s development of three-storey red-brick flat blocks and town houses with cream-rendered ground floors, small balconies, dark tile roofs and a brick carport, on open lawns with low hedges and big mature trees (copper beech).",
   "family": "modern",
   "source": "street view",
+  "upper": [
+   "red_brick"
+  ],
+  "upper_p": 0.3,
   "front": null
  },
  "St Peter's Hill": {
@@ -4899,18 +4918,18 @@
  },
  "Blagrave Lane": {
   "walls": [
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
    "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick"
+   "red_brick",
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render",
+   "timber",
+   "timber",
+   "timber"
   ],
   "roof": [
    "dark_tile",
@@ -4920,20 +4939,25 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "slate"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "Rural lane of scattered detached houses and a white-rendered cottage behind fences, fields and trees; houses barely visible, one view blank.",
+  "tudor": 0.2,
+  "note": "Rural lane with very few buildings: an old white-painted timber-framed cottage with black beams and red-brick chimneys, a white weatherboarded house, and red-brick bungalows set back on gravel drives behind conifers. Mostly fields, hedges, close-boarded fences and big trees.",
   "family": "interwar_detached",
   "source": "street view",
+  "upper": [
+   "timber"
+  ],
+  "upper_p": 0.2,
   "front": "wall"
  },
  "Chazey Road": {
   "walls": [
+   "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
@@ -4953,21 +4977,22 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "grey_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "Leafy road of mixed-age detached houses and bungalows, red brick or white/cream render, largely hidden behind tall hedges, brick walls and gates.",
+  "tudor": 0.05,
+  "note": "Leafy mixed street of detached houses and bungalows from the 1930s to new builds, red brick or white render with brown or grey tile roofs, mostly hidden behind tall hedges, conifers and low red-brick walls; several modern cream-rendered replacements.",
   "family": "interwar_semi",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.2,
+  "upper_p": 0.3,
   "front": "hedge"
  },
  "Mapledene": {
@@ -4981,87 +5006,9 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
    "white_render",
-   "white_render"
-  ],
-  "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile"
-  ],
-  "tudor": 0.0,
-  "note": "Large modern red-brick detached houses in Georgian style with brick piers, railings and gates on low walls, along a leafy winding road.",
-  "family": "modern",
-  "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.1,
-  "front": "wall"
- },
- "Balliol Road": {
-  "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "white_render"
-  ],
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "Large red-brick detached houses behind hedges and white picket fences, generous gardens and mature trees.",
-  "family": "estate_6070",
-  "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.1,
-  "front": "hedge"
- },
- "River Road": {
-  "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "white_render"
+   "white_render",
+   "orange_brick"
   ],
   "roof": [
    "dark_tile",
@@ -5077,31 +5024,109 @@
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "Big Victorian red-brick villa plus later detached houses and a chalet bungalow along a gravel lane; one view failed, imagery dated 2012.",
-  "family": "interwar_detached",
+  "tudor": 0.2,
+  "note": "Small exclusive close of large modern detached houses: neo-Georgian red brick with white sash windows and a hipped dark tile roof, a mock-Tudor black-and-white gabled house and red-brick garages, behind red-brick walls with piers, black railings and electric gates; very leafy.",
+  "family": "modern",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.1,
-  "front": "hedge"
+  "upper_p": 0.2,
+  "front": "wall"
  },
- "Hewett Avenue": {
+ "Balliol Road": {
   "walls": [
    "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "white_render",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
    "white_render",
    "white_render"
+  ],
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
+  ],
+  "tudor": 0,
+  "note": "Mixed 1930s-1980s houses: red-brick semis with hipped dark-tile roofs, a large red-brick detached house with tile-hung gable, a white-rendered house and a brick bungalow; white picket fences, tall conifer hedges and lawns.",
+  "family": "interwar_detached",
+  "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.2,
+  "front": "wall"
+ },
+ "River Road": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
+   "orange_brick"
+  ],
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
+  ],
+  "tudor": 0,
+  "note": "Quiet gravel lane with detached houses in large plots: a tall Victorian red-brick villa with dark tile roof and gables, a 1970s-80s red-brick detached house, and a red-brick chalet bungalow with dormers. Low brick walls, picket fences, hedges and tall conifers.",
+  "family": "interwar_detached",
+  "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.15,
+  "front": "hedge"
+ },
+ "Hewett Avenue": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
    "brown_tile",
@@ -5111,20 +5136,16 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "A quiet road mostly walled in by tall hedges, with postwar bungalows behind low brick walls and a few pale-brick 1960s semis on open lawns.",
+  "tudor": 0,
+  "note": "Semi-rural lane with houses largely hidden behind tall hedges and trees; the visible ones are 1950s-60s brick bungalows with dormers and plain semis in pale mixed brick with brown-tile roofs and open lawns.",
   "family": "postwar_council",
   "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.1,
   "front": "hedge"
  },
  "High Meadow": {
@@ -5174,32 +5195,33 @@
    "buff_brick",
    "buff_brick",
    "buff_brick",
-   "buff_brick",
-   "buff_brick",
    "white_render",
    "white_render",
-   "red_brick"
+   "white_render",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "grey_tile"
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "A small close of buff-brick 1970s chalet bungalows and houses with steep brown tile roofs on open-plan lawns.",
+  "tudor": 0,
+  "note": "1970s close of bungalows and chalet bungalows in buff or light brown brick and white render, with long low dark or brown concrete tile roofs, small dormers and white windows, around open-plan lawns with shrubs and some big trees.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "white_render"
   ],
   "upper_p": 0.1,
   "front": null
@@ -5216,26 +5238,26 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "A quiet close of long low red-brick bungalows with brown tiled roofs, garages and open lawns, mature trees behind.",
-  "family": "estate_6070",
+  "tudor": 0,
+  "note": "1950s-60s close of large red-brick detached bungalows with long hipped dark-tile roofs, chimneys and attached garages, on open lawns and wide drives, framed by tall hedges and mature trees.",
+  "family": "postwar_council",
   "source": "street view",
   "front": null
  },
@@ -5247,58 +5269,76 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "cream_render",
-   "cream_render",
-   "cream_render",
-   "cream_render",
    "white_render",
-   "white_render"
+   "white_render",
+   "white_render",
+   "cream_render",
+   "cream_render",
+   "orange_brick"
   ],
   "roof": [
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile"
   ],
-  "tudor": 0.15,
-  "note": "Wide main road with grass verges; detached houses and chalets of mixed age (red brick with white rendered or dark-timbered gables, cream render with red tile roofs, a few interwar semis) set back behind tall hedges and low brick walls.",
+  "tudor": 0.1,
+  "note": "Big interwar and later detached houses and chalet bungalows set well back behind low red-brick walls, hedges and large conifers; red brick and white render in roughly equal measure with some gabled mock-Tudor fronts and a few modern cream-rendered replacements.",
   "family": "interwar_detached",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.4,
-  "front": "hedge"
+  "upper_p": 0.3,
+  "front": "wall"
  },
  "Little Woodcote Close": {
   "walls": [
    "white_render",
    "white_render",
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render",
    "red_brick",
    "red_brick",
-   "cream_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.3,
   "roof": [
    "dark_tile",
    "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
-   "slate"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0,
+  "note": "Close itself not covered by Street View; only the corner house at the A4074 junction is visible (a detached house with grey-painted weatherboarded upper floor, twin chimneys and a dark tile roof behind a tall hedge), and Knowle Close next door is hedges and red-brick houses.",
+  "family": "interwar_detached",
+  "source": "street view",
+  "upper": [
+   "timber"
+  ],
+  "upper_p": 0.5,
+  "front": "hedge"
  },
  "Priory Avenue": {
   "walls": [
@@ -5352,27 +5392,31 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick"
+   "white_render",
+   "orange_brick"
   ],
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "Red-brick low-rise flats set in communal lawns with trees, plus newer red-brick houses behind fences.",
+  "tudor": 0,
+  "note": "1960s-70s two/three-storey red-brick flat blocks with shallow tiled roofs and timber panels between windows, set on open communal lawns with weeping willow and birch, plus a few new-build red-brick detached houses with white-rendered bays behind a post-and-rail fence.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "timber"
+  ],
+  "upper_p": 0.15,
   "front": null
  },
  "Woodrow Court": {
@@ -5424,34 +5468,34 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
-   "white_render",
-   "white_render",
-   "white_render"
+   "orange_brick"
   ],
   "roof": [
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.2,
+  "tudor": 0,
   "quoins": 0.6,
-  "note": "Mix of red-brick semi-bungalows behind fences and older large houses, one with mock-Tudor gables, in a leafy setting; one view failed.",
+  "note": "Tall Victorian red-brick semis with steep gables and decorative bargeboards, alongside postwar red-brick bungalows with brown-tile roofs. Low red-brick walls with piers, close-boarded fences and hedges; big copper beech and conifers.",
   "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.2,
+  "upper_p": 0.1,
   "front": "wall"
  },
  "Priest Hill": {
@@ -5585,7 +5629,7 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
+   "white_render",
    "white_render"
   ],
   "roof": [
@@ -5596,21 +5640,21 @@
    "slate",
    "slate",
    "slate",
-   "dark_tile",
+   "slate",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile"
   ],
   "tudor": 0.1,
-  "quoins": 0.6,
-  "note": "Large Edwardian red-brick villas and semis with white-painted bay windows, gables, balconies and tall chimneys behind clipped hedges and low brick walls.",
-  "family": "victorian_villa",
+  "quoins": 0.8,
+  "note": "Victorian and Edwardian red-brick terraces and villas with slate roofs, tall chimneys, bay windows and white-painted or half-timbered gables, behind clipped hedges and low red-brick walls with piers; very leafy with mature trees overhanging.",
+  "family": "victorian_terrace",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.05,
+  "upper_p": 0.25,
   "front": "hedge"
  },
  "Chester Street": {
@@ -5868,9 +5912,9 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
    "white_render",
-   "white_render"
+   "white_render",
+   "timber"
   ],
   "roof": [
    "slate",
@@ -5878,24 +5922,24 @@
    "slate",
    "slate",
    "slate",
+   "slate",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.2,
+  "tudor": 0.15,
   "quoins": 0.5,
-  "note": "A busy main road with Victorian red-brick buildings under slate roofs, a 1960s brick flat block, and a black-and-white mock-Tudor house above flint walls and hedges.",
+  "note": "Hill road by St Peter s church: Georgian/Victorian red-brick houses with slate roofs and stone dressings, a mock-Tudor Edwardian house, a 1960s three-storey red-brick flat block, all behind old flint-and-brick walls, railings and thick hedges and trees.",
   "family": "town",
   "source": "street view",
   "upper": [
-   "white_render"
+   "timber"
   ],
-  "upper_p": 0.2
+  "upper_p": 0.2,
+  "front": "wall"
  },
  "The Bakehouse": {
   "walls": [
@@ -5984,8 +6028,8 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
    "dark_tile",
@@ -6001,8 +6045,8 @@
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s-90s close of large red-brick detached houses with bay windows and gabled fronts set on open lawns.",
+  "tudor": 0,
+  "note": "1990s-2000s cul-de-sac of large detached red-brick houses with steep gables, brick arches, bay windows with lean-to tile roofs and dark plain-tile roofs with rooflights. Open lawns and shrub beds; mature trees; a red-brick boundary wall at the entrance.",
   "family": "modern",
   "source": "street view",
   "front": null
@@ -6016,35 +6060,36 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
+   "grey_brick",
+   "grey_brick",
    "white_render",
    "white_render",
-   "cream_render"
+   "pebbledash"
   ],
   "roof": [
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "slate",
+   "slate",
+   "slate",
+   "red_tile",
+   "red_tile"
   ],
-  "tudor": 0.05,
+  "tudor": 0.2,
   "quoins": 0.6,
-  "note": "Large Edwardian red-brick houses with tall chimneys, bays and rendered gables, mostly screened by clipped hedges on low brick walls and big garden trees.",
+  "note": "Large late-Victorian/Edwardian villas in red and grey Reading brick with steep gables, bay windows and some mock-Tudor or rendered gables, behind low red-brick walls topped with tall hedges and timber gates; big pines and mature trees.",
   "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
   "upper_p": 0.3,
-  "front": "hedge"
+  "front": "wall"
  },
  "Albert Road": {
   "walls": [
@@ -6100,30 +6145,32 @@
    "red_brick",
    "red_brick",
    "white_render",
-   "white_render"
+   "buff_brick"
   ],
   "roof": [
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.05,
-  "note": "Interwar semis with red-brick ground floors and white rendered upper floors under dark tiled roofs, fronted by hedges, fences and paved drives.",
-  "family": "interwar_semi",
+  "tudor": 0.2,
+  "quoins": 0.6,
+  "note": "Edwardian red-brick semis and villas with gabled fronts, several with black-and-white mock-Tudor gables, slate roofs and tall chimneys; a few later infill houses with white-rendered or tile-hung upper floors. Low brick walls with piers and hedges, garden trees.",
+  "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.6
+  "upper_p": 0.25,
+  "front": "wall"
  },
  "Ilkley Road": {
   "walls": [
@@ -6133,12 +6180,12 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
    "white_render",
    "white_render",
    "white_render",
    "white_render",
-   "white_render",
-   "pebbledash"
+   "orange_brick"
   ],
   "roof": [
    "dark_tile",
@@ -6147,21 +6194,21 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "red_tile",
-   "red_tile"
+   "slate"
   ],
   "tudor": 0.25,
-  "note": "Mixed interwar detached houses, some white rendered with mock-Tudor gables, some red brick, plus bungalows, mostly behind hedges and close-board fences; few houses were clearly visible.",
+  "note": "Leafy road where hedges, fences and trees hide most houses; visible ones are 1920s-30s detached houses, including a black-and-white mock-Tudor gabled house and white-rendered ones, red-brick semis with dark tile roofs and a low brick outbuilding. Picket and close-boarded fences, thick hedges.",
   "family": "interwar_detached",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.2,
+  "upper_p": 0.3,
   "front": "wall"
  },
  "Buxton Avenue": {
@@ -6174,34 +6221,34 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
    "white_render",
    "white_render",
+   "tile_hung",
    "pebbledash"
   ],
   "roof": [
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
    "slate"
   ],
-  "tudor": 0.05,
+  "tudor": 0.1,
   "quoins": 0.6,
-  "note": "Edwardian to 1920s semis and detached houses with bay windows, red brick below and often white render or roughcast above, behind low brick walls and fences.",
+  "note": "Edwardian/interwar red-brick detached and semi houses with steep front gables, white-rendered or tile-hung upper floors and some mock-Tudor gables; low red-brick walls, a few fences and hedges in front.",
   "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.5,
+  "upper_p": 0.3,
   "front": "wall"
  },
  "Harrogate Road": {
@@ -6216,8 +6263,8 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "white_render"
+   "white_render",
+   "timber"
   ],
   "roof": [
    "slate",
@@ -6227,21 +6274,21 @@
    "slate",
    "slate",
    "slate",
-   "slate",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "brown_tile"
   ],
-  "tudor": 0.05,
+  "tudor": 0,
   "quoins": 0.6,
-  "note": "Late-Victorian red-brick villas and semis with slate roofs, white bands or chequered brickwork and tall chimneys along the north side behind low brick walls and hedges; the south side is back-garden fences, garages and St Andrew's church.",
+  "note": "Late-Victorian/Edwardian red-brick semis and villas with slate roofs, tall chimneys, bay windows and white-painted string courses, some with decorative tile-hung or brick gables, behind low red-brick walls and hedges; a sandstone church with a bellcote stands at the east end, and the west end has long timber fences and garages.",
   "family": "victorian_villa",
   "source": "street view",
   "upper": [
-   "white_render"
+   "tile_hung"
   ],
-  "upper_p": 0.05,
+  "upper_p": 0.1,
   "front": "wall"
  },
  "Woburn Close": {
@@ -6268,19 +6315,19 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "dark_tile",
-   "dark_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s close of orange/buff-brick terraces and link-detached houses, some with tile-hung or boarded upper panels, open frontages and trees at the end.",
+  "tudor": 0,
+  "note": "1960s-70s estate of two-storey detached and terraced houses in orange-red brick with dark-stained timber weatherboarding or tile-hanging on the upper floor, white-painted window bands, flat-roofed garages and brown concrete tile roofs, around open-plan lawns with some large old trees.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "timber"
   ],
-  "upper_p": 0.4,
+  "upper_p": 0.6,
   "front": null
  },
  "Richmond Road": {
@@ -6292,11 +6339,11 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
    "white_render",
    "white_render",
    "white_render",
-   "white_render",
-   "pebbledash"
+   "orange_brick"
   ],
   "roof": [
    "dark_tile",
@@ -6309,11 +6356,11 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "red_tile"
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "A quiet road of individually built detached houses and a few bungalows, red brick or white render, mostly screened by tall hedges with grass verges.",
+  "tudor": 0.05,
+  "note": "Mixed leafy road: interwar red-brick semis and detached houses, bungalows and chalet bungalows, a white-rendered cottage and a big Edwardian red-brick house behind a brick-pier wall with railings; most fronts are tall hedges, low red-brick walls or timber fences with gravel drives.",
   "family": "interwar_semi",
   "source": "street view",
   "upper": [
@@ -6412,31 +6459,32 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
    "white_render",
-   "white_render"
+   "orange_brick",
+   "buff_brick"
   ],
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
    "slate",
    "slate",
+   "slate",
+   "slate",
+   "slate",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "Edwardian red-brick semis with dormers and tall chimneys mixed with later red-brick detached houses, behind low brick walls and hedges; only 3 of 6 views loaded.",
+  "tudor": 0.05,
+  "note": "Victorian/Edwardian red-brick semis and villas with bay windows, white-painted gables and slate roofs, mixed with 1980s-2000s red-brick detached infill and a bungalow at the east end. Low red-brick walls with piers and clipped hedges.",
   "family": "interwar_semi",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.15,
+  "upper_p": 0.2,
   "front": "wall"
  },
  "St. Andrew's Road": {
@@ -6449,10 +6497,10 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
-   "white_render",
-   "white_render",
-   "white_render"
+   "cream_render"
   ],
   "roof": [
    "dark_tile",
@@ -6461,22 +6509,23 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile",
+   "slate",
    "slate",
    "slate",
    "slate",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.05,
-  "note": "Mixed road: large Victorian red-brick detached house with slate roof and white gables beside 1930s semis with rendered upper floors and later red-brick houses, behind hedges and low walls.",
-  "family": "interwar_detached",
+  "tudor": 0.15,
+  "quoins": 0.6,
+  "note": "Large Edwardian and 1920s red-brick detached houses and semis with white-painted bargeboarded gables (some timbered), bay windows and dark plain-tile or slate roofs, plus one 1930s cream-painted semi pair. Low red-brick walls with piers, hedges and close-boarded fences; very leafy.",
+  "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.35,
-  "front": "hedge"
+  "upper_p": 0.15,
+  "front": "wall"
  },
  "The Cloisters": {
   "walls": [
@@ -6640,31 +6689,31 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "orange_brick",
-   "orange_brick"
+   "red_brick",
+   "white_render"
   ],
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s red-brick detached houses with white boarded upper panels and front porches, open-plan sloping lawns.",
+  "tudor": 0,
+  "note": "1960s-70s close of plain red-brick detached houses with low-pitch dark-tile roofs, chimneys, tiled porch canopies and attached garages on open-plan lawns; big trees behind.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.1,
   "front": null
  },
  "Dellwood Park": {
@@ -6679,31 +6728,32 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
+   "cream_render",
    "cream_render"
   ],
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.2,
-  "note": "A leafy modern cul-de-sac of large red-brick detached houses with rendered or mock-Tudor timbered gables and bay windows among mature trees.",
+  "tudor": 0.3,
+  "note": "1990s-2000s executive cul-de-sac of large red-brick detached houses with steep gables, mock-Tudor black-and-white upper storeys or a cream-rendered gable, dark tile roofs; brick gate piers, hedges, railings and mature conifers.",
   "family": "modern",
   "source": "street view",
   "upper": [
-   "cream_render"
+   "timber"
   ],
-  "upper_p": 0.3
+  "upper_p": 0.4,
+  "front": "hedge"
  },
  "Chelford Way": {
   "walls": [
@@ -6767,16 +6817,20 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "red_tile",
+   "dark_tile",
    "red_tile",
    "red_tile",
    "red_tile",
    "red_tile"
   ],
-  "tudor": 0.0,
-  "note": "A narrow, overgrown edge-of-town lane with only one house clearly seen, a white-rendered chalet house with a dark tile roof behind a timber fence; the rest is hedge and woodland.",
-  "family": "estate_6070",
+  "tudor": 0.3,
+  "note": "Rural lane with dense hedgerow and trees; the only houses seen are a white-rendered interwar chalet house with a tall chimney and a mock-Tudor gabled house behind close-board fences. The western panorama has no Street View imagery.",
+  "family": "interwar_detached",
   "source": "street view",
+  "upper": [
+   "timber"
+  ],
+  "upper_p": 0.3,
   "front": "wall"
  },
  "Woodford Close": {
@@ -6787,11 +6841,11 @@
    "buff_brick",
    "buff_brick",
    "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
+   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
    "white_render"
   ],
   "roof": [
@@ -6802,20 +6856,20 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "grey_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "A 1960s-70s close of buff and orange brick detached houses with white panels around the windows and shallow roofs on open-plan lawns.",
+  "tudor": 0,
+  "note": "1960s-70s close of buff/yellow-brick link-detached houses with low-pitch brown-tile roofs, white weatherboard or tile-hung panels and porch canopies, set on open-plan lawns among mature trees.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "white_render"
+   "tile_hung"
   ],
-  "upper_p": 0.2,
+  "upper_p": 0.3,
   "front": null
  },
  "Woodcote Way": {
@@ -6830,8 +6884,8 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "pebbledash"
+   "orange_brick",
+   "white_render"
   ],
   "roof": [
    "brown_tile",
@@ -6840,16 +6894,16 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "red_tile"
+   "dark_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "Plain red-brick bay-windowed semis from the 1930s-50s with hipped brown tiled roofs, behind low brick walls, hedges and fences with grass verges.",
-  "family": "postwar_council",
+  "tudor": 0.05,
+  "note": "Long road of 1930s red-brick semis with hipped tiled roofs, two-storey bay windows and front gables, a few with loft dormers; low brick walls, hedges or open drives. Northern end has backs of gardens with tall close-boarded fences and a few postwar semis.",
+  "family": "interwar_semi",
   "source": "street view",
   "upper": [
    "white_render"
@@ -6869,7 +6923,7 @@
    "white_render",
    "orange_brick",
    "orange_brick",
-   "pebbledash"
+   "cream_render"
   ],
   "roof": [
    "dark_tile",
@@ -6878,22 +6932,22 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
    "slate",
-   "red_tile"
+   "slate"
   ],
-  "tudor": 0.05,
-  "note": "A long mixed road: Edwardian red-brick houses with rendered upper floors at the south end, later detached infill and 1970s orange-brick houses further north, mostly behind tall hedges and brick walls.",
+  "tudor": 0,
+  "note": "Mixed avenue: Edwardian red-brick villas with bay windows and slate or dark-tile roofs (one wall with flint panels), alongside 1960s-80s detached houses with white-rendered or weatherboarded upper floors and a brown-brick split-level. Low red-brick walls and hedges, lots of mature trees.",
   "family": "interwar_detached",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3,
-  "front": "hedge"
+  "upper_p": 0.25,
+  "front": "wall"
  },
  "Queensborough Drive": {
   "walls": [
@@ -6904,34 +6958,34 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "white_render"
+   "orange_brick"
   ],
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "grey_tile"
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estate houses in red brick with white boarded or rendered upper floors, shallow roofs and attached garages on open-plan fronts.",
+  "tudor": 0,
+  "note": "1970s detached estate houses in red/orange brick, about half with white weatherboarded upper floors, integral garages and porch canopies; open-plan lawns and wide drives, conifers and mature trees.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "white_render"
+   "timber"
   ],
-  "upper_p": 0.6,
+  "upper_p": 0.5,
   "front": null
  },
  "Fernbrook Road": {
@@ -6946,31 +7000,31 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
+   "orange_brick",
    "white_render"
   ],
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile"
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "Red-brick 1930s-50s semis with two-storey bay windows and hipped brown tiled roofs behind picket fences and hedges, with grass verges and big conifers; the east end is hidden by hedges.",
-  "family": "postwar_council",
+  "tudor": 0.05,
+  "note": "1930s red-brick semis with hipped dark plain-tile roofs, two-storey bays and white-rendered or tile-hung gable fronts, plus red-brick detached houses and a bungalow; fronts mix picket fences, low brick walls, tall hedges and big conifers on wide verges.",
+  "family": "interwar_semi",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.1
+  "upper_p": 0.3
  },
  "Westdene Crescent": {
   "walls": [
@@ -6984,7 +7038,7 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
+   "orange_brick",
    "white_render"
   ],
   "roof": [
@@ -6994,17 +7048,21 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
+   "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "Red-brick bungalows and chalet bungalows with steep brown tiled roofs and dormers, low brick walls, around a grassed island.",
+  "tudor": 0,
+  "note": "1950s crescent of red-brick detached houses and chalet bungalows with hipped or steep gabled brown/dark tile roofs, dormers and chimneys, behind low red-brick walls with small lawns and some hedges; a newer three-storey red-brick house behind a tall brick wall at the corner.",
   "family": "postwar_council",
   "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.1,
   "front": "wall"
  },
  "Lawson Drive": {
@@ -7094,11 +7152,10 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick",
+   "cream_render",
+   "cream_render",
    "white_render",
-   "white_render",
-   "white_render"
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
@@ -7107,21 +7164,21 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "red_tile"
   ],
-  "tudor": 0.0,
-  "note": "Bungalows and modest detached houses glimpsed behind tall fences and hedges, red brick with brown tiled roofs, with wide grass verges.",
-  "family": "postwar_council",
+  "tudor": 0.05,
+  "note": "Mostly hidden behind close-boarded fences, hedges and trees; what shows is 1930s red-brick and cream-rendered semis and detached houses with hipped tile roofs and several red-brick bungalows. Wide grass verges and mature trees.",
+  "family": "interwar_detached",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.1,
+  "upper_p": 0.15,
   "front": "wall"
  },
  "Geoffreyson Road": {
@@ -7135,9 +7192,9 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "buff_brick",
-   "white_render"
+   "orange_brick",
+   "white_render",
+   "buff_brick"
   ],
   "roof": [
    "brown_tile",
@@ -7146,32 +7203,32 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "Red-brick semis from the 1930s-50s, some with bay windows, brown and dark tiled roofs, fences and hedges in front and grass verges.",
-  "family": "postwar_council",
+  "tudor": 0.1,
+  "note": "1930s red-brick semis with two-storey bays and small half-timbered gables, plus plainer 1940s-50s red-brick semis and short terraces with hipped brown-tile roofs. Fronts are a mix of low walls, fences, hedges and paved drives behind grass verges.",
+  "family": "interwar_semi",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.1
+  "upper_p": 0.15
  },
  "Pinewood Drive": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
@@ -7186,13 +7243,13 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "Narrow tree-lined drive; one modern orange-brick detached house with a bay window and an older red-brick house in the distance were all that showed past conifers and hedges.",
+  "tudor": 0,
+  "note": "Narrow hedged road; the only house clearly seen is a 1980s-90s buff/light-brick house with a decorative brick diamond and a lean-to porch roof. Tall conifer hedges and close-boarded fences hide the rest.",
   "family": "modern",
   "source": "street view",
   "front": "hedge"
@@ -7282,35 +7339,35 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
    "orange_brick",
    "orange_brick",
-   "white_render",
    "white_render"
   ],
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "grey_tile"
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "A cul-de-sac of 1960s red and orange brick bungalows and a few chalet bungalows with brown concrete tile roofs behind low brick walls.",
+  "tudor": 0,
+  "note": "1960s-70s close of red/orange-brick bungalows and chalet bungalows (some with dormers) under dark brown concrete-tile roofs, set behind low brick walls with small lawns; tall hedges and fences at the entrance.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "white_render"
   ],
-  "upper_p": 0.05,
+  "upper_p": 0.1,
   "front": "wall"
  },
  "Gurney Drive": {
@@ -7322,10 +7379,12 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "orange_brick",
-   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
-   "white_render"
+   "white_render",
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
@@ -7335,110 +7394,31 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "grey_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s brick bungalows with brown concrete tile roofs, some with white weatherboard gables and attached garages, on open-plan drives and lawns.",
-  "family": "estate_6070",
+  "tudor": 0,
+  "note": "Close of 1950s-60s red-brick bungalows and chalet bungalows with hipped brown or dark tile roofs, gabled porches and some white-painted fronts, plus a couple of two-storey houses. Open paved drives, low hedges and small lawns.",
+  "family": "postwar_council",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "white_render"
   ],
-  "upper_p": 0.05,
+  "upper_p": 0.1,
   "front": null
  },
  "Crispin Close": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
    "orange_brick",
    "orange_brick",
    "orange_brick",
    "orange_brick",
-   "orange_brick"
-  ],
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s close of plain detached red and brown brick houses with shallow brown roofs, some dark panels between windows, attached garages and open lawns.",
-  "family": "estate_6070",
-  "source": "street view",
-  "upper": [
-   "timber"
-  ],
-  "upper_p": 0.2,
-  "front": null
- },
- "Shepherds Lane": {
-  "walls": [
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
    "orange_brick",
    "orange_brick",
    "orange_brick",
-   "orange_brick"
-  ],
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "dark_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "A through lane with grass verges where mixed-age detached houses and chalet bungalows, some white rendered and some newer orange brick, sit well back behind tall hedges and fences.",
-  "family": "interwar_semi",
-  "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.15,
-  "front": "hedge"
- },
- "The Grange": {
-  "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
@@ -7454,17 +7434,95 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s close of two-storey detached houses in orange-red brick, some with dark tile-hung or boarded panels between the windows, plus a neo-Georgian red-brick house with a white porch; brown concrete tile roofs, integral or side garages, open-plan lawns with large conifers and limes.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.3,
+  "front": null
+ },
+ "Shepherds Lane": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render",
+   "timber",
+   "orange_brick"
+  ],
+  "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "red_tile",
+   "red_tile"
+  ],
+  "tudor": 0.15,
+  "note": "Wide verged road of detached houses and bungalows set well back behind tall hedges, fences and conifers, mostly hidden; a 1960s-70s white-balconied house and a mock-Tudor mews group visible among them.",
+  "family": "interwar_semi",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
+  "front": "hedge"
+ },
+ "The Grange": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1990s executive estate of large detached red-brick houses with double garages, front gables that are tile-hung or pale rendered, brown tiled roofs and open lawns with shrubs.",
+  "tudor": 0.3,
+  "note": "1990s executive estate of large detached red-brick houses with steep gables, some with mock-Tudor white-and-black timbered gables or rendered panels, double garages and brown concrete tile roofs. Open lawns, wide block-paved drives, birch and conifer trees.",
   "family": "modern",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "white_render"
   ],
   "upper_p": 0.3,
   "front": null
@@ -7481,7 +7539,7 @@
    "orange_brick",
    "orange_brick",
    "orange_brick",
-   "orange_brick",
+   "white_render",
    "white_render"
   ],
   "roof": [
@@ -7491,21 +7549,22 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "Plain postwar red-brick semis with bay windows and brown tiled roofs behind low fences and verges, ending in a turning circle with a few later brick detached houses.",
-  "family": "postwar_council",
+  "tudor": 0,
+  "note": "1950s-60s red-brick semis with tiled porch canopies and brown concrete-tile roofs along grass verges, plus a 1980s cul-de-sac end of red-brick detached houses with integral garages; low fences and open lawns.",
+  "family": "interwar_detached",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.1
+  "upper_p": 0.15,
+  "front": null
  },
  "Tokers Green Lane": {
   "walls": [
@@ -7519,8 +7578,8 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
@@ -7536,12 +7595,12 @@
    "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1990s executive estate of large detached red-brick houses with double garages, front gables that are tile-hung or pale rendered, brown tiled roofs and open lawns with shrubs.",
+  "tudor": 0.3,
+  "note": "1990s executive estate of large detached red-brick houses with steep gables, some with mock-Tudor white-and-black timbered gables or rendered panels, double garages and brown concrete tile roofs. Open lawns, wide block-paved drives, birch and conifer trees.",
   "family": "modern",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "white_render"
   ],
   "upper_p": 0.3,
   "front": null
@@ -7557,32 +7616,33 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick",
-   "white_render"
+   "white_render",
+   "white_render",
+   "orange_brick"
   ],
   "roof": [
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1930s red-brick semis with two-storey bay windows under small tile-hung gables, behind low walls and hedges on a verge-lined street.",
+  "tudor": 0.2,
+  "note": "1920s-30s semis in red brick with white-rendered upper floors on some, two-storey bay windows, small timbered front gables and dark tile hipped roofs. Low red-brick walls, hedges and paved drives behind grass verges with trees.",
   "family": "interwar_semi",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "white_render"
   ],
-  "upper_p": 0.3
+  "upper_p": 0.3,
+  "front": "wall"
  },
  "Silverthorne Drive": {
   "walls": [
@@ -7591,7 +7651,8 @@
    "buff_brick",
    "buff_brick",
    "buff_brick",
-   "buff_brick",
+   "orange_brick",
+   "orange_brick",
    "orange_brick",
    "orange_brick",
    "white_render",
@@ -7607,13 +7668,13 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
+   "grey_tile",
+   "grey_tile",
    "grey_tile",
    "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s estate of semis and detached houses with brick ground floors and white or cream boarded/rendered uppers, plus buff-brick chalet bungalows with big dormers at the west end; mostly open lawns with a few hedges.",
+  "tudor": 0,
+  "note": "1960s-70s estate of semi-detached chalet bungalows with big front dormers and link-detached houses in buff or light orange brick, with white-painted or boarded upper floors and brown concrete tile roofs, set behind open-plan lawns and the odd low hedge.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
@@ -7634,7 +7695,7 @@
    "white_render",
    "white_render",
    "white_render",
-   "white_render",
+   "orange_brick",
    "orange_brick"
   ],
   "roof": [
@@ -7645,21 +7706,20 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "dark_tile",
+   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s detached houses with dark tile-hung or boarded upper floors over brick, and white-rendered houses, behind short hedges.",
+  "tudor": 0,
+  "note": "1960s detached houses with red-brick ground floors and brown tile-hung or white-painted upper floors, gabled or hipped brown concrete tile roofs and side garages, plus white-rendered houses; fronts are low brick walls, hedges or open lawns.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.4,
-  "front": null
+  "upper_p": 0.5
  },
  "Carlton Road": {
   "walls": [
@@ -7668,13 +7728,13 @@
    "orange_brick",
    "orange_brick",
    "orange_brick",
-   "orange_brick",
    "white_render",
    "white_render",
    "white_render",
    "white_render",
-   "white_render",
-   "buff_brick"
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
    "brown_tile",
@@ -7684,20 +7744,20 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
    "grey_tile",
    "grey_tile",
    "grey_tile",
-   "grey_tile"
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estate houses with shallow gables facing the road, white render or orange brick below and dark tile-hung or boarded upper floors, on open-plan lawns.",
+  "tudor": 0,
+  "note": "1960s-70s estate: semis with steep catslide gables clad in dark grey-green weatherboarding over white render, plus later brick detached houses with gables; open-plan lawns and block-paved drives.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "timber"
   ],
-  "upper_p": 0.5,
+  "upper_p": 0.6,
   "front": null
  },
  "Haldane Road": {
@@ -7708,67 +7768,73 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
    "white_render",
    "white_render",
    "white_render",
    "white_render",
-   "buff_brick",
-   "buff_brick"
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile"
-  ],
-  "tudor": 0.0,
-  "note": "A road of postwar bungalows with low brown-tiled hipped roofs behind low brick walls, hedges and fences, with grassy corners at the junctions.",
-  "family": "postwar_council",
-  "source": "street view"
- },
- "Saint David's Close": {
-  "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick"
-  ],
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s close of chalet-style semis and detached houses with steep brown tiled roofs sweeping down over the ground floor, brick below and white boarding above, with open front gardens.",
-  "family": "estate_6070",
+  "tudor": 0.05,
+  "note": "Mostly 1950s-60s bungalows and chalet bungalows, red brick or white render with hipped dark-tile roofs, behind low brick walls, close-board fences and hedges; a few two-storey houses.",
+  "family": "postwar_council",
   "source": "street view",
   "upper": [
    "white_render"
+  ],
+  "upper_p": 0.1,
+  "front": "wall"
+ },
+ "Saint David's Close": {
+  "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "white_render"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
+  ],
+  "tudor": 0,
+  "note": "1960s-70s close of semi and link-detached houses with long sweeping catslide roofs in brown or grey concrete tile, buff or light orange brick ground floors and white-painted weatherboarded upper floors, flat-roofed garages and open-plan lawns; one newer red-brick detached house with a gabled porch.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "timber"
   ],
   "upper_p": 0.6,
   "front": null
@@ -7785,7 +7851,7 @@
    "red_brick",
    "white_render",
    "white_render",
-   "pebbledash"
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
@@ -7793,43 +7859,40 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "slate",
    "slate"
   ],
-  "tudor": 0.0,
-  "note": "Mostly side and back garden fences on the stretches seen, with red-brick interwar semis and detached houses under hipped tiled roofs, a red-roofed chalet bungalow and a white rendered house.",
+  "tudor": 0,
+  "note": "Mixed road of interwar and post-war red-brick semis and detached houses with brown or dark tile roofs and chimneys, plus a white-boarded chalet and a bungalow; long stretches are side garden fences and hedges, with low red-brick walls in front of the houses.",
   "family": "interwar_detached",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.2,
+  "upper_p": 0.15,
   "front": "wall"
  },
  "Ashcroft Close": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "white_render"
   ],
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
@@ -7838,16 +7901,20 @@
    "brown_tile",
    "brown_tile",
    "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
    "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "A 1960s-70s close of brick detached houses with shallow front gables and dark tile-hung upper floors, behind low brick walls, hedges and fences.",
+  "tudor": 0,
+  "note": "1960s-70s close of two-storey detached houses with brick ground floors and dark tile-hung or weatherboarded upper floors, shallow-pitch concrete-tile roofs and attached garages; low brick walls, hedges and close-boarded fences.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.6
+  "upper_p": 0.6,
+  "front": "wall"
  },
  "Lymington Gate": {
   "walls": [
@@ -7896,66 +7963,67 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "cream_render"
+   "cream_render",
+   "orange_brick"
   ],
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "Street of 1950s-60s red-brick bungalows with hipped brown tiled roofs, small front bays and side garages, behind low brick walls, some topped with pierced concrete blocks.",
-  "family": "postwar_council",
+  "tudor": 0,
+  "note": "1960s estate of red-brick bungalows (detached and semi) with hipped dark/brown concrete-tile roofs, attached garages and low red-brick front walls, some with pierced screen-block tops; one cream-rendered bungalow.",
+  "family": "estate_6070",
   "source": "street view",
   "front": "wall"
  },
  "Tyler Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
    "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "white_render",
+   "white_render"
   ],
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s close with buff-brick garages and screen-block walls; houses mostly hidden.",
+  "tudor": 0,
+  "note": "Only two views, mostly of garages and side walls: 1960s-70s estate with buff-brick garages, red-brick houses with weatherboarded fronts, low brick walls with pierced concrete screen blocks; fences and trees.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "timber"
   ],
-  "upper_p": 0.2
+  "upper_p": 0.3,
+  "front": "wall"
  },
  "Wrenfield Drive": {
   "walls": [
@@ -7967,8 +8035,9 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "orange_brick",
-   "orange_brick",
+   "red_brick",
+   "pebbledash",
+   "pebbledash",
    "white_render"
   ],
   "roof": [
@@ -7979,20 +8048,20 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "Postwar red-brick semis with hipped roofs stepping up a hillside above the road, with a long fenced verge with young trees on the other side.",
-  "family": "postwar_council",
+  "tudor": 0,
+  "note": "1930s semis on a slope, red brick on the ground floor with white or pebbledashed upper floors and bays, hipped brown or dark tile roofs and chimneys; fronts mix low walls, hedges and steep block-paved drives; a long buff-brick wall runs along one side near the junction.",
+  "family": "interwar_semi",
   "source": "street view",
   "upper": [
-   "white_render"
+   "pebbledash"
   ],
-  "upper_p": 0.2
+  "upper_p": 0.5
  },
  "Hunters Chase": {
   "walls": [
@@ -8003,34 +8072,31 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick"
+   "buff_brick"
   ],
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
    "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "A modern estate spine road lined mostly by hedges, fences and garden walls, with red and orange brick 1990s detached houses glimpsed side-on.",
+  "tudor": 0,
+  "note": "1980s-90s estate road of red-brick detached houses with dark concrete-tile roofs and chimneys, largely screened from the road by tall hedges, close-board fences and brick garden walls; mature trees.",
   "family": "modern",
   "source": "street view",
-  "upper": [
-   "tile_hung"
-  ],
-  "upper_p": 0.05
+  "front": "hedge"
  },
  "Tymawr": {
   "walls": [
@@ -8041,11 +8107,11 @@
    "buff_brick",
    "buff_brick",
    "buff_brick",
-   "buff_brick",
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
    "grey_tile",
@@ -8055,20 +8121,20 @@
    "grey_tile",
    "grey_tile",
    "grey_tile",
-   "brown_tile",
-   "brown_tile",
+   "grey_tile",
+   "grey_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1990s estate of buff-brick detached houses with bay windows, some dark tile-hung gables and attached garages, plus a red-brick terrace; open drives and tiny front gardens.",
+  "tudor": 0,
+  "note": "2000s Barratt-style estate of two-storey detached houses with integral garages in buff/yellow brick with red-brick quoins and lintels, a few red-brick terraces, grey concrete tile roofs with small porch canopies and occasional dark weatherboarded gables, behind open-plan lawns and low brick walls.",
   "family": "modern",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "timber"
   ],
-  "upper_p": 0.15,
+  "upper_p": 0.1,
   "front": null
  },
  "Brill Close": {
@@ -8117,13 +8183,12 @@
    "buff_brick",
    "buff_brick",
    "buff_brick",
-   "buff_brick",
    "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick"
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
@@ -8133,14 +8198,14 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "Late-1980s/90s detached houses in buff or red brick with red tile-hung gables, integral garages and open front lawns; one side of the road is just hedge and trees.",
+  "tudor": 0,
+  "note": "1990s cul-de-sac of two-storey detached and semi houses in buff or red brick, many with red tile-hung front gables and small tiled porch canopies, brown and dark concrete tile roofs, integral garages and open lawns with low hedges; wooded edges.",
   "family": "modern",
   "source": "street view",
   "upper": [
@@ -8197,28 +8262,28 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1990s red-brick houses with small tiled porches and bay windows, some stepped up the slope above brick retaining walls; only two views so few houses seen.",
+  "tudor": 0,
+  "note": "1990s hillside estate of two- and three-storey red/orange-brick houses with bay windows, small tiled porch canopies, white decorative bargeboards and dark concrete tile roofs, stepped up the slope on brick retaining walls with garages beneath and small shrub gardens.",
   "family": "modern",
   "source": "street view",
   "front": null
@@ -8232,8 +8297,7 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "cream_render",
-   "cream_render",
+   "red_brick",
    "cream_render",
    "cream_render",
    "white_render"
@@ -8245,20 +8309,21 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.1,
-  "note": "Small 2000s close of large red-brick houses with cream rendered gables and stone-look window heads behind low brick walls with railings and hedges; an older white rendered mock-Tudor house stands at the entrance.",
+  "tudor": 0.15,
+  "note": "2000s red-brick flat blocks with cream-rendered upper storeys, gables and brown-tile roofs behind curved red-brick walls and clipped hedges, a small bungalow, and on the main-road corner a 1930s red-brick and white-render house with a black-and-white mock-Tudor gable. Lots of mature trees and shrubs.",
   "family": "modern",
   "source": "street view",
   "upper": [
    "cream_render"
   ],
-  "upper_p": 0.3,
+  "upper_p": 0.4,
   "front": "wall"
  },
  "Blaenavon": {
@@ -8270,11 +8335,11 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick"
   ],
   "roof": [
    "dark_tile",
@@ -8283,15 +8348,15 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile",
+   "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "Modern red-brick detached houses with gables and garages; one usable view.",
+  "tudor": 0,
+  "note": "1990s estate of two-storey detached red/orange-brick houses with gabled fronts, white windows, integral garages and dark or brown concrete tile roofs, on small open lawns; a grey-roofed bungalow below and a tall hedge bank opposite.",
   "family": "modern",
   "source": "street view",
   "front": null
@@ -8425,8 +8490,8 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
    "dark_tile",
@@ -8442,8 +8507,8 @@
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1990s red-brick detached houses with red-brown tile-hung upper gables on open corner lawns, woodland edge.",
+  "tudor": 0,
+  "note": "1990s cottage-style close of detached red-brick houses with red tile-hung upper floors or gables, steep dark plain-tile roofs with dormers and tall chimneys, white windows and double garages, on open lawns with shrubs; woodland along one side.",
   "family": "modern",
   "source": "street view",
   "upper": [
@@ -8624,50 +8689,50 @@
    "buff_brick",
    "buff_brick",
    "buff_brick",
-   "buff_brick",
    "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
    "cream_render",
-   "cream_render"
+   "cream_render",
+   "orange_brick"
   ],
   "roof": [
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1990s hillside estate: buff or red brick detached houses with cream rendered uppers, and a stepped terrace of three-storey townhouses with garages below and railinged steps up to the doors.",
+  "tudor": 0,
+  "note": "1990s-2000s hillside estate: detached houses and three-storey townhouses with garages underneath and steps up, in buff and red brick with cream-rendered or painted upper floors, small gables and brown/grey concrete tile roofs. Open fronts with small shrub beds and railings.",
   "family": "modern",
   "source": "street view",
   "upper": [
    "cream_render"
   ],
-  "upper_p": 0.4,
+  "upper_p": 0.35,
   "front": null
  },
  "Morlais": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
    "orange_brick",
    "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
    "buff_brick"
   ],
   "roof": [
@@ -8678,16 +8743,20 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s-90s estate of red-brick detached houses with white-painted gables and integral garages on open-plan lawns, plus a stepped row of townhouses up the slope.",
+  "tudor": 0,
+  "note": "1990s hillside estate of two-storey detached and linked houses in orange-red brick with brick arches, small white-bargeboarded front gables, integral garages and brown concrete tile roofs; open-plan front lawns, some stepped terraces with buff-brick garages built into the slope, wooded edges behind timber fences.",
   "family": "modern",
   "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.05,
   "front": null
  },
  "Treforgan": {
@@ -8703,24 +8772,24 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick"
+   "orange_brick"
   ],
   "roof": [
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1990s detached red-brick houses with front gables, bay windows and integral garages on open plots; the other side of the road is a thick hedge bank; only two views.",
+  "tudor": 0,
+  "note": "1990s-2000s estate of red-brick detached houses with steep gables, a roundel window, brick-arch heads, bay windows with lean-to roofs and integral garages; one chalet with roof dormers. Open lawns; a thick belt of trees and scrub on the opposite side.",
   "family": "modern",
   "source": "street view",
   "front": null
@@ -8845,43 +8914,41 @@
  },
  "Tredegar Road": {
   "walls": [
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
    "orange_brick",
    "orange_brick",
-   "orange_brick",
-   "orange_brick"
+   "white_render",
+   "white_render"
   ],
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile"
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "A hillside road with long green gaps of trees and scrub, and a stepped row of white-rendered and brick houses with orange roofs at the southern end.",
-  "family": "estate_6070",
+  "tudor": 0,
+  "note": "Steep hillside 1980s estate road: stepped terraces of red/buff-brick town houses with gables, red-brick detached houses and a few bungalows, separated by long stretches of wooded bank and verge with no houses.",
+  "family": "modern",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.2,
-  "front": "hedge"
+  "upper_p": 0.3,
+  "front": null
  },
  "Glenrhondda": {
   "walls": [
@@ -8892,9 +8959,9 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
    "orange_brick",
    "orange_brick"
   ],
@@ -8912,15 +8979,11 @@
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.3,
-  "note": "1990s red-brick detached houses, several with black-and-white mock-Tudor gables, block-paved drives and open lawns.",
+  "tudor": 0,
+  "note": "Mostly wooded banks, timber fences and views out over the valley; the only houses glimpsed are 1990s red/orange-brick detached houses with hipped dark tile roofs, like the neighbouring Morlais/Rhigos estate.",
   "family": "modern",
   "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.2,
-  "front": null
+  "front": "wall"
  },
  "Tylorstown": {
   "walls": [
@@ -8932,33 +8995,33 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick"
   ],
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "A 1990s cul-de-sac of red-brick detached houses with dormers and gabled porches on open lawns, screened from the road by hedges.",
+  "tudor": 0,
+  "note": "1990s hillside estate of red-brick detached houses with orange tile-hung upper floors, small dormers and gabled porches, dark tile roofs, on open lawns; dense trees on the other side.",
   "family": "modern",
   "source": "street view",
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.1,
+  "upper_p": 0.3,
   "front": null
  },
  "Cwmcarn": {
@@ -8984,20 +9047,20 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.3,
-  "note": "1990s red-brick detached houses, several with black-and-white mock-Tudor gables, block-paved drives and open lawns.",
+  "tudor": 0.4,
+  "note": "1990s executive estate of red-brick detached houses with steep front gables, many with black-and-white mock-Tudor upper gables, dark tile roofs, integral garages and block-paved drives on open lawns; woodland behind.",
   "family": "modern",
   "source": "street view",
   "upper": [
-   "white_render"
+   "timber"
   ],
-  "upper_p": 0.2,
+  "upper_p": 0.4,
   "front": null
  },
  "Rhigos": {
@@ -9010,43 +9073,43 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "buff_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1990s detached red-brick houses with bay windows, small decorative timber trusses in the gables, attached garages and open front lawns.",
+  "tudor": 0,
+  "note": "Late-1990s cul-de-sac of two-storey detached red/orange-brick houses with white decorative bargeboards on front gables, bay windows, integral double garages and dark brown concrete tile roofs, set on open sloping lawns backing onto woodland.",
   "family": "modern",
   "source": "street view",
   "front": null
  },
  "one way": {
   "walls": [
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
    "orange_brick",
    "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
    "buff_brick"
   ],
   "roof": [
@@ -9057,16 +9120,20 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s-90s estate of red-brick detached houses with white-painted gables and integral garages on open-plan lawns, plus a stepped row of townhouses up the slope.",
+  "tudor": 0,
+  "note": "1990s hillside estate of two-storey detached and linked houses in orange-red brick with brick arches, small white-bargeboarded front gables, integral garages and brown concrete tile roofs; open-plan front lawns, some stepped terraces with buff-brick garages built into the slope, wooded edges behind timber fences.",
   "family": "modern",
   "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.05,
   "front": null
  },
  "Aberaman": {
@@ -9078,32 +9145,32 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "buff_brick"
+   "orange_brick"
   ],
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile"
+   "brown_tile"
   ],
-  "tudor": 0.05,
-  "note": "A 1990s cul-de-sac of red and orange brick detached executive houses with bay windows, small gables and integral garages on open-plan plots with a few hedges.",
+  "tudor": 0.1,
+  "note": "1990s-2000s executive estate of red-brick detached houses with dark tile roofs, brick bands and chimneys, small mock-Tudor gable details and porch canopies; open lawns, some hedges and high brick garden walls with dark bands, mature trees around.",
   "family": "modern",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "white_render"
   ],
   "upper_p": 0.05,
   "front": null
@@ -9121,24 +9188,24 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick"
+   "orange_brick"
   ],
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "Modern red-brick detached houses with gabled porches and garages on open lawns; only one view loaded.",
+  "tudor": 0,
+  "note": "1990s-2000s cul-de-sac of red-brick detached and semi-detached houses with brick-arch window heads, small gables, porch canopies and brown concrete or dark tile roofs. Open front lawns and paved drives.",
   "family": "modern",
   "source": "street view",
   "front": null
