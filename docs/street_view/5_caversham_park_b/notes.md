@@ -1,0 +1,92 @@
+# Notes
+
+Google Maps stopped loading in the browser pane (blank page, net::ERR_BLOCKED_BY_CLIENT on Maps JS) part-way through. Coordinator said to stop. Views never saved:
+
+- Montpelier Drive 1_123
+- Montpelier Drive 1_003
+- Maytree Walk 0_206
+- Maytree Walk 0_086
+- Maytree Walk 1_287
+- Maytree Walk 1_167
+- Littlestead Close 0_040
+- Littlestead Close 0_280
+- Littlestead Close 1_128
+- Littlestead Close 1_008
+- Launceston Avenue 0_334
+- Launceston Avenue 0_214
+- Goodrich Close 0_120
+- Goodrich Close 0_000
+- Goodrich Close 1_182
+- Goodrich Close 1_062
+- Norman Road 0_157
+- Norman Road 0_037
+- Highbridge Close 0_213
+- Highbridge Close 0_093
+- Highbridge Close 1_303
+- Highbridge Close 1_183
+- Wilwyne Close 0_126
+- Wilwyne Close 0_006
+- Wilwyne Close 1_037
+- Wilwyne Close 1_277
+- Lady Jane Court 0_239
+- Lady Jane Court 0_119
+- Lady Jane Court 1_044
+- Lady Jane Court 1_284
+- Northbrook Road 0_059
+- Northbrook Road 0_299
+- Northbrook Road 1_059
+- Northbrook Road 1_299
+- Kendal Avenue 0_033
+- Kendal Avenue 0_273
+- Ibstone Avenue 0_214
+- Ibstone Avenue 0_094
+- Cawsam Gardens 0_276
+- Cawsam Gardens 0_156
+- Kildare Gardens 0_123
+- Kildare Gardens 0_003
+- Dumbarton Way 0_022
+- Dumbarton Way 0_262
+- Dumbarton Way 1_126
+- Dumbarton Way 1_006
+- Redberry Close 0_005
+- Redberry Close 0_245
+- Redberry Close 1_120
+- Redberry Close 1_000
+- Earlsfield Close 0_122
+- Earlsfield Close 0_002
+- Pevensey Avenue 0_213
+- Pevensey Avenue 0_093
+- Quantock Avenue 0_016
+- Quantock Avenue 0_256
+- Tenby Avenue 0_230
+- Tenby Avenue 0_110
+- Overton Drive 0_301
+- Overton Drive 0_181
+- Overton Drive 1_213
+- Overton Drive 1_093
+- Kirkham Close 0_132
+- Kirkham Close 0_012
+- Ulster Close 0_132
+- Ulster Close 0_012
+- Ulster Close 1_001
+- Ulster Close 1_241
+- Devon Drive 0_301
+- Devon Drive 0_181
+- George Close 0_129
+- George Close 0_009
+- George Close 1_220
+- George Close 1_100
+- Farnham Drive 0_122
+- Farnham Drive 0_002
+- Farnham Drive 1_336
+- Farnham Drive 1_216
+- Blackwater Close 0_122
+- Blackwater Close 0_002
+- Odiham Avenue 0_202
+- Odiham Avenue 0_082
+- Raglan Gardens 0_276
+- Raglan Gardens 0_156
+- Onslow Gardens 0_117
+- Onslow Gardens 0_357
+
+Other: Whitby Green 0_236/0_116 snapped to a Rowallan Close pano; Abbottsleigh Gardens 1_* snapped to the same pano as 0_*.

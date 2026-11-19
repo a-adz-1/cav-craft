@@ -85,7 +85,10 @@ base = {s: dict(fam[f], family=f) for s, f in survey.items()}
 measured_all = {}
 for path in ["docs/heights_survey.json"] + sorted(glob.glob(".downloads/ref/sv/*/result.json")):
     if os.path.exists(path):
-        measured_all.update(json.load(open(path)))
+        for k, v in json.load(open(path)).items():
+            rank = {"high": 3, "medium": 2, "low": 1}
+            if rank.get(v.get("confidence"), 0) >= rank.get(measured_all.get(k, {}).get("confidence"), 0):
+                measured_all[k] = v                 # a rerun replaces a survey only when it saw as much or more
 for s, v in measured_all.items():
     if mix(v.get("walls") or {}) and mix(v.get("roof") or {}) and v.get("confidence") in ("high", "medium", "low"):
         base[s] = measured(s, v)

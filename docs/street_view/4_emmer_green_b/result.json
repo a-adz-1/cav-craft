@@ -1,10 +1,654 @@
 {
-"Bellingham Walk": {"walls": {"buff_brick": 0.6, "orange_brick": 0.4}, "upper_differs": 0.6, "upper": "tile_hung", "tudor": 0, "roof": {"brown_tile": 0.7, "dark_tile": 0.3}, "bungalows": 0, "form": {"terrace": 0.9, "semi": 0.1}, "era": "estate_1960s_70s", "front": "fence", "trees": "verges_and_trees", "road": "Narrow footpath/back-lane access with garage blocks; no markings visible.", "confidence": "medium", "note": "1960s-70s two-storey terraces in buff/orange brick with brown tile-hung or boarded upper fronts, seen from behind over fences and garage courts; very leafy edges."},
-"Greenleas Avenue": {"walls": {"red_brick": 0.5, "white_render": 0.3, "cream_render": 0.2}, "upper_differs": 0.1, "upper": "white_render", "tudor": 0, "roof": {"dark_tile": 0.5, "brown_tile": 0.5}, "bungalows": 0.8, "form": {"detached": 0.8, "semi": 0.2}, "era": "postwar_1950s", "front": "low_brick_wall", "trees": "verges", "road": "Two-lane residential road, no centre line, grass verges, wide pavements.", "confidence": "medium", "note": "Mostly detached bungalows and chalet bungalows, red brick or white/cream render, behind low red-brick or stone walls with hedges and garden shrubs."},
-"Yarnton Close": {"walls": {"orange_brick": 0.6, "red_brick": 0.4}, "upper_differs": 0.4, "upper": "tile_hung", "tudor": 0, "roof": {"brown_tile": 0.7, "grey_tile": 0.3}, "bungalows": 0, "form": {"detached": 0.7, "semi": 0.3}, "era": "estate_1960s_70s", "front": "open", "trees": "verges_and_trees", "road": "Cul-de-sac, no markings, dropped-kerb drives.", "confidence": "medium", "note": "1970s estate detached houses in orange-red brick, some with tile-hung or boarded panels, open-plan lawns, mature trees round the edge."},
-"Jeferson Close": {"walls": {"red_brick": 0.8, "orange_brick": 0.2}, "upper_differs": 0, "tudor": 0, "roof": {"brown_tile": 0.6, "dark_tile": 0.4}, "bungalows": 0, "form": {"detached": 1.0}, "era": "modern_1980s_on", "front": "open", "trees": "verges_and_trees", "road": "Private-feel cul-de-sac, block/tarmac, no markings, no pavement in parts.", "confidence": "medium", "note": "1990s executive detached houses in red brick with chimneys, double garages and gravel drives, open lawns; dense trees and hedges at the entrance."},
-"Soane End": {"walls": {"red_brick": 0.7, "orange_brick": 0.3}, "upper_differs": 0.2, "upper": "tile_hung", "tudor": 0, "roof": {"dark_tile": 0.6, "brown_tile": 0.4}, "bungalows": 0.3, "form": {"detached": 0.8, "semi": 0.2}, "era": "mixed", "front": "hedge", "trees": "verges_and_trees", "road": "Narrow lane, no markings.", "confidence": "low", "note": "Only one viewpoint loaded; red brick detached houses and a dark-roofed bungalow mostly hidden behind tall hedges and fences."},
-"Spinney Close": {"walls": {"red_brick": 0.8, "orange_brick": 0.2}, "upper_differs": 0.1, "upper": "tile_hung", "tudor": 0, "roof": {"dark_tile": 0.6, "brown_tile": 0.4}, "bungalows": 0, "form": {"detached": 0.7, "semi": 0.3}, "era": "postwar_1950s", "front": "low_brick_wall", "trees": "verges_and_trees", "road": "Quiet residential road, no centre line.", "confidence": "low", "note": "Red-brick two-storey houses with tile roofs, partly hidden by front-garden trees, low stone/brick walls and hedges."},
-"Venetia Close": {"walls": {"orange_brick": 0.6, "red_brick": 0.3, "buff_brick": 0.1}, "upper_differs": 0.2, "upper": "tile_hung", "tudor": 0, "roof": {"brown_tile": 0.7, "dark_tile": 0.3}, "bungalows": 0, "form": {"semi": 0.6, "detached": 0.4}, "era": "estate_1960s_70s", "front": "open", "trees": "verges_and_trees", "road": "Cul-de-sac with pavements, no markings, block-paved drives.", "confidence": "medium", "note": "1960s-70s semis and detached houses in orange-red brick with white window bands, open front lawns, woodland backdrop."},
-"Putting Green": {"confidence": "none", "note": "Both viewpoints have no Street View panorama (black screen after retry)."}
+ "Bellingham Walk": {
+  "walls": {
+   "buff_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.6,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.9,
+   "semi": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "Narrow footpath/back-lane access with garage blocks; no markings visible.",
+  "confidence": "medium",
+  "note": "1960s-70s two-storey terraces in buff/orange brick with brown tile-hung or boarded upper fronts, seen from behind over fences and garage courts; very leafy edges."
+ },
+ "Greenleas Avenue": {
+  "walls": {
+   "red_brick": 0.5,
+   "white_render": 0.3,
+   "cream_render": 0.2
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.5,
+   "brown_tile": 0.5
+  },
+  "bungalows": 0.8,
+  "form": {
+   "detached": 0.8,
+   "semi": 0.2
+  },
+  "era": "postwar_1950s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Two-lane residential road, no centre line, grass verges, wide pavements.",
+  "confidence": "medium",
+  "note": "Mostly detached bungalows and chalet bungalows, red brick or white/cream render, behind low red-brick or stone walls with hedges and garden shrubs."
+ },
+ "Yarnton Close": {
+  "walls": {
+   "orange_brick": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0.4,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.7,
+   "semi": 0.3
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Cul-de-sac, no markings, dropped-kerb drives.",
+  "confidence": "medium",
+  "note": "1970s estate detached houses in orange-red brick, some with tile-hung or boarded panels, open-plan lawns, mature trees round the edge."
+ },
+ "Jeferson Close": {
+  "walls": {
+   "red_brick": 0.8,
+   "orange_brick": 0.2
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Private-feel cul-de-sac, block/tarmac, no markings, no pavement in parts.",
+  "confidence": "medium",
+  "note": "1990s executive detached houses in red brick with chimneys, double garages and gravel drives, open lawns; dense trees and hedges at the entrance."
+ },
+ "Soane End": {
+  "walls": {
+   "red_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.2,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0.3,
+  "form": {
+   "detached": 0.8,
+   "semi": 0.2
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Narrow lane, no markings.",
+  "confidence": "low",
+  "note": "Only one viewpoint loaded; red brick detached houses and a dark-roofed bungalow mostly hidden behind tall hedges and fences."
+ },
+ "Spinney Close": {
+  "walls": {
+   "red_brick": 0.8,
+   "orange_brick": 0.2
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.7,
+   "semi": 0.3
+  },
+  "era": "postwar_1950s",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Quiet residential road, no centre line.",
+  "confidence": "low",
+  "note": "Red-brick two-storey houses with tile roofs, partly hidden by front-garden trees, low stone/brick walls and hedges."
+ },
+ "Venetia Close": {
+  "walls": {
+   "orange_brick": 0.6,
+   "red_brick": 0.3,
+   "buff_brick": 0.1
+  },
+  "upper_differs": 0.2,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.6,
+   "detached": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Cul-de-sac with pavements, no markings, block-paved drives.",
+  "confidence": "medium",
+  "note": "1960s-70s semis and detached houses in orange-red brick with white window bands, open front lawns, woodland backdrop."
+ },
+ "Putting Green": {
+  "confidence": "none",
+  "note": "Both viewpoints have no Street View panorama (black screen after retry)."
+ },
+ "one way": {
+  "confidence": "none",
+  "note": "Both views have no Street View panorama (black screen after retry); the point is on a path near Highdown School."
+ },
+ "Wetherby Close": {
+  "walls": {
+   "orange_brick": 0.5,
+   "buff_brick": 0.3,
+   "cream_render": 0.2
+  },
+  "upper_differs": 0.5,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.4,
+  "form": {
+   "semi": 0.5,
+   "detached": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Cul-de-sac, no markings, grass verges.",
+  "confidence": "medium",
+  "note": "1960s-70s estate: brick semis with dark tile-hung/boarded upper bands and low buff bungalows, set back behind open lawns and young trees."
+ },
+ "St Benets Way": {
+  "walls": {
+   "red_brick": 0.7,
+   "cream_render": 0.3
+  },
+  "upper_differs": 0.1,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.6,
+   "grey_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.5,
+   "semi": 0.3,
+   "terrace": 0.2
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow curving estate road, no markings, block-paved edges.",
+  "confidence": "medium",
+  "note": "2000s new-build houses in red brick with some cream render, grey slate-look roofs, chimneys and bay windows, shrubby front strips; heavy greenery."
+ },
+ "Fishers Cottages": {
+  "walls": {
+   "red_brick": 0.8,
+   "orange_brick": 0.2
+  },
+  "upper_differs": 0.3,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.4,
+   "flats": 0.3,
+   "detached": 0.3
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow cul-de-sac with parking court, no markings.",
+  "confidence": "medium",
+  "note": "1980s-90s small red-brick houses and starter flats with dark boarded gable panels, brown concrete tile roofs, parking courts and lawn strips."
+ },
+ "Albany Gardens": {
+  "walls": {
+   "white_render": 0.5,
+   "red_brick": 0.5
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0.1,
+  "roof": {
+   "red_tile": 0.4,
+   "dark_tile": 0.6
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.6,
+   "detached": 0.4
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Views are at the junction with Highdown Hill Road/Evans Ave: wide road, centre dashes and give-way lines at the junction, broad grass verges.",
+  "confidence": "low",
+  "note": "Only the junction is visible: interwar white-rendered and red-brick semis behind low brick walls and wide grass verges with big trees."
+ },
+ "Gorselands": {
+  "walls": {
+   "red_brick": 0.9,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0.4,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Curving cul-de-sac, no markings, grass verges.",
+  "confidence": "high",
+  "note": "1980s detached houses with dormers and bungalows, all red brick with brown concrete tile roofs, integral garages and open lawns; mature trees around."
+ },
+ "Cherry Close": {
+  "walls": {
+   "red_brick": 0.6,
+   "buff_brick": 0.3,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0.3,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.6,
+  "form": {
+   "detached": 0.8,
+   "semi": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Cul-de-sac, no markings, overhead phone wires.",
+  "confidence": "high",
+  "note": "1960s-70s detached bungalows in red or buff brick plus a few two-storey houses with boarded upper bands; open-plan lawns and drives with garages."
+ },
+ "Gayhurst Close": {
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.6,
+   "terrace": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Cul-de-sac, no markings, gravel/tarmac drives.",
+  "confidence": "medium",
+  "note": "1970s estate semis and short terraces in orange brick with a white boarded or rendered band at first floor, shallow brown tile roofs, open drives."
+ },
+ "Penn Close": {
+  "walls": {
+   "buff_brick": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.6,
+   "detached": 0.4
+  },
+  "era": "postwar_1950s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Narrow residential road, no markings.",
+  "confidence": "low",
+  "note": "Houses largely hidden by tall hedges; visible ones are buff and red brick postwar semis with chimneys."
+ },
+ "Bluebell Gardens": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.7,
+   "brown_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.3,
+   "detached": 0.2
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "New estate road, no markings, block-paved drives.",
+  "confidence": "medium",
+  "note": "2000s new-build red-brick semis and short terraces with gables, dark tile roofs and small open lawns with low post-and-rail edging."
+ },
+ "Mallory Avenue": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.2,
+   "cream_render": 0.2
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.6,
+   "terrace": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Estate road, no markings, block-paved drives to the kerb.",
+  "confidence": "medium",
+  "note": "1960s-70s brick semis and short terraces, some with white/cream boarded or rendered first floors, block-paved drives and low brick or fence boundaries."
+ },
+ "Eagle Way": {
+  "confidence": "none",
+  "note": "Both viewpoints have no Street View panorama (black screen after retry)."
+ },
+ "Caversham Park Drive": {
+  "walls": {
+   "red_brick": 0.5,
+   "buff_brick": 0.5
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "slate": 0.5,
+   "dark_tile": 0.5
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "mixed",
+  "front": "fence",
+  "trees": "street_trees",
+  "road": "Junction with Peppard Road: wide road, white edge lines, big trees and railings.",
+  "confidence": "low",
+  "note": "Only the Peppard Road end (black railings, big trees, hedges) and a photosphere of the Caversham Park mansion (pale stone, columned) loaded; no houses on the drive itself were seen."
+ },
+ "Autumn Close": {
+  "walls": {
+   "buff_brick": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0.7,
+  "upper": "timber",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Cul-de-sac, no markings.",
+  "confidence": "medium",
+  "note": "1960s-70s houses in buff or red brick with dark-stained weatherboarded first floors, shallow brown tile roofs and open lawns."
+ },
+ "Fox Crescent": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.2,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Views are from Kidmore End Road at the entrance: wide road, grass verge, narrow access lane into the crescent.",
+  "confidence": "low",
+  "note": "Seen only from the entrance: 1990s red-brick detached houses with gables behind thick hedges and big trees."
+ },
+ "Aldenham Close": {
+  "walls": {
+   "buff_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Cul-de-sac, no markings, block-paved drives.",
+  "confidence": "high",
+  "note": "1970s link-detached houses in buff/orange brick with white boarded first-floor panels, integral garages and block-paved open frontages."
+ },
+ "Michael King Way": {
+  "confidence": "none",
+  "note": "No Street View panorama at the viewpoint (black screen after retry)."
+ },
+ "Lyefield Court": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "modern_1980s_on",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Narrow private-style court, block paving, no markings.",
+  "confidence": "low",
+  "note": "1990s red-brick gabled houses behind a brick boundary wall and timber fences, with large trees."
+ },
+ "Oak Grove": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Fishers Court": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Dunster Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Barnard Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Saunders Drive": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Merthyr Vale": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Cherwell Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Langford Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Burleigh Mews": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Wordsworth Court": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Gayhurst Court": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Grove Mews": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Jono View": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Pilgrims Way": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Aldeburgh Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Cavendish Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Birchwood Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Carisbrooke Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Emmer Green Court": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Barnes Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Chiltern Court": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Grove Cottages": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Winchendon Place": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Old Barn Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Bell Court": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "The Crest": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Hanover Court": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Chatsworth Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ }
 }

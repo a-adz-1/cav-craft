@@ -337,25 +337,39 @@
  },
  "Peppard Road": {
   "walls": [
-   "white_render",
-   "white_render",
    "red_brick",
    "red_brick",
-   "cream_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
+   "white_render",
+   "orange_brick",
+   "buff_brick"
   ],
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.3,
   "roof": [
    "dark_tile",
    "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "brown_tile",
    "brown_tile",
    "slate"
   ],
-  "tudor": 0.35,
-  "note": "large 1920s-30s detached (Peppard Road, the Heights): mock-Tudor gables, render, tile",
-  "family": "interwar_detached"
+  "tudor": 0.15,
+  "note": "A long tree-lined main road: many stretches are just woodland or hedge, with interwar semis (some mock-Tudor gables, rendered upper floors), a red-brick Victorian lodge, modern red-brick detached houses and a few bungalows set well back behind hedges and fences.",
+  "family": "interwar_detached",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.25
  },
  "All Hallows Road": {
   "walls": [
@@ -4445,31 +4459,32 @@
    "red_brick",
    "red_brick",
    "white_render",
-   "white_render"
+   "tile_hung"
   ],
   "roof": [
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "slate",
-   "slate"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "grey_tile"
   ],
   "tudor": 0.05,
   "quoins": 0.6,
-  "note": "Red-brick Edwardian houses and a red-brick church hall, with tall hedges, close-board fences and low brick walls along the pavement hiding much of the housing.",
+  "note": "Interwar red-brick detached and semi houses with hipped dark-tile roofs, some white-rendered bays, plus a red-brick church hall and small modern flats block at the west end; tall hedges and close-board fences on low red-brick walls hide many fronts.",
   "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.15
+  "upper_p": 0.2,
+  "front": "wall"
  },
  "St Peter's Avenue": {
   "walls": [
@@ -4480,10 +4495,10 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
    "white_render",
-   "white_render",
-   "white_render",
-   "cream_render",
    "tile_hung"
   ],
   "roof": [
@@ -4492,25 +4507,23 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile"
   ],
   "tudor": 0.05,
   "quoins": 0.6,
-  "note": "Leafy avenue of mixed-age detached houses and some bungalows, mostly hidden behind tall hedges, fences and mature trees.",
+  "note": "Leafy road of detached houses largely hidden by tall hedges and trees: interwar and 1960s-80s red and orange brick houses, some bungalows with brown concrete tile roofs, a few white-rendered upper floors; low brick walls, fences and hedges in front.",
   "family": "victorian_villa",
   "source": "street view",
   "upper": [
-   "tile_hung"
+   "white_render"
   ],
-  "upper_p": 0.25,
-  "front": "hedge"
+  "upper_p": 0.25
  },
  "Grass Hill": {
   "walls": [
@@ -6043,34 +6056,36 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
    "white_render",
    "white_render",
-   "white_render",
-   "white_render",
-   "pebbledash"
+   "buff_brick",
+   "orange_brick"
   ],
   "roof": [
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
    "dark_tile",
    "dark_tile",
-   "slate",
-   "slate"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "grey_tile"
   ],
-  "tudor": 0.1,
+  "tudor": 0.15,
   "quoins": 0.6,
-  "note": "Large red-brick Edwardian houses with bays and gables, a few with white rendered upper floors or mock-Tudor gables, and the odd white bungalow, behind hedges and low brick walls.",
+  "note": "Edwardian red-brick detached and semi houses with steep gables, some with white-rendered or mock-Tudor upper gables and buff-brick dressings; a modern red-brick flats block at the south end; thick hedges and low brick walls in front, trees and a green at the north end.",
   "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3
+  "upper_p": 0.3,
+  "front": "hedge"
  },
  "Matlock Road": {
   "walls": [
@@ -6316,35 +6331,35 @@
    "red_brick",
    "red_brick",
    "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
    "white_render",
-   "white_render",
-   "white_render",
-   "pebbledash"
+   "orange_brick"
   ],
   "roof": [
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
    "slate",
-   "brown_tile"
+   "slate"
   ],
   "tudor": 0.2,
   "quoins": 0.6,
-  "note": "South end is big red-brick Victorian/Edwardian villas (some with black-and-white gables) behind low brick walls; further north it turns to interwar houses with white render over brick behind hedges and grass verges.",
+  "note": "Long leafy road of big Edwardian and interwar red-brick detached and semi houses, many with white-rendered or mock-Tudor gables; deep front gardens behind hedges and low red-brick walls, tall trees and grass verges at the north end.",
   "family": "victorian_villa",
   "source": "street view",
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.35
+  "upper_p": 0.3
  },
  "Blenheim Road": {
   "walls": [
@@ -9132,25 +9147,36 @@
   "walls": [
    "buff_brick",
    "buff_brick",
-   "orange_brick",
-   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "Houses largely hidden by tall hedges; visible ones are buff and red brick postwar semis with chimneys.",
+  "family": "postwar_council",
+  "source": "street view",
+  "front": "hedge"
  },
  "Surley Row": {
   "walls": [
@@ -9208,18 +9234,38 @@
  },
  "Cherwell Road": {
   "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "red_brick",
    "red_brick",
-   "white_render"
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
-   "slate",
-   "red_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "old village cottages (Kidmore End Road, Emmer Green, Lower Caversham lanes)",
-  "family": "cottage"
+  "tudor": 0,
+  "note": "Houses largely hidden by tall hedges; visible ones are buff and red brick postwar semis with chimneys.",
+  "family": "postwar_council",
+  "source": "street view",
+  "front": "hedge"
  },
  "Emmer Green, Reading,": {
   "walls": [
@@ -9270,36 +9316,35 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "buff_brick",
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick"
   ],
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "slate",
-   "slate",
-   "slate",
-   "slate",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
   "tudor": 0,
-  "note": "Few houses visible: the road runs past a recreation ground/green with mature trees, a Victorian red-brick school or chapel with arched windows, a modern buff-brick community building, a block of lock-up garages and a 1960s three-storey red-brick terrace or flats beyond.",
-  "family": "interwar_semi",
+  "note": "1980s detached houses with dormers and bungalows, all red brick with brown concrete tile roofs, integral garages and open lawns; mature trees around.",
+  "family": "modern",
   "source": "street view",
   "upper": [
    "tile_hung"
   ],
   "upper_p": 0.1,
-  "front": "wall"
+  "front": null
  },
  "Grove Road": {
   "walls": [
@@ -9343,69 +9388,117 @@
  },
  "Lyefield Court": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
    "red_brick",
    "red_brick",
-   "cream_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
-   "brown_tile",
-   "grey_tile",
    "dark_tile",
-   "slate"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "1990s red-brick gabled houses behind a brick boundary wall and timber fences, with large trees.",
+  "family": "modern",
+  "source": "street view",
+  "front": "wall"
  },
  "Highdown Hill Road": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
-   "timber"
+   "white_render",
+   "cream_render"
   ],
-  "upper_p": 0.45,
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "brown_tile",
+   "brown_tile",
+   "red_tile",
+   "red_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.05,
+  "note": "1930s red-brick semis and detached houses with hipped dark tile roofs, bay windows and tile-hung or rendered gables, behind hedges and gravel drives off wide grass verges; the top end is a wooded hillside lane with scattered modern rendered houses.",
+  "family": "interwar_semi",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.15,
+  "front": "hedge"
  },
  "Albany Gardens": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.1,
+  "note": "Only the junction is visible: interwar white-rendered and red-brick semis behind low brick walls and wide grass verges with big trees.",
+  "family": "interwar_semi",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.2,
+  "front": "wall"
  },
  "Highdown Avenue": {
   "walls": [
@@ -9668,12 +9761,13 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "cream_render",
-   "timber"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
    "dark_tile",
@@ -9681,26 +9775,19 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "slate",
-   "slate",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.05,
-  "note": "Mixed road: Victorian red-brick and rendered cottages/terraces at the southern end by the pub, then interwar and later detached and semi houses (many white-rendered) set back behind tall hedges, flint walls and trees further north.",
-  "family": "cottage",
+  "tudor": 0,
+  "note": "1990s red-brick gabled houses behind a brick boundary wall and timber fences, with large trees.",
+  "family": "modern",
   "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.1,
-  "fascias": [
-   "white_concrete",
-   "red_concrete"
-  ]
+  "front": "wall"
  },
  "Chaucer Close": {
   "walls": [
@@ -9773,50 +9860,77 @@
  },
  "Gorselands": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1980s detached houses with dormers and bungalows, all red brick with brown concrete tile roofs, integral garages and open lawns; mature trees around.",
+  "family": "modern",
+  "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.1,
+  "front": null
  },
  "Bell Court": {
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
    "dark_tile",
    "dark_tile",
    "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "1990s red-brick gabled houses behind a brick boundary wall and timber fences, with large trees.",
+  "family": "modern",
+  "source": "street view",
+  "front": "wall"
  },
  "Stuart Close": {
   "walls": [
@@ -10311,24 +10425,36 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "Only the Peppard Road end (black railings, big trees, hedges) and a photosphere of the Caversham Park mansion (pale stone, columned) loaded; no houses on the drive itself were seen.",
+  "family": "interwar_detached",
+  "source": "street view",
+  "front": "wall"
  },
  "Oak Grove": {
   "walls": [
@@ -10868,18 +10994,18 @@
  },
  "Chiltern Road": {
   "walls": [
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
    "white_render",
    "white_render",
    "cream_render",
-   "cream_render",
-   "cream_render",
-   "cream_render",
-   "red_brick"
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
@@ -10888,22 +11014,22 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "red_tile",
+   "red_tile"
   ],
-  "tudor": 0.3,
-  "note": "1930s rendered semis, mostly white or cream, a couple with black-and-white mock-Tudor bay gables and porthole windows, brown tile roofs; tall hedges and gravel drives in front.",
+  "tudor": 0.1,
+  "note": "1930s semis with hipped tiled roofs and bays: red brick ground floors with white or cream rendered upper floors, some fully rendered, a few with mock-Tudor gables; low brick walls and hedges, wide grass verges with trees, and a newer red-brick house at the north end.",
   "family": "interwar_semi",
   "source": "street view",
   "upper": [
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.3,
-  "front": "hedge"
+  "upper_p": 0.5,
+  "front": "wall"
  },
  "Greystoke Road": {
   "walls": [
@@ -11045,59 +11171,79 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
+   "white_render",
+   "white_render",
+   "cream_render",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile"
+  ],
+  "tudor": 0.1,
+  "note": "1930s semis with hipped tiled roofs and bays: red brick ground floors with white or cream rendered upper floors, some fully rendered, a few with mock-Tudor gables; low brick walls and hedges, wide grass verges with trees, and a newer red-brick house at the north end.",
+  "family": "interwar_semi",
+  "source": "street view",
+  "upper": [
    "white_render"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
-  "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
-  ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "upper_p": 0.5,
+  "front": "wall"
  },
  "Cawsam Gardens": {
   "walls": [
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
+   "white_render",
+   "white_render",
+   "cream_render",
+   "orange_brick"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "slate",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "red_tile",
+   "red_tile"
   ],
-  "tudor": 0,
-  "note": "A large white-rendered Regency/Victorian villa with a columned porch behind a clipped hedge, plus a red-brick garage block; heavily treed and only two views.",
-  "family": "interwar_detached",
+  "tudor": 0.1,
+  "note": "1930s semis with hipped tiled roofs and bays: red brick ground floors with white or cream rendered upper floors, some fully rendered, a few with mock-Tudor gables; low brick walls and hedges, wide grass verges with trees, and a newer red-brick house at the north end.",
+  "family": "interwar_semi",
   "source": "street view",
-  "front": "hedge"
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.5,
+  "front": "wall"
  },
  "Tilbury Close": {
   "walls": [
@@ -11179,18 +11325,18 @@
  },
  "George Close": {
   "walls": [
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
    "white_render",
    "white_render",
    "cream_render",
-   "cream_render",
-   "cream_render",
-   "cream_render",
-   "red_brick"
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
@@ -11199,22 +11345,22 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "red_tile",
+   "red_tile"
   ],
-  "tudor": 0.3,
-  "note": "1930s rendered semis, mostly white or cream, a couple with black-and-white mock-Tudor bay gables and porthole windows, brown tile roofs; tall hedges and gravel drives in front.",
+  "tudor": 0.1,
+  "note": "1930s semis with hipped tiled roofs and bays: red brick ground floors with white or cream rendered upper floors, some fully rendered, a few with mock-Tudor gables; low brick walls and hedges, wide grass verges with trees, and a newer red-brick house at the north end.",
   "family": "interwar_semi",
   "source": "street view",
   "upper": [
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.3,
-  "front": "hedge"
+  "upper_p": 0.5,
+  "front": "wall"
  },
  "Lady Jane Court": {
   "walls": [
@@ -11315,37 +11461,41 @@
  },
  "Raglan Gardens": {
   "walls": [
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render"
   ],
   "roof": [
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "slate",
-   "slate",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile"
   ],
   "tudor": 0,
-  "note": "A large white-rendered Regency/Victorian villa with a columned porch behind a clipped hedge, plus a red-brick garage block; heavily treed and only two views.",
-  "family": "interwar_detached",
+  "note": "Both views show Chiltern Road (2012 imagery) beside the close rather than the close itself: interwar red-brick and rendered semis behind tall conifers, hedges and fences.",
+  "family": "interwar_semi",
   "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.4,
   "front": "hedge"
  },
  "Moss Close": {
@@ -11435,51 +11585,81 @@
  },
  "Mayfield Drive": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "Uniform 1950s semis with hipped brown tiled roofs: red brick ground floor and cream/white rendered first floor, bay windows, low red brick walls and paved drives, grass verges along the pavement.",
+  "family": "postwar_council",
+  "source": "street view",
+  "upper": [
+   "cream_render"
+  ],
+  "upper_p": 0.75,
+  "front": "wall"
  },
  "Valentine Crescent": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
-   "timber"
+   "white_render",
+   "white_render",
+   "cream_render",
+   "orange_brick"
   ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.1,
+  "note": "1930s semis with hipped tiled roofs and bays: red brick ground floors with white or cream rendered upper floors, some fully rendered, a few with mock-Tudor gables; low brick walls and hedges, wide grass verges with trees, and a newer red-brick house at the north end.",
+  "family": "interwar_semi",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.5,
+  "front": "wall"
  },
  "Rossendale Road": {
   "walls": [
@@ -11546,27 +11726,42 @@
  },
  "Norman Road": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
-   "timber"
+   "white_render",
+   "white_render",
+   "cream_render",
+   "orange_brick"
   ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0.1,
+  "note": "1930s semis with hipped tiled roofs and bays: red brick ground floors with white or cream rendered upper floors, some fully rendered, a few with mock-Tudor gables; low brick walls and hedges, wide grass verges with trees, and a newer red-brick house at the north end.",
+  "family": "interwar_semi",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.5,
+  "front": "wall"
  },
  "Pembroke Place": {
   "walls": [
@@ -11648,27 +11843,42 @@
  },
  "Chiltern Heights": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
-   "timber"
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render"
   ],
-  "upper_p": 0.45,
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "Both views show Chiltern Road (2012 imagery) beside the close rather than the close itself: interwar red-brick and rendered semis behind tall conifers, hedges and fences.",
+  "family": "interwar_semi",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.4,
+  "front": "hedge"
  },
  "Overton Drive": {
   "walls": [
@@ -11736,93 +11946,148 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
    "white_render"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "1990s-2000s executive detached houses in red brick with steep front gables, brick arches, integral garages and dark/brown plain-tile roofs; open lawns, shrubs, brick-pier-and-fence corner walls.",
+  "family": "modern",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.1,
+  "front": null
  },
  "Woodlands Grove": {
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "1980s executive detached houses in red brick with integral garages, some with dark-brown weatherboarded first floors; open-plan lawns and big oak trees.",
+  "family": "modern",
+  "source": "street view",
+  "front": null
  },
  "Montfort Gate": {
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "cream_render",
+   "cream_render",
    "cream_render"
   ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "2000s close of red-brick and cream-rendered detached and semi houses with brick arches over the windows, bay windows and small porches, open lawns and shrubs; 1930s semis visible on Henley Road at the entrance.",
+  "family": "modern",
+  "source": "street view",
+  "front": null
  },
  "Micklands Road": {
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
    "white_render"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "Detached red-brick chalet bungalows and bungalows with steep gables and dormers, behind tall hedges and low brick or white rendered walls; lots of garden trees.",
+  "family": "postwar_council",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.1
  },
  "Woods Road": {
   "walls": [
@@ -11852,24 +12117,39 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
    "white_render"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "Detached red-brick chalet bungalows and bungalows with steep gables and dormers, behind tall hedges and low brick or white rendered walls; lots of garden trees.",
+  "family": "postwar_council",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.1
  },
  "Orchard Grove": {
   "walls": [
@@ -11899,66 +12179,117 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "Small 1970s/80s cul-de-sac of red-brick detached houses and a chalet/garage block, behind tall laurel hedges and mature trees.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
    "white_render"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
-  "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
-  ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "upper_p": 0.1,
+  "front": "hedge"
  },
  "Almond Drive": {
   "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile",
-   "slate"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "1970s buff-brown brick terraces and semis with white cladding panels upstairs, integral garages and paved drives; wooden fences and big hedges on corners.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.5
  },
  "Lowfield Road": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "white_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
    "grey_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1960s-70s Caversham Park estate housing: red-brown brick link-detached and terraced houses with white-clad or rendered first floors and integral garages on open-plan front gardens, plus a few newer detached houses; much of the road edge is woodland, hedge or fence.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.35,
+  "front": null
  },
  "Milestone Way": {
   "walls": [
@@ -12008,50 +12339,76 @@
  },
  "Caversham Park Road": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "Main road through the estate lined mostly by grass verges, woodland and back fences; the few houses glimpsed are set well back behind trees.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": "hedge"
  },
  "Henley road": {
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render",
    "white_render"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile"
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "Detached red-brick chalet bungalows and bungalows with steep gables and dormers, behind tall hedges and low brick or white rendered walls; lots of garden trees.",
+  "family": "postwar_council",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.1
  },
  "Archway Road": {
   "walls": [
@@ -12077,50 +12434,77 @@
  },
  "Lowfield Green": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s detached houses in red brick with integral or linked garages, white garage doors, some tile-hung upper fronts, brown concrete-tiled roofs, open-plan lawns and shrub borders.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.3,
+  "front": null
  },
  "Maytree Walk": {
   "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "Mix of buff-brick bungalows and short terraces of red-brick houses with flat-roofed garages and porches; low brick walls, hedges and gravel fronts.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": "wall"
  },
  "Crawshay Drive": {
   "walls": [
@@ -12275,8 +12659,8 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "orange_brick",
-   "orange_brick"
+   "red_brick",
+   "white_render"
   ],
   "roof": [
    "dark_tile",
@@ -12290,17 +12674,17 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile"
+   "grey_tile"
   ],
   "tudor": 0,
-  "note": "Red-brick two-storey houses with tile roofs, partly hidden by front-garden trees, low stone/brick walls and hedges.",
-  "family": "postwar_council",
+  "note": "Leafy road of 1950s red-brick semis with hipped dark tile roofs and some larger modern red-brick detached houses with gables, set back behind lawns, hedges and fences; many plots hidden behind tall hedges and trees.",
+  "family": "interwar_detached",
   "source": "street view",
   "upper": [
    "tile_hung"
   ],
   "upper_p": 0.1,
-  "front": "wall"
+  "front": "hedge"
  },
  "Harmont Gate": {
   "walls": [
@@ -12309,36 +12693,36 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "cream_render",
-   "cream_render",
-   "cream_render",
-   "orange_brick",
-   "orange_brick",
-   "pebbledash",
+   "red_brick",
+   "red_brick",
+   "white_render",
+   "white_render",
+   "white_render",
+   "white_render",
    "white_render"
   ],
   "roof": [
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "dark_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile",
+   "red_tile"
   ],
   "tudor": 0,
-  "note": "Postwar council-built estate: semis and short terraces in red brick, many with cream-rendered or panelled upper floors (one terrace has green-painted upper panels), hipped brown tile roofs, and three-storey brown-brick flat blocks set back behind big greens. Two of the three panoramas date from 2012.",
-  "family": "postwar_council",
+  "note": "Both views show Peppard Road beside the gate (school building, big oaks, tall hedges, a bungalow and older rendered/brick houses), not the houses in Harmont Gate itself.",
+  "family": "interwar_detached",
   "source": "street view",
   "upper": [
-   "cream_render"
+   "white_render"
   ],
-  "upper_p": 0.4,
+  "upper_p": 0.2,
   "front": "hedge"
  },
  "The Crest": {
@@ -12486,11 +12870,12 @@
    "orange_brick",
    "orange_brick",
    "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "buff_brick"
+   "red_brick"
   ],
   "roof": [
    "brown_tile",
@@ -12504,16 +12889,16 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "grey_tile"
+   "dark_tile"
   ],
   "tudor": 0,
-  "note": "1960s-70s estate of detached chalet houses and bungalows in orange-brown brick, many with white-boarded or rendered upper panels and integral garages, set behind open-plan lawns and wide grass verges.",
+  "note": "1960s-70s estate of detached and link-detached two-storey houses in orange-brown and buff brick, some with tile-hung or white-boarded first floors, integral garages, brown concrete tile roofs and open-plan front lawns.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "white_render"
+   "tile_hung"
   ],
-  "upper_p": 0.35,
+  "upper_p": 0.4,
   "front": null
  },
  "Spinney Close": {
@@ -12564,11 +12949,12 @@
    "orange_brick",
    "orange_brick",
    "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "red_brick",
-   "red_brick",
-   "red_brick",
-   "red_brick",
-   "buff_brick"
+   "red_brick"
   ],
   "roof": [
    "brown_tile",
@@ -12582,16 +12968,16 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "grey_tile"
+   "dark_tile"
   ],
   "tudor": 0,
-  "note": "1960s-70s estate of detached chalet houses and bungalows in orange-brown brick, many with white-boarded or rendered upper panels and integral garages, set behind open-plan lawns and wide grass verges.",
+  "note": "1960s-70s estate of detached and link-detached two-storey houses in orange-brown and buff brick, some with tile-hung or white-boarded first floors, integral garages, brown concrete tile roofs and open-plan front lawns.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "white_render"
+   "tile_hung"
   ],
-  "upper_p": 0.35,
+  "upper_p": 0.4,
   "front": null
  },
  "Fishers Court": {
@@ -12614,42 +13000,42 @@
  },
  "Burnham Rise": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
-   "orange_brick",
    "red_brick",
    "red_brick",
    "red_brick",
    "red_brick",
-   "red_brick"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render"
   ],
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile"
+   "brown_tile"
   ],
   "tudor": 0,
-  "note": "1970s estate detached houses in orange-red brick, some with tile-hung or boarded panels, open-plan lawns, mature trees round the edge.",
-  "family": "estate_6070",
+  "note": "1930s red-brick semis with hipped dark tile roofs, two-storey bay windows and small front gables, behind low brick walls, picket fences and hedges, along a wide verged road.",
+  "family": "interwar_semi",
   "source": "street view",
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.4,
-  "front": null
+  "upper_p": 0.15,
+  "front": "wall"
  },
  "Twin Oaks": {
   "walls": [
@@ -12658,12 +13044,13 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "cream_render",
-   "timber"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "white_render"
   ],
   "roof": [
    "dark_tile",
@@ -12671,26 +13058,23 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "slate",
-   "slate",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.05,
-  "note": "Mixed road: Victorian red-brick and rendered cottages/terraces at the southern end by the pub, then interwar and later detached and semi houses (many white-rendered) set back behind tall hedges, flint walls and trees further north.",
-  "family": "cottage",
+  "tudor": 0,
+  "note": "1930s red-brick semis with hipped dark tile roofs, two-storey bay windows and small front gables, behind low brick walls, picket fences and hedges, along a wide verged road.",
+  "family": "interwar_semi",
   "source": "street view",
   "upper": [
-   "white_render"
+   "tile_hung"
   ],
-  "upper_p": 0.1,
-  "fascias": [
-   "white_concrete",
-   "red_concrete"
-  ]
+  "upper_p": 0.15,
+  "front": "wall"
  },
  "Winchendon Place": {
   "walls": [
@@ -12699,63 +13083,72 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "cream_render",
-   "timber"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "slate",
-   "slate",
    "brown_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.05,
-  "note": "Mixed road: Victorian red-brick and rendered cottages/terraces at the southern end by the pub, then interwar and later detached and semi houses (many white-rendered) set back behind tall hedges, flint walls and trees further north.",
-  "family": "cottage",
+  "tudor": 0,
+  "note": "Seen only from the entrance: 1990s red-brick detached houses with gables behind thick hedges and big trees.",
+  "family": "modern",
   "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.1,
-  "fascias": [
-   "white_concrete",
-   "red_concrete"
-  ]
+  "front": "hedge"
  },
  "Wetherby Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "cream_render",
+   "cream_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1960s-70s estate: brick semis with dark tile-hung/boarded upper bands and low buff bungalows, set back behind open lawns and young trees.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.5,
+  "front": null
  },
  "Yarnton Close": {
   "walls": [
@@ -12800,88 +13193,157 @@
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "cream_render",
+   "cream_render",
+   "cream_render",
    "cream_render"
   ],
-  "upper_p": 0.6,
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "2000s new-build houses in red brick with some cream render, grey slate-look roofs, chimneys and bay windows, shrubby front strips; heavy greenery.",
+  "family": "modern",
+  "source": "street view",
+  "upper": [
+   "cream_render"
+  ],
+  "upper_p": 0.1,
+  "front": null
  },
  "Chalgrove Way": {
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
-  ],
-  "upper": [
-   "white_render",
-   "pebbledash",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "cream_render",
+   "cream_render",
+   "cream_render",
    "cream_render"
   ],
-  "upper_p": 0.6,
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "brown_tile"
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "slate",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "2000s new-build houses in red brick with some cream render, grey slate-look roofs, chimneys and bay windows, shrubby front strips; heavy greenery.",
+  "family": "modern",
+  "source": "street view",
+  "upper": [
+   "cream_render"
+  ],
+  "upper_p": 0.1,
+  "front": null
  },
  "Fishers Cottages": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
    "red_brick",
    "red_brick",
-   "cream_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
-   "slate"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "1980s-90s small red-brick houses and starter flats with dark boarded gable panels, brown concrete tile roofs, parking courts and lawn strips.",
+  "family": "modern",
+  "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.3,
+  "front": null
  },
  "Pilgrims Way": {
   "walls": [
    "red_brick",
    "red_brick",
-   "pebbledash",
-   "white_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "white_render",
-   "pebbledash",
-   "cream_render"
-  ],
-  "upper_p": 0.6,
   "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "brown_tile"
+   "dark_tile"
   ],
-  "tudor": 0.2,
-  "note": "1920s-30s semis: brick below, render above, hipped plain-tile roofs, bays, hedges",
-  "family": "interwar_semi"
+  "tudor": 0,
+  "note": "1980s-90s small red-brick houses and starter flats with dark boarded gable panels, brown concrete tile roofs, parking courts and lawn strips.",
+  "family": "modern",
+  "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.3,
+  "front": null
  },
  "Tower Close": {
   "walls": [
@@ -12909,27 +13371,42 @@
  },
  "Aldeburgh Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
-   "timber"
+   "white_render",
+   "white_render",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1960s detached houses and bungalows in red/orange brick with brown or dark tile roofs and garages, open lawns and paved drives; at the east end a group of white-rendered 1930s/50s semis with hipped roofs.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.15,
+  "front": null
  },
  "Marchwood Avenue": {
   "walls": [
@@ -12957,69 +13434,120 @@
  },
  "Phillimore Road": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "white_render",
-   "timber"
+   "white_render",
+   "white_render",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1960s detached houses and bungalows in red/orange brick with brown or dark tile roofs and garages, open lawns and paved drives; at the east end a group of white-rendered 1930s/50s semis with hipped roofs.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.15,
+  "front": null
  },
  "Cherry Close": {
   "walls": [
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "buff_brick",
    "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
+   "buff_brick",
+   "buff_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1960s-70s detached bungalows in red or buff brick plus a few two-storey houses with boarded upper bands; open-plan lawns and drives with garages.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.3,
+  "front": null
  },
  "Hanover Court": {
   "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
-   "slate"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "1970s link-detached houses in buff/orange brick with white boarded first-floor panels, integral garages and block-paved open frontages.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
  },
  "Jeferson Close": {
   "walls": [
@@ -13104,8 +13632,7 @@
    "orange_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick",
-   "red_brick",
+   "orange_brick",
    "red_brick",
    "red_brick",
    "buff_brick"
@@ -13118,15 +13645,15 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "brown_tile",
+   "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile",
    "dark_tile"
   ],
   "tudor": 0,
-  "note": "1960s-70s semis and detached houses in orange-red brick with white window bands, open front lawns, woodland backdrop.",
-  "family": "estate_6070",
+  "note": "1970s-80s cul-de-sac of detached orange-brick houses and long low bungalows with brown concrete tile roofs, integral garages with red doors, open-plan lawns and shrubs under mature woodland trees.",
+  "family": "modern",
   "source": "street view",
   "upper": [
    "tile_hung"
@@ -13242,25 +13769,40 @@
   "walls": [
    "buff_brick",
    "buff_brick",
-   "orange_brick",
-   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1960s-70s houses in buff or red brick with dark-stained weatherboarded first floors, shallow brown tile roofs and open lawns.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "timber"
+  ],
+  "upper_p": 0.7,
+  "front": null
  },
  "Cavendish Road": {
   "walls": [
@@ -13306,45 +13848,81 @@
  },
  "Burleigh Mews": {
   "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "dark_tile",
-   "slate"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "1970s link-detached houses in buff/orange brick with white boarded first-floor panels, integral garages and block-paved open frontages.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
  },
  "Fraser Avenue": {
   "walls": [
    "buff_brick",
    "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1960s-70s estate of link-semis and short terraces in buff and orange brick with white boarded first-floor panels, front garages and low-pitch brown concrete tile roofs, open-plan fronts.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
  },
  "Wordsworth Court": {
   "walls": [
@@ -13398,8 +13976,7 @@
    "orange_brick",
    "orange_brick",
    "orange_brick",
-   "white_render",
-   "white_render"
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
@@ -13410,44 +13987,55 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile",
-   "grey_tile"
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
   "tudor": 0,
-  "note": "1960s-70s estate of link-detached and short terraces in buff/yellow brick with white weatherboarded first-floor panels and low-pitch brown concrete tile roofs; many tall brown fences and hedges on corner plots.",
+  "note": "1970s link-detached houses in buff/orange brick with white boarded first-floor panels, integral garages and block-paved open frontages.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "timber"
+   "white_render"
   ],
   "upper_p": 0.6,
-  "front": "wall"
+  "front": null
  },
  "Bluebell Gardens": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "brown_tile",
    "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "2000s new-build red-brick semis and short terraces with gables, dark tile roofs and small open lawns with low post-and-rail edging.",
+  "family": "modern",
+  "source": "street view",
+  "front": null
  },
  "Dunster Close": {
   "walls": [
@@ -13475,27 +14063,38 @@
  },
  "Whitby Green": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s estate of short terraces and link houses in orange-brown brick with white cladding bands under the upper windows and integral garages, set round open grass and some mature trees.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
  },
  "Queensway": {
   "walls": [
@@ -13523,75 +14122,119 @@
  },
  "Gayhurst Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s estate semis and short terraces in orange brick with a white boarded or rendered band at first floor, shallow brown tile roofs, open drives.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
  },
  "Hollyrood Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s semis and short terraces with brick ground floors, white cladding across the first floor and a tiled pent canopy between; paved drives, some fences and shrubs.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.8
  },
  "Ragley Mews": {
   "walls": [
    "buff_brick",
    "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s terraces in buff brick with white weatherboard cladding across the first floor and a tiled canopy roof over the ground floor; open-plan fronts with some low fences.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.7,
+  "front": null
  },
  "Emmer Green Court": {
   "walls": [
@@ -13629,8 +14272,7 @@
    "orange_brick",
    "orange_brick",
    "orange_brick",
-   "white_render",
-   "white_render"
+   "orange_brick"
   ],
   "roof": [
    "brown_tile",
@@ -13641,164 +14283,252 @@
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "grey_tile",
-   "grey_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s link-detached houses in buff/orange brick with white boarded first-floor panels, integral garages and block-paved open frontages.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
+ },
+ "Harlech Avenue": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
    "grey_tile"
   ],
   "tudor": 0,
-  "note": "1960s-70s estate of link-detached and short terraces in buff/yellow brick with white weatherboarded first-floor panels and low-pitch brown concrete tile roofs; many tall brown fences and hedges on corner plots.",
+  "note": "1970s brown-brick semis and terraces, some with white cladding upstairs and tiled canopies; panel fences and picket fences in front, palms and shrubs.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "timber"
+   "white_render"
   ],
-  "upper_p": 0.6,
+  "upper_p": 0.5,
   "front": "wall"
- },
- "Harlech Avenue": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
  },
  "Uppingham Gardens": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s semis in orange-brown brick with white weatherboard cladding at first floor, open lawns and mature oaks; partly hidden by trees.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.7,
+  "front": null
  },
  "Stirling Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s brick semis/terraces with white cladding at first floor and a tiled canopy over the ground floor, flat-roofed garages, big block-paved forecourts with low brick walls.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
  },
  "Holyrood Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s semis and short terraces with brick ground floors, white cladding across the first floor and a tiled pent canopy between; paved drives, some fences and shrubs.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.8
  },
  "Mallory Avenue": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "cream_render",
+   "cream_render"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1960s-70s brick semis and short terraces, some with white/cream boarded or rendered first floors, block-paved drives and low brick or fence boundaries.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
+  "front": null
  },
  "Thetford Mews": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s brown-brick semis and terraces, some with white cladding upstairs and tiled canopies; panel fences and picket fences in front, palms and shrubs.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.5,
+  "front": "wall"
  },
  "Aldenham Close": {
   "walls": [
@@ -13813,7 +14543,759 @@
    "orange_brick",
    "orange_brick",
    "orange_brick",
-   "white_render",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s link-detached houses in buff/orange brick with white boarded first-floor panels, integral garages and block-paved open frontages.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
+ },
+ "Northbrook Road": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s semis and short terraces with brick ground floors, white cladding across the first floor and a tiled pent canopy between; paved drives, some fences and shrubs.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.8
+ },
+ "Gayhurst Court": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s estate semis and short terraces in orange brick with a white boarded or rendered band at first floor, shallow brown tile roofs, open drives.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
+ },
+ "Rowallan Close": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s red-brick semis and short terraces with white cladding at first floor and tiled canopy over the ground floor; open lawns, a few fences and low walls.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
+ },
+ "Chatsworth Close": {
+  "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s link-detached houses in buff/orange brick with white boarded first-floor panels, integral garages and block-paved open frontages.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
+ },
+ "Hertford Close": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s semis and short terraces with brick ground floors, white cladding across the first floor and a tiled pent canopy between; paved drives, some fences and shrubs.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.8
+ },
+ "Netley Close": {
+  "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s estate of buff-brick terraces and red-brick semis with integral garages and some tile-hung or clad upper fronts, brown concrete roofs, open-plan fronts and wooden ranch fences, next to the school.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
+ },
+ "Illingworth Avenue": {
+  "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s buff-brown brick semis with integral garages, some white cladding at first floor and flat-roofed porches; open lawns mixed with tall panel fences.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.4
+ },
+ "Eynsford Close": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s brown-brick houses mostly hidden behind shrubs, trees and high panel fences; little of the houses is visible.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.1
+ },
+ "Eltham Avenue": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s link-detached houses in orange-brown brick with flat-roofed garages, canopy porches and brown concrete-tiled roofs set on open-plan corner lawns.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
+ },
+ "Littlestead Close": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s brown-brick houses mostly hidden behind shrubs, trees and high panel fences; little of the houses is visible.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.1
+ },
+ "Dumbarton Way": {
+  "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s buff-brown brick terraces with white weatherboard on the first floor and flat-roofed garage fronts; open lawns, with tall panel fences on the side plots.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
+ },
+ "Ilchester Mews": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "buff_brick",
+   "buff_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s brick semis and terraces, some with white panels upstairs and a tiled canopy over the ground floor; open lawns, low brick walls and shrubs.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.4,
+  "front": null
+ },
+ "Kirkham Close": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "Small close of plain orange-red brick detached houses with garages, low picket fences and tall conifer hedges; one view was only hedge.",
+  "family": "estate_6070",
+  "source": "street view"
+ },
+ "Kelso Mews": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "Small close of plain orange-red brick detached houses with garages, low picket fences and tall conifer hedges; one view was only hedge.",
+  "family": "estate_6070",
+  "source": "street view"
+ },
+ "Melford Green": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s red-brick terraces with white panels at first floor and a tiled canopy, big block-paved forecourts, panel fences and tall conifer hedges.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.5
+ },
+ "Kingsway": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "red_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s Caversham Park estate: orange-brown and buff brick semis and short terraces with white weatherboard/clad first-floor panels, shallow brown concrete-tiled roofs, integral garages and open-plan block-paved drives.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
+ },
+ "Farleigh Mews": {
+  "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s buff-brown brick terraces with white weatherboard on the first floor and flat-roofed garage fronts; open lawns, with tall panel fences on the side plots.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6,
+  "front": null
+ },
+ "Montpelier Drive": {
+  "walls": [
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile"
+  ],
+  "tudor": 0,
+  "note": "Only 2 of 4 views loaded. 1970s buff and brown brick semis and link houses with white-clad panels, integral garages and open lawns; fences on the side gardens.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
+ },
+ "Newton Avenue": {
+  "walls": [
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
+  ],
+  "roof": [
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile",
+   "grey_tile"
+  ],
+  "tudor": 0,
+  "note": "1970s estate of red/orange brick semis and short terraces with white cladding panels at first floor, open-plan lawns and block-paved drives; one view was all hedge.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
+  "front": null
+ },
+ "Galsworthy Drive": {
+  "walls": [
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "red_brick",
+   "red_brick",
    "white_render"
   ],
   "roof": [
@@ -13831,782 +15313,491 @@
    "grey_tile"
   ],
   "tudor": 0,
-  "note": "1960s-70s estate of link-detached and short terraces in buff/yellow brick with white weatherboarded first-floor panels and low-pitch brown concrete tile roofs; many tall brown fences and hedges on corner plots.",
+  "note": "1960s-70s Caversham Park estate: orange-brown and buff brick terraces, semis and link-detached houses with white-clad or rendered first-floor panels, shallow concrete-tile roofs, integral garages and open drives; one remodelled white-rendered house.",
   "family": "estate_6070",
   "source": "street view",
   "upper": [
-   "timber"
+   "white_render"
   ],
   "upper_p": 0.6,
-  "front": "wall"
- },
- "Northbrook Road": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Gayhurst Court": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Rowallan Close": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Chatsworth Close": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Hertford Close": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Netley Close": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Illingworth Avenue": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Eynsford Close": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Eltham Avenue": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Littlestead Close": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Dumbarton Way": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Ilchester Mews": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Kirkham Close": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Kelso Mews": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Melford Green": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Kingsway": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Farleigh Mews": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Montpelier Drive": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Newton Avenue": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
- },
- "Galsworthy Drive": {
-  "walls": [
-   "buff_brick",
-   "buff_brick",
-   "orange_brick",
-   "orange_brick",
-   "red_brick"
-  ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
-  "roof": [
-   "brown_tile",
-   "brown_tile",
-   "grey_tile",
-   "dark_tile"
-  ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "front": null
  },
  "Corfe Mews": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "red_brick",
    "red_brick",
-   "cream_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile",
-   "slate"
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "Mix of buff-brick bungalows and short terraces of red-brick houses with flat-roofed garages and porches; low brick walls, hedges and gravel fronts.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": "wall"
  },
  "Farnham Drive": {
   "walls": [
    "buff_brick",
    "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s detached houses in buff-brown brick with brown concrete tile roofs, open-plan front lawns and paved drives, wooded backdrop.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.15,
+  "front": null
  },
  "Redberry Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s red/orange brick semis and terraces with garages, a few white panels upstairs; brick side walls, panel fences, shrubs and open drives.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3
  },
  "Bramber Mews": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
    "red_brick",
    "red_brick",
-   "cream_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick"
   ],
   "roof": [
-   "brown_tile",
    "grey_tile",
-   "dark_tile",
-   "slate"
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "1970s estate: terraces of low red-brick bungalows with grey concrete-tiled roofs and white fascias, plus buff-brick two-storey houses; open grass fronts and fences.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
  },
  "Kendal Avenue": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s estate of red/orange brick semis and short terraces with white cladding panels at first floor, open-plan lawns and block-paved drives; one view was all hedge.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
+  "front": null
  },
  "Earlsfield Close": {
   "walls": [
    "orange_brick",
    "orange_brick",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "red_brick"
   ],
   "roof": [
    "brown_tile",
-   "grey_tile",
-   "dark_tile",
-   "slate"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "1960s-70s estate: low brown-brick bungalows with long brown concrete-tiled roofs on one side, and semis with white-clad upper floors over brown brick on the other; open-plan fronts and wooden fences.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
  },
  "Lomond Avenue": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1960s-70s estate terraces in red and orange-brown brick with white weatherboard panels and canopy porches, low-pitched concrete-tile roofs, open fronts turned into parking; occasional verge trees.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
  },
  "Blackwater Close": {
   "walls": [
-   "orange_brick",
-   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "red_brick",
    "red_brick",
-   "cream_render"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile",
-   "slate"
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "Mix of buff-brick bungalows and short terraces of red-brick houses with flat-roofed garages and porches; low brick walls, hedges and gravel fronts.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": "wall"
  },
  "Pevensey Avenue": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile",
+   "grey_tile",
+   "grey_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1960s-70s estate terraces in red and orange-brown brick with white weatherboard panels and canopy porches, low-pitched concrete-tile roofs, open fronts turned into parking; occasional verge trees.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
  },
  "Ulster Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s red/orange brick semis and terraces with garages, a few white panels upstairs; brick side walls, panel fences, shrubs and open drives.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3
  },
  "Jordan Close": {
   "walls": [
    "buff_brick",
    "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s detached houses in buff-brown brick with brown concrete tile roofs, open-plan front lawns and paved drives, wooded backdrop.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.15,
+  "front": null
  },
  "Quantock Avenue": {
   "walls": [
    "buff_brick",
    "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "Only 2 of 4 views loaded. 1970s buff and brown brick semis and link houses with white-clad panels, integral garages and open lawns; fences on the side gardens.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
  },
  "Highbridge Close": {
   "walls": [
    "buff_brick",
    "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s detached houses in buff-brown brick with brown concrete tile roofs, open-plan front lawns and paved drives, wooded backdrop.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.15,
+  "front": null
  },
  "Tenby Avenue": {
   "walls": [
@@ -14636,127 +15827,228 @@
   "walls": [
    "buff_brick",
    "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s detached houses in buff-brown brick with brown concrete tile roofs, open-plan front lawns and paved drives, wooded backdrop.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.15,
+  "front": null
  },
  "Chestnut Avenue": {
   "walls": [
    "orange_brick",
    "orange_brick",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick"
   ],
   "roof": [
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile",
-   "slate"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "1970s link-semis and terraces in brown brick with white or grey weatherboarding at first floor, garages between; front fences, low brick walls and open drives mixed.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6
  },
  "Devon Drive": {
   "walls": [
    "orange_brick",
    "orange_brick",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick"
   ],
   "roof": [
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile",
-   "slate"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "1970s link-semis and terraces in brown brick with white or grey weatherboarding at first floor, garages between; front fences, low brick walls and open drives mixed.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.6
  },
  "Shakespeare Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s red/orange brick semis and terraces with garages, a few white panels upstairs; brick side walls, panel fences, shrubs and open drives.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3
  },
  "Odiham Avenue": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s estate of red/orange brick semis and short terraces with white cladding panels at first floor, open-plan lawns and block-paved drives; one view was all hedge.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
+  "front": null
  },
  "Dacre Avenue": {
   "walls": [
    "orange_brick",
    "orange_brick",
-   "red_brick",
-   "red_brick",
-   "cream_render"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "red_brick"
   ],
   "roof": [
    "brown_tile",
-   "grey_tile",
-   "dark_tile",
-   "slate"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1980s onward closes and flats",
-  "family": "modern"
+  "tudor": 0,
+  "note": "1960s-70s estate: low brown-brick bungalows with long brown concrete-tiled roofs on one side, and semis with white-clad upper floors over brown brick on the other; open-plan fronts and wooden fences.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
  },
  "Grove Mews": {
   "walls": [
@@ -14990,25 +16282,36 @@
   "walls": [
    "buff_brick",
    "buff_brick",
-   "orange_brick",
-   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s estate of buff-brick terraces and red-brick semis with integral garages and some tile-hung or clad upper fronts, brown concrete roofs, open-plan fronts and wooden ranch fences, next to the school.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
  },
  "Willow view": {
   "walls": [
@@ -15081,147 +16384,223 @@
  },
  "Osterley Drive": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "Small close of plain orange-red brick detached houses with garages, low picket fences and tall conifer hedges; one view was only hedge.",
+  "family": "estate_6070",
+  "source": "street view"
  },
  "Launceston Avenue": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s brown-brick semis and terraces, some with white cladding upstairs and tiled canopies; panel fences and picket fences in front, palms and shrubs.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.5,
+  "front": "wall"
  },
  "Hadleigh Rise": {
   "walls": [
    "buff_brick",
    "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
-   "dark_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s link-detached and semi houses in buff/brown brick with white panels under windows, white up-and-over garage doors and brown concrete-tiled roofs, open-plan fronts on a slope.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "white_render"
+  ],
+  "upper_p": 0.3,
+  "front": null
  },
  "Gifford Close": {
   "walls": [
-   "buff_brick",
-   "buff_brick",
    "orange_brick",
    "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "orange_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
    "red_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
-   "grey_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
    "dark_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s brick terraces with tiled canopy over the ground floor, block-paved drives, a mix of open lawns, low shrubs and fences.",
+  "family": "estate_6070",
+  "source": "street view",
+  "upper": [
+   "tile_hung"
+  ],
+  "upper_p": 0.1
  },
  "Framlingham Drive": {
   "walls": [
    "buff_brick",
    "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s terraces and semis in buff/brown brick with white weatherboard panels between storeys, integral garages and brown concrete roofs; open lawns, low fences and a communal green.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
  },
  "Goodrich Close": {
   "walls": [
    "buff_brick",
    "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
+   "buff_brick",
    "orange_brick",
    "orange_brick",
-   "red_brick"
+   "orange_brick",
+   "orange_brick"
   ],
-  "upper": [
-   "tile_hung",
-   "white_render",
-   "timber"
-  ],
-  "upper_p": 0.45,
   "roof": [
    "brown_tile",
    "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "grey_tile",
-   "dark_tile"
+   "grey_tile"
   ],
-  "tudor": 0.0,
-  "note": "1960s-70s estates (Emmer Green, Caversham Park Village): pale brick, tile-hung or boarded upper fronts, concrete tiles",
-  "family": "estate_6070"
+  "tudor": 0,
+  "note": "1970s terraces and semis in buff/brown brick with white weatherboard panels between storeys, integral garages and brown concrete roofs; open lawns, low fences and a communal green.",
+  "family": "estate_6070",
+  "source": "street view",
+  "front": null
  },
  "Putting Green": {
   "walls": [
@@ -15269,12 +16648,13 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "cream_render",
-   "timber"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
    "dark_tile",
@@ -15282,26 +16662,19 @@
    "dark_tile",
    "dark_tile",
    "dark_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "slate",
-   "slate",
+   "dark_tile",
+   "dark_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
    "brown_tile",
    "brown_tile"
   ],
-  "tudor": 0.05,
-  "note": "Mixed road: Victorian red-brick and rendered cottages/terraces at the southern end by the pub, then interwar and later detached and semi houses (many white-rendered) set back behind tall hedges, flint walls and trees further north.",
-  "family": "cottage",
+  "tudor": 0,
+  "note": "1990s red-brick gabled houses behind a brick boundary wall and timber fences, with large trees.",
+  "family": "modern",
   "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.1,
-  "fascias": [
-   "white_concrete",
-   "red_concrete"
-  ]
+  "front": "wall"
  },
  "Michael King Way": {
   "walls": [
@@ -15310,39 +16683,33 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "cream_render",
-   "timber"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "slate",
-   "slate",
    "brown_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.05,
-  "note": "Mixed road: Victorian red-brick and rendered cottages/terraces at the southern end by the pub, then interwar and later detached and semi houses (many white-rendered) set back behind tall hedges, flint walls and trees further north.",
-  "family": "cottage",
+  "tudor": 0,
+  "note": "Seen only from the entrance: 1990s red-brick detached houses with gables behind thick hedges and big trees.",
+  "family": "modern",
   "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.1,
-  "fascias": [
-   "white_concrete",
-   "red_concrete"
-  ]
+  "front": "hedge"
  },
  "James Braid Drive": {
   "walls": [
@@ -15351,39 +16718,33 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "cream_render",
-   "timber"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "slate",
-   "slate",
    "brown_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.05,
-  "note": "Mixed road: Victorian red-brick and rendered cottages/terraces at the southern end by the pub, then interwar and later detached and semi houses (many white-rendered) set back behind tall hedges, flint walls and trees further north.",
-  "family": "cottage",
+  "tudor": 0,
+  "note": "Seen only from the entrance: 1990s red-brick detached houses with gables behind thick hedges and big trees.",
+  "family": "modern",
   "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.1,
-  "fascias": [
-   "white_concrete",
-   "red_concrete"
-  ]
+  "front": "hedge"
  },
  "Fox Crescent": {
   "walls": [
@@ -15392,39 +16753,33 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "cream_render",
-   "timber"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "slate",
-   "slate",
    "brown_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.05,
-  "note": "Mixed road: Victorian red-brick and rendered cottages/terraces at the southern end by the pub, then interwar and later detached and semi houses (many white-rendered) set back behind tall hedges, flint walls and trees further north.",
-  "family": "cottage",
+  "tudor": 0,
+  "note": "Seen only from the entrance: 1990s red-brick detached houses with gables behind thick hedges and big trees.",
+  "family": "modern",
   "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.1,
-  "fascias": [
-   "white_concrete",
-   "red_concrete"
-  ]
+  "front": "hedge"
  },
  "Jono View": {
   "walls": [
@@ -15433,39 +16788,33 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
-   "white_render",
-   "white_render",
-   "white_render",
-   "cream_render",
-   "timber"
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick",
+   "red_brick"
   ],
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "red_tile",
-   "red_tile",
-   "red_tile",
-   "slate",
-   "slate",
    "brown_tile",
-   "brown_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
-  "tudor": 0.05,
-  "note": "Mixed road: Victorian red-brick and rendered cottages/terraces at the southern end by the pub, then interwar and later detached and semi houses (many white-rendered) set back behind tall hedges, flint walls and trees further north.",
-  "family": "cottage",
+  "tudor": 0,
+  "note": "Seen only from the entrance: 1990s red-brick detached houses with gables behind thick hedges and big trees.",
+  "family": "modern",
   "source": "street view",
-  "upper": [
-   "white_render"
-  ],
-  "upper_p": 0.1,
-  "fascias": [
-   "white_concrete",
-   "red_concrete"
-  ]
+  "front": "hedge"
  },
  "Eagle Way": {
   "walls": [
@@ -15479,32 +16828,32 @@
    "red_brick",
    "red_brick",
    "red_brick",
-   "white_render",
+   "red_brick",
    "orange_brick"
   ],
   "roof": [
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
-   "dark_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
    "brown_tile",
-   "red_tile"
+   "brown_tile",
+   "brown_tile",
+   "brown_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile",
+   "dark_tile"
   ],
   "tudor": 0,
-  "note": "Mostly detached red-brick bungalows and chalet bungalows with gabled or hipped tile roofs behind low red-brick walls and hedges, with a few modern red-brick detached houses near the Gorselands end; corner plots show long fenced gardens.",
-  "family": "postwar_council",
+  "note": "1980s detached houses with dormers and bungalows, all red brick with brown concrete tile roofs, integral garages and open lawns; mature trees around.",
+  "family": "modern",
   "source": "street view",
   "upper": [
-   "white_render"
+   "tile_hung"
   ],
-  "upper_p": 0.15,
-  "front": "wall"
+  "upper_p": 0.1,
+  "front": null
  },
  "Saunders Drive": {
   "walls": [

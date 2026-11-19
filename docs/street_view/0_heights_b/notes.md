@@ -1,0 +1,139 @@
+# Views not captured
+Google Maps stopped loading in the browser pane (blank white pages, net::ERR_BLOCKED_BY_CLIENT). Survey stopped by coordinator; all views below need a rerun.
+
+- Woodcote Road__1_032
+- Woodcote Road__1_272
+- Woodcote Road__2_344
+- Woodcote Road__2_224
+- Woodcote Road__3_353
+- Woodcote Road__3_233
+- Woodcote Road__4_356
+- Woodcote Road__4_236
+- Upper Woodcote Road__0_051
+- Upper Woodcote Road__0_291
+- Upper Woodcote Road__1_084
+- Upper Woodcote Road__1_324
+- Upper Woodcote Road__2_025
+- Upper Woodcote Road__2_265
+- Upper Woodcote Road__3_342
+- Upper Woodcote Road__3_222
+- Upper Woodcote Road__4_355
+- Upper Woodcote Road__4_235
+- Chazey Road__0_342
+- Chazey Road__0_222
+- Chazey Road__1_348
+- Chazey Road__1_228
+- Chazey Road__2_329
+- Chazey Road__2_209
+- Chazey Road__3_329
+- Chazey Road__3_209
+- Chazey Road__4_346
+- Chazey Road__4_226
+- Upper Warren Avenue__0_168
+- Upper Warren Avenue__0_048
+- Upper Warren Avenue__1_168
+- Upper Warren Avenue__1_048
+- Upper Warren Avenue__2_149
+- Upper Warren Avenue__2_029
+- Silverthorne Drive__0_019
+- Silverthorne Drive__0_259
+- Silverthorne Drive__1_296
+- Silverthorne Drive__1_176
+- Silverthorne Drive__2_313
+- Silverthorne Drive__2_193
+- Richmond Road__0_119
+- Richmond Road__0_359
+- Richmond Road__1_119
+- Richmond Road__1_359
+- Richmond Road__2_120
+- Richmond Road__2_000
+- Tymawr__0_028
+- Tymawr__0_268
+- Tymawr__1_357
+- Tymawr__1_237
+- Tymawr__2_115
+- Tymawr__2_355
+- Harrogate Road__0_138
+- Harrogate Road__0_018
+- Harrogate Road__1_137
+- Harrogate Road__1_017
+- Harrogate Road__2_137
+- Harrogate Road__2_017
+- Morlais__0_016
+- Morlais__0_256
+- Morlais__1_017
+- Morlais__1_257
+- Morlais__2_041
+- Morlais__2_281
+- Uplands Road__0_119
+- Uplands Road__0_359
+- Uplands Road__1_117
+- Uplands Road__1_357
+- Woburn Close__0_122
+- Woburn Close__0_002
+- Woburn Close__1_344
+- Woburn Close__1_224
+- Woburn Close__2_224
+- Woburn Close__2_104
+- Fernbrook Road__0_129
+- Fernbrook Road__0_009
+- Fernbrook Road__1_126
+- Fernbrook Road__1_006
+- Fernbrook Road__2_058
+- Fernbrook Road__2_298
+- The Mount__0_344
+- The Mount__0_224
+- The Mount__1_282
+- The Mount__1_162
+- Glyncastle__0_205
+- Glyncastle__0_085
+- Glyncastle__1_201
+- Glyncastle__1_081
+- Westdene Crescent__0_111
+- Westdene Crescent__0_351
+- Westdene Crescent__1_050
+- Westdene Crescent__1_290
+- Rhigos__0_044
+- Rhigos__0_284
+- Rhigos__1_241
+- Rhigos__1_121
+- Wrenfield Drive__0_019
+- Wrenfield Drive__0_259
+- Saint David's Close__0_110
+- Saint David's Close__0_350
+- Saint David's Close__1_108
+- Saint David's Close__1_348
+- Ammanford__0_081
+- Ammanford__0_321
+- Glenrhondda__0_039
+- Glenrhondda__0_279
+- Glenrhondda__1_080
+- Glenrhondda__1_320
+- Crispin Close__0_186
+- Crispin Close__0_066
+- Crispin Close__1_111
+- Crispin Close__1_351
+- Sandcroft Road__0_126
+- Sandcroft Road__0_006
+- Grass Hill__0_041
+- Grass Hill__0_281
+- Grass Hill__1_113
+- Grass Hill__1_353
+- Midsummer Meadow__0_332
+- Midsummer Meadow__0_212
+- Midsummer Meadow__1_242
+- Midsummer Meadow__1_122
+- Mapledene__0_008
+- Mapledene__0_248
+- Mapledene__1_129
+- Mapledene__1_009
+- Little Woodcote Close__0_259
+- Little Woodcote Close__0_139
+- Little Woodcote Close__1_171
+- Little Woodcote Close__1_051
+- Hewett Close__0_122
+- Hewett Close__0_002
+- Hewett Close__1_261
+- Hewett Close__1_141
+- Blaenavon__0_083
+- Blaenavon__0_323

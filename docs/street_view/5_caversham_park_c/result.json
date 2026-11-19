@@ -1,0 +1,517 @@
+{
+ "Copse End": {
+  "walls": {
+   "red_brick": 0.85,
+   "orange_brick": 0.15
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.15,
+  "form": {
+   "detached": 0.8,
+   "semi": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Narrow cul-de-sac without centre line, joining a wider road with grass verges; no humps or bays.",
+  "confidence": "medium",
+  "note": "Small 1970s/80s cul-de-sac of red-brick detached houses and a chalet/garage block, behind tall laurel hedges and mature trees."
+ },
+ "Newton Avenue": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.5,
+   "semi": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Residential estate road without centre line, block-paved driveways off it, some kerbside parking.",
+  "confidence": "medium",
+  "note": "1970s estate of red/orange brick semis and short terraces with white cladding panels at first floor, open-plan lawns and block-paved drives; one view was all hedge."
+ },
+ "Jordan Close": {
+  "walls": {
+   "buff_brick": 0.5,
+   "orange_brick": 0.5
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Cul-de-sac with turning head, no markings, block-paved drives straight off the kerb.",
+  "confidence": "high",
+  "note": "1970s detached houses in buff-brown brick with brown concrete tile roofs, open-plan front lawns and paved drives, wooded backdrop."
+ },
+ "Gifford Close": {
+  "walls": {
+   "orange_brick": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.8,
+   "semi": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges",
+  "road": "Narrow cul-de-sac without markings, white parking line by drives.",
+  "confidence": "medium",
+  "note": "1970s brick terraces with tiled canopy over the ground floor, block-paved drives, a mix of open lawns, low shrubs and fences."
+ },
+ "Ragley Mews": {
+  "walls": {
+   "buff_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.7,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.9,
+   "semi": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow mews cul-de-sac without centre line, gravel and block drives.",
+  "confidence": "medium",
+  "note": "1970s terraces in buff brick with white weatherboard cladding across the first floor and a tiled canopy roof over the ground floor; open-plan fronts with some low fences."
+ },
+ "Uppingham Gardens": {
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0.7,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.6,
+   "terrace": 0.2,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Small cul-de-sac without markings, grass verges, a big oak on the corner.",
+  "confidence": "medium",
+  "note": "1970s semis in orange-brown brick with white weatherboard cladding at first floor, open lawns and mature oaks; partly hidden by trees."
+ },
+ "Rowallan Close": {
+  "walls": {
+   "red_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.3,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Curving cul-de-sac, no markings, gravel and block drives.",
+  "confidence": "high",
+  "note": "1970s red-brick semis and short terraces with white cladding at first floor and tiled canopy over the ground floor; open lawns, a few fences and low walls."
+ },
+ "Hertford Close": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.8,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges",
+  "road": "Narrow cul-de-sac without markings; block-paved drives and a footpath with lamp post.",
+  "confidence": "high",
+  "note": "1970s semis and short terraces with brick ground floors, white cladding across the first floor and a tiled pent canopy between; paved drives, some fences and shrubs."
+ },
+ "Kelso Mews": {
+  "walls": {
+   "orange_brick": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Narrow cul-de-sac, no markings.",
+  "confidence": "medium",
+  "note": "Small close of plain orange-red brick detached houses with garages, low picket fences and tall conifer hedges; one view was only hedge."
+ },
+ "Chestnut Avenue": {
+  "walls": {
+   "orange_brick": 0.6,
+   "buff_brick": 0.4
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.6,
+   "terrace": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges",
+  "road": "Estate road without centre line, block-paved drives; narrow footpaths.",
+  "confidence": "high",
+  "note": "1970s link-semis and terraces in brown brick with white or grey weatherboarding at first floor, garages between; front fences, low brick walls and open drives mixed."
+ },
+ "Chiltern Heights": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.4
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "red_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.7,
+   "detached": 0.3
+  },
+  "era": "interwar_1920s_30s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Pano is on Chiltern Road at the junction: wider road without centre line, give-way markings at side roads, grass verges.",
+  "confidence": "low",
+  "note": "Both views show Chiltern Road (2012 imagery) beside the close rather than the close itself: interwar red-brick and rendered semis behind tall conifers, hedges and fences."
+ },
+ "Almond Drive": {
+  "walls": {
+   "buff_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.5,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "semi": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges",
+  "road": "Narrow estate road with double yellow lines at the corners, no centre line.",
+  "confidence": "medium",
+  "note": "1970s buff-brown brick terraces and semis with white cladding panels upstairs, integral garages and paved drives; wooden fences and big hedges on corners."
+ },
+ "Stirling Close": {
+  "walls": {
+   "orange_brick": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.6,
+   "terrace": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Cul-de-sac, no markings, wide block-paved forecourts to the kerb.",
+  "confidence": "high",
+  "note": "1970s brick semis/terraces with white cladding at first floor and a tiled canopy over the ground floor, flat-roofed garages, big block-paved forecourts with low brick walls."
+ },
+ "Thetford Mews": {
+  "walls": {
+   "orange_brick": 0.6,
+   "buff_brick": 0.4
+  },
+  "upper_differs": 0.5,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "Narrow mews cul-de-sac, no markings, block-paved drives.",
+  "confidence": "medium",
+  "note": "1970s brown-brick semis and terraces, some with white cladding upstairs and tiled canopies; panel fences and picket fences in front, palms and shrubs."
+ },
+ "Illingworth Avenue": {
+  "walls": {
+   "buff_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.7,
+   "terrace": 0.3
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges",
+  "road": "Narrow estate road without markings, block-paved drives, small grass verges with lamp posts.",
+  "confidence": "high",
+  "note": "1970s buff-brown brick semis with integral garages, some white cladding at first floor and flat-roofed porches; open lawns mixed with tall panel fences."
+ },
+ "Michaels Chase": {
+  "confidence": "none",
+  "note": "No Street View imagery at this point (black pano, 'no imagery available' message) on both views after a retry."
+ },
+ "Moss Close": {
+  "confidence": "none",
+  "note": "No Street View imagery at this point (black pano) on both views after a retry."
+ },
+ "Harmont Gate": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.4
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "red_tile": 0.4
+  },
+  "bungalows": 0.3,
+  "form": {
+   "detached": 0.8,
+   "semi": 0.2
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Pano is on Peppard Road at the gate: a main road with SCHOOL KEEP CLEAR zigzags, give-way markings, wide pavements, no centre line visible.",
+  "confidence": "low",
+  "note": "Both views show Peppard Road beside the gate (school building, big oaks, tall hedges, a bungalow and older rendered/brick houses), not the houses in Harmont Gate itself."
+ },
+ "Eynsford Close": {
+  "walls": {
+   "orange_brick": 0.6,
+   "buff_brick": 0.4
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Narrow cul-de-sac without markings, cars parked on the kerb.",
+  "confidence": "low",
+  "note": "1970s brown-brick houses mostly hidden behind shrubs, trees and high panel fences; little of the houses is visible."
+ },
+ "Ilchester Mews": {
+  "walls": {
+   "orange_brick": 0.5,
+   "red_brick": 0.3,
+   "buff_brick": 0.2
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Cul-de-sac with turning head, no markings, block-paved drives.",
+  "confidence": "high",
+  "note": "1970s brick semis and terraces, some with white panels upstairs and a tiled canopy over the ground floor; open lawns, low brick walls and shrubs."
+ },
+ "Melford Green": {
+  "walls": {
+   "red_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.5,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "semi": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Narrow lane-like close, no markings, block-paved forecourts.",
+  "confidence": "medium",
+  "note": "1970s red-brick terraces with white panels at first floor and a tiled canopy, big block-paved forecourts, panel fences and tall conifer hedges."
+ },
+ "Shakespeare Close": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges",
+  "road": "Narrow cul-de-sac without markings, block-paved drives, lamp posts on small verges.",
+  "confidence": "medium",
+  "note": "1970s red/orange brick semis and terraces with garages, a few white panels upstairs; brick side walls, panel fences, shrubs and open drives."
+ },
+ "Farleigh Mews": {
+  "walls": {
+   "buff_brick": 0.5,
+   "orange_brick": 0.3,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.7,
+   "semi": 0.3
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow curving mews, no markings.",
+  "confidence": "medium",
+  "note": "1970s buff-brown brick terraces with white weatherboard on the first floor and flat-roofed garage fronts; open lawns, with tall panel fences on the side plots."
+ }
+}

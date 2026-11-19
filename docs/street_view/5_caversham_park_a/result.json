@@ -1,0 +1,221 @@
+{
+ "Peppard Road": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.2,
+   "orange_brick": 0.1,
+   "buff_brick": 0.1
+  },
+  "upper_differs": 0.25,
+  "upper": "white_render",
+  "tudor": 0.15,
+  "roof": {
+   "dark_tile": 0.5,
+   "red_tile": 0.2,
+   "brown_tile": 0.2,
+   "slate": 0.1
+  },
+  "bungalows": 0.15,
+  "form": {
+   "detached": 0.5,
+   "semi": 0.5
+  },
+  "era": "mixed",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Main B-road (B481), two-way with white centre line, fairly wide; side-road junctions with give-way lines; long stretches lined by woodland, high walls and hedges with grass verges.",
+  "confidence": "medium",
+  "note": "A long tree-lined main road: many stretches are just woodland or hedge, with interwar semis (some mock-Tudor gables, rendered upper floors), a red-brick Victorian lodge, modern red-brick detached houses and a few bungalows set well back behind hedges and fences."
+ },
+ "Mayfield Drive": {
+  "walls": {
+   "red_brick": 0.9,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.75,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.95,
+   "detached": 0.05
+  },
+  "era": "postwar_1950s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Two-way residential street, no centre line, moderate width, gentle curves; wide grass verges on one side with lamp posts; on-street parking, many paved front drives.",
+  "confidence": "high",
+  "note": "Uniform 1950s semis with hipped brown tiled roofs: red brick ground floor and cream/white rendered first floor, bay windows, low red brick walls and paved drives, grass verges along the pavement."
+ },
+ "Lowfield Road": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.3,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.35,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "grey_tile": 0.3,
+   "dark_tile": 0.1
+  },
+  "bungalows": 0.05,
+  "form": {
+   "detached": 0.4,
+   "semi": 0.3,
+   "terrace": 0.3
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Long distributor road, two-way, fairly wide, dashed white centre line and give-way junctions with turn arrows at the Caversham Park Road end; long stretches with a grass verge and woodland/hedge on one side.",
+  "confidence": "medium",
+  "note": "1960s-70s Caversham Park estate housing: red-brown brick link-detached and terraced houses with white-clad or rendered first floors and integral garages on open-plan front gardens, plus a few newer detached houses; much of the road edge is woodland, hedge or fence."
+ },
+ "Kingsway": {
+  "walls": {
+   "orange_brick": 0.55,
+   "buff_brick": 0.35,
+   "red_brick": 0.1
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.45,
+   "semi": 0.45,
+   "detached": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Narrow-to-medium estate road, two-way, no centre line; dead-end sign and give-way markings at the junction; paved front drives and some double yellow lines near the entry, otherwise on-street parking.",
+  "confidence": "high",
+  "note": "1970s Caversham Park estate: orange-brown and buff brick semis and short terraces with white weatherboard/clad first-floor panels, shallow brown concrete-tiled roofs, integral garages and open-plan block-paved drives."
+ },
+ "Galsworthy Drive": {
+  "walls": {
+   "orange_brick": 0.55,
+   "buff_brick": 0.25,
+   "red_brick": 0.15,
+   "white_render": 0.05
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.4,
+   "semi": 0.3,
+   "detached": 0.3
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Two-way estate loop road, no centre line, moderate width; give-way markings at junctions; on-street parking and many block-paved/concrete front drives; tall hedges along some side boundaries.",
+  "confidence": "high",
+  "note": "1960s-70s Caversham Park estate: orange-brown and buff brick terraces, semis and link-detached houses with white-clad or rendered first-floor panels, shallow concrete-tile roofs, integral garages and open drives; one remodelled white-rendered house."
+ },
+ "Chiltern Road": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.25,
+   "cream_render": 0.1,
+   "orange_brick": 0.05
+  },
+  "upper_differs": 0.5,
+  "upper": "white_render",
+  "tudor": 0.1,
+  "roof": {
+   "brown_tile": 0.5,
+   "dark_tile": 0.3,
+   "red_tile": 0.2
+  },
+  "bungalows": 0.05,
+  "form": {
+   "semi": 0.85,
+   "detached": 0.15
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Two-way residential road, fairly wide, no centre line; wide grass verges with young street trees between pavement and road; 'KEEP CLEAR' marking at a side entrance; double yellow lines near the Henley Road end.",
+  "confidence": "high",
+  "note": "1930s semis with hipped tiled roofs and bays: red brick ground floors with white or cream rendered upper floors, some fully rendered, a few with mock-Tudor gables; low brick walls and hedges, wide grass verges with trees, and a newer red-brick house at the north end."
+ },
+ "Grosvenor Road": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Woods Road": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Harlech Avenue": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "All Hallows Road": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Milestone Way": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Hawthorne Road": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Queensway": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "The Horse Close": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Holyrood Close": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Orchard Grove": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Greystoke Road": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Osterley Drive": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Valentine Crescent": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Netley Close": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ },
+ "Copse Avenue": {
+  "confidence": "none",
+  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+ }
+}

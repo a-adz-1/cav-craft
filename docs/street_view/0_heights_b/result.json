@@ -1,0 +1,130 @@
+{
+ "Woodcote Road": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "victorian_edwardian",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Wide main road (A4074), white centre line, no humps seen.",
+  "confidence": "low",
+  "note": "Only 2 of 10 views loaded: large red-brick Edwardian detached houses with dark plain-tile roofs and tall chimneys, mostly hidden behind tall hedges, timber fences and big trees."
+ },
+ "Upper Woodcote Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Chazey Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Upper Warren Avenue": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Silverthorne Drive": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Richmond Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Tymawr": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Harrogate Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Morlais": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Uplands Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Woburn Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Fernbrook Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "The Mount": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Glyncastle": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Westdene Crescent": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Rhigos": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Wrenfield Drive": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Saint David's Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Ammanford": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Glenrhondda": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Crispin Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Sandcroft Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Grass Hill": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Midsummer Meadow": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Mapledene": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Little Woodcote Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Hewett Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Blaenavon": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ }
+}

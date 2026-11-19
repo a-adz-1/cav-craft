@@ -1,0 +1,210 @@
+{
+ "Kidmore Road": {
+  "walls": {
+   "red_brick": 0.75,
+   "white_render": 0.15,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0.2,
+  "roof": {
+   "dark_tile": 0.5,
+   "red_tile": 0.3,
+   "slate": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.7,
+   "semi": 0.3
+  },
+  "era": "mixed",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Fairly wide two-way road, no centre line on most stretches, dashed give-way lines at junctions, kerbside parking, no humps seen.",
+  "confidence": "medium",
+  "note": "Long leafy road of big Edwardian and interwar red-brick detached and semi houses, many with white-rendered or mock-Tudor gables; deep front gardens behind hedges and low red-brick walls, tall trees and grass verges at the north end."
+ },
+ "Albert Road": {
+  "walls": {
+   "red_brick": 0.75,
+   "white_render": 0.15,
+   "buff_brick": 0.05,
+   "orange_brick": 0.05
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0.15,
+  "roof": {
+   "dark_tile": 0.6,
+   "red_tile": 0.3,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0.1,
+  "form": {
+   "detached": 0.55,
+   "semi": 0.3,
+   "flats": 0.15
+  },
+  "era": "victorian_edwardian",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Two-way residential road, no centre line, dashed give-way at junctions, on-street parking, grass verges in places, no humps seen.",
+  "confidence": "medium",
+  "note": "Edwardian red-brick detached and semi houses with steep gables, some with white-rendered or mock-Tudor upper gables and buff-brick dressings; a modern red-brick flats block at the south end; thick hedges and low brick walls in front, trees and a green at the north end."
+ },
+ "St Peter's Avenue": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.25,
+   "white_render": 0.1,
+   "tile_hung": 0.05
+  },
+  "upper_differs": 0.25,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "brown_tile": 0.4,
+   "dark_tile": 0.35,
+   "red_tile": 0.25
+  },
+  "bungalows": 0.2,
+  "form": {
+   "detached": 0.85,
+   "semi": 0.15
+  },
+  "era": "mixed",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Two-way residential road without centre line, grass verges with trees at the south end, kerbside parking; the southern end views actually look onto the A4074 (Peppard Road) with a flint/stone retaining wall.",
+  "confidence": "medium",
+  "note": "Leafy road of detached houses largely hidden by tall hedges and trees: interwar and 1960s-80s red and orange brick houses, some bungalows with brown concrete tile roofs, a few white-rendered upper floors; low brick walls, fences and hedges in front."
+ },
+ "Highmoor Road": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.1,
+   "tile_hung": 0.05
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "dark_tile": 0.6,
+   "red_tile": 0.3,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.25,
+   "flats": 0.15
+  },
+  "era": "mixed",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Two-way road, no centre line, double yellow lines near junctions, white give-way triangles and dashed lines at the Albert Road junction, kerb parking elsewhere.",
+  "confidence": "medium",
+  "note": "Interwar red-brick detached and semi houses with hipped dark-tile roofs, some white-rendered bays, plus a red-brick church hall and small modern flats block at the west end; tall hedges and close-board fences on low red-brick walls hide many fronts."
+ },
+ "Buxton Avenue": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Shepherds Lane": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Carlton Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Aberaman": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Hunters Chase": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Hewett Avenue": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Gurney Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Tredegar Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Woodford Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Darell Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Knowle Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Queensborough Drive": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Tyler Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Hilltop Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Orwell Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Dellwood Park": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Blagrave Farm Lane": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Haldane Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Balliol Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Kelvedon Way": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Cwmcarn": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Graveney Drive": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Church Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Symeon Place": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Tylorstown": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ }
+}

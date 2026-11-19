@@ -262,5 +262,172 @@
   "road": "Two-way residential road, no centre line, wide grass verges and a small green with trees and bollards at a junction; the northern end narrows into a steep wooded lane with no footway.",
   "confidence": "medium",
   "note": "1930s red-brick semis and detached houses with hipped dark tile roofs, bay windows and tile-hung or rendered gables, behind hedges and gravel drives off wide grass verges; the top end is a wooded hillside lane with scattered modern rendered houses."
+ },
+ "Highdown Avenue": {
+  "confidence": "none",
+  "note": "All four views stayed black with no address resolved (retried); Street View seems to have no coverage on this road, probably a private/unadopted road."
+ },
+ "The Ridings": {
+  "walls": {
+   "orange_brick": 0.55,
+   "buff_brick": 0.3,
+   "red_brick": 0.15
+  },
+  "upper_differs": 0.4,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.75,
+   "semi": 0.25
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Curving estate road and cul-de-sac with no markings, raised kerbs, block-paved drives straight off the road, grass verges and open lawns.",
+  "confidence": "high",
+  "note": "1960s-70s estate of detached and link-detached two-storey houses in orange-brown and buff brick, some with tile-hung or white-boarded first floors, integral garages, brown concrete tile roofs and open-plan front lawns."
+ },
+ "Courtenay Drive": {
+  "walls": {
+   "red_brick": 0.9,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.3,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0.1,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Two-way road without centre line, give-way lines and a grass triangle with a big oak at the Kiln Road junction, bus stop with shelter bench, red phone box, grass verges and young street trees.",
+  "confidence": "medium",
+  "note": "Leafy road of 1950s red-brick semis with hipped dark tile roofs and some larger modern red-brick detached houses with gables, set back behind lawns, hedges and fences; many plots hidden behind tall hedges and trees."
+ },
+ "Burnham Rise": {
+  "walls": {
+   "red_brick": 0.9,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.15,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.7,
+   "brown_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.7,
+   "detached": 0.3
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Two-way road with a dashed white centre line, wide grass verges, give-way markings at the Courtenay Drive / Kiln Road junction, no parking bays.",
+  "confidence": "high",
+  "note": "1930s red-brick semis with hipped dark tile roofs, two-storey bay windows and small front gables, behind low brick walls, picket fences and hedges, along a wide verged road."
+ },
+ "Phillimore Road": {
+  "walls": {
+   "red_brick": 0.55,
+   "orange_brick": 0.2,
+   "white_render": 0.25
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.5,
+   "dark_tile": 0.5
+  },
+  "bungalows": 0.3,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Two-way residential road, no centre line, grass verge strips, block-paved drives; give-way lines at the junction end.",
+  "confidence": "medium",
+  "note": "1960s detached houses and bungalows in red/orange brick with brown or dark tile roofs and garages, open lawns and paved drives; at the east end a group of white-rendered 1930s/50s semis with hipped roofs."
+ },
+ "Fraser Avenue": {
+  "walls": {
+   "buff_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Narrow estate road without markings, block-paved drives and grass strips, low brick wall along a corner plot.",
+  "confidence": "medium",
+  "note": "1960s-70s estate of link-semis and short terraces in buff and orange brick with white boarded first-floor panels, front garages and low-pitch brown concrete tile roofs, open-plan fronts."
+ },
+ "The Fairway": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun. The two views that loaded (0_321, 0_201) snapped to Kidmore End Road beside a new Bovis Homes 'Emmer Green Drive' development of red-brick houses; 1_328 and 1_208 had no coverage (black), 2_023 and 2_263 hit the block."
+ },
+ "James Braid Drive": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Gravel Hill": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "St Barnabas Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Tower Close": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Kiln Road": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Elstow Avenue": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Twin Oaks": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Chalgrove Way": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
+ },
+ "Marchwood Avenue": {
+  "confidence": "none",
+  "note": "not surveyed: Maps blocked in the pane, rerun"
  }
 }
