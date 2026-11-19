@@ -1,0 +1,650 @@
+{
+ "Elliotts Way": {
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "dark_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.35,
+   "semi": 0.2,
+   "detached": 0.2,
+   "flats": 0.25
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow estate road, no centre line, block-paved parking courts and drives off it, no humps seen.",
+  "confidence": "medium",
+  "note": "1990s estate of orange-red brick terraces, semis and detached houses with porch canopies and contrasting brick bands, plus three-storey brick flat blocks with garages; open-plan fronts and paved parking."
+ },
+ "Patrick Road": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.3,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.4,
+   "brown_tile": 0.4,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.5,
+   "semi": 0.3,
+   "detached": 0.2
+  },
+  "era": "mixed",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Narrow residential road, no centre line, single yellow line in places, on-street parking.",
+  "confidence": "medium",
+  "note": "Mixed street: three-storey modern red-brick townhouses with integral garages behind hedges at the south end, Victorian red-brick bay-fronted terraces and white-rendered cottages with low white walls at the north end; one view mostly fence and trees."
+ },
+ "Wolsey Road": {
+  "walls": {
+   "red_brick": 0.65,
+   "cream_render": 0.15,
+   "orange_brick": 0.2
+  },
+  "upper_differs": 0.15,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.6,
+   "brown_tile": 0.3,
+   "dark_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.4,
+   "terrace": 0.4,
+   "detached": 0.2
+  },
+  "era": "mixed",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Residential road, no centre line, give-way markings at junctions, on-street parking, some driveways.",
+  "confidence": "medium",
+  "note": "North end is Victorian/Edwardian red-brick semis and short terraces with bays and slate roofs, some rendered; south end has 1970s-80s brown/orange brick houses with tile roofs behind fences and big hedges."
+ },
+ "Rufus Isaacs Road": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.3,
+   "buff_brick": 0.1
+  },
+  "upper_differs": 0.05,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "brown_tile": 0.7,
+   "red_tile": 0.2,
+   "dark_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.2,
+   "flats": 0.2
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges",
+  "road": "Quiet cul-de-sac estate road, no centre line, no markings, drives and open lawns.",
+  "confidence": "medium",
+  "note": "1990s cul-de-sac of red/orange brick detached houses with integral garages and brown concrete tile roofs, plus a buff brick flat block and big three-storey red brick block; one view black, one mostly a side wall."
+ },
+ "The Willows": {
+  "walls": {
+   "red_brick": 0.85,
+   "orange_brick": 0.15
+  },
+  "upper_differs": 0.05,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.4,
+   "detached": 0.3,
+   "terrace": 0.3
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges",
+  "road": "Estate road with tight bends, no centre line, double yellow lines at the junction, block-paved drives.",
+  "confidence": "high",
+  "note": "1980s estate of red-brick two-storey semis, short terraces and detached houses with small gabled porch canopies, garages and open-plan paved fronts and shrubs."
+ },
+ "Kingfisher Place": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0.5,
+  "upper": "timber",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.7,
+   "flats": 0.3
+  },
+  "era": "modern_1980s_on",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Not seen from a road: both views are a user photosphere on the Thames towpath.",
+  "confidence": "low",
+  "note": "Only a riverside towpath photosphere: a stepped 1980s red-brick terrace with dark sawtooth roofs and dark-framed glazed balconies, behind hedges; other view is just the river."
+ },
+ "Priory Avenue": {
+  "walls": {
+   "red_brick": 0.8,
+   "white_render": 0.1,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0.15,
+  "roof": {
+   "slate": 0.4,
+   "dark_tile": 0.4,
+   "brown_tile": 0.2
+  },
+  "bungalows": 0.1,
+  "form": {
+   "detached": 0.4,
+   "semi": 0.3,
+   "flats": 0.3
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Two-lane residential road, no centre line, parked cars both sides, some driveway entrances.",
+  "confidence": "medium",
+  "note": "Edwardian red-brick villas with gables and bays, a mock-Tudor gabled flat block and a red-brick chalet-style cottage with dormers; low red-brick walls with piers and tall fences, one view mostly fence and a skip."
+ },
+ "Prospect Street": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.25,
+   "cream_render": 0.05,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.7,
+   "dark_tile": 0.2,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.8,
+   "flats": 0.2
+  },
+  "era": "victorian_edwardian",
+  "front": "none",
+  "trees": "street_trees",
+  "road": "A4155 main road through the centre: two lanes, centre line, mini-roundabout with painted white disc at the Church Street/Bridge Street end, zebra/give-way markings, buildings right on the pavement.",
+  "shops": "South end (towards Church St) is mostly shops on both sides, perhaps 60% of frontage there; north end residential. Shopfronts are two- and three-storey Victorian terraces: dark green fascias and dark green awnings on white-painted buildings, black/dark grey fascias, full-width plate glass below. Upper floors of shops mostly white-painted brick or render with sash windows, some plain red brick with bay windows. A large 1980s red-brick office/flats block (4 storeys, slate mansard with dormers, carriage arch) and Victorian red-brick 'Church House' with blue door at the corner.",
+  "confidence": "medium",
+  "note": "Victorian two- and three-storey terraces fronting the pavement: red brick and painted (white, one blue-painted) cottages to the north, a row of small shops with green and black fascias and awnings near the mini-roundabout, with a big 1980s red-brick mansard block opposite."
+ },
+ "Church Street": {
+  "walls": {
+   "red_brick": 0.5,
+   "white_render": 0.2,
+   "cream_render": 0.15,
+   "grey_brick": 0.15
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.4,
+   "red_tile": 0.35,
+   "dark_tile": 0.25
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "detached": 0.4
+  },
+  "era": "mixed",
+  "front": "none",
+  "trees": "street_trees",
+  "road": "A4155 main road, two lanes with centre line, traffic lights and pedestrian crossing at the junction, petrol station forecourt, buildings and tall brick garden walls on the pavement.",
+  "shops": "Few shops in these views, maybe 20-30% of frontage: a white-painted pub with a long black fascia board and gold lettering; a grey/stone Victorian gothic two-storey building with a dark shopfront and big windows on the corner; a red petrol-station canopy. Shops are ground floor of 2-storey buildings with plain dark fascias, no awnings seen.",
+  "confidence": "medium",
+  "note": "Historic main street: Georgian red-brick house with sash windows and arched window, a 1980s red-brick mansard office, white-painted pub and cream low cottages with clay tile roofs, a gabled grey-brick Victorian corner block, and long red-brick garden walls under trees."
+ },
+ "Cardinal Close": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.3,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow cul-de-sac, no centre line, a turning circle with a planted island and yellow kerb lines, parking bays and garage blocks.",
+  "confidence": "low",
+  "note": "1970s close of red/orange brick two- and three-storey flats and town houses with dark-stained boarding, green-door garage courts, tall beech hedges and shrubbery that hide most buildings."
+ },
+ "Cromwell Road": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.1,
+   "orange_brick": 0.05
+  },
+  "upper_differs": 0.05,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.7,
+   "brown_tile": 0.2,
+   "dark_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.75,
+   "semi": 0.25
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "none",
+  "road": "Narrow residential street, no centre line, cars parked both sides on the road, some single yellow line.",
+  "confidence": "high",
+  "note": "Victorian red-brick terraces with white-painted ground-floor bays, contrasting yellow/white brick bands and slate roofs, tiny front gardens behind low red-brick walls; a 1930s semi and a 1990s brick semi near the north end."
+ },
+ "Westfield Road": {
+  "walls": {
+   "red_brick": 0.7,
+   "white_render": 0.2,
+   "cream_render": 0.1
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.85,
+   "dark_tile": 0.15
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.9,
+   "semi": 0.1
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Residential through road, no centre line, double yellow lines in places, parking on one side, junction with a bollard island at the south end by the recreation ground.",
+  "confidence": "high",
+  "note": "Long Victorian terraces of red brick with yellow-brick bands, some painted white, with bays, slate roofs and dormers; tiny front gardens behind low walls, hedges and picket fences; south end opens onto trees by the park."
+ },
+ "Chester Street": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.1,
+   "cream_render": 0.05
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "slate": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.7,
+   "semi": 0.3
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "none",
+  "road": "Narrow street, no centre line, parking both sides; the east end meets Prospect Street with give-way lines and zebra-hatched markings.",
+  "shops": "Only at the Prospect Street end, about 10% of the street: a corner shop with a red fascia and red canopy, a green fascia shop opposite, and the Prospect Street parade beyond (3-storey Victorian red-brick and white-painted gabled buildings with grey/dark fascias and plate-glass fronts).",
+  "confidence": "high",
+  "note": "Victorian red-brick terraces with white painted bays and slate roofs, plus Edwardian semis with gables and timber detailing, behind low brick walls and hedges; corner shops where it meets Prospect Street."
+ },
+ "Promenade Road": {
+  "walls": {
+   "red_brick": 0.8,
+   "white_render": 0.2
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.6,
+   "grey_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Quiet road by the river meadows, no centre line, grass verges with railings.",
+  "confidence": "medium",
+  "note": "Four-storey 1990s-2000s red-brick flat blocks with white window bands and balconies set in lawns behind hedges and railings; second view is mostly hedge and trees."
+ },
+ "Abbotsmead Place": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.4
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Private access road with brick gate piers and double yellow lines at the entrance.",
+  "confidence": "low",
+  "note": "Modern three/four-storey retirement-style flats in red brick and white render with steep gables, behind brick piers and shrubs; the other view is solid trees."
+ },
+ "Waller Court": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0.1,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "semi": 0.2,
+   "flats": 0.2
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges",
+  "road": "Short cul-de-sac with a grassed island, no markings, parking bays in front of houses.",
+  "confidence": "high",
+  "note": "1990s close of red/orange brick terraced and semi houses with brick bands, small gabled porch canopies (one with mock-Tudor gable) and brown tile roofs, open-plan lawns and parking."
+ },
+ "Rectory Road": {
+  "walls": {
+   "red_brick": 0.75,
+   "grey_brick": 0.25
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.9,
+   "dark_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 1.0
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "none",
+  "road": "Narrow street, no centre line, parked cars both sides.",
+  "confidence": "high",
+  "note": "Victorian terraces of red brick and silver-grey Reading brick with red-brick dressings, white-painted bay windows, gabled end houses and slate roofs; small front yards behind low walls."
+ },
+ "Crendon Court": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.5,
+   "flats": 0.5
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Estate road, no centre line, single/double yellow lines, parked cars.",
+  "confidence": "low",
+  "note": "Only one view loaded and it resolves to The Willows: 1980s red-brick two-storey houses and a three-storey red-brick flat block with shrubs; may not show Crendon Court itself."
+ },
+ "South Street": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.2,
+   "grey_brick": 0.2
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.7,
+   "detached": 0.3
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "street_trees",
+  "road": "Narrow street, no centre line, double yellow lines, a church car park off it.",
+  "confidence": "medium",
+  "note": "Victorian red-brick chapel/church hall with arched windows and slate roof, red-brick and white-painted terraces beyond, a white low building with a red fascia, behind low walls and hedges; one view partly blocked by roadworks barriers."
+ },
+ "Short Street": {
+  "walls": {
+   "red_brick": 0.6,
+   "buff_brick": 0.15,
+   "white_render": 0.1,
+   "orange_brick": 0.15
+  },
+  "upper_differs": 0.05,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.7,
+   "brown_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "semi": 0.2,
+   "flats": 0.2
+  },
+  "era": "mixed",
+  "front": "low_brick_wall",
+  "trees": "none",
+  "road": "Narrow street, no centre line, double yellow lines at the corner, parking on street.",
+  "confidence": "medium",
+  "note": "Victorian red-brick and buff/stone-faced terraced houses with slate roofs behind low brick walls with piers, plus a 1970s two-storey red-brick flat block set back behind grass."
+ },
+ "Oxford Street": {
+  "walls": {
+   "red_brick": 0.9,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.05,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.9,
+   "dark_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 1.0
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "none",
+  "road": "Narrow street, no centre line, parked cars both sides, raised doorsteps with steps.",
+  "confidence": "high",
+  "note": "Long plain Victorian red-brick terraces with yellow brick bands and lintels, slate roofs and chimneys, front doors up steps behind tiny yards and low brick walls; a modern three-storey red-brick infill at one end."
+ },
+ "Harley Road": {
+  "walls": {
+   "red_brick": 0.8,
+   "white_render": 0.2
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 0.7,
+   "detached": 0.3
+  },
+  "era": "modern_1980s_on",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Two-lane road, no centre line, double yellow lines and a give-way junction, service yard with bins and a car park.",
+  "confidence": "medium",
+  "note": "1980s two-storey red-brick sheltered flats with some white rendered gables behind a low red-brick wall and lawn, and a red-brick house beside a car park/service yard."
+ },
+ "Tamesis Place": {
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 0.7,
+   "terrace": 0.3
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Estate road, no centre line, kerbed junction with Patrick Road, garage/bin store blocks.",
+  "confidence": "low",
+  "note": "Only one view loaded: 1990s three-storey orange-red brick flat blocks with gables and brick bands, a brick bin store, and houses beyond; hedges along the far side."
+ },
+ "North Street": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.15
+  },
+  "upper_differs": 0.05,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.9,
+   "dark_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 1.0
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "none",
+  "road": "Narrow back street, no centre line, rear service alley with garages off it.",
+  "confidence": "medium",
+  "note": "Victorian red-brick terraces with yellow-brick bands and slate roofs, one white-painted, tiny yards behind low walls; other view is a rear alley of brick walls and lock-up garages."
+ },
+ "St Martins Precinct": {
+  "walls": {
+   "buff_brick": 0.6,
+   "grey_brick": 0.2,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0.3,
+  "upper": "buff_brick",
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 0.5,
+   "slate": 0.5
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 1.0
+  },
+  "era": "estate_1960s_70s",
+  "front": "none",
+  "trees": "street_trees",
+  "road": "Pedestrian precinct, no road: block-paved square with trees, low seating walls, a market stall area with red parasols.",
+  "shops": "Nearly all shops/cafes (about 95%). Two-storey 1960s-70s precinct blocks of buff/yellow brick over continuous ground-floor shopfronts: full-height glazing in light frames, a deep flat fascia band (grey/dark blue-grey on most, light grey/cream on the cafe), a flat-roofed canopy along the frontage, outdoor tables. One upper storey of offices/flats above shops with plain strip windows.",
+  "confidence": "medium",
+  "note": "Paved pedestrian shopping precinct with trees and red market parasols, lined by two-storey buff-brick 1960s/70s shop blocks with continuous glazed shopfronts and grey fascia bands; both views are a user photosphere."
+ },
+ "St Stephens Close": {
+  "walls": {
+   "red_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.4,
+   "flats": 0.4,
+   "semi": 0.2
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges",
+  "road": "Cul-de-sac, no centre line, parking court and garage block, no markings.",
+  "confidence": "high",
+  "note": "1980s close of red-brick two-storey starter homes and three-storey brick flats with green garage doors, open-plan lawns and shrubs and a parking court."
+ }
+}

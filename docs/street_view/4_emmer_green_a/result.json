@@ -1,0 +1,266 @@
+{
+ "Kidmore End Road": {
+  "walls": {
+   "red_brick": 0.45,
+   "white_render": 0.35,
+   "cream_render": 0.1,
+   "timber": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "dark_tile": 0.4,
+   "red_tile": 0.25,
+   "slate": 0.2,
+   "brown_tile": 0.15
+  },
+  "bungalows": 0.05,
+  "form": {
+   "detached": 0.45,
+   "semi": 0.3,
+   "terrace": 0.25
+  },
+  "era": "mixed",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Long two-way through road with a white centre line in places; south end near the White Horse pub has kerbside parking bays marked with white lines, otherwise unmarked edges with double yellows at junctions. Grass verges and footways, flint boundary walls in places.",
+  "shops": "Only the White Horse pub at the south end: a red-brick and painted-render building with a small terrace garden and brick walls, two storeys.",
+  "confidence": "medium",
+  "note": "Mixed road: Victorian red-brick and rendered cottages/terraces at the southern end by the pub, then interwar and later detached and semi houses (many white-rendered) set back behind tall hedges, flint walls and trees further north."
+ },
+ "Rosehill Park": {
+  "walls": {
+   "orange_brick": 0.6,
+   "red_brick": 0.3,
+   "buff_brick": 0.1
+  },
+  "upper_differs": 0.35,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.3,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0.3,
+  "form": {
+   "detached": 0.85,
+   "semi": 0.15
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Wide curving estate road with grass verges, no centre line except at the junction with Peppard Road where there are give-way lines and white edge dashes; no parking bays.",
+  "confidence": "high",
+  "note": "1960s-70s estate of detached chalet houses and bungalows in orange-brown brick, many with white-boarded or rendered upper panels and integral garages, set behind open-plan lawns and wide grass verges."
+ },
+ "Crawshay Drive": {
+  "walls": {
+   "red_brick": 0.85,
+   "orange_brick": 0.15
+  },
+  "upper_differs": 0.05,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.5,
+   "brown_tile": 0.4,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0.15,
+  "form": {
+   "semi": 0.75,
+   "detached": 0.25
+  },
+  "era": "postwar_1950s",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Two-way residential road, no centre line, grass verges with young street trees along one side; grass triangle at a junction; long fenced back gardens line part of the road.",
+  "confidence": "medium",
+  "note": "Plain 1950s red-brick semis with hipped tiled roofs behind low brick walls and gravel/paved drives, a few bungalows with dormers; some stretches are only rear garden fences."
+ },
+ "Brooklyn Drive": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.3,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0.05,
+  "roof": {
+   "dark_tile": 0.5,
+   "brown_tile": 0.3,
+   "red_tile": 0.2
+  },
+  "bungalows": 0.2,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Quiet two-way road without centre line, grass verges with young street trees, footway on one side; several views mostly hedges and fences.",
+  "confidence": "medium",
+  "note": "Leafy road of individual detached houses and bungalows, red brick and white render, mostly interwar to postwar with some modern rebuilds, set behind tall hedges and grass verges; many houses hidden by greenery."
+ },
+ "Abingdon Drive": {
+  "walls": {
+   "buff_brick": 0.55,
+   "orange_brick": 0.3,
+   "white_render": 0.15
+  },
+  "upper_differs": 0.6,
+  "upper": "timber",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0.05,
+  "form": {
+   "terrace": 0.5,
+   "semi": 0.3,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges",
+  "road": "Narrow-ish curving estate road, no centre line, double yellow lines at the junction end, some grass verges; open drives and side fences.",
+  "confidence": "high",
+  "note": "1960s-70s estate of link-detached and short terraces in buff/yellow brick with white weatherboarded first-floor panels and low-pitch brown concrete tile roofs; many tall brown fences and hedges on corner plots."
+ },
+ "Grove Road": {
+  "walls": {
+   "red_brick": 0.6,
+   "buff_brick": 0.25,
+   "orange_brick": 0.15
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.4,
+   "slate": 0.3,
+   "brown_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.4,
+   "detached": 0.3,
+   "flats": 0.3
+  },
+  "era": "mixed",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Two-way road with double yellow lines along the edges near the school, bus shelter beside a green, timber knee-rail fences around the grass; side access to a lock-up garage court.",
+  "confidence": "low",
+  "note": "Few houses visible: the road runs past a recreation ground/green with mature trees, a Victorian red-brick school or chapel with arched windows, a modern buff-brick community building, a block of lock-up garages and a 1960s three-storey red-brick terrace or flats beyond."
+ },
+ "Knights Way": {
+  "walls": {
+   "red_brick": 0.55,
+   "cream_render": 0.3,
+   "pebbledash": 0.15
+  },
+  "upper_differs": 0.3,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.25,
+   "grey_tile": 0.15
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.45,
+   "terrace": 0.35,
+   "flats": 0.2
+  },
+  "era": "postwar_1950s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Two-way council-estate road without centre line, grass verges between footway and kerb, kerbside parking; a parking court serving four-storey flats at one end.",
+  "confidence": "high",
+  "note": "Post-war council estate: hipped-roof semis and short terraces, some all red brick, others with cream/buff render or pebbledash (often over a red-brick plinth or ground floor), low brick walls and hedges, plus 1960s four-storey red-brick flat blocks with blue panels round a car park."
+ },
+ "Eric Avenue": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.1,
+   "orange_brick": 0.05
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.5,
+   "brown_tile": 0.4,
+   "red_tile": 0.1
+  },
+  "bungalows": 0.55,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "postwar_1950s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Quiet two-way residential road, no centre line, grass verges between kerb and footway, telegraph poles; give-way and warning sign at the junction end.",
+  "confidence": "medium",
+  "note": "Mostly detached red-brick bungalows and chalet bungalows with gabled or hipped tile roofs behind low red-brick walls and hedges, with a few modern red-brick detached houses near the Gorselands end; corner plots show long fenced gardens."
+ },
+ "Russet Glade": {
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.2,
+   "buff_brick": 0.1
+  },
+  "upper_differs": 0.2,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.4,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow cul-de-sac without markings, block-paved drives straight off the road, mature woodland trees around.",
+  "confidence": "high",
+  "note": "1970s-80s cul-de-sac of detached orange-brick houses and long low bungalows with brown concrete tile roofs, integral garages with red doors, open-plan lawns and shrubs under mature woodland trees."
+ },
+ "Highdown Hill Road": {
+  "walls": {
+   "red_brick": 0.75,
+   "white_render": 0.15,
+   "cream_render": 0.1
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "dark_tile": 0.55,
+   "brown_tile": 0.3,
+   "red_tile": 0.15
+  },
+  "bungalows": 0.05,
+  "form": {
+   "semi": 0.6,
+   "detached": 0.4
+  },
+  "era": "interwar_1920s_30s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Two-way residential road, no centre line, wide grass verges and a small green with trees and bollards at a junction; the northern end narrows into a steep wooded lane with no footway.",
+  "confidence": "medium",
+  "note": "1930s red-brick semis and detached houses with hipped dark tile roofs, bay windows and tile-hung or rendered gables, behind hedges and gravel drives off wide grass verges; the top end is a wooded hillside lane with scattered modern rendered houses."
+ }
+}

@@ -1,0 +1,594 @@
+{
+ "Hemdean Road": {
+  "walls": {
+   "red_brick": 0.7,
+   "white_render": 0.12,
+   "pebbledash": 0.08,
+   "cream_render": 0.05,
+   "orange_brick": 0.05
+  },
+  "upper_differs": 0.25,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "slate": 0.5,
+   "red_tile": 0.2,
+   "brown_tile": 0.2,
+   "dark_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.5,
+   "semi": 0.45,
+   "detached": 0.05
+  },
+  "era": "mixed",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Two-way distributor road with white centre line, bus route with bus stops, double yellow lines in places and side-street give-way junctions; fairly wide at the north end with grass verges.",
+  "confidence": "high",
+  "note": "Long road: the south end is Victorian/Edwardian red brick terraces with slate roofs, bays and low brick front walls (many paved for parking), with Edwardian semis having white-rendered gables; the north end becomes interwar semis with red brick ground floors, white render or pebbledash upstairs, brown tile roofs and hedges."
+ },
+ "Surley Row": {
+  "walls": {
+   "orange_brick": 0.35,
+   "red_brick": 0.3,
+   "white_render": 0.3,
+   "cream_render": 0.05
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0.05,
+  "roof": {
+   "brown_tile": 0.45,
+   "slate": 0.3,
+   "red_tile": 0.15,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0.05,
+  "form": {
+   "detached": 0.75,
+   "semi": 0.25
+  },
+  "era": "mixed",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Winding two-way road, partly no centre line, a 20 mph roundel at one point and 30 mph signs elsewhere; grass verges and footpath cut-throughs; narrow and leafy at the south end with high old brick walls.",
+  "confidence": "medium",
+  "note": "Very leafy: many views are mostly trees, hedges and old high brick garden walls. Older white-rendered Georgian/Victorian houses near the south end, then 1960s-80s and modern detached houses in brown/orange brick, plus some postwar semis on open lawns."
+ },
+ "Blenheim Road": {
+  "walls": {
+   "red_brick": 0.55,
+   "grey_brick": 0.2,
+   "white_render": 0.1,
+   "orange_brick": 0.1,
+   "cream_render": 0.05
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0.1,
+  "roof": {
+   "slate": 0.75,
+   "grey_tile": 0.1,
+   "dark_tile": 0.1,
+   "red_tile": 0.05
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.45,
+   "detached": 0.35,
+   "terrace": 0.2
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Residential street, no centre line, cars parked along the kerbs, fairly narrow; footways both sides, gentle curves.",
+  "confidence": "high",
+  "note": "Late Victorian/Edwardian villas and semis: red brick with buff or white dressings, several silver-grey Reading brick fronts with red-brick quoins, white bay windows and slate roofs; some Edwardian semis with mock-Tudor gables. A few 1970s-80s infill detached houses in orange brick. Low brick walls and hedges in front."
+ },
+ "Balmore Drive": {
+  "confidence": "none",
+  "note": "Google has no Street View imagery along Balmore Drive; the junction views snapped onto Peppard Road and show that road instead."
+ },
+ "Rotherfield Way": {
+  "walls": {
+   "red_brick": 0.5,
+   "white_render": 0.2,
+   "orange_brick": 0.15,
+   "buff_brick": 0.15
+  },
+  "upper_differs": 0.45,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "red_tile": 0.4,
+   "brown_tile": 0.35,
+   "dark_tile": 0.25
+  },
+  "bungalows": 0.15,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Wide-ish residential road, no centre line, grass verges, give-way markings at junctions; some kerbside parking.",
+  "confidence": "medium",
+  "note": "Southern end has 1930s semis and detached houses with red brick ground floors and white-rendered upper floors under red/brown tile hipped roofs; further north 1960s-70s detached houses and chalet bungalows in buff/orange brick with white boarding, behind hedges and big trees."
+ },
+ "Picton Way": {
+  "walls": {
+   "orange_brick": 0.65,
+   "red_brick": 0.3,
+   "white_render": 0.05
+  },
+  "upper_differs": 0.15,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0.1,
+  "form": {
+   "detached": 0.95,
+   "semi": 0.05
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Quiet estate cul-de-sac, no centre line, double yellow lines at the entrance, rounded kerbs and a turning head; no parking bays.",
+  "confidence": "high",
+  "note": "1970s-80s executive estate of detached houses in orange-brown brick with brown concrete tile roofs, integral garages and some tile-hung or boarded panels, set behind open-plan lawns and block-paved drives among mature trees."
+ },
+ "Balmore Park": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.35,
+   "white_render": 0.05
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.55,
+   "dark_tile": 0.45
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.75,
+   "semi": 0.25
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Curving estate road with rounded kerbs, no centre line or markings apart from the street name painted at the junction; wide grass verges; no parking bays.",
+  "confidence": "high",
+  "note": "1980s-90s estate of detached houses and a few semis in red and orange-brown brick under brown or dark plain-tile roofs, some with white-rendered first floors, porch canopies and integral garages; open-plan lawns and set in mature woodland."
+ },
+ "Stuart Close": {
+  "walls": {
+   "red_brick": 0.75,
+   "cream_render": 0.15,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0.45,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.15,
+  "form": {
+   "semi": 0.85,
+   "detached": 0.15
+  },
+  "era": "postwar_1950s",
+  "front": "mixed",
+  "trees": "verges",
+  "road": "Narrow-ish estate close with no centre line, wide grass verges and a grassed island at the entrance junction; turning circle at the end; cars parked on drives and kerbside.",
+  "confidence": "high",
+  "note": "Postwar semis in red brick, many with cream/buff rendered upper floors, under hipped brown or dark tile roofs, plus a few bungalows; fronts are a mix of hedges, low brick walls, fences and paved drives, with grass verges."
+ },
+ "Scott Close": {
+  "walls": {
+   "orange_brick": 0.6,
+   "buff_brick": 0.3,
+   "red_brick": 0.1
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0.15,
+  "form": {
+   "terrace": 0.85,
+   "detached": 0.05,
+   "semi": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow estate cul-de-sac with no markings, block-paved parking spaces and communal parking courts; open grass between the terraces and the road.",
+  "confidence": "high",
+  "note": "1970s estate of plain two-storey terraces in orange-brown and buff brick with shallow brown concrete-tile roofs and flat porch canopies, plus a few bungalows; open-plan lawns, paths and timber fences, backing onto woodland."
+ },
+ "Buckingham Drive": {
+  "walls": {
+   "red_brick": 0.45,
+   "cream_render": 0.25,
+   "orange_brick": 0.15,
+   "pebbledash": 0.1,
+   "white_render": 0.05
+  },
+  "upper_differs": 0.4,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.55,
+   "terrace": 0.25,
+   "flats": 0.2
+  },
+  "era": "postwar_1950s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Wide estate spine road with a white centre line and very wide grass verges with young trees, separate service roads/parking laybys in front of the houses; give-way markings at junctions.",
+  "confidence": "medium",
+  "note": "Postwar council-built estate: semis and short terraces in red brick, many with cream-rendered or panelled upper floors (one terrace has green-painted upper panels), hipped brown tile roofs, and three-storey brown-brick flat blocks set back behind big greens. Two of the three panoramas date from 2012."
+ },
+ "Queen Street": {
+  "walls": {
+   "red_brick": 0.75,
+   "white_render": 0.2,
+   "orange_brick": 0.05
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "slate": 0.75,
+   "brown_tile": 0.15,
+   "dark_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.7,
+   "semi": 0.2,
+   "detached": 0.1
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Narrow residential street with no centre line or markings; on-street parking on one side; steep wooded bank behind at the west end.",
+  "confidence": "medium",
+  "note": "Victorian two-storey red-brick terraces with slate roofs, small bays and low brick front walls, a white-rendered end house and a white-rendered Victorian cottage; at the western end some 1980s-2000s red-brick semis with gravel parking."
+ },
+ "Evesham Road": {
+  "walls": {
+   "red_brick": 0.6,
+   "pebbledash": 0.2,
+   "cream_render": 0.15,
+   "white_render": 0.05
+  },
+  "upper_differs": 0.4,
+  "upper": "pebbledash",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.05,
+  "form": {
+   "semi": 0.9,
+   "detached": 0.1
+  },
+  "era": "postwar_1950s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Wide estate road with dashed centre line in places, give-way markings at the junctions with Grove Road and Knights Way, broad grass verges and greens set back from the carriageway.",
+  "confidence": "high",
+  "note": "Late-1940s/50s semis with red brick ground floors and pebbledash or cream render above, hipped brown/dark tile roofs and chimneys, set back behind privet hedges, low fences and wide grass greens with mature trees."
+ },
+ "Priest Hill": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.1,
+   "orange_brick": 0.05
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0.3,
+  "roof": {
+   "dark_tile": 0.5,
+   "slate": 0.35,
+   "red_tile": 0.15
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.45,
+   "detached": 0.4,
+   "terrace": 0.15
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Residential road climbing a hill, faint centre line in places, give-way markings at side junctions, kerbside parking; mature street trees at the upper end.",
+  "confidence": "high",
+  "note": "Edwardian red-brick detached houses and semis with gables, many with black-and-white mock-Tudor timbering or white-rendered upper storeys, bay windows and dark plain-tile or slate roofs; Victorian red-brick terraces near the bottom; low brick walls and hedges, many front gardens paved for parking."
+ },
+ "Grove Hill": {
+  "walls": {
+   "white_render": 0.4,
+   "orange_brick": 0.3,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.5,
+   "dark_tile": 0.3,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0.5,
+  "form": {
+   "detached": 0.85,
+   "semi": 0.15
+  },
+  "era": "estate_1960s_70s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Narrow lane-like road on a hill with no centre line, a narrow footway on one side only, grass verges, thick hedges and trees right up to the carriageway.",
+  "confidence": "low",
+  "note": "Most views are tall hedges and trees; the houses glimpsed are detached chalet bungalows and 1960s-70s houses with white render and dormers or orange/red brick, under brown or dark tile roofs, plus a few older red-brick houses."
+ },
+ "Berrylands Road": {
+  "walls": {
+   "red_brick": 0.55,
+   "orange_brick": 0.2,
+   "white_render": 0.25
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.55,
+   "dark_tile": 0.35,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0.05,
+  "form": {
+   "semi": 0.8,
+   "detached": 0.2
+  },
+  "era": "postwar_1950s",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Quiet residential road with no centre line, yellow lines at junction corners, grass verges with trees on part; low-traffic loop.",
+  "confidence": "medium",
+  "note": "1950s semis in red and orange-red brick with hipped or gabled brown/dark tile roofs and side garages, plus several white-rendered semis and a few detached houses; fronts of low brick walls, close-board fences and hedges, many paved drives."
+ },
+ "Cedarwood Crescent": {
+  "walls": {
+   "red_brick": 0.85,
+   "orange_brick": 0.15
+  },
+  "upper_differs": 0.05,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0.15,
+  "form": {
+   "detached": 0.7,
+   "semi": 0.3
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Curving estate cul-de-sac, no centre line or markings, rounded kerbs, block-paved drives; quiet.",
+  "confidence": "high",
+  "note": "1980s estate of red-brick detached and link-detached houses and a few bungalows with dark brown concrete plain-tile roofs, integral garages and lean-to porch roofs; open-plan lawns mixed with shrubs, hedges and some low brick walls, with mature conifers and trees."
+ },
+ "St Anne's Road": {
+  "walls": {
+   "red_brick": 0.55,
+   "grey_brick": 0.15,
+   "white_render": 0.2,
+   "buff_brick": 0.1
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0.2,
+  "roof": {
+   "slate": 0.65,
+   "dark_tile": 0.3,
+   "red_tile": 0.05
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.55,
+   "detached": 0.3,
+   "terrace": 0.15
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "street_trees",
+  "road": "Two-way road with white centre line, double yellow lines on long stretches, give-way markings at junctions; slopes up the hill; some kerbside parking.",
+  "confidence": "high",
+  "note": "Large late-Victorian and Edwardian villas and semis in red brick, some silver-grey Reading brick with red-brick dressings and some painted white, with bays, gables (several with mock-Tudor timbering) and slate or dark tile roofs; low brick walls, hedges and paved drives."
+ },
+ "Chaucer Close": {
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.2,
+   "buff_brick": 0.1
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.8,
+   "semi": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Short estate cul-de-sac with no markings, a tarmac parking court and a row of flat-roofed white-door lock-up garages; small grass verges.",
+  "confidence": "medium",
+  "note": "1970s estate of plain two-storey terraces and end houses in orange-brown brick with brown or grey concrete tile roofs, mostly seen gable-end on behind a parking court and a block of lock-up garages."
+ },
+ "Bridge Street": {
+  "walls": {
+   "red_brick": 0.45,
+   "white_render": 0.3,
+   "grey_brick": 0.1,
+   "cream_render": 0.1,
+   "buff_brick": 0.05
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.5,
+   "red_tile": 0.2,
+   "dark_tile": 0.2,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.8,
+   "detached": 0.2
+  },
+  "era": "victorian_edwardian",
+  "front": "none",
+  "trees": "none",
+  "road": "Busy A-road (A4155) through the centre with white centre line and lane markings, pedestrian crossings and bollards, bus stops, wide paved footways; heavy traffic near Caversham Bridge.",
+  "shops": "Almost the whole frontage is shops, pubs and offices: ground-floor shopfronts with large plate glass and dark grey, navy, blue or black painted fascias with white lettering, a few hanging baskets; mostly one or two storeys of flats/offices above in red brick, grey Reading brick or white render with bay or sash windows; a pub painted blue-grey with a tiled roof, a red-brick Victorian gabled commercial block, and a single-storey tyre/brake garage forecourt with a red-and-white fascia.",
+  "confidence": "high",
+  "note": "Caversham's main shopping street: two- and three-storey Victorian and Edwardian buildings built up to the pavement, mixed red brick, grey brick and painted render, with continuous shopfronts and a busy main road."
+ },
+ "Derby Road": {
+  "confidence": "none",
+  "note": "Google has no Street View imagery at either survey point on Derby Road ('No Street View imagery available here')."
+ },
+ "Brill Close": {
+  "walls": {
+   "red_brick": 0.55,
+   "orange_brick": 0.35,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.15,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0.35,
+  "form": {
+   "detached": 0.85,
+   "semi": 0.15
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow sloping cul-de-sac with no markings apart from the street name, no footway on one side where hedges and fences line the road; block-paved drives.",
+  "confidence": "medium",
+  "note": "Mix of 1960s-70s bungalows and chalet bungalows in orange brick with white boarding, and 1980s-90s red-brick detached houses with dark brown tile roofs, tile-hung bays and integral garages; open-plan fronts and paved drives, hedges and fences on the lower section."
+ },
+ "The Ridgeway": {
+  "walls": {
+   "red_brick": 0.75,
+   "orange_brick": 0.2,
+   "white_render": 0.05
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.05,
+  "form": {
+   "semi": 0.8,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Residential estate road with no centre line, yellow lines at corners, wide grass verges with trees and a grassed triangle at a junction.",
+  "confidence": "medium",
+  "note": "1960s semis in red brick with white-painted boarded or rendered panels on the upper floor, integral garages and brown/dark tile roofs, set behind open lawns and drives; wide grass verges and mature trees, a wooded bank at one end."
+ },
+ "Eliot Close": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.15
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.9,
+   "semi": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "Narrow estate road with no markings, kerbside parking, grass verge and footpath through a green; woodland edge.",
+  "confidence": "low",
+  "note": "Only one useful view: 1960s-70s two-storey terraces in red-brown brick with white panels under the windows, shallow brown-tile roofs, concrete-panel and close-board fences and small front gardens; the other view is a grassy green and trees."
+ },
+ "Ellesmere Close": {
+  "confidence": "none",
+  "note": "Google has no Street View imagery at either survey point on Ellesmere Close ('No Street View imagery available here')."
+ },
+ "Hemdean Rise": {
+  "walls": {
+   "red_brick": 0.85,
+   "grey_brick": 0.1,
+   "buff_brick": 0.05
+  },
+  "upper_differs": 0.05,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "slate": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.75,
+   "semi": 0.15,
+   "detached": 0.1
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Narrow sloping residential street, dashed centre line in parts, give-way at junctions, cars parked along both kerbs.",
+  "confidence": "high",
+  "note": "Late-Victorian/Edwardian red-brick terraces with front gables, two-storey bays, buff/red brick string courses and slate roofs, one terrace in grey Reading brick with red dressings; small front gardens behind low brick walls."
+ }
+}

@@ -1,0 +1,971 @@
+{
+ "Knighton Close": {
+  "walls": {
+   "buff_brick": 1.0
+  },
+  "upper_differs": 0.8,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 1.0
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Narrow cul-de-sac, no centre line, parking in a shared forecourt in front of the houses.",
+  "confidence": "medium",
+  "note": "A short terrace of 1960s/70s three-storey townhouses in buff brick with pale cladding on the upper floor and dormers in a brown tile roof; the other view is just a hedge and bank."
+ },
+ "Badgers Rise": {
+  "walls": {
+   "red_brick": 0.55,
+   "buff_brick": 0.45
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0.1,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow curving estate road on a hill, no centre line, no markings, footway on one side.",
+  "confidence": "high",
+  "note": "1980s estate of small detached and semi houses and link garages in red and buff brick with brown concrete tile roofs, open lawns and drives, wooded hillside behind."
+ },
+ "Newlands Avenue": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.4
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.3,
+  "form": {
+   "semi": 0.6,
+   "detached": 0.4
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Two-lane residential road without centre line, wide grass verges with trees, yellow lines near the junction.",
+  "confidence": "medium",
+  "note": "Interwar semis and bungalows in red brick, some with white-rendered upper floors and bay windows, behind low brick walls; a long stretch of tall fence and hedge on one side."
+ },
+ "Sheepwalk": {
+  "walls": {
+   "red_brick": 0.8,
+   "white_render": 0.2
+  },
+  "upper_differs": 0.2,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 1.0
+  },
+  "bungalows": 0.6,
+  "form": {
+   "detached": 0.7,
+   "semi": 0.3
+  },
+  "era": "estate_1960s_70s",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Narrow sloping road, no centre line, footway on one side.",
+  "confidence": "medium",
+  "note": "Hillside 1960s/70s chalet bungalows and detached houses in red brick with brown tile roofs and box dormers, raised gardens behind red-brick retaining walls."
+ },
+ "Marshland Square": {
+  "walls": {
+   "red_brick": 0.6,
+   "cream_render": 0.4
+  },
+  "upper_differs": 0.6,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.9,
+   "detached": 0.1
+  },
+  "era": "postwar_1950s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Two-lane residential road, no centre line, grass verges between road and footway, on-street parking.",
+  "confidence": "medium",
+  "note": "Postwar hipped-roof semis with red brick ground floors and cream/white rendered upper floors, brown tile roofs, behind tall privet hedges; two of four views are just trees and shrubs."
+ },
+ "Hemdean Hill": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.15
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "slate": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.7,
+   "semi": 0.3
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "none",
+  "road": "Narrow sloping residential street, no centre line, white edge/parking line, kerbside parking.",
+  "confidence": "medium",
+  "note": "Victorian red-brick terraces and semis with slate roofs, white-painted bay windows and tall chimneys, behind low brick walls; one side has a long old rendered garden wall and garages."
+ },
+ "Briar Close": {
+  "walls": {
+   "red_brick": 0.9,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0.35,
+  "form": {
+   "detached": 0.8,
+   "semi": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Hillside cul-de-sac with a grassed turning-circle island, no centre line or markings.",
+  "confidence": "high",
+  "note": "1960s hillside close of red-brick detached houses with white-panelled or rendered gable fronts and red-brick bungalows, brown tile roofs, open lawns and steep drives, wooded hill behind."
+ },
+ "Southdown Road": {
+  "walls": {
+   "red_brick": 0.6,
+   "cream_render": 0.4
+  },
+  "upper_differs": 0.6,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.9,
+   "detached": 0.1
+  },
+  "era": "postwar_1950s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Two-lane residential road without centre line, grass verges, houses on raised banks reached by steps; one side is a wooded bank.",
+  "confidence": "medium",
+  "note": "Postwar hipped-roof semis with red-brick ground floors and cream-rendered upper floors, brown tile roofs, set up on grassy banks with hedges; one view is just woodland."
+ },
+ "The Rise": {
+  "walls": {
+   "white_render": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "slate": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.5,
+   "flats": 0.5
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Private-looking narrow access road with no markings, lamp posts on grass.",
+  "confidence": "low",
+  "note": "A large white-rendered Regency/Victorian villa with a columned porch behind a clipped hedge, plus a red-brick garage block; heavily treed and only two views."
+ },
+ "Sheldon Rise": {
+  "walls": {
+   "red_brick": 0.9,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.8,
+   "semi": 0.2
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Views are taken from Hemdean Road at the junction: wide two-lane road with dashed centre line, grass verges with young trees.",
+  "confidence": "low",
+  "note": "From the Hemdean Road junction: 1980s/90s red-brick detached houses with brown tile roofs and open gravel drives; the views show the road corner more than the close itself."
+ },
+ "School Lane": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.15
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.25,
+   "grey_tile": 0.15
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 0.45,
+   "semi": 0.3,
+   "detached": 0.25
+  },
+  "era": "mixed",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow residential lane, no centre line, side roads with give-way lines, off-street parking bays in front of the flats.",
+  "confidence": "medium",
+  "note": "A mix: four-storey 1960s red-brick council flats with blue window panels set in lawns, 1980s/90s red-brick houses and a small hipped-roof flats block, and postwar semis behind picket fences further along."
+ },
+ "The Cloisters": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Both views are from Priest Hill at the entrance: two-lane road with dashed centre line, bus stop box and give-way markings.",
+  "confidence": "low",
+  "note": "The views only show the entrance off Priest Hill, screened by tall conifers and hedges; the only buildings visible are distant red-brick Edwardian houses on Priest Hill, so the close itself is unseen."
+ },
+ "Fallowfield Close": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0.3,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0.3,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Quiet narrow cul-de-sac, no markings, footway on one side.",
+  "confidence": "medium",
+  "note": "1960s/70s red-brick detached houses with white Georgian-style windows and a full-width porch roof, plus a bungalow, behind lawns and tall hedges; one view is mostly fence."
+ },
+ "The Gardeners": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "red_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "New estate road joining Surley Row (which has a centre line and SLOW marking); give-way line at the mouth, block-paved footway.",
+  "confidence": "medium",
+  "note": "A recent (2010s) development of red-brick detached and semi houses with orange-red tile roofs and white gable boards, set behind post-and-rail fences off Surley Row."
+ },
+ "Greycoat Court": {
+  "confidence": "none",
+  "note": "Both links open an indoor photosphere inside Queen Anne's School (a drama studio), not the street; no usable street imagery."
+ },
+ "Springfield Mews": {
+  "walls": {
+   "red_brick": 0.7,
+   "white_render": 0.3
+  },
+  "upper_differs": 0.5,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "slate": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Narrow private mews drive, no markings, block-paved and gravel surfaces.",
+  "confidence": "medium",
+  "note": "1990s/2000s detached houses with red-brick ground floors and white-rendered gables with arched windows and dark tile roofs, behind low brick walls with railings; down a side drive is an older white-rendered villa."
+ },
+ "Buckingham Gate": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Small private cul-de-sac with no markings, block-paved drives.",
+  "confidence": "low",
+  "note": "1980s/90s red-brick detached houses with attached garages and brown tile roofs among dense hedges and trees; one of two views is just hedge."
+ },
+ "Victoria Road": {
+  "walls": {
+   "red_brick": 0.7,
+   "white_render": 0.3
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0.4,
+  "roof": {
+   "red_tile": 0.5,
+   "dark_tile": 0.5
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.8,
+   "detached": 0.2
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "street_trees",
+  "road": "Views from the Hemdean Road junction: give-way lines into Hemdean Road, which has a centre line, double yellow lines and a school KEEP CLEAR zigzag.",
+  "confidence": "low",
+  "note": "Edwardian semis with red-brick ground floors and white-rendered upper floors, some with black-and-white timbered gables and tile roofs, behind low brick walls and hedges; the other view shows a school building on Hemdean Road."
+ },
+ "St Lukes Way": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Short access road with a marked car park; no centre line.",
+  "confidence": "medium",
+  "note": "A long two-storey 1990s red-brick care home with a hipped dark tile roof set in lawns and a car park, and a red-brick flats block behind tall clipped conifer hedges."
+ },
+ "Grove Hill Close": {
+  "walls": {
+   "white_render": 0.8,
+   "timber": 0.2
+  },
+  "upper_differs": 0.5,
+  "upper": "timber",
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 0.6,
+   "detached": 0.4
+  },
+  "era": "modern_1980s_on",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Block-paved private close with parking, no markings.",
+  "confidence": "low",
+  "note": "Only one usable view: a modern white-rendered building with grey timber cladding above a castellated block retaining wall, around a block-paved parking court; the other view is just hedge and trees. Roof not visible."
+ },
+ "Buckside": {
+  "walls": {
+   "white_render": 0.4,
+   "red_brick": 0.5,
+   "buff_brick": 0.1
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0.25,
+  "roof": {
+   "red_tile": 0.5,
+   "dark_tile": 0.3,
+   "slate": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "detached": 0.4
+  },
+  "era": "victorian_edwardian",
+  "front": "mixed",
+  "trees": "street_trees",
+  "road": "Both views are at the junction with Church Road (A4074): busy two-lane road with centre line, double yellow lines, give-way markings, zigzags and a SLOW marking.",
+  "shops": "Facing Church Road: a short parade with a black-and-white mock-Tudor gabled cafe/restaurant with a striped awning and outdoor seating, then two-storey shops with dark fascias and residential gables above; roughly half the visible frontage is shops.",
+  "confidence": "low",
+  "note": "Views are from Church Road at the corner of Buckside: Edwardian red-brick and white-rendered buildings with gables, a mock-Tudor corner cafe and a long red-brick boundary wall; a later red-brick house with dormers on the corner."
+ },
+ "Surley Place": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Views are at Scott Close junction: sloping two-lane road with dashed centre line, give-way markings, red-brick retaining walls and a garage court.",
+  "confidence": "low",
+  "note": "Only distant views: red-brick 1980s/90s houses with dark tile roofs and white-boarded gables beyond the junction, retaining walls and a garage block; the place itself is barely visible."
+ },
+ "Hare Warren Court": {
+  "walls": {
+   "red_brick": 0.8,
+   "cream_render": 0.2
+  },
+  "upper_differs": 0.4,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.7,
+   "slate": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 0.7,
+   "detached": 0.3
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Block-paved private courtyard with parking, brick gate piers, no markings.",
+  "confidence": "medium",
+  "note": "1990s/2000s three-storey red-brick flats with cream-rendered top floors, small balconies and dormers, around a block-paved car court, plus a red-brick gabled house and a timber bin store."
+ },
+ "Burcombe Way": {
+  "walls": {
+   "red_brick": 0.7,
+   "white_render": 0.3
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 1.0
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "Narrow estate road, no markings, parking along the kerb, garage block on a corner.",
+  "confidence": "low",
+  "note": "1960s/70s two-storey red-brick terraces with shallow-pitched roofs and white panels under the windows, seen behind rear fences, sheds and a red-brick garage; little of the frontages is visible."
+ },
+ "St Peter's Hill": {
+  "walls": {
+   "red_brick": 0.6,
+   "cream_render": 0.4
+  },
+  "upper_differs": 0.5,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Views are from the A4074 at the entrance: wide main road, entrance between brick gate piers with a gravel drive.",
+  "confidence": "low",
+  "note": "From the main road entrance: modern detached houses with red-brick ground floors and cream-rendered upper floors behind brick gate piers, mostly hidden by dense hedges and trees."
+ },
+ "Westonbirt Drive": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Views are at the Graveney Drive junction: narrow road without centre line, one footway, wooded bank opposite.",
+  "confidence": "low",
+  "note": "Only one house visible: a 1970s dark-red/brown brick detached house with a dark tile roof and solar panels, set among woodland; the other view is solid vegetation."
+ },
+ "Lymington Gate": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0.8,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Views from Kelvedon Way: wide quiet estate road, no centre line, footways both sides, dropped kerbs to drives.",
+  "confidence": "medium",
+  "note": "1960s red-brick bungalows with brown concrete tile roofs and white uPVC windows behind low red-brick walls, with a few two-storey houses and pitched-roof garages."
+ },
+ "Mardy": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow cul-de-sac, no markings.",
+  "confidence": "medium",
+  "note": "1990s/2000s red-brick detached houses with dark tile roofs, small canopy porches and integral garages, behind small lawns and shrubs; the other view (2012 imagery) is a conifer hedge."
+ },
+ "Scolars Close": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "mixed",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "Views are from St Peter's Hill: two-lane road with no centre line here, wide grass verge on one side, mature trees both sides.",
+  "confidence": "low",
+  "note": "Both views are from St Peter's Hill and show mostly mature trees, close-board fences and hedges; only a couple of distant red-brick houses are visible."
+ },
+ "High Meadow": {
+  "walls": {
+   "white_render": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0.7,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "Narrow residential road, no markings, footway on one side.",
+  "confidence": "low",
+  "note": "Bungalows and chalet bungalows with white-rendered walls and brown tile roofs, seen over tall close-board fences and hedges; few frontages visible."
+ },
+ "Auburn Court": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.15
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "red_tile": 0.5,
+   "brown_tile": 0.3,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 0.5,
+   "detached": 0.5
+  },
+  "era": "mixed",
+  "front": "low_brick_wall",
+  "trees": "street_trees",
+  "road": "Views from Church Road (A4074): two-lane road with double yellow lines, give-way markings and a bollarded footway into an old lane.",
+  "confidence": "low",
+  "note": "From Church Road: a three-storey 1960s red-brick flats block with white-boarded window bands and hipped roof, plus an old red-brick and flint cottage group with orange clay tile roofs behind flint walls."
+ },
+ "Atterbury Gardens": {
+  "walls": {
+   "red_brick": 0.7,
+   "buff_brick": 0.3
+  },
+  "upper_differs": 0.2,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Views from Woodford Close: narrow estate road, no markings, open-plan drives.",
+  "confidence": "low",
+  "note": "From the Woodford Close end: 1980s red-brick and buff-brick detached houses with brown tile roofs and open drives; the gated entrance and brick piers to Atterbury Gardens itself are hidden by trees."
+ },
+ "Conisboro Way": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0.5,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.7,
+   "terrace": 0.3
+  },
+  "era": "postwar_1950s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Wide estate road (2012 imagery) with grass verges, no centre line, concrete-slab carriageway.",
+  "confidence": "low",
+  "note": "2012 imagery: postwar red-brick semis/short terraces with brown tile roofs and open lawns behind wide grass verges; the other view is a blurred site cabin on a corner plot."
+ },
+ "Bramblings": {
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0.5,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.7,
+   "brown_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.7,
+   "semi": 0.3
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Quiet estate cul-de-sac, no markings, open-plan lawns to the kerb.",
+  "confidence": "medium",
+  "note": "1980s houses in orange-red brick with tile-hung upper floors (and some black weatherboarding), steep dark-brown tile roofs with dormers and catslide garages, open-plan front lawns."
+ },
+ "Hornbeam Close": {
+  "walls": {
+   "red_brick": 0.8,
+   "white_render": 0.2
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0.1,
+  "form": {
+   "semi": 0.6,
+   "detached": 0.4
+  },
+  "era": "interwar_1920s_30s",
+  "front": "hedge",
+  "trees": "street_trees",
+  "road": "Views from Kidmore Road: two-lane road without centre line here, grass verge with big street trees, give-way at junctions.",
+  "confidence": "low",
+  "note": "From Kidmore Road at the entrance: interwar red-brick semis with gable fronts and white-rendered gable panels behind hedges and low walls, under big street trees; a small parade of shops is visible further along Kidmore Road."
+ },
+ "Blossom Road": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.8,
+   "brown_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 0.6,
+   "detached": 0.4
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow modern estate road with block-paved parking courts, no markings.",
+  "confidence": "medium",
+  "note": "2000s three-storey red-brick flats with roof dormers and rooflights, white uPVC windows and dark tile roofs, beside parking courts, with red-brick houses beyond."
+ },
+ "Valley Close": {
+  "walls": {
+   "red_brick": 0.75,
+   "white_render": 0.25
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.9,
+   "detached": 0.1
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Small cul-de-sac with a grassed turning circle, no markings.",
+  "confidence": "high",
+  "note": "1930s-style semis in red brick with white-rendered two-storey bay windows and gables, arched porches and hipped dark tile roofs, behind low brick walls with paved and lawned drives."
+ },
+ "Boundary Lane": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.7,
+   "slate": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "victorian_edwardian",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Narrow wooded lane near The Warren, no markings, gravel verges.",
+  "confidence": "low",
+  "note": "A Victorian Gothic red-brick lodge with steep gables, stone-mullioned windows and dark tile roofs behind brick gate piers and railings on a low wall; the other view is dense trees."
+ },
+ "Woodrow Court": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0.5,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Private car park/access drive with shrub beds, no markings.",
+  "confidence": "low",
+  "note": "Mostly shrubs, a wooded bank and a car park; only the corner of a red-brick, tile-hung 1980s-looking flats block is visible."
+ },
+ "Chelford Way": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0.4,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0.2,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Quiet residential road, no centre line, footway one side, gravel drives.",
+  "confidence": "low",
+  "note": "1960s/70s red-brick detached houses with white-framed windows, side carports and brown tile roofs behind lawns and shrubs; the other view is a building-site hoarding in front of a tile-hung chalet house under scaffolding."
+ },
+ "Lawson Drive": {
+  "walls": {
+   "red_brick": 0.8,
+   "pebbledash": 0.1,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0.1,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.8,
+   "detached": 0.2
+  },
+  "era": "interwar_1920s_30s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Views are from Conisboro Avenue: wide two-lane road with dashed centre line, footways both sides, grass verge on one side.",
+  "confidence": "low",
+  "note": "From Conisboro Avenue at the junction: 1930s red-brick semis with white-rendered bays and gables and hipped dark tile roofs behind hedges and low brick walls; Lawson Drive itself is not directly seen."
+ },
+ "Woodberry Close": {
+  "walls": {
+   "red_brick": 0.75,
+   "white_render": 0.25
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.9,
+   "detached": 0.1
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Small cul-de-sac with grass verges and a turning head, no markings.",
+  "confidence": "high",
+  "note": "1930s-style semis in red brick with white-rendered two-storey bays and gables, arched porches and hipped brown tile roofs, behind low brick walls and paved drives - same builder as Valley Close."
+ },
+ "Regency Heights": {
+  "walls": {
+   "red_brick": 0.6,
+   "buff_brick": 0.2,
+   "timber": 0.2
+  },
+  "upper_differs": 0.6,
+  "upper": "timber",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.5,
+   "grey_tile": 0.3,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.7,
+   "semi": 0.3
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Views are from Woodford Close: quiet estate road, no centre line, give-way line at the junction, block-paved drives.",
+  "confidence": "low",
+  "note": "From the Woodford Close end: 1960s/70s link-detached houses in red/buff brick with dark-stained timber and white-boarded upper panels and balconies, low-pitched tile roofs, open-plan fronts; a short drive leads to newer red-brick gabled houses (Regency Heights proper) in the distance."
+ }
+}
