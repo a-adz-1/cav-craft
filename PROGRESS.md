@@ -331,3 +331,4 @@ All of the user's review items are done: school and drive, square houses and tow
   - Bungalows come from the real LiDAR heights, and agree with Street View: Kelvedon Way 100% low vs 95% seen, Gurney Close 81% vs 85%, Haldane Road 79% vs 80%, Kidmore Road 6% vs 5%.
   - Streets the survey saw a centre line on get one, as well as the main roads.
   - road_check 0 drops over 1.
+- 2026-11-19 Pushed, release v0.1 zip updated and server copy swapped to the Caversham Heights build (same method). Nobody was online. Log clean.
