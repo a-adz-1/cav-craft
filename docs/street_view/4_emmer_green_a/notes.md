@@ -47,3 +47,6 @@
 - Marchwood Avenue 0_124
 - Marchwood Avenue 1_175
 - Marchwood Avenue 1_055
+
+# Rerun (2026-11-19)
+Google Maps came up blank white again: its JS/CSS bundles fail with net::ERR_BLOCKED_BY_CLIENT. Tried The Fairway 2_023 (twice), then in a fresh tab James Braid Drive 0_305 and Gravel Hill 0_124, all blank. Stopped per the rerun brief; none of the 44 listed views loaded and all 10 streets stay "not surveyed".
