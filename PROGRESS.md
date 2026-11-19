@@ -325,3 +325,9 @@ All of the user's review items are done: school and drive, square houses and tow
   - **Attached houses share one look**: both halves of a pair of semis and every house in a terrace get the same walls and roof. Mock-Tudor houses get a white upper floor under the beams.
   - **Churches**: Caversham Heights Methodist (from street photos): red brick with stone bands, dark tile roof, a 5 m corner tower with a spire. St Andrew's, Albert Road (new landmark, from a Commons photo): brown stone, pale dressings, slate roof, lancets, a bellcote.
   - New tools: tools/aerial.py (aerial photo of a box), tools/top_view.py (the built world from above in true colours). eye_view textures now live in .downloads/tex.
+- 2026-11-19 Caversham Heights pass, part 2: house styles street by street from Street View.
+  - 85 Heights streets looked at on Google Street View (2 to 5 points per street, both sides). For each one the survey records the share of each wall finish, upper floors that differ (render over brick), mock-Tudor, roof colours, bungalows, detached/semi/terrace, era, front boundary, verges and the road itself. It's in docs/heights_survey.json: 10 high confidence, 39 medium, 34 low (hedges hide the houses), 2 none.
+  - tools/styles.py turns each street's measured shares into its style (12 slots in proportion), keeps the era family for bays and details, and takes the surveyed front boundary (hedge, low wall or open-plan lawn). 109 streets are now measured; closes nobody looked at take the nearest measured street.
+  - Bungalows come from the real LiDAR heights, and agree with Street View: Kelvedon Way 100% low vs 95% seen, Gurney Close 81% vs 85%, Haldane Road 79% vs 80%, Kidmore Road 6% vs 5%.
+  - Streets the survey saw a centre line on get one, as well as the main roads.
+  - road_check 0 drops over 1.

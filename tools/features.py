@@ -482,6 +482,15 @@ def streets(G, P):
     post, lamp = P("dark_oak_fence"), P("lantern")
     road_cls = (3, 4)   # surfaces: road, minor_road
     lamps = give = 0
+    # smaller streets the Street View survey saw a centre line on get one too
+    import os
+    import re
+    lined = set()
+    if os.path.exists("docs/heights_survey.json"):
+        for name, v in json.load(open("docs/heights_survey.json")).items():
+            txt = v.get("road", "").lower()
+            if "centre line" in txt and not re.search(r"\b(no|without|lacks?)\b[^,;.]*centre line", txt):
+                lined.add(name)
     ways = []
     for ln in osm["lines"]:
         t = ln["tags"]
@@ -514,7 +523,7 @@ def streets(G, P):
         seg = np.diff(pts, axis=0)
         L = np.hypot(seg[:, 0], seg[:, 1])
         total = float(L.sum())
-        marked = hw in MARKED and t.get("junction") not in ("roundabout", "circular")
+        marked = (hw in MARKED or t.get("name") in lined) and t.get("junction") not in ("roundabout", "circular")
         walked = 0.0
         for a, sg, ln_ in zip(pts[:-1], seg, L):
             if ln_ == 0:
