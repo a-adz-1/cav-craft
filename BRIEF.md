@@ -9,7 +9,7 @@ Status: **not started** — this is the brief only.
 
 ## What's in the world
 
-- **All of Caversham**, as outlined in red in [docs/area.png](docs/area.png):
+- **All of Caversham**, as outlined in red in .downloads/ref/google/area.png (a Google Maps screenshot, kept local only):
   Caversham Heights, Emmer Green, Caversham Park Village, Lower Caversham,
   Caversham centre. Plus **Caversham Lakes**, which sit just outside that
   line to the east (Henley Road side) — extend the boundary to take them in.
@@ -52,7 +52,7 @@ mesh; here it's a full area, written out as a Minecraft world.
 
 ## Rough pipeline
 
-1. Draw the boundary: the red line in `docs/area.png` (OSM likely has it as
+1. Draw the boundary: the red line in `.downloads/ref/google/area.png` (OSM likely has it as
    an admin/suburb boundary — use that rather than tracing the picture),
    pushed out to the south bank of the Thames plus a few metres, and out
    east around Caversham Lakes. Store it as a polygon in BNG metres.

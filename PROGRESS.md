@@ -341,3 +341,4 @@ All of the user's review items are done: school and drive, square houses and tow
 - 2026-11-19 Rerun of the last 82 streets (Emmer Green, Caversham Park) stopped: Google Maps went blank in the browser pane again (net::ERR_BLOCKED_BY_CLIENT on its scripts), no new photos. Each section's notes.md says so; docs/street_view/RERUN.md still lists the 82. Nothing to merge, world unchanged.
 - 2026-11-19 Pushed, and release v0.1 now has the world with the Heights redo (Street View styles from 320 streets). Server not swapped yet.
 - 2026-11-19 Street View screenshots kept local on purpose (user): .gitignore now blocks images anywhere under docs/street_view and any sv/*/img folder; CLAUDE.md says never commit, upload or publish them.
+- 2026-11-19 docs/area.png (a Google Maps screenshot of the outline) taken out of git, kept in .downloads/ref/google/; BRIEF.md points there. No Google images left in the working tree.

@@ -10,3 +10,5 @@ docs/street_view/**/*.png
 docs/street_view/**/*.webp
 docs/street_view/**/img/
 **/sv/**/img/
+# Google Maps screenshots too
+docs/area.png
