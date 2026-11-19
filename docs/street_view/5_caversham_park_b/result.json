@@ -385,119 +385,654 @@
   "note": "Only 2 of 4 views loaded. 1970s buff and brown brick semis and link houses with white-clad panels, integral garages and open lawns; fences on the side gardens."
  },
  "Maytree Walk": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "red_brick": 0.85,
+   "orange_brick": 0.15
+  },
+  "upper_differs": 0.15,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "red_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow cul-de-sac with no markings, block-paved drives straight off it, footway one side.",
+  "confidence": "high",
+  "note": "1990s-2000s cul-de-sac of detached red-brick houses with steep gables, white plastic windows, small porch canopies and integral or side garages; open lawns, clipped shrubs and brick-pier fence walls at the side."
  },
  "Littlestead Close": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "orange_brick": 0.5,
+   "red_brick": 0.3,
+   "buff_brick": 0.2
+  },
+  "upper_differs": 0.4,
+  "upper": "white weatherboard/cladding",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0.25,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.3,
+   "terrace": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Curving estate road and cul-de-sac turning head, no centre line, wide grass corner verges with birch and willow trees.",
+  "confidence": "medium",
+  "note": "1970s estate of brown-brick detached houses and chalet bungalows, some with white-boarded first floors and integral garages, set back on open lawns with low brick walls and hedges."
  },
  "Launceston Avenue": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.6,
+  "upper": "white cladding panels",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.5,
+   "semi": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Estate road, no centre line, grass verge strips, block-paved drives.",
+  "confidence": "high",
+  "note": "1970s buff-brick semis and short terraces with white panel bands under the upper windows, flat-roofed/lean-to porch and garage fronts, open lawns and low buff-brick walls."
  },
  "Goodrich Close": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0.1,
+  "upper": "white cladding",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.4,
+   "detached": 0.4,
+   "terrace": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Short sloping cul-de-sac, no markings, grass verges with low kerbs; cars park on the verge.",
+  "confidence": "medium",
+  "note": "1970s buff-brick estate houses, some with flat-roofed single-storey garage/porch wings and plain gable ends; red-brick semis opposite; open grass fronts with a few hedges and fence panels. (1_* views snapped to the same pano as 0_*.)"
  },
  "Norman Road": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "white_render": 0.5,
+   "cream_render": 0.2,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render over red brick ground floor",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 1.0
+  },
+  "era": "interwar_1920s_30s",
+  "front": "mixed",
+  "trees": "verges",
+  "road": "Narrow residential road, no centre line, overhead phone wires on poles, many fronts paved for parking, dropped kerbs.",
+  "confidence": "medium",
+  "note": "1930s hipped-roof semis, mostly white or cream rendered (some render over a red-brick ground floor), with bay windows, small tiled porch canopies and chimneys; fronts largely paved for cars with a few low brick walls and hedges."
  },
  "Highbridge Close": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.5,
+   "orange_brick": 0.3,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0.6,
+  "upper": "white cladding panels/weatherboard",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "semi": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Long straight estate road, no centre line or markings, block-paved drives and open lawns to the footway.",
+  "confidence": "high",
+  "note": "1970s estate of short terraces and semis in buff and brown brick with white cladding bands under the upper windows and flat-roofed porch/garage fronts; open-plan lawns, a few fences and hedges, mature garden trees."
  },
  "Wilwyne Close": {
   "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "note": "Google says 'No Street View imagery available here' at both view points (all 4 views); probably a private close with no coverage."
  },
  "Lady Jane Court": {
   "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "note": "Google says 'No Street View imagery available here' at both view points (all 4 views); probably a private close with no coverage."
  },
  "Northbrook Road": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0.2,
+  "form": {
+   "terrace": 0.5,
+   "detached": 0.3,
+   "semi": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Wide estate distributor road with a white edge/centre line, grass verges, railings along a parking court; houses mostly set back behind tall hedges and trees.",
+  "confidence": "low",
+  "note": "Green, leafy road: tall conifer and laurel hedges and big oaks line it, with a brick community building and glimpses of brown-brick 1970s terraces and a parking court behind railings; few house fronts face the road."
  },
  "Kendal Avenue": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0.2,
+  "upper": "white cladding panels",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "Estate road, no centre line, block-paved drives off dropped kerbs, cars parked on drives.",
+  "confidence": "medium",
+  "note": "1970s orange-brown brick semis and link houses with flat-roofed garage links and white-framed porches; front gardens behind lap-fence and trellis panels with brick piers, plus shrubs and small trees."
  },
  "Ibstone Avenue": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "orange_brick": 0.8,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0.4,
+  "upper": "white cladding panels",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.5,
+   "semi": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges",
+  "road": "Narrow estate cul-de-sac, no markings, gravel and tarmac drives, carports.",
+  "confidence": "medium",
+  "note": "1970s orange-brown brick terraces and semis with white panels between the upper windows, flat-roofed garages and carports; fronts mix shrubs, gravel drives and trellis-topped fences."
  },
  "Cawsam Gardens": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "red_brick": 0.4,
+   "white_render": 0.4,
+   "cream_render": 0.2
+  },
+  "upper_differs": 0.5,
+  "upper": "white/cream render over red-brick ground floor",
+  "tudor": 0.05,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 1.0
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Residential road, no centre line, overhead phone wires on poles, many fronts paved for parking.",
+  "confidence": "medium",
+  "note": "1930s hipped-roof semis with two-storey bays and chimneys; typically red-brick ground floor with white or cream render above, some fully rendered; small tiled porch canopies, low red-brick front walls and paved drives."
  },
  "Kildare Gardens": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "white_render": 0.5,
+   "red_brick": 0.3,
+   "cream_render": 0.2
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 1.0
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Narrow residential road, no centre line, overhead phone wires on poles, fronts mostly paved for parking.",
+  "confidence": "medium",
+  "note": "1930s hipped-roof semis, mostly white rendered with red tile-hung panels between the bay windows, some red-brick or buff-brick; chimneys, low red-brick walls with hedges and paved drives."
  },
  "Dumbarton Way": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "orange_brick": 0.8,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0.5,
+  "upper": "white cladding panels/weatherboard",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "semi": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Curving estate road, no centre line, wide grass amenity slopes with trees and street lamps, concrete drives.",
+  "confidence": "high",
+  "note": "1970s orange-brown brick terraces and semis with white boarded bands under the upper windows, integral garages and pent canopies; open lawns and close-board fences to side gardens, big grassy open space beside the road."
  },
  "Redberry Close": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.6,
+   "orange_brick": 0.3,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.3,
+  "upper": "white cladding/render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.4,
+   "detached": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Narrow cul-de-sac, no markings, cars parked along the kerb, block paving and tarmac drives.",
+  "confidence": "medium",
+  "note": "1970s buff and light-brown brick semis and short terraces with integral or linked garages and pent porch roofs; some white-clad upper panels; open fronts, close-board side fences and a few hedges."
  },
  "Earlsfield Close": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.3,
+  "upper": "white weatherboard/cladding",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.4,
+   "terrace": 0.4,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Sloping cul-de-sac, no markings, grass verge strips, block-paved and tarmac drives.",
+  "confidence": "medium",
+  "note": "1970s buff-brick link houses and semis on a slope, with integral garages, some white-boarded upper fronts and solar panels; low buff-brick front walls topped by hedges, wooded backdrop."
  },
  "Pevensey Avenue": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.8,
+   "orange_brick": 0.2
+  },
+  "upper_differs": 0.1,
+  "upper": "white cladding",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.5,
+   "semi": 0.3,
+   "terrace": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Estate road, no centre line, block-paved drives and grass strips, cars parked on drives.",
+  "confidence": "medium",
+  "note": "1970s buff-brick link-detached houses with integral garages and steep front gables, plus buff-brick terraces with tiled pent porches; open lawns, hedges and block-paved drives."
  },
  "Quantock Avenue": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "orange_brick": 0.6,
+   "white_render": 0.3,
+   "buff_brick": 0.1
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render/cladding",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Estate road, no centre line, block-paved drives, grass strips; mature garden trees overhang the footway.",
+  "confidence": "medium",
+  "note": "1970s brown-brick semis and terraces, some with white-rendered or white-clad upper floors, integral garages and pent porch roofs; fronts a mix of block paving, picket and lap fences, hedges and big shrubs."
  },
  "Tenby Avenue": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "orange_brick": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0.2,
+  "upper": "white cladding panels",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Estate road, no centre line, gravel and concrete drives, footway on the house side.",
+  "confidence": "medium",
+  "note": "1970s red/brown brick link-detached houses with front gables and linked garages on one side, and a brown-brick terrace with white panel inserts and integral garages on the other; open lawns, gravel drives and lap fences."
  },
  "Overton Drive": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.15
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.7,
+   "brown_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "flats": 0.2,
+   "semi": 0.2
+  },
+  "era": "modern_1980s_on",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Newish estate road with a white edge line and footway one side, tight bends, block-paved drives; older road at the entrance with tall hedges.",
+  "confidence": "high",
+  "note": "2000s red-brick estate of detached houses and a block of flats with dormers, tile porch canopies and integral garages, clipped low hedges; at the entrance older white-rendered and red-brick 1930s semis behind tall hedges and fences."
  },
  "Kirkham Close": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.6,
+   "orange_brick": 0.3,
+   "red_brick": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "white cladding",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Cul-de-sac off a road with a dashed give-way/centre line at the junction, block-paved drives, hedges on the corner.",
+  "confidence": "medium",
+  "note": "1970s buff/light-brown brick link-detached houses with gable fronts, integral garages and pent porches; block-paved fronts with planting, tall clipped hedges on the corner plots."
  },
  "Ulster Close": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "orange_brick": 0.5,
+   "buff_brick": 0.3,
+   "white_render": 0.2
+  },
+  "upper_differs": 0.4,
+  "upper": "white render/cladding",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "semi": 0.3,
+   "flats": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Cul-de-sac with a central grass island, no markings, gravel and block drives, cars on drives.",
+  "confidence": "high",
+  "note": "1970s terraces and semis in orange-brown and buff brick, some with white-rendered upper floors, tiled pent porches and integral garages, round a grass turning circle; open gravel fronts with hedges and lap fences."
  },
  "Devon Drive": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.3,
+  "upper": "brown tile-hung/vertical tiles and white cladding",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.3,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges",
+  "road": "Narrow estate road, no markings, block-paved drives straight off it, cars parked on the kerb.",
+  "confidence": "medium",
+  "note": "1970s buff and brown brick estate houses with plain gables, some brown tile-hung upper fronts and white panels, single-storey links; fronts with low brick walls, lap fences and block paving."
  },
  "George Close": {
   "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "note": "No Street View pano at either view point (black viewer, no address, same as neighbouring Wilwyne Close and Lady Jane Court); probably a private close with no coverage."
  },
  "Farnham Drive": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.6,
+   "orange_brick": 0.2,
+   "grey_brick": 0.2
+  },
+  "upper_differs": 0.3,
+  "upper": "white cladding/weatherboard",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "flats": 0.2,
+   "semi": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "Service road off the estate distributor leading to a car park and garage blocks, no markings, grass banks and big trees.",
+  "confidence": "medium",
+  "note": "1970s buff-brick terraces with integral garages and some white cladding behind close-board fences, plus a pale brick flat-roofed block (local shops/offices) with an external stair and garage court; very leafy with grass banks."
  },
  "Blackwater Close": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.7,
+  "upper": "white weatherboard",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.5,
+   "semi": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Sloping cul-de-sac, no markings, block-paved and gravel drives, concrete lamp posts.",
+  "confidence": "medium",
+  "note": "1970s buff-brick semis and terraces with white weatherboarded upper floors and integral garages; low buff-brick front walls with pierced screen-block panels, shrubs and conifers. (Imagery 2012.)"
  },
  "Odiham Avenue": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "buff_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.1,
+  "upper": "white cladding",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.9,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.6,
+   "terrace": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges",
+  "road": "Estate road, no markings, block-paved drives, grass strips at the kerb.",
+  "confidence": "medium",
+  "note": "1970s buff/light-brown brick semis and short terraces with integral garages and tiled pent canopies over door and garage; fronts paved for parking with close-board fences and hedges between plots."
  },
  "Raglan Gardens": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "red_brick": 0.5,
+   "white_render": 0.4,
+   "cream_render": 0.1
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render over red-brick ground floor",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 1.0
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Narrow residential road, no centre line, overhead phone wires on poles, fronts mostly gravelled or paved for parking.",
+  "confidence": "medium",
+  "note": "1930s hipped-roof semis with bays and chimneys: red-brick ground floor with white render above, red tile-hung bands between bay windows, some fully rendered; low red-brick walls with piers and gates, gravel drives."
  },
  "Onslow Gardens": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "white_render": 0.5,
+   "red_brick": 0.4,
+   "cream_render": 0.1
+  },
+  "upper_differs": 0.5,
+  "upper": "white_render over red-brick ground floor",
+  "tudor": 0.1,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.9,
+   "detached": 0.1
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Residential road, no centre line, overhead phone wires on poles, gravel and paved drives.",
+  "confidence": "high",
+  "note": "1930s hipped-roof semis with chimneys and bays, white render over red-brick ground floors, some with dark-stained boarded/half-timbered panels on the bays; low red-brick walls with piers, iron gates, hedges and gravel drives, prefab garages."
  }
 }

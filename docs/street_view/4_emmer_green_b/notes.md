@@ -38,3 +38,10 @@
 - The Crest: 0_351, 0_231
 - Hanover Court: 0_080, 0_320
 - Chatsworth Close: 0_217, 0_097
+
+## Rerun
+- Saunders Drive 0_103, 0_343: "No Street View imagery available here" (both tried twice)
+- Jono View 0_306, 0_186: "No Street View imagery available here"
+- Barnes Road 0_223, 0_103: loaded, but Google labels both views "Lyefield Ct" (nearest panorama probably on Lyefield Court, not Barnes Road itself)
+- Winchendon Place 0_132, 0_012: loaded, but both snapped to a Kidmore End Road panorama at the entrance
+- Hanover Court 0_080, 0_320: loaded, but Google labels the panorama "Burleigh Mews" (adjacent)

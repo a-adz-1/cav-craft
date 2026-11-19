@@ -159,63 +159,368 @@
   "note": "1930s semis with hipped tiled roofs and bays: red brick ground floors with white or cream rendered upper floors, some fully rendered, a few with mock-Tudor gables; low brick walls and hedges, wide grass verges with trees, and a newer red-brick house at the north end."
  },
  "Grosvenor Road": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.3,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0.3,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Only the two ends were visible, at junctions with main roads (B481 Peppard Road and A4155): those are wide two-way roads with centre lines and turn arrows; Grosvenor Road itself has no Street View imagery (likely private/unadopted).",
+  "confidence": "low",
+  "note": "No Street View along Grosvenor Road itself; the end views show tall hedges, fences and big trees, with red-brick Victorian/Edwardian houses and an interwar mock-Tudor gabled semi near the A4155 end."
  },
  "Woods Road": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.3,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0.15,
+  "roof": {
+   "brown_tile": 0.5,
+   "dark_tile": 0.4,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0.2,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Quiet two-way residential road, no centre line, moderate width, pavements both sides with kerbs; on-drive parking.",
+  "confidence": "medium",
+  "note": "Leafy road of 1930s-60s detached houses, semis and chalet bungalows: red brick, some white-rendered, a mock-Tudor gable or two, dark/brown tiled roofs with dormers, behind tall hedges or low white-painted walls and gravel drives."
  },
  "Harlech Avenue": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.3,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Narrow two-way estate cul-de-sac road, no centre line, curving; small grass verges, brick-paved drives, parking on drives.",
+  "confidence": "high",
+  "note": "1970s Caversham Park estate: orange/red-brown brick two-storey link-semis, short terraces and a few detached houses with shallow brown/grey concrete-tiled roofs, white garage doors and porch canopies, open-plan lawns and block-paved drives with some panel fences."
  },
  "All Hallows Road": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "red_brick": 0.65,
+   "white_render": 0.2,
+   "cream_render": 0.1,
+   "orange_brick": 0.05
+  },
+  "upper_differs": 0.15,
+  "upper": "tile_hung",
+  "tudor": 0.1,
+  "roof": {
+   "dark_tile": 0.5,
+   "brown_tile": 0.35,
+   "red_tile": 0.15
+  },
+  "bungalows": 0.2,
+  "form": {
+   "detached": 0.5,
+   "semi": 0.5
+  },
+  "era": "interwar_1920s_30s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Two-way residential road, no centre line, moderate width; wide grass verges with large mature street trees, give-way lines at junctions, cars on drives.",
+  "confidence": "high",
+  "note": "Leafy interwar road: red-brick and white-rendered 1930s semis and detached houses with hipped dark/brown tile roofs, some chalet bungalows with dormers and the odd mock-Tudor house, behind hedges, low walls and picket fences, with wide verges and big trees."
  },
  "Milestone Way": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "orange_brick": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.4,
+   "terrace": 0.4,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "Not a normal street in the views: one end is an unmade gravel lane/footpath between hedges and fences; other views snapped onto Harlech Avenue (estate cul-de-sac) and Northbrook Road (two-way with dashed centre line, edged by dense woodland/hedge).",
+  "confidence": "low",
+  "note": "Seems to be a footpath/lane threading through the Caversham Park estate rather than a built-up street; what houses show are 1970s orange-brown brick estate semis and terraces with brown concrete-tile roofs behind panel fences and hedges."
  },
  "Hawthorne Road": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "white_render": 0.5,
+   "red_brick": 0.4,
+   "cream_render": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "dark_tile": 0.55,
+   "brown_tile": 0.35,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0.45,
+  "form": {
+   "detached": 0.8,
+   "semi": 0.2
+  },
+  "era": "postwar_1950s",
+  "front": "hedge",
+  "trees": "verges",
+  "road": "Quiet two-way residential road, no centre line, moderate width; a grassy triangle/green at a junction with give-way lines, pavements, cars on drives.",
+  "confidence": "high",
+  "note": "Low-density road of detached chalet bungalows and houses, many white-rendered with steep dark/brown tiled roofs and dormers, others red brick, set behind clipped hedges and low brick walls with lawns and a grassy green at the junction."
  },
  "Queensway": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "orange_brick": 0.6,
+   "buff_brick": 0.3,
+   "red_brick": 0.1
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 0.5,
+   "brown_tile": 0.5
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.5,
+   "semi": 0.4,
+   "detached": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Two-way estate road, no centre line, curving; double yellow lines at the corners, block-paved and gravel drives, some grass verges and mature trees, panel fences along side gardens.",
+  "confidence": "high",
+  "note": "1960s-70s Caversham Park estate: light orange/buff brick terraces and link-semis with white weatherboard-clad first floors, shallow grey/brown concrete-tile roofs, flat-roofed garages and porches, open-plan front gardens and block-paved drives, with panel fences at the side gardens."
  },
  "The Horse Close": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "red_brick": 0.8,
+   "white_render": 0.15,
+   "orange_brick": 0.05
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.2,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "postwar_1950s",
+  "front": "fence",
+  "trees": "verges",
+  "road": "Small two-way cul-de-sac, no centre line, ending in a circular turning head with a grass island and lamp post; narrow grass verges, cars on drives.",
+  "confidence": "high",
+  "note": "1950s-60s cul-de-sac of red-brick semis and detached houses plus a few chalet bungalows with dormers, brown/dark tiled roofs, some white-painted ground floors, behind low picket/trellis fences, small brick walls and open lawns."
  },
  "Holyrood Close": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "red_brick": 0.5,
+   "orange_brick": 0.3,
+   "buff_brick": 0.2
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "grey_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "detached": 0.3,
+   "terrace": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Two-way estate close, no centre line, moderate width; grass verges, block-paved and concrete drives, one end opens onto a large grassed playing field.",
+  "confidence": "high",
+  "note": "1970s Caversham Park estate close: red, orange and buff brick link-detached houses and semis with white-clad panels under first-floor windows, shallow gabled brown/grey concrete-tile roofs, integral and flat-roofed garages, open-plan lawns and block-paved drives with a few panel fences."
  },
  "Orchard Grove": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "red_brick": 0.5,
+   "buff_brick": 0.35,
+   "orange_brick": 0.15
+  },
+  "upper_differs": 0.05,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0.05,
+  "form": {
+   "semi": 0.4,
+   "detached": 0.4,
+   "terrace": 0.2
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow two-way cul-de-sac road, no centre line, curving, with block-paved/tarmac drives, small grass verges and a few mature oaks.",
+  "confidence": "high",
+  "note": "1980s-90s developer estate: small red and buff/yellow brick detached, semi and short-terrace houses with steep dark-brown concrete-tile roofs, gabled porch canopies, white bay windows and attached garages, on open-plan lawns."
  },
  "Greystoke Road": {
   "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "note": "No Street View imagery: all four views came up black with 'No Street View imagery available here' (both points, retried); likely a private/unadopted road off Peppard Road."
  },
  "Osterley Drive": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "orange_brick": 0.65,
+   "buff_brick": 0.25,
+   "red_brick": 0.1
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "grey_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.3,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Narrow estate cul-de-sac, no centre line, small parking bays at the end; panel fences and conifer hedges along side gardens, open lawns and paved drives at the fronts.",
+  "confidence": "medium",
+  "note": "1970s Caversham Park estate: light orange/buff brick link-semis and short terraces with white weatherboard-clad first floors, shallow brown/grey concrete-tile roofs, integral garages and porch canopies, open-plan lawns; several views see only tall panel fences and conifers."
  },
  "Valentine Crescent": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "white_render": 0.4,
+   "red_brick": 0.35,
+   "pebbledash": 0.15,
+   "cream_render": 0.1
+  },
+  "upper_differs": 0.35,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.95,
+   "detached": 0.05
+  },
+  "era": "interwar_1920s_30s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "Two-way residential crescent, no centre line, moderate width; narrow grass verge strips by the kerb, cars on paved/gravel front drives.",
+  "confidence": "high",
+  "note": "1930s semis with hipped brown/dark tiled roofs and bay windows topped by tile-hung red bay panels: a mix of red brick, white or cream render and pebbledash, some red-brick ground floors with rendered upper floors, behind low brick walls and picket fences."
  },
  "Netley Close": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "orange_brick": 0.7,
+   "buff_brick": 0.2,
+   "red_brick": 0.1
+  },
+  "upper_differs": 0.6,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "grey_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.6,
+   "terrace": 0.3,
+   "detached": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Narrow estate cul-de-sac, no centre line, small turning head; small lawns, block-paved drives, a few panel fences and hedges.",
+  "confidence": "high",
+  "note": "1970s Caversham Park estate close: light orange/buff brick link-semis and short terraces with white weatherboard-clad first floors, shallow brown concrete-tile roofs with tiled porch/garage canopies, integral garages with coloured doors, open-plan lawns."
  },
  "Copse Avenue": {
-  "confidence": "none",
-  "note": "Not surveyed: from Grosvenor Road on, the browser pane blocked Google Maps scripts (net::ERR_BLOCKED_BY_CLIENT) and every view loaded as a blank white page, also in a fresh tab after waiting a minute. Needs a rerun."
+  "walls": {
+   "red_brick": 0.7,
+   "orange_brick": 0.2,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.15,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.5,
+   "dark_tile": 0.4,
+   "grey_tile": 0.1
+  },
+  "bungalows": 0.35,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Narrow two-way residential road, no centre line, partly without pavement on one side; overgrown hedges and grass edges, a school 'no stopping' sign near the end.",
+  "confidence": "medium",
+  "note": "Low-density mix of detached red-brick houses and chalet bungalows (1950s-80s), some with dark-stained or tile-hung upper gables and steep brown/dark tiled roofs, set behind tall hedges, conifers and low fences."
  }
 }

@@ -392,42 +392,214 @@
  },
  "The Fairway": {
   "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun. The two views that loaded (0_321, 0_201) snapped to Kidmore End Road beside a new Bovis Homes 'Emmer Green Drive' development of red-brick houses; 1_328 and 1_208 had no coverage (black), 2_023 and 2_263 hit the block."
+  "note": "Private road with no Street View coverage: all points along it report 'No Street View imagery available'. The 0_x point snaps to Kidmore End Road at the entrance, showing only the junction (trees, signage, a new red-brick Bovis estate opposite)."
  },
  "James Braid Drive": {
   "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "note": "No Street View coverage on the drive itself (private road). The 1_x point snaps ~90 m to Brooklyn Drive; those two saved shots show Brooklyn Drive (large white-render detached houses, dark tile roofs, low fences), not James Braid Drive."
  },
  "Gravel Hill": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "red_brick": 0.4,
+   "buff_brick": 0.2,
+   "white_render": 0.4
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "red_tile": 0.5,
+   "brown_tile": 0.3,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "interwar_1920s_30s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Two-lane road with no centre line at the views, double yellow lines on corners, 30 mph signs, grass triangle junction with bollards, wide grass verges.",
+  "confidence": "low",
+  "note": "Edge-of-town lane: the north side is open fields behind thick hedges; houses only appear at a distance near the junction (1930s-style semis and detached in red/buff brick with white render, low red-brick walls). Imagery from 2009/2012."
  },
  "St Barnabas Road": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "orange_brick": 0.35,
+   "red_brick": 0.35,
+   "white_render": 0.3
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.5,
+   "dark_tile": 0.3,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0.15,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "mixed",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Quiet residential road, no centre line, grass verges with a few lamp posts; tight bend at the north end with a grass triangle.",
+  "confidence": "medium",
+  "note": "Mostly 1960s-70s detached houses in orange/red brick with white-render or tile-hung upper panels and brown concrete-tile roofs, plus a few older dark-brick villas and a chalet bungalow. A long old flint-and-brick wall with tall clipped yews lines one side near the north end; elsewhere hedges and open drives."
  },
  "Tower Close": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "orange_brick": 0.6,
+   "buff_brick": 0.25,
+   "red_brick": 0.15
+  },
+  "upper_differs": 0.5,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0.4,
+  "form": {
+   "detached": 0.7,
+   "semi": 0.3
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow cul-de-sac, no centre line, no markings; overhead phone wires; grass verge at the entrance by the water tower.",
+  "confidence": "medium",
+  "note": "Small 1960s-70s cul-de-sac by the Emmer Green water tower (screened by tall trees): orange/buff-brick link-detached houses with white weatherboard/render panels upstairs, plus a row of orange-brick bungalows with dark timber-clad gables, all brown concrete-tile roofs and open-plan lawns and drives."
  },
  "Kiln Road": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "white_render": 0.4,
+   "red_brick": 0.4,
+   "orange_brick": 0.2
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "red_tile": 0.5,
+   "dark_tile": 0.3,
+   "brown_tile": 0.2
+  },
+  "bungalows": 0.2,
+  "form": {
+   "detached": 0.5,
+   "terrace": 0.3,
+   "semi": 0.2
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Semi-rural lane: two lanes with a dashed centre line in places, no kerbside parking bays, wide grass verges, a footway on one side only, overhead wires on wooden poles.",
+  "confidence": "low",
+  "note": "A green, wooded lane: much of it is woodland, high hedges and open grass with few houses visible. Where there are houses they are scattered and varied: hedge-screened detached houses and bungalows, and at the north end an old row of white-painted brick cottages with dormers and red-tile roofs behind picket fences, beside a red-brick Victorian house."
  },
  "Elstow Avenue": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "orange_brick": 0.5,
+   "red_brick": 0.3,
+   "buff_brick": 0.2
+  },
+  "upper_differs": 0.5,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0.4,
+  "form": {
+   "semi": 0.4,
+   "detached": 0.4,
+   "terrace": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Narrow estate road, no centre line or markings, short drives; concrete lamp posts.",
+  "confidence": "medium",
+  "note": "1960s-70s estate: two-storey link houses in orange/red brick with white-painted render or boarding on the upper floor and shallow brown concrete-tile roofs, plus low bungalows with integral garages; open lawns and short block-paved drives, timber fences on corner plots. Only 2 views (2012 imagery)."
  },
  "Twin Oaks": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "red_brick": 0.9,
+   "orange_brick": 0.1
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Short cul-de-sac, no markings, wide turning head; block-paved drives straight off the road.",
+  "confidence": "medium",
+  "note": "A 1980s-90s cul-de-sac of plain red-brick two-storey detached and link-detached houses with integral garages, white uPVC windows and brown concrete-tile roofs, set behind open lawns and paved drives; mature trees and a fence along one edge."
  },
  "Chalgrove Way": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "red_brick": 0.5,
+   "white_render": 0.3,
+   "orange_brick": 0.2
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0.05,
+  "roof": {
+   "dark_tile": 0.4,
+   "brown_tile": 0.4,
+   "red_tile": 0.2
+  },
+  "bungalows": 0.25,
+  "form": {
+   "semi": 0.6,
+   "detached": 0.4
+  },
+  "era": "postwar_1950s",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "Quiet residential road, no centre line, grass verges on both sides, small grass roundabout/turning circle with a tree at one end.",
+  "confidence": "medium",
+  "note": "1950s-60s semis and detached houses in red/orange brick with white-render upper floors and bay windows under hipped brown and dark tile roofs, plus some white-rendered bungalows; fronts are a mix of hedges, low walls and paved drives, with a grass turning circle."
  },
  "Marchwood Avenue": {
-  "confidence": "none",
-  "note": "not surveyed: Maps blocked in the pane, rerun"
+  "walls": {
+   "red_brick": 0.5,
+   "orange_brick": 0.3,
+   "buff_brick": 0.2
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0.3,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Curving estate road with dashed white give-way/edge markings at junctions, no centre line, grass verges, overhead wires on wooden poles.",
+  "confidence": "medium",
+  "note": "1960s-70s estate of detached and link houses and bungalows: dark red/brown multi-brick or orange brick, some with white-render or boarded upper panels, low-pitched brown or dark concrete-tile roofs, set back behind open lawns and shrubs with mature trees around the edges."
  }
 }

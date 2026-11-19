@@ -50,3 +50,8 @@
 
 # Rerun (2026-11-19)
 Google Maps came up blank white again: its JS/CSS bundles fail with net::ERR_BLOCKED_BY_CLIENT. Tried The Fairway 2_023 (twice), then in a fresh tab James Braid Drive 0_305 and Gravel Hill 0_124, all blank. Stopped per the rerun brief; none of the 44 listed views loaded and all 10 streets stay "not surveyed".
+
+# Rerun 2 (2026-11-19)
+Maps loaded this time. All 10 rerun streets now surveyed. Views that never loaded (no Street View imagery: "No Street View imagery available here"):
+- The Fairway 1_328, 1_208, 2_023, 2_263 (private road, no coverage; 0_x views snap to Kidmore End Road)
+- James Braid Drive 0_305, 0_185, 2_307, 2_187 (no coverage; 1_x views snap to Brooklyn Drive and show Brooklyn Drive)

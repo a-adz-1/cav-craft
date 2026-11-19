@@ -90,3 +90,13 @@ Google Maps stopped loading in the browser pane (blank page, net::ERR_BLOCKED_BY
 - Onslow Gardens 0_357
 
 Other: Whitby Green 0_236/0_116 snapped to a Rowallan Close pano; Abbottsleigh Gardens 1_* snapped to the same pano as 0_*.
+
+## Rerun
+
+Rerun done with Google Maps working again; all 29 "not surveyed" streets now have entries, and Montpelier Drive 1_123 and 1_003 were saved (Montpelier entry itself left as it was). Views that never loaded:
+
+- Wilwyne Close 0_126, 0_006, 1_037, 1_277: Google says "No Street View imagery available here"
+- Lady Jane Court 0_239, 0_119, 1_044, 1_284: "No Street View imagery available here"
+- George Close 0_129, 0_009, 1_220, 1_100: black viewer, no pano found (0_009 retried); same no-coverage pocket as the two above
+
+Other: Goodrich Close 1_* snapped to the same pano as 0_*. The browser pane was intermittently "not displayed", so views were taken one at a time and redone where lost.
