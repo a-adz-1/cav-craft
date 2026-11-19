@@ -7,4 +7,5 @@ Minecraft world of Caversham from OSM + EA LiDAR. Read BRIEF.md (what) and PROGR
 - Java Edition first. Bedrock only by converting (Chunker) once the user is happy.
 - After every step: append to PROGRESS.md log, commit (author a-adz-1 <a-adz-1@proton.me>).
 - Big data lives in .downloads/ (gitignored); the built world in world/ (gitignored).
+- Google Street View screenshots stay local (.downloads/ref/sv/*/img/); never commit, upload or publish them.
 - Run tools from the repo root: .venv/bin/python tools/<name>.py (tools/ must stay on sys.path, so no -I).

@@ -3,3 +3,10 @@
 world/
 __pycache__/
 build/
+# Google Street View screenshots stay on this computer, never in git
+docs/street_view/**/*.jpg
+docs/street_view/**/*.jpeg
+docs/street_view/**/*.png
+docs/street_view/**/*.webp
+docs/street_view/**/img/
+**/sv/**/img/
