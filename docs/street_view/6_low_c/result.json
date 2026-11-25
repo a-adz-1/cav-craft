@@ -1,0 +1,378 @@
+{
+ "Upper Warren Avenue": {
+  "walls": {
+   "white_render": 0.4,
+   "red_brick": 0.4,
+   "cream_render": 0.2
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.5,
+   "dark_tile": 0.5
+  },
+  "bungalows": 0.2,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "narrow private-looking lane, no centre line, no markings, gravel/tarmac edges",
+  "confidence": "low",
+  "note": "Big detached houses set far back behind tall hedges, gates and mature trees; only glimpses of a rendered bungalow with slate roof and a brick house. One view landed on Blagrave Lane (red-brick Victorian cottages) and is not counted."
+ },
+ "Little Woodcote Close": {
+  "confidence": "none",
+  "note": "Both views landed on the A4074 Woodcote Road at the close's mouth (address 150 A4074), not inside the close; no houses of the close seen."
+ },
+ "Ilkley Road": {
+  "walls": {
+   "red_brick": 0.5,
+   "white_render": 0.2,
+   "buff_brick": 0.2,
+   "pebbledash": 0.1
+  },
+  "upper_differs": 0.3,
+  "upper": "white_render",
+  "tudor": 0.25,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.2,
+   "slate": 0.2
+  },
+  "bungalows": 0.15,
+  "form": {
+   "semi": 0.6,
+   "detached": 0.4
+  },
+  "era": "mixed",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "residential, no centre line, cars parked on street, ordinary width",
+  "confidence": "medium",
+  "note": "Edwardian/interwar red-brick and mock-Tudor semis (white render upper with black timbering) mixed with a 1960s buff-brick chalet bungalow; low brick walls, fences and hedges in front. Two views landed on Woodcote Road and are not counted."
+ },
+ "Pinewood Drive": {
+  "walls": {
+   "orange_brick": 0.5,
+   "red_brick": 0.3,
+   "white_render": 0.2
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.5,
+   "brown_tile": 0.3,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0.15,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "estate_1960s_70s",
+  "front": "mixed",
+  "trees": "verges_and_trees",
+  "road": "quiet private-style drive, no markings, leafy",
+  "confidence": "low",
+  "note": "Large detached brick houses (some 1980s orange brick, one red brick with white gable) on wooded plots behind fences, shrubs and tall trees; most views were mostly greenery."
+ },
+ "Cardinal Close": {
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "semi": 0.2,
+   "flats": 0.2
+  },
+  "era": "modern_1980s_on",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "narrow cul-de-sac, no centre line, double yellow lines at the bends, lock-up garage court and parking bays",
+  "confidence": "medium",
+  "note": "1980s-90s orange-red brick terraced townhouses and small blocks with brown concrete tile roofs, tucked behind tall laurel hedges and shrub beds, with a row of lock-up garages. The n0 views were on Wolsey Road at the entrance (similar brick houses) and are not counted."
+ },
+ "Tilbury Close": {
+  "confidence": "none",
+  "note": "n0 and n2 opened an indoor photosphere of a blinds shop on Henley Road; n1 landed on Chiltern Road (interwar red-brick semis), so nothing of Tilbury Close itself was seen."
+ },
+ "Marlow Court": {
+  "confidence": "none",
+  "note": "Both views landed on All Hallows Road (tree-lined road with 1960s-70s red-brick houses), not in Marlow Court."
+ },
+ "The Rise": {
+  "walls": {
+   "orange_brick": 0.6,
+   "red_brick": 0.25,
+   "white_render": 0.15
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "grey_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "quiet private-style cul-de-sac, no markings, block-paved drives",
+  "confidence": "medium",
+  "note": "1980s-90s neo-Georgian detached houses in orange-red brick with white sash-style windows, integral double garages and brown/grey concrete tile roofs, open lawns and block-paved drives under big cedars; one rendered cream/white house. The n2 views were on Cedar Wood Crescent and are not counted."
+ },
+ "Buckingham Gate": {
+  "walls": {
+   "orange_brick": 0.8,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.8,
+   "semi": 0.2
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "short cul-de-sac (no through road sign) with parking court bays, double yellow lines at the mouth",
+  "confidence": "medium",
+  "note": "2000s-era 2-3 storey orange-red brick terraced townhouses with front gables, white bargeboards, small porch canopies and dark grey concrete tile roofs, facing a parking court with low hedges; leafy entrance."
+ },
+ "Buckside": {
+  "confidence": "none",
+  "note": "n0 views (both headings) never loaded, black, also on retry; n1 views landed on Church Road (A4074) by the shops, not Buckside."
+ },
+ "Westonbirt Drive": {
+  "confidence": "none",
+  "note": "n0 and n2 landed on Upper Warren Avenue (tree-lined, brick walls) and n1 on Graveney Drive (1960s red-brick bungalows); nothing of Westonbirt Drive itself seen."
+ },
+ "Auburn Court": {
+  "confidence": "none",
+  "note": "n0 and n2 landed on Church Road / A4074 (address 20 Church Rd); n1 never loaded (black, also on retry). A 1960s 3-storey red-brick flats block with white panel bands on the Church Road corner may be Auburn Court but the address shown is Church Road, so it is not counted."
+ },
+ "Hornbeam Close": {
+  "confidence": "none",
+  "note": "All six views snapped to Kidmore Road (nos. 180-182) by the Miller & Carter pub: interwar red-brick and rendered semis, not Hornbeam Close itself."
+ },
+ "Chelford Way": {
+  "walls": {
+   "red_brick": 0.7,
+   "orange_brick": 0.3
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.3,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "quiet estate cul-de-sac, no centre line, no markings, footways and grass verges",
+  "confidence": "medium",
+  "note": "1960s-70s estate of red-brick two-storey semis and short terraces with shallow gabled dark/brown tile roofs, gravel or paved drives and open lawns, shrubs and mature trees; one house was a building site. The n1 views were on Albert Road and are not counted."
+ },
+ "Gravel Hill": {
+  "walls": {
+   "red_brick": 0.8,
+   "white_render": 0.2
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.7,
+   "brown_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.7,
+   "detached": 0.3
+  },
+  "era": "interwar_1920s_30s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "residential road, grass verges and corner greens, no centre line seen",
+  "confidence": "low",
+  "note": "Only the n0 views showed houses: 1930s red-brick semis with hipped dark tile roofs behind tall hedges near Emmer Green school. The n1 (2009 imagery) and n2 views were all bushes and trees."
+ },
+ "Spinney Close": {
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.25,
+   "white_render": 0.15
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.5,
+   "brown_tile": 0.5
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.8,
+   "detached": 0.2
+  },
+  "era": "postwar_1950s",
+  "front": "low_brick_wall",
+  "trees": "verges",
+  "road": "ordinary-width estate road with a grass island at the junction, give-way lines, no centre line along the close",
+  "confidence": "medium",
+  "note": "1950s-60s red/orange brick semis with hipped brown or dark plain-tile roofs, bay windows and some white-rendered upper storeys, behind low brick or stone walls with lawns and shrubs; detached garages beside the houses."
+ },
+ "Caversham Park Drive": {
+  "confidence": "none",
+  "note": "All six views stayed black (no Street View imagery loads at these points, also on retry); likely a private drive without coverage."
+ },
+ "Oak Grove": {
+  "walls": {
+   "orange_brick": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.5,
+   "semi": 0.5
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "short block-paved private cul-de-sac with a turning head, no markings",
+  "confidence": "low",
+  "note": "Small 1990s-2000s cul-de-sac of orange-red brick houses with brown concrete tile roofs around a block-paved turning head, behind tall laurel hedges; only glimpses of two or three houses."
+ },
+ "Langford Close": {
+  "walls": {
+   "buff_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.9,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.8,
+   "semi": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "narrow estate close off Buckingham Drive, no markings, sloping, steps up to raised front lawns",
+  "confidence": "medium",
+  "note": "1960s-70s terraces with buff/light-brown brick ground floors and dark brown tile-hung upper floors under dark tile roofs, white windows and small porch canopies, set up on sloping open lawns with concrete steps. The n0 views were on The Crest and the 288-degree views looked across Buckingham Drive, so they are not counted."
+ },
+ "Chiltern Court": {
+  "walls": {
+   "red_brick": 0.6,
+   "white_render": 0.4
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "slate": 0.4
+  },
+  "bungalows": 0.6,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "service road with parking bays and a car park, no centre line",
+  "confidence": "low",
+  "note": "The views (no street name shown) are on a service road by Emmer Green surgery: a single-storey red-brick building with a tiled roof and a flat-roofed white-rendered clinic building with a car park; no ordinary houses were seen."
+ },
+ "Grosvenor Road": {
+  "confidence": "none",
+  "note": "All six views stayed black; Google showed 'No Street View imagery available here' (private road without coverage)."
+ },
+ "Northbrook Road": {
+  "walls": {
+   "orange_brick": 0.5,
+   "buff_brick": 0.3,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0.4,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "dark_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.2,
+   "terrace": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Caversham Park Village estate road: broken centre line in places, give-way triangle at the junction green, wide grass verges, open-plan",
+  "confidence": "medium",
+  "note": "1960s-70s Caversham Park Village houses: link-detached and semi-detached in orange-red or buff brick with white-painted/rendered first-floor gables, low-pitch brown concrete tile roofs, integral garages and open-plan lawns and block-paved drives; big grassy greens at the junctions."
+ },
+ "Eynsford Close": {
+  "walls": {
+   "orange_brick": 0.6,
+   "buff_brick": 0.25,
+   "red_brick": 0.15
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "dark_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "detached": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "small cul-de-sac with block-paved turning area, no markings",
+  "confidence": "medium",
+  "note": "1970s orange-red and buff brick semis and link-detached houses with brown concrete tile roofs, integral garages, gravel or block-paved drives and low brick dwarf walls or open lawns. The n0 views were on Eltham Avenue (same style) and are not counted."
+ }
+}

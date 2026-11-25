@@ -355,3 +355,12 @@ All of the user's review items are done: school and drive, square houses and tow
 
 ### 2026-11-25 — House fixes live
 Pushed 643d1ae, uploaded the rebuilt world to release v0.1 (43 MB), and swapped it onto the server (unload, new region/entities, poi removed, load; log clean). Google Maps works in the pane again, so the second-look survey of the 69 unclear streets (6_low_a/b/c) is running.
+- 2026-11-25 Second look at the 69 unclear streets (6_low_a/b/c, new viewpoints along each street): 20 now medium, 20 still low, 29 none (no Street View there, or every view landed on the next street). styles.py keeps the more confident reading, so 20 streets now have a better one. Photos stay in .downloads; text results in docs/street_view/6_low_*.
+- 2026-11-25 Parks and pitches (features.leisure), for every mapped one, not just Clayfield Copse:
+  - Tennis: 17 courts now have green surfaces with white doubles/singles/service/centre lines, a red surround, a net across the middle, and a mesh fence around each group of courts with a gate on the south side. No grass tufts on them. Caversham Park Tennis Club (Clayfield Copse) has its six courts in two rows of three.
+  - Football: goals (posts and crossbar, 7 wide) at both ends. Basketball: hoops on posts. Pitches mostly covered by a bigger one are skipped (hidden_pitches, 3 of them).
+  - Pitch axes now come from the outline's tightest rectangle (rect_axes). The old SVD tilted them because the closing corner counted twice, so halfway lines and nets ran crooked.
+  - Skate parks: concrete with a quarter pipe at each end and a box with a rail.
+  - From the map's points: 17 sculptures (wooden carvings or stone, a sign with the name, e.g. Clayfield Copse's Squirrel and Spider's Web), 4 shelters, 7 picnic tables.
+  - Tennis clubs no longer get a play park dropped in the middle.
+  - road_check: 0 drops over 1.

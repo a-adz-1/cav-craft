@@ -1,0 +1,388 @@
+{
+ "Blagrave Farm Lane": {
+  "confidence": "none",
+  "note": "Views n0 and n1 have no Street View imagery (private farm lane); n2 snapped to the A4074 Woodcote Road at the lane mouth (hedged mock-Tudor and white-render detached houses there), not counted."
+ },
+ "Grass Hill": {
+  "walls": {
+   "white_render": 0.6,
+   "timber": 0.2,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0.2,
+  "upper": "timber",
+  "tudor": 0.2,
+  "roof": {
+   "grey_tile": 0.5,
+   "dark_tile": 0.5
+  },
+  "bungalows": 0.3,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "street_trees",
+  "road": "narrow unmade/gravel private lane, no markings, no pavement, steep and wooded",
+  "confidence": "low",
+  "note": "A steep wooded private lane; only glimpses of a few large detached houses through dense trees: a white-rendered modern bungalow with grey roof, a mock-Tudor gabled house, brick gate piers. Building works under way at the top."
+ },
+ "Wincroft Road": {
+  "walls": {
+   "red_brick": 0.85,
+   "white_render": 0.15
+  },
+  "upper_differs": 0.15,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "red_tile": 0.4
+  },
+  "bungalows": 0.3,
+  "form": {
+   "detached": 0.9,
+   "semi": 0.1
+  },
+  "era": "postwar_1950s",
+  "front": "fence",
+  "trees": "verges",
+  "road": "quiet residential road, no centre line, wide grass verges, footway on both sides",
+  "confidence": "medium",
+  "note": "Detached red-brick postwar houses and red-brick bungalows with gabled brown/red tile roofs, a couple with white-rendered upper floors; set back behind timber fences and tall conifer hedges. Views n2 landed on Fernbrook Road and were not counted."
+ },
+ "Wychcotes": {
+  "walls": {
+   "buff_brick": 0.6,
+   "white_render": 0.2,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0.3,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "grey_tile": 0.4
+  },
+  "bungalows": 0.2,
+  "form": {
+   "detached": 0.8,
+   "semi": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "narrow cul-de-sac off St Peter's Hill, no markings, no centre line",
+  "confidence": "low",
+  "note": "Small leafy close of 1960s-70s detached houses, mostly buff/yellow brick with brown concrete tile roofs and one rendered house; dense conifer hedges and mature trees hide most fronts, so shares are rough."
+ },
+ "Kingfisher Place": {
+  "confidence": "none",
+  "note": "n0 snapped to a user photosphere on the Thames path (riverbank, Reading Bridge, a tower block), n1 to Kings Meadow Road; neither shows Kingfisher Place itself. In the distance of n1 there are three-storey red-brick town houses with balconies, possibly this close, but not counted."
+ },
+ "Grobler's Way": {
+  "confidence": "none",
+  "road": "n2 (2014 imagery): narrow rural track lined with scrub and trees",
+  "note": "No buildings seen. n0 snapped to the A4155 at a signalled junction (not counted); n1 has no Street View imagery; n2 is on Grobler's Way but shows only dense scrub and trees on both sides."
+ },
+ "Barclose Avenue": {
+  "confidence": "none",
+  "note": "All views snapped to other streets: n0 and n2 to the A4155 Henley Road (fenced fronts, a mock-Tudor semi), n1 to Donegal Close (1960s-70s brick terraces with tile-hung upper floors). Barclose Avenue itself appears to have no Street View coverage."
+ },
+ "Eliot Close": {
+  "walls": {
+   "red_brick": 0.9,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.7,
+   "grey_tile": 0.3
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.7,
+   "flats": 0.3
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "narrow estate cul-de-sac with parking courts and garage blocks, no markings",
+  "confidence": "medium",
+  "note": "1960s-70s estate of plain red-brick two-storey terraces and a three-storey red-brick flat block, low-pitch brown concrete tile roofs; rear garden fences, garage blocks and parking courts face the road, with banks of shrubs. n2 landed on Grove Hill and was not counted."
+ },
+ "The Cloisters": {
+  "confidence": "none",
+  "note": "n0 and n2 have no Street View imagery (private close); n1 snapped to Priest Hill (Victorian/Edwardian red-brick semis and hedges), not counted."
+ },
+ "Grove Hill Close": {
+  "walls": {
+   "timber": 0.5,
+   "white_render": 0.4,
+   "red_brick": 0.1
+  },
+  "upper_differs": 0.6,
+  "upper": "timber",
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.6,
+   "detached": 0.4
+  },
+  "era": "modern_1980s_on",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "short block-paved private cul-de-sac with parking in front of houses, no markings",
+  "confidence": "medium",
+  "note": "A small 2000s-2010s close of contemporary two-storey houses clad in vertical timber boarding with white render panels, glass-balustrade balconies and flat or very shallow dark roofs (grey_tile stands in for flat roofs); timber fences, laurel hedges and dense trees around it."
+ },
+ "St Peter's Hill": {
+  "walls": {
+   "red_brick": 0.8,
+   "timber": 0.1,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "timber",
+  "tudor": 0.1,
+  "roof": {
+   "brown_tile": 0.5,
+   "dark_tile": 0.5
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 0.4,
+   "detached": 0.6
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "street_trees",
+  "road": "A4074 main road climbing the hill: centre line, steep (13% sign), grass verges and a footway behind a high flint-and-brick retaining wall",
+  "confidence": "low",
+  "note": "A steep main road lined with tall hedges, flint retaining walls and big trees; only glimpses of a 1960s red-brick flat block on a grassy bank, a large red-brick older house and a mock-Tudor house at the bottom junction."
+ },
+ "High Meadow": {
+  "walls": {
+   "white_render": 0.7,
+   "red_brick": 0.3
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 1.0
+  },
+  "bungalows": 0.6,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "narrow private cul-de-sac, no markings, lined by tall timber fences, turning head at the end",
+  "confidence": "low",
+  "note": "A short close of detached houses behind tall timber fences and conifers; the one clearly visible house is a white-rendered chalet bungalow with a brown concrete tile roof and dormers. n1 landed on Upper Warren Avenue and was not counted."
+ },
+ "Conisboro Way": {
+  "walls": {
+   "white_render": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0.3,
+  "upper": "timber",
+  "tudor": 0.3,
+  "roof": {
+   "red_tile": 0.5,
+   "dark_tile": 0.5
+  },
+  "bungalows": 0.4,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "interwar_1920s_30s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "unmade private road / gravel track with grass centre strip ('Private Road, No Parking' sign), no pavement",
+  "confidence": "low",
+  "note": "An unmade private lane (2009 imagery) of scattered detached 1920s-30s houses in big plots: a white-rendered cottage-bungalow with red tile roof and a mock-Tudor gabled house, behind timber fences and trees. n0 landed on Queensborough Drive and was not counted (only shows the Conisboro Way sign)."
+ },
+ "Woodrow Court": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 1.0,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 1.0
+  },
+  "era": "interwar_1920s_30s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "private tarmac parking court with marked bays and a carport, no through road",
+  "confidence": "medium",
+  "note": "A private court off Church Road with one Arts-and-Crafts style block: red-brick ground floor, plum/dark tile-hung upper floor, leaded casement windows, deep dark plain-tile roof; parking court and carport in front, ringed by tall conifers and trees. n0 landed on Church Road (flint/stone retaining wall, rendered and brick villas) and was not counted."
+ },
+ "Grove Road": {
+  "walls": {
+   "red_brick": 0.75,
+   "white_render": 0.15,
+   "cream_render": 0.1
+  },
+  "upper_differs": 0.25,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.5,
+   "slate": 0.3,
+   "red_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.5,
+   "semi": 0.25,
+   "terrace": 0.25
+  },
+  "era": "mixed",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "two-lane residential road, no centre line, double yellow lines at the junction end, footway on the house side; allotments behind a hedge on the north side",
+  "confidence": "medium",
+  "note": "Houses on the south side only (north side is allotments behind a hedge): postwar and later red-brick detached and semi houses, some with white-rendered upper floors and garages, behind brick-pier walls and hedges; at the east end a Victorian red-brick terrace with slate roofs and a white-rendered cottage."
+ },
+ "Soane End": {
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "unnamed tarmac lane behind hedges and fences; could not see the close's own carriageway",
+  "confidence": "low",
+  "note": "n0 landed on Highdown Hill Road (not counted) and n2 has no imagery. n1 (an unnamed spot that is probably the back of Soane End) shows only the upper floors of 1980s-on red-brick detached houses with brown tile roofs and solar panels over a tall beech hedge and fences."
+ },
+ "Penn Close": {
+  "walls": {
+   "orange_brick": 0.8,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0.8,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "short cul-de-sac with a turning head, no markings, footways with low kerbed planting beds",
+  "confidence": "medium",
+  "note": "A small 1960s-70s close of near-identical detached houses: orange/brown brick ground floors with brown tile-hung (or stained boarded) upper floors, integral garages, brown concrete tile roofs, open-plan block-paved drives and shrub beds."
+ },
+ "Lyefield Court": {
+  "confidence": "none",
+  "note": "All three viewpoints (n0, n1, n2) have no Street View imagery; the court appears to be private with no coverage."
+ },
+ "Cherwell Road": {
+  "walls": {
+   "red_brick": 0.6,
+   "buff_brick": 0.4
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "dark_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "quiet residential road, no centre line, narrow footways, edge lines near the Gravel Hill end (no-entry except cycles at the junction)",
+  "confidence": "medium",
+  "note": "Mostly 1960s-70s two-storey houses in yellow/buff and red brick with shallow brown concrete tile roofs, gable ends to the road and close-board fences and shrubs in front; an older red-brick house with dormers at the Gravel Hill end. n0 landed on Tredegar Road and was not counted."
+ },
+ "Barnes Road": {
+  "confidence": "none",
+  "note": "All three viewpoints (n0, n1, n2) have no Street View imagery."
+ },
+ "Hanover Court": {
+  "walls": {
+   "red_brick": 0.5,
+   "buff_brick": 0.5
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0.3,
+  "form": {
+   "flats": 0.4,
+   "terrace": 0.3,
+   "semi": 0.3
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "narrow estate access lane and footpaths (2019 imagery), parking courts, no markings",
+  "confidence": "medium",
+  "note": "Council-estate court: a long three-storey red-brick maisonette block with external balconies and stairs behind a high brick wall, plus buff-brick single-storey and two-storey houses with brown concrete tile roofs, close-board fences and grass verges. n1 landed on The Meadway and was not counted."
+ },
+ "Caversham Park Road": {
+  "walls": {
+   "buff_brick": 0.5,
+   "red_brick": 0.3,
+   "orange_brick": 0.2
+  },
+  "upper_differs": 0.2,
+  "upper": "timber",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.8,
+   "grey_tile": 0.2
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.4,
+   "terrace": 0.4,
+   "detached": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "wide estate distributor road, no centre line where seen, broad grass verges with railings, woodland strips alongside",
+  "confidence": "low",
+  "note": "Long road through the Caversham Park estate with woodland belts on one side; the houses seen are 1960s-70s buff and brown-brick terraces/semis with brown concrete tile roofs and some timber-clad panels, mostly side or rear elevations behind fences and grass verges."
+ },
+ "Harmont Gate": {
+  "confidence": "none",
+  "note": "Both viewpoints snapped to Peppard Road (A4074): interwar/postwar red-brick detached houses behind hedges and a school opposite; Harmont Gate itself not seen, not counted."
+ }
+}

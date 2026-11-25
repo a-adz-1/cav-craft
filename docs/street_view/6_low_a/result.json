@@ -1,0 +1,309 @@
+{
+ "Tyler Close": {
+  "walls": {
+   "orange_brick": 0.6,
+   "white_render": 0.4
+  },
+  "upper_differs": 0.8,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "grey_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.9,
+   "detached": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow cul-de-sac with a turning head, no centre line, no humps.",
+  "confidence": "low",
+  "note": "Only the two n1 views are on Tyler Close (n0 landed on Uplands Road). They show a 1960s-70s two-storey terrace set back behind open lawns, with dark grey hung panels or weatherboarding on the upper floor and white panels with brown brick end walls below; the other view shows only garage blocks and brick walls at the turning head."
+ },
+ "Glenrhondda": {
+  "walls": {
+   "buff_brick": 0.5,
+   "orange_brick": 0.3,
+   "red_brick": 0.2
+  },
+  "upper_differs": 0.1,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 0.6,
+   "semi": 0.1,
+   "terrace": 0.3
+  },
+  "era": "modern_1980s_on",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow estate road, no centre line, block-paved drives straight off the road, no humps seen.",
+  "confidence": "medium",
+  "note": "Late-1980s/90s executive estate: buff and orange-red brick detached houses with gables and integral garages, plus a row of three-storey town houses (buff brick, white balcony bays, integral garages). Open-plan lawns and paved drives; one viewpoint is hidden by roadside trees and the n2 views landed on Tredegar Road."
+ },
+ "The Warren": {
+  "confidence": "none",
+  "note": "All usable views show only woodland, ivy and tall close-board fences along the lane; n2 has no Street View imagery. No houses visible."
+ },
+ "Blagrave Lane": {
+  "confidence": "none",
+  "note": "A narrow lane between overgrown hedges and close-board fences by Mapledurham playing fields and tennis club; no houses are visible from any viewpoint."
+ },
+ "River Road": {
+  "walls": {
+   "red_brick": 0.9,
+   "white_render": 0.1
+  },
+  "upper_differs": 0.1,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "slate": 0.4,
+   "dark_tile": 0.4,
+   "brown_tile": 0.2
+  },
+  "bungalows": 0.1,
+  "form": {
+   "detached": 0.8,
+   "semi": 0.2
+  },
+  "era": "mixed",
+  "front": "hedge",
+  "trees": "verges_and_trees",
+  "road": "Private unmade/gravel lane, no markings; imagery from 2012.",
+  "confidence": "low",
+  "note": "A leafy private lane with big detached houses behind tall hedges, timber fences and five-bar gates: one Victorian red-brick house with slate roof, and 1960s-70s red-brick detached/semi houses with plain-tile roofs and gravel drives. The n2 views landed on Upper Warren Avenue."
+ },
+ "Abbotsmead Place": {
+  "walls": {
+   "orange_brick": 0.6,
+   "cream_render": 0.4
+  },
+  "upper_differs": 0.4,
+  "upper": "cream_render",
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Short private access road and parking courts with footpaths; double yellow lines at the entrance.",
+  "confidence": "medium",
+  "note": "Modern (2000s) three-to-four-storey blocks of flats in orange-red brick with cream-rendered bays and stone-coloured window heads, behind brick pier walls with railings and hedges, with parking courts. One view looks over a fence to a car park; another is a gravel track between trees."
+ },
+ "Keston Close": {
+  "walls": {
+   "orange_brick": 0.6,
+   "white_render": 0.4
+  },
+  "upper_differs": 0.7,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 0.5,
+   "brown_tile": 0.5
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.8,
+   "semi": 0.2
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges",
+  "road": "Narrow cul-de-sac, no centre line, no humps; garages and paved drives off the road.",
+  "confidence": "medium",
+  "note": "1960s-70s two-storey terraces in brown-orange brick with white weatherboard/panel bands on the upper floor and integral or front garages, open lawns and paved drives. The n2 views landed on Donegal Close (red-brick 1950s-60s terraces)."
+ },
+ "Grove Hill": {
+  "walls": {
+   "red_brick": 0.8,
+   "orange_brick": 0.2
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 0.5,
+   "brown_tile": 0.5
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.9,
+   "semi": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "fence",
+  "trees": "verges_and_trees",
+  "road": "Narrow access lane ending in a garage court with lock-up garages and bins; no markings.",
+  "confidence": "low",
+  "note": "Only the n2 viewpoint is on Grove Hill, and it looks into a garage court behind a two-storey red-brick 1960s-70s terrace (rear elevations, fences, lock-up garages). n0 is at an unnamed junction by a Victorian corner house and n1 landed on Eliot Close, so front elevations were not seen."
+ },
+ "Sheldon Rise": {
+  "confidence": "none",
+  "note": "All six views landed on Hemdean Road (1930s red-brick semis with white bays), not on Sheldon Rise, so nothing on Sheldon Rise itself was seen."
+ },
+ "Victoria Road": {
+  "confidence": "none",
+  "note": "n0 and n1 have no Street View imagery (black 'No imagery' panels near Queen Anne's School); n2 landed on Hemdean Road showing only trees and a fence."
+ },
+ "Burcombe Way": {
+  "walls": {
+   "red_brick": 0.8,
+   "white_render": 0.2
+  },
+  "upper_differs": 0.4,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 0.6,
+   "brown_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "terrace": 0.9,
+   "flats": 0.1
+  },
+  "era": "estate_1960s_70s",
+  "front": "low_brick_wall",
+  "trees": "none",
+  "road": "Narrow estate road with footway, garage court with lock-ups; no centre line. The n0 views are on the B481 main road with a centre line and give-way markings.",
+  "confidence": "low",
+  "note": "1960s-70s council-style two-storey red-brick terraces with shallow-pitched roofs and some white weatherboard panels, seen mostly from the side and behind tall red-brick garden walls, plus a lock-up garage court. The n0 viewpoint is on the B481 rather than in the street."
+ },
+ "Scolars Close": {
+  "confidence": "none",
+  "note": "n0 landed on St Peter's Hill (only glimpses of two-storey red-brick 1960s-70s blocks behind a grassy bank and big trees, which may or may not be Scolars Close) and n1 has no Street View imagery, so the street itself was not seen."
+ },
+ "Atterbury Gardens": {
+  "confidence": "none",
+  "note": "All four views landed on Woodford Close (1970s brick-and-tile-hung detached houses and a gated drive between brick piers); Atterbury Gardens itself was not seen."
+ },
+ "Boundary Lane": {
+  "confidence": "none",
+  "note": "n0 is a tree-lined lane by the Graveney Drive sign with only walls and ivy, n1 has no Street View imagery, and n2 landed on Graveney Drive (1970s brown-brick detached houses). No houses on Boundary Lane were seen."
+ },
+ "Lawson Drive": {
+  "confidence": "none",
+  "note": "Both views landed on Conisboro Avenue (interwar red-brick semis with tile-hung gables behind low brick walls); Lawson Drive was not seen."
+ },
+ "Kiln Road": {
+  "confidence": "low",
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0,
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "mixed",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Narrow rural lane between field hedges in the north (no markings); a give-way line where n2 meets a side road.",
+  "note": "Mostly a country lane: n0 and n1 show only fields and tall hedgerows with no buildings. At n2 (21 Kiln Road) a single red-brick house is glimpsed behind a big oak and a low red-brick wall with piers, and one view there is just woodland."
+ },
+ "Albany Gardens": {
+  "confidence": "none",
+  "note": "n0 has no Street View imagery and n1 landed on Highdown Hill Road (interwar red-brick detached houses with tile-hung gables behind low brick walls); Albany Gardens itself was not seen."
+ },
+ "Fox Crescent": {
+  "confidence": "none",
+  "note": "Both views landed on Kidmore End Road, showing a hedge, a builder's site fence and the rooftops of red/brown-brick houses behind; Fox Crescent itself was not seen."
+ },
+ "Dunster Close": {
+  "confidence": "low",
+  "walls": {
+   "buff_brick": 0.6,
+   "red_brick": 0.4
+  },
+  "upper_differs": 0.3,
+  "upper": "tile_hung",
+  "tudor": 0,
+  "roof": {
+   "brown_tile": 0.6,
+   "grey_tile": 0.4
+  },
+  "bungalows": 0,
+  "form": {
+   "semi": 0.5,
+   "terrace": 0.5
+  },
+  "era": "estate_1960s_70s",
+  "front": "open",
+  "trees": "verges_and_trees",
+  "road": "Narrow estate road with a grassed corner verge at the entrance; centre dashes only at the junction.",
+  "note": "The viewpoints at the entrance show a grass verge, trees, a big hedge and a low brick wall, with only glimpses of 1960s-70s two-storey buff and red-brick semis/terraces, some with tile-hung or weatherboarded upper floors. One step along the road went into Abingdon Drive (red-brick terraces), which is not counted."
+ },
+ "Cavendish Road": {
+  "confidence": "low",
+  "walls": {
+   "red_brick": 0.6,
+   "orange_brick": 0.4
+  },
+  "upper_differs": 0.2,
+  "upper": "white_render",
+  "tudor": 0,
+  "roof": {
+   "grey_tile": 0.5,
+   "brown_tile": 0.5
+  },
+  "bungalows": 0,
+  "form": {
+   "flats": 0.6,
+   "detached": 0.4
+  },
+  "era": "estate_1960s_70s",
+  "front": "none",
+  "trees": "none",
+  "road": "Short service road off the B481 Peppard Road leading to a garage court and parking behind the Emmer Green shops; no markings.",
+  "shops": "Backs of the Emmer Green parade only: two-storey red-brick 1960s maisonettes with a deck-access walkway over ground-floor stores, bins and service doors; shopfronts face Peppard Road, not this road.",
+  "note": "Cavendish Road is effectively a service lane: rows of lock-up garages, a car park and the rear of a 1960s-70s red-brick parade with flats above. The n0 views stand on the B481 (Peppard Road) with Victorian and modern houses, so they are not counted."
+ },
+ "Old Barn Close": {
+  "confidence": "low",
+  "walls": {
+   "red_brick": 1.0
+  },
+  "upper_differs": 0.5,
+  "upper": "timber",
+  "tudor": 0,
+  "roof": {
+   "dark_tile": 1.0
+  },
+  "bungalows": 0,
+  "form": {
+   "detached": 1.0
+  },
+  "era": "modern_1980s_on",
+  "front": "low_brick_wall",
+  "trees": "verges_and_trees",
+  "road": "Narrow private-looking close, no markings.",
+  "note": "One viewpoint: tall red-brick boundary walls with black timber gates, behind which are big detached houses with steep dark plain-tile roofs, one in black weatherboarded barn style; the other way is a tall conifer hedge."
+ },
+ "Milestone Way": {
+  "confidence": "none",
+  "note": "n0 landed on Peppard Road (B481), n1 has no Street View imagery and n2 landed on Chatsworth Close; Milestone Way itself was not seen."
+ },
+ "Chiltern Heights": {
+  "confidence": "none",
+  "note": "Both views landed on Chiltern Road (2012 imagery: 1930s red-brick semis and a footpath entrance between hedges); Chiltern Heights itself was not seen."
+ }
+}

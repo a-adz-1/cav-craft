@@ -800,6 +800,26 @@ def furniture(G, P):
 
 # ---- waterside life, the rowing lake's race lanes, pitch markings ----------------------------------
 
+def rect_axes(pts):
+    """Centre, long and short axis (rows of a 2x2) and half-length/half-width of an outline's tightest rectangle."""
+    from shapely.geometry import Polygon
+    r = np.array(Polygon(pts).minimum_rotated_rectangle.exterior.coords)[:4]
+    e1, e2 = r[1] - r[0], r[2] - r[1]
+    if np.hypot(*e1) < np.hypot(*e2):
+        e1, e2 = e2, e1
+    l1, l2 = np.hypot(*e1), np.hypot(*e2)
+    return r.mean(0), np.array([e1 / l1, e2 / l2]), l1 / 2, l2 / 2
+
+
+def hidden_pitches(osm):
+    """Ids of grass pitches mostly covered by a bigger one (the map has alternative layouts drawn over each other)."""
+    from shapely.geometry import Polygon
+    ps = [(a["id"], Polygon(a["rings"][0]).buffer(0)) for a in osm["areas"]
+          if a["tags"].get("leisure") == "pitch" and a["tags"].get("surface", "grass") == "grass"
+          and len(a["rings"][0]) > 3]
+    return {i for i, p in ps for j, q in ps if j != i and q.area > p.area and p.intersection(q).area > 0.25 * p.area}
+
+
 def waterside(G, P):
     from scipy import ndimage
     rng = np.random.default_rng(21)
@@ -844,15 +864,15 @@ def waterside(G, P):
                 n += 1
     # pitch markings: a white line round each football/rugby pitch and across the middle
     lines = 0
+    hidden = hidden_pitches(osm)
     for a in osm["areas"]:
         t = a["tags"]
-        if t.get("leisure") != "pitch" or t.get("sport") not in ("soccer", "football", "rugby_union", "rugby"):
+        if t.get("leisure") != "pitch" or t.get("sport") not in ("soccer", "football", "rugby_union", "rugby") \
+                or a["id"] in hidden:
             continue
         pts = np.array([xz(*p) for p in a["rings"][0]], float)
         seg = list(zip(pts[:-1], pts[1:]))
-        c2 = pts.mean(0)
-        u2, s2, vt2 = np.linalg.svd(pts - c2, full_matrices=False)
-        half = np.abs((pts - c2) @ vt2[1]).max()
+        c2, vt2, _, half = rect_axes(pts)
         seg.append((c2 - vt2[1] * half, c2 + vt2[1] * half))
         for p0, p1 in seg:
             for k in np.linspace(0, 1, int(np.hypot(*(p1 - p0))) + 1):
@@ -1185,6 +1205,8 @@ def leisure(G, P):
     rng = np.random.default_rng(81)
     blocks = {}
     stats = {}
+    tennis = np.zeros((Hh, Ww), bool)
+    hidden = hidden_pitches(osm)
 
     def poly(a):
         img = Image.new("L", (Ww, Hh), 0)
@@ -1228,17 +1250,84 @@ def leisure(G, P):
             blocks[(sx, g + 2, sz)] = P("blue_concrete")
             blocks[(sx, g + 3, sz)] = P("blue_concrete")
             stats["playgrounds"] = stats.get("playgrounds", 0) + 1
-        elif kind == "pitch" and t.get("sport") == "tennis" and a["id"] != "w450242572":   # (heights_school's)
-            # net across the middle of the court's short axis
-            c = pts.mean(0)
-            u, s_, vt = np.linalg.svd(pts - c, full_matrices=False)
-            half = np.abs((pts - c) @ vt[1]).max()
-            for k in np.linspace(-half, half, int(2 * half) + 1):
+        elif kind == "pitch" and "tennis" in t.get("sport", "") and a["id"] != "w450242572":   # (heights_school's)
+            # a green court with white lines in a red surround, a net across the middle; fenced in groups below
+            c, vt, L, W = rect_axes(pts)
+            lc, wc = min(11.9, L - 1), min(5.5, W - 1)                 # doubles court, or the polygon if smaller
+            uu = np.abs((np.stack([xs, zs], 1) - c) @ vt[0])
+            vv = np.abs((np.stack([xs, zs], 1) - c) @ vt[1])
+            sv, sg = lc * 0.54, wc * 0.75                                # service line, singles sideline
+            court = (uu <= lc + 0.5) & (vv <= wc + 0.5)
+            line = court & ((np.abs(uu - lc) < 0.5) | (np.abs(vv - wc) < 0.5) | ((np.abs(vv - sg) < 0.5) & (uu <= lc))
+                            | ((np.abs(uu - sv) < 0.5) & (vv <= sg)) | ((vv < 0.5) & (uu <= sv)))
+            for z, x, cl, ln in zip(zs, xs, court, line):
+                blocks[(int(x), int(G["ground"][z, x]), int(z))] = P(
+                    "white_concrete" if ln else "green_concrete" if cl else "red_terracotta")
+            ns = abs(vt[1][1]) > abs(vt[1][0])                           # net runs north-south
+            for k in np.linspace(-wc - 1, wc + 1, int(2 * wc + 3)):
                 x, z = (int(round(v)) for v in c + vt[1] * k)
                 if 0 <= z < Hh and 0 <= x < Ww and inside[z, x]:
-                    blocks[(x, int(G["ground"][z, x]) + 1, z)] = P("white_stained_glass_pane", north="true",
-                                                                   south="true", east="true", west="true")
-            stats["tennis nets"] = stats.get("tennis nets", 0) + 1
+                    blocks[(x, int(G["ground"][z, x]) + 1, z)] = P(
+                        "white_stained_glass_pane", north=str(ns).lower(), south=str(ns).lower(),
+                        east=str(not ns).lower(), west=str(not ns).lower(), waterlogged="false")
+            tennis |= inside
+            stats["tennis courts"] = stats.get("tennis courts", 0) + 1
+        elif kind == "pitch" and ("soccer" in t.get("sport", "") or "basketball" in t.get("sport", "")) \
+                and a["id"] not in hidden:
+            # goals (posts and a crossbar, 7 wide) or basketball hoops at both ends of the long axis
+            c, vt, L, W = rect_axes(pts)
+            ball = "soccer" not in t["sport"]
+            for end in (-1, 1):
+                if ball:
+                    x, z = (int(round(v)) for v in c + vt[0] * end * (L - 1))
+                    if not (0 <= z < Hh and 0 <= x < Ww) or not inside[z, x]:
+                        continue
+                    g = int(G["ground"][z, x])
+                    for y in range(g + 1, g + 4):
+                        blocks[(x, y, z)] = P("polished_blackstone_wall", up="true", north="none", south="none",
+                                              east="none", west="none", waterlogged="false")
+                    bx, bz = (int(round(v)) for v in c + vt[0] * end * (L - 2))
+                    blocks[(bx, g + 4, bz)] = P("white_concrete")
+                    blocks[(bx, g + 3, bz)] = P("orange_stained_glass")          # the hoop under the board
+                    continue
+                half = min(3.5, W - 1)
+                ends = [c + vt[0] * end * (L - 0.5) + vt[1] * k for k in np.linspace(-half, half, int(2 * half) + 1)]
+                cells = [tuple(int(round(v)) for v in p) for p in ends]
+                if not all(0 <= z < Hh and 0 <= x < Ww and G["mask"][z, x] for x, z in cells):
+                    continue
+                g = int(np.median([G["ground"][z, x] for x, z in cells]))
+                for i, (x, z) in enumerate(cells):
+                    if i in (0, len(cells) - 1):
+                        blocks[(x, g + 1, z)] = blocks[(x, g + 2, z)] = P("white_concrete")
+                    blocks[(x, g + 3, z)] = P("white_concrete")
+            stats["goals/hoops"] = stats.get("goals/hoops", 0) + 2
+        elif kind == "pitch" and t.get("sport") == "skateboard":
+            # concrete with a quarter pipe at each end, a box with a rail in the middle
+            c, vt, L, _ = rect_axes(pts)
+            g = int(np.median(G["ground"][zs, xs]))
+            uu = (np.stack([xs, zs], 1) - c) @ vt[0]
+            vv = (np.stack([xs, zs], 1) - c) @ vt[1]
+            ax = int(np.argmax(np.abs(vt[0])))                         # long axis is x (0) or z (1)
+            for z, x, u, v in zip(zs, xs, uu, vv):
+                x, z = int(x), int(z)
+                for y in range(g + 1, g + 4):
+                    blocks.setdefault((x, y, z), P("air"))
+                blocks[(x, g, z)] = P("smooth_stone")
+                d = L - abs(u)
+                face = (("west", "east") if ax == 0 else ("north", "south"))[int(u * vt[0][ax] > 0)]
+                if d < 1.5:
+                    blocks[(x, g + 1, z)] = P("smooth_stone")
+                    blocks[(x, g + 2, z)] = P("smooth_stone_slab", type="bottom")
+                elif d < 2.5:
+                    blocks[(x, g + 1, z)] = P("stone_stairs", facing=face, half="bottom", shape="straight",
+                                              waterlogged="false")
+                elif abs(u) < 2.5 and abs(v) < 1.5:
+                    blocks[(x, g + 1, z)] = P("smooth_stone_slab", type="bottom")
+                elif abs(u) < 2.5 and abs(v - 2) < 0.5:
+                    blocks[(x, g + 1, z)] = P("iron_bars", north="false", south="false", east="false", west="false",
+                                              waterlogged="false")
+            G["surface"][inside] = 9                                    # paved: no grass tufts
+            stats["skate parks"] = stats.get("skate parks", 0) + 1
         elif kind == "swimming_pool":
             g = int(np.median(G["ground"][zs, xs]))
             edge = inside & ~__import__("scipy.ndimage", fromlist=["x"]).binary_erosion(inside)
@@ -1250,6 +1339,66 @@ def leisure(G, P):
                     blocks[(int(x), g - 1, int(z))] = P("water", level=0)
                     blocks[(int(x), g, int(z))] = P("water", level=0)
             stats["pools"] = stats.get("pools", 0) + 1
+    # a mesh fence round each group of tennis courts, with a gate in the middle of its south side
+    from scipy import ndimage
+    from houses import connect
+    grp, n = ndimage.label(ndimage.binary_closing(tennis, iterations=3) | tennis)
+    fence = set()
+    for i in range(1, n + 1):
+        r = grp == i
+        ring = ndimage.binary_dilation(r) & ~r & G["mask"] & (G["building"] == 0) & (G["water"] == -999)
+        G["surface"][r] = 14                                           # tennis: no grass tufts or bushes
+        for z, x in zip(*np.nonzero(r & ~tennis)):                  # the gaps between courts: red surround
+            blocks[(int(x), int(G["ground"][z, x]), int(z))] = P("red_terracotta")
+        zs, xs = np.nonzero(ring)
+        gate = (zs == zs.max()) & (np.abs(xs - np.median(xs[zs == zs.max()])) <= 1)
+        for z, x, gt in zip(zs, xs, gate):
+            if not gt:
+                fence.update((int(x), y, int(z)) for y in range(int(G["ground"][z, x]) + 1, int(G["ground"][z, x]) + 4))
+    blocks.update(connect(fence, "iron_bars", P, wall=False))
+    # sculptures, shelters and picnic tables from the map's points
+    import lock
+    for nd in osm["nodes"]:
+        t = nd["tags"]
+        x, z = xz(*nd["pt"])
+        if not (0 <= z < Hh and 0 <= x < Ww) or not G["mask"][z, x] or G["water"][z, x] != -999 \
+                or G["building"][z, x]:
+            continue
+        g = int(G["ground"][z, x])
+        if t.get("tourism") == "artwork" and t.get("artwork_type") in ("sculpture", "statue", None):
+            wood = t.get("material") == "wood"
+            body, arm = ("stripped_oak_log", "stripped_spruce_log") if wood else ("stone_bricks", "stone_brick_wall")
+            blocks[(x, g, z)] = P("coarse_dirt" if wood else "smooth_stone")
+            for y in range(g + 1, g + 4):
+                blocks[(x, y, z)] = P(body, axis="y") if wood else P(body)
+            blocks[(x, g + 4, z)] = P("oak_log" if wood else "chiseled_stone_bricks", **({"axis": "y"} if wood else {}))
+            if rng.random() < 0.5 and wood:                            # some carvings get arms or wings
+                for d in (-1, 1):
+                    blocks[(x + d, g + 3, z)] = P(arm, axis="x")
+            if t.get("name"):
+                blocks[(x, g + 1, z + 1)] = P("oak_sign", rotation=0)
+                G["block_entities"].setdefault((x // 16, (z + 1) // 16), []).append(
+                    lock.sign_entity(x, g + 1, z + 1, ["", t["name"][:15], "", ""]))
+            stats["sculptures"] = stats.get("sculptures", 0) + 1
+        elif t.get("amenity") == "shelter":
+            # four posts, a slab roof and a bench along the back
+            for dx in (-1, 1):
+                for dz in (-1, 1):
+                    for y in (g + 1, g + 2):
+                        blocks[(x + dx, y, z + dz)] = P("dark_oak_fence", north="false", south="false", east="false",
+                                                        west="false", waterlogged="false")
+            for dx in (-1, 0, 1):
+                for dz in (-1, 0, 1):
+                    blocks[(x + dx, g + 3, z + dz)] = P("dark_oak_slab", type="bottom", waterlogged="false")
+                blocks[(x + dx, g + 1, z - 1)] = P("dark_oak_stairs", facing="north", half="bottom",
+                                                   shape="straight", waterlogged="false")
+            stats["shelters"] = stats.get("shelters", 0) + 1
+        elif t.get("leisure") == "picnic_table":
+            for dx in (0, 1):
+                blocks[(x + dx, g + 1, z)] = P("spruce_slab", type="top", waterlogged="false")
+                for dz in (-1, 1):
+                    blocks[(x + dx, g + 1, z + dz)] = P("spruce_slab", type="bottom", waterlogged="false")
+            stats["picnic tables"] = stats.get("picnic tables", 0) + 1
     print("leisure:", stats)
     return block_stamp(blocks)
 
@@ -2658,6 +2807,7 @@ def play_parks(G, P):
     pgs = [a for a in osm["areas"] if a["tags"].get("leisure") == "playground"]
     parks = [a for a in osm["areas"] if a["tags"].get("leisure") in ("park", "recreation_ground")
              or a["tags"].get("landuse") == "recreation_ground"]
+    parks = [a for a in parks if "tennis" not in a["tags"].get("name", "").lower()]
     from PIL import Image, ImageDraw
 
     def poly(a):
