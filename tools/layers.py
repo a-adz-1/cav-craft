@@ -480,7 +480,33 @@ def fill_numbers():
                 if num[j] or not step:
                     break
                 put(j, int(num[end]) + step * k)
-    print("house numbers carried on from neighbours:", filled)
+    # every house gets a number: rows with one known number count on by 2 from it; rows with none number up the
+    # street from 1 (odds) or 2 (evens), the opposite parity to the other side where that side is known;
+    # anything still blank takes the house before it plus the row's step
+    # shortcut: a street split into several OSM ways restarts its count on each way, fix by chaining ways by name
+    guessed = 0
+    for (wi, side), row in rows.items():
+        num = [buildings[i]["tags"].get("addr:housenumber") for _, i in row]
+        known = [j for j, v in enumerate(num) if v and v.isdigit()]
+        if not known:
+            other = [buildings[i]["tags"].get("addr:housenumber") for _, i in rows.get((wi, -side), [])]
+            other = [int(v) for v in other if v and v.isdigit()]
+            first = (2 if other[0] % 2 else 1) if other else (1 if side > 0 else 2)
+            vals = {j: first + 2 * j for j in range(len(row))}
+        else:
+            k0 = known[0]
+            vals = {j: int(num[k0]) + 2 * (j - k0) for j in range(len(row))}
+            last, step = None, 2
+            for j in range(len(row)):           # carry on from the nearest number before, where there is one
+                if num[j] and num[j].isdigit():
+                    last = (j, int(num[j]))
+                elif last:
+                    vals[j] = last[1] + step * (j - last[0])
+        for j, (_, i) in enumerate(row):
+            if not buildings[i]["tags"].get("addr:housenumber") and vals[j] >= 1:
+                buildings[i]["tags"]["addr:housenumber"] = str(vals[j])
+                guessed += 1
+    print("house numbers carried on from neighbours:", filled, "guessed along the street:", guessed)
 
 
 fill_numbers()

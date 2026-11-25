@@ -164,11 +164,12 @@ def command_entity(x, y, z, command):
             "CustomName": '"Caversham Lock"'}
 
 
-def sign_entity(x, y, z, lines):
+def sign_entity(x, y, z, lines, colour="black"):
     msgs = ['"%s"' % t for t in lines] + ['""'] * (4 - len(lines))
     blank = {"messages": ['""'] * 4, "color": "black", "has_glowing_text": anvil.Byte(0)}
     return {"id": "minecraft:sign", "x": x, "y": y, "z": z, "is_waxed": anvil.Byte(1),
-            "front_text": {"messages": msgs, "color": "black", "has_glowing_text": anvil.Byte(0)},
+            "front_text": {"messages": msgs, "color": colour,
+                           "has_glowing_text": anvil.Byte(colour != "black")},   # light text glows, readable on dark oak
             "back_text": blank}
 
 

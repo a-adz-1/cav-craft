@@ -1,0 +1,6 @@
+This is a SECOND LOOK at streets the survey rated "low" (hedges hid the houses, or the views landed on the next street). Follow BRIEF.txt with these changes:
+- DIR/views.tsv has NEW viewpoints, spread along each street away from the old ones, each looking square at one side's houses.
+- If a view is hidden by hedges or trees, you may press the up-arrow key once or twice (or click the road ahead) to step along the street, then screenshot again; save it as <street>__<view id>_b.jpg.
+- If a view lands on a different street (check the address shown top-left), say so in the note and don't count it.
+- Rate confidence honestly: only say medium or high if you really saw the houses. Your result replaces the old reading only where it is more confident.
+- Close your own tab with tabs_close when you're done. If Google Maps comes up as blank white pages several times in a row (also in a fresh tab), stop, save, close your tab and report.

@@ -586,13 +586,15 @@ def prepare(G, P, layers, lidar, buildings):
                         blocks[(x0 + xl, int(y), z0 + zl)] = P(stair, facing=OPP[lows[0]], half="bottom",
                                                                 shape="straight")
         # inside: a staircase up to the first floor along one wall, and a few furnishings per floor
+        stair_xz = set()
         if kind in HOUSE_KINDS and not big and not lm and ey - fl >= 5:
             inner = inside & ~edge
             cells = np.argwhere(inner & ndimage.binary_dilation(edge))   # just inside the walls
             run = None
             for zl, xl in cells:
                 for name, (dx, dz) in DIRS.items():
-                    path = [(zl + dz * k, xl + dx * k) for k in range(3)]
+                    # a cell to step on from, 3 steps, and a landing on the first floor at the top
+                    path = [(zl + dz * k, xl + dx * k) for k in range(-1, 4)]
                     if all(0 <= a < inside.shape[0] and 0 <= c < inside.shape[1] and inner[a, c] for a, c in path):
                         run = (path, name)
                         break
@@ -600,11 +602,18 @@ def prepare(G, P, layers, lidar, buildings):
                     break
             if run:
                 path, name = run
-                for k, (a, c) in enumerate(path):
+                for k, (a, c) in enumerate(path[1:4]):
                     X, Z = x0 + c, z0 + a
                     blocks[(X, fl + 1 + k, Z)] = P("oak_stairs", facing=name, half="bottom", shape="straight")
-                    for y in range(fl + 2 + k, fl + 5):
-                        blocks.setdefault((X, y, Z), P("air"))          # stairwell through the first floor
+                    for y in range(fl + 2 + k, min(fl + 5 + k, fl + 6)):   # not into the floor above
+                        blocks[(X, y, Z)] = P("air")                    # stairwell through the first floor
+                a, c = path[0]
+                for y in (fl + 1, fl + 2):
+                    blocks[(x0 + c, y, z0 + a)] = P("air")              # the foot of the stairs
+                a, c = path[4]
+                for y in (fl + 4, fl + 5):
+                    blocks[(x0 + c, y, z0 + a)] = P("air")              # the landing
+                stair_xz = {(x0 + c, z0 + a) for a, c in path}
             furnish(P, blocks, inner, edge, x0, z0, fl, ey, set(run[0]) if run else set(), h)
         # flat-roofed blocks: a parapet round the roof edge, a plant room on top of the big ones, and balconies
         # on apartment blocks (a slab ledge + glass rail under every other upper-floor window row)
@@ -704,21 +713,10 @@ def prepare(G, P, layers, lidar, buildings):
                         X, Z = x0 + dx_, z0 + dz_
                         blocks[(X, fl + 1, Z)] = P(door, facing=name, half="lower", hinge="left", open="false")
                         blocks[(X, fl + 2, Z)] = P(door, facing=name, half="upper", hinge="left", open="false")
-                        for y in (fl + 1, fl + 2):                    # the hall inside the door stays clear
-                            blocks[(X - dx, y, Z - dz)] = P("air")
+                        if (X - dx, Z - dz) not in stair_xz:          # the hall inside the door stays clear
+                            for y in (fl + 1, fl + 2):
+                                blocks[(X - dx, y, Z - dz)] = P("air")
                         G.setdefault("doorsteps", []).append((X + dx, fl, Z + dz))
-                        # the house number on a plaque on the wall beside the door, facing the street
-                        num = t.get("addr:housenumber")
-                        if num and not shop_colour:
-                            for k in (1, -1):
-                                SX, SZ = X + dx + dz * k, Z + dz + dx * k
-                                if 0 <= SZ - dz - z0 < inside.shape[0] and 0 <= SX - dx - x0 < inside.shape[1] \
-                                        and edge[SZ - dz - z0, SX - dx - x0] and (SX, fl + 2, SZ) not in blocks:
-                                    blocks[(SX, fl + 2, SZ)] = P("dark_oak_wall_sign", facing=name)
-                                    G.setdefault("sign_texts", []).append(
-                                        (int(SX), int(fl) + 2, int(SZ), [num.replace(",", " & ").replace(";", " & ")]))
-                                    stats["numbered"] = stats.get("numbered", 0) + 1
-                                    break
                         # porch canopy over the door: a slab hood on brackets (Victorian/Edwardian), a tiled
                         # lean-to porch (1930s), a flat timber canopy (1960s)
                         fam = st.get("family")
@@ -737,6 +735,19 @@ def prepare(G, P, layers, lidar, buildings):
                         if st.get("family") in BAY_FAMILIES and not lm and not shop_colour:
                             add_bay(P, blocks, inside, bid[z0:z1, x0:x1], dz_, dx_, dx, dz, x0, z0, fl,
                                     ey, P(WALLS[wname]), P(full), st["family"], stats)
+                        # the house number on a plaque beside the door, facing the street (after the bay, so it
+                        # takes the free side); no room either side: over the door, in place of the porch hood
+                        num = t.get("addr:housenumber")
+                        if num and not shop_colour:
+                            spots = [(X + dx + dz * k, fl + 2, Z + dz + dx * k) for k in (1, -1)]
+                            spots = [(SX, SY, SZ) for SX, SY, SZ in spots
+                                     if 0 <= SZ - dz - z0 < inside.shape[0] and 0 <= SX - dx - x0 < inside.shape[1]
+                                     and edge[SZ - dz - z0, SX - dx - x0] and (SX, SY, SZ) not in blocks]
+                            SX, SY, SZ = (spots or [(X + dx, fl + 3, Z + dz)])[0]
+                            blocks[(SX, SY, SZ)] = P("dark_oak_wall_sign", facing=name)
+                            G.setdefault("sign_texts", []).append(
+                                (int(SX), int(SY), int(SZ), [num.replace(",", " & ").replace(";", " & ")], "white"))
+                            stats["numbered"] = stats.get("numbered", 0) + 1
                         break
     print("roofs:", stats)
     G["h_blocks"] = blocks
@@ -748,6 +759,15 @@ def prepare(G, P, layers, lidar, buildings):
         same = np.roll(bid, sh, ax) == bid
         lo = np.where(same & (bid > 0), np.minimum(lo, np.roll(roofY, sh, ax).astype(np.int32) + 1), lo)
     lo = np.minimum(lo, roofY)
+    # windows only in outside walls: a wall cell with one side open to the garden (not a party wall, not the wall
+    # between a house and its extension, not a stepped corner), 2 wide with 3 of wall between, like real houses
+    diff = sum((np.roll(bid, s, a) != bid).astype(np.int8) for a in (0, 1) for s in (1, -1))
+    open_ = sum((np.roll(bid, s, a) == 0).astype(np.int8) for a in (0, 1) for s in (1, -1))
+    faces_ew = (np.roll(bid, 1, 1) != bid) | (np.roll(bid, -1, 1) != bid)
+    zz, xx = np.indices(bid.shape)
+    outer = edge_all & (bid > 0) & (diff == 1) & (open_ == 1)
+    winok = outer & np.isin(np.where(faces_ew, zz, xx) % 5, (1, 2))
+    G.update(h_out=outer, h_wok=winok)
     G.update(h_win=winstyle, h_up=upmat, h_roof=roofY, h_base=base, h_wall=wallmat, h_rooftop=roofmat, h_edge=edge_all, h_lo=lo.astype(np.int16),
              h_blocks=blocks)
 
@@ -793,19 +813,21 @@ def stamp_factory(G, P):
             X = np.arange(16)[None, None, :] + x0
             Z = np.arange(16)[None, :, None] + z0
             ws = G["h_win"][sl][None]
-            win = walls[None] & (ws == 0) & ((rel % 3 == 1) | (rel % 3 == 2)) & (((X + Z) % 4 == 1) | ((X + Z) % 4 == 2))
+            outer = G["h_out"][sl][None]
+            win = G["h_wok"][sl][None] & (ws == 0) & ((rel % 3 == 1) | (rel % 3 == 2))
             # churches: tall narrow lancets; civic: tall mullioned pairs
-            win |= walls[None] & (ws == 1) & (rel >= 2) & (rel <= 5) & ((X + Z) % 3 == 1)
-            win |= walls[None] & (ws == 2) & ((rel % 4 == 1) | (rel % 4 == 2) | (rel % 4 == 3)) & ((X + Z) % 3 != 0)
+            win |= outer & (ws == 1) & (rel >= 2) & (rel <= 5) & ((X + Z) % 3 == 1)
+            win |= outer & (ws == 2) & ((rel % 4 == 1) | (rel % 4 == 2) | (rel % 4 == 3)) & ((X + Z) % 3 != 0)
             placed = win & (Y > fl) & (Y < top) & ((b == wall[None]) | (b == up[None]))
             b[:] = np.where(placed, glass, b)
             # churches: stained glass in the lancets
             b[:] = np.where(placed & (ws == 1), STAINED[(X * 7 + Y * 3 + Z * 5) % len(STAINED)], b)
             # pale sills under and lintels over the windows, on brick walls only
             brickish = np.isin(wall, BRICK_WALLS)[None]
-            sill = np.zeros_like(placed)
-            sill[1:] |= placed[:-1]          # cell above a window = lintel
-            sill[:-1] |= placed[1:]          # cell below = sill
+            lintel, sill = np.zeros_like(placed), np.zeros_like(placed)
+            lintel[1:] = placed[:-1]         # cell above a window = lintel
+            sill[:-1] = placed[1:]           # cell below = sill
+            sill = lintel ^ sill             # brick between storeys stays brick, so windows don't run together
             b[:] = np.where(sill & ~placed & brickish & (b == wall[None]), sill_block, b)
             lo = G["h_lo"][sl].astype(np.int32)
             b[:] = np.where(inb[None] & (Y >= lo) & (Y <= top), rooftop[None], b)
@@ -989,16 +1011,19 @@ def garden_life(G, P, bid, surface, buildings, d, iz, ix, road, house, droad):
         if not back[z, x]:
             continue
         g = int(ground[z, x])
-        cells = [(z + a, x + b) for a in (0, 1) for b in (0, 1, 2)]
+        # 3x3 with a room in the middle, the door in the middle of the north wall, so you go in, not round it
+        cells = [(z + a, x + b) for a in (0, 1, 2) for b in (0, 1, 2)]
         if not all(0 <= a < back.shape[0] and 0 <= b < back.shape[1] and back[a, b] and owner[a, b] == i
                    for a, b in cells):
             continue
         for a, b in cells:
-            blocks[(b, g + 1, a)] = wall
-            blocks[(b, g + 2, a)] = wall
+            hollow = (a, b) == (z + 1, x + 1)
+            blocks[(b, g + 1, a)] = P("air") if hollow else wall
+            blocks[(b, g + 2, a)] = P("air") if hollow else wall
             blocks[(b, g + 3, a)] = roof
-        blocks[(x + 1, g + 1, z)] = P("spruce_door", facing="north", half="lower", hinge="left", open="false")
-        blocks[(x + 1, g + 2, z)] = P("spruce_door", facing="north", half="upper", hinge="left", open="false")
+        blocks[(x + 1, g, z + 1)] = P("spruce_planks")                 # a wooden floor
+        blocks[(x + 1, g + 1, z)] = P("spruce_door", facing="south", half="lower", hinge="left", open="false")
+        blocks[(x + 1, g + 2, z)] = P("spruce_door", facing="south", half="upper", hinge="left", open="false")
         ns += 1
     print(f"front-garden flowers: {nf}, sheds: {ns}")
 
