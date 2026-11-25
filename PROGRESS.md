@@ -387,3 +387,8 @@ Pushed 643d1ae, uploaded the rebuilt world to release v0.1 (43 MB), and swapped 
   - Fixed a duplicate LANDMARKS key: the last pass had overwritten the school's slate roof with red tile. Now: red brick, sandstone dressings, slate hipped roofs (each wing gets its own ridge), about 40% ivy (vines in clumps up the outside walls), and chimney stacks along the ridges at least 14 blocks apart. Six more campus buildings round the quad are styled to match, including the octagon.
   - Big buildings (not houses, churches or garages; 40+ m2) now have an inside you can explore. Each storey gets one flight of stairs per 600 m2, each in its own place. Rooms are about 7x7 with a doorway in each wall and a lantern, and schools get rows of desks. There is also a door in the middle of each straight side where the ground outside is level, as well as the front door. The build has 597 flights and 1561 side doors.
   - road_check: 0 drops over 1. The roof-kind counts in the build stats move between identical runs, so something in the roof fit isn't deterministic. This was already the case and isn't looked into yet.
+- 2026-11-25 More landmarks and parks (user: "keep going"):
+  - Highdown School: Caversham Grove (w153747654) and Norman Shaw's wing (w1252277450) are styled from the Historic England listing (1157071), since neither can be seen from the road. Red brick, white stucco string course, red tile hipped roofs and chimney stacks.
+  - The Moderation pub (213 Caversham Road) is south of the river, outside the built area, so there's nothing to style.
+  - Benches within 20 blocks of water now face the nearest water instead of all facing north, so the Promenade, Hills Meadow and Christchurch Meadows benches look out over the Thames.
+  - road_check: 0 drops over 1.

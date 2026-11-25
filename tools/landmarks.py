@@ -94,6 +94,13 @@ LANDMARKS = {
     "w160826605": {"name": "Queen Anne's School", "walls": "red_brick", "roof": "slate", "roof_kind": "hip",
                    "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.4, "stacks": 14,
                    "tower": {"size": 3, "top": "cupola", "walls": "bricks", "dress": "smooth_sandstone", "extra": -2}},
+    # Caversham Grove, now Highdown School (Historic England list entry 1157071; hidden from the road): early
+    # C18 house extended by Norman Shaw 1878-80 in Queen Anne style. Red brick, stucco string at first floor,
+    # stone eaves cornice, sash windows, tiled hipped roof with gabled dormers; Shaw's wing ("Manor House") the same.
+    "w153747654": {"name": "Caversham Grove (Highdown School)", "walls": "red_brick", "roof": "red_tile",
+                   "roof_kind": "hip", "dress": "smooth_quartz", "windows": "tall", "band": 3, "stacks": 10},
+    "w1252277450": {"name": "Highdown School (Manor House)", "walls": "red_brick", "roof": "red_tile",
+                    "roof_kind": "hip", "dress": "smooth_quartz", "windows": "tall", "band": 3, "stacks": 10},
     "w160826967": {"name": "Queen Anne's School (west wing)", "walls": "red_brick", "roof": "slate", "roof_kind": "gable",
                    "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.2, "stacks": 14},
     "w160826802": {"name": "Queen Anne's School (north wing)", "walls": "red_brick", "roof": "slate", "roof_kind": "gable",

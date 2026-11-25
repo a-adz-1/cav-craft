@@ -750,7 +750,14 @@ def furniture(G, P):
             blocks[(x, g + 3, z)] = P("red_terracotta")          # Royal Mail pillar box with a darker cap
             kind = "post box"
         elif a == "bench":
-            blocks[(x, g + 1, z)] = P("dark_oak_stairs", facing="north", half="bottom", shape="straight")
+            # riverside benches look out over the water (a stairs' back is on its "facing" side)
+            wz, wx = np.nonzero(G["water"][max(z - 20, 0):z + 21, max(x - 20, 0):x + 21] != -999)
+            back = "north"
+            if len(wz):
+                k = np.argmin((wz - min(z, 20)) ** 2 + (wx - min(x, 20)) ** 2)
+                ddx, ddz = wx[k] - min(x, 20), wz[k] - min(z, 20)
+                back = ("west" if ddx > 0 else "east") if abs(ddx) > abs(ddz) else ("north" if ddz > 0 else "south")
+            blocks[(x, g + 1, z)] = P("dark_oak_stairs", facing=back, half="bottom", shape="straight")
             kind = "bench"
         elif a == "waste_basket":
             blocks[(x, g + 1, z)] = P("composter", level=0)
