@@ -376,3 +376,4 @@ Pushed 643d1ae, uploaded the rebuilt world to release v0.1 (43 MB), and swapped 
   - St Anne's Holy Well, Priest Hill: a flint well-head round water, with a name sign. The King's Spy Oak (a real LiDAR tree) gets a name sign. Name signs now go on the first side clear of buildings (before, one replaced a house window).
   - Not done yet: Queen Anne's School (no single building in the list), The Clifton Arms (no clear photo), Highdown School (still the general school style).
   - road_check: 0 drops over 1.
+- 2026-11-25 Landmarks build pushed (55af56b), uploaded to release v0.1 and swapped onto the server; log clean.
