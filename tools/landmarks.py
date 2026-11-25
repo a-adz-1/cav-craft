@@ -139,6 +139,11 @@ LANDMARKS = {
     # 203-217a Peppard Road: Georgian red-brick cottage terrace, slate roof, tall chimneys
     "w163753434": {"name": "Peppard Road cottages", "walls": "red_brick", "roof": "slate", "dress": None,
                    "windows": "house", "roof_kind": "gable"},
+    # Queen Anne's School main building, Henley Road (Mapillary): red brick, white-painted bay windows and
+    # trim, Dutch gables, domed corner turrets
+    "w160826605": {"name": "Queen Anne's School", "walls": "red_brick", "roof": "red_tile",
+                   "dress": "smooth_quartz", "windows": "tall", "band": 4,
+                   "tower": {"size": 3, "top": "cupola", "walls": "bricks", "dress": "smooth_quartz", "extra": -2}},
 }
 
 TOWER_BLOCKS = {"andesite": "andesite", "bricks": "bricks"}
