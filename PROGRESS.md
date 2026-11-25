@@ -364,3 +364,4 @@ Pushed 643d1ae, uploaded the rebuilt world to release v0.1 (43 MB), and swapped 
   - From the map's points: 17 sculptures (wooden carvings or stone, a sign with the name, e.g. Clayfield Copse's Squirrel and Spider's Web), 4 shelters, 7 picnic tables.
   - Tennis clubs no longer get a play park dropped in the middle.
   - road_check: 0 drops over 1.
+- 2026-11-25 Parks build pushed (0c4778a), uploaded to release v0.1 and swapped onto the server; log clean.
