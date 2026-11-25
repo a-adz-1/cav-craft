@@ -352,3 +352,6 @@ All of the user's review items are done: school and drive, square houses and tow
   - House numbers on every house: rows with one or no known numbers are counted along the street (odds/evens, opposite to the other side); 3,333 guessed (direction along the street assumed, so a guessed number can be a few off; 10 that would repeat a real number get a letter, 12a), 8,899 plaques in all. White glowing text on the dark oak plaque, beside the door on the free side, or over the door if both sides are taken.
   - Survey: 76 streets were rated low; 6_low_a/b/c (docs/street_view) have fresh viewpoints for 69 of them and LOW_BRIEF.txt. Not run yet: Google Maps is blank in the browser pane again.
   - road_check 0 drops over 1.
+
+### 2026-11-25 — House fixes live
+Pushed 643d1ae, uploaded the rebuilt world to release v0.1 (43 MB), and swapped it onto the server (unload, new region/entities, poi removed, load; log clean). Google Maps works in the pane again, so the second-look survey of the 69 unclear streets (6_low_a/b/c) is running.
