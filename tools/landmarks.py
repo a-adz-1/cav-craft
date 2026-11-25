@@ -87,11 +87,25 @@ LANDMARKS = {
                    "windows": "tall", "roof_kind": "hip", "band": 3},
     "w136161991": {"name": "Regents Riverside", "walls": "sandstone", "roof": "slate", "dress": "smooth_quartz",
                    "windows": "tall", "roof_kind": "hip", "band": 3},
-    # The Victorian house at the heart of the Peppard Road school site: red brick, white stone bays and
-    # balustrade, two copper-domed turrets
-    "w160826605": {"name": "Peppard Road school (domed house)", "walls": "red_brick", "roof": "slate", "roof_kind": "hip",
-                   "dress": "smooth_quartz", "windows": "tall", "band": 4,
-                   "tower": {"size": 3, "top": "cupola", "walls": "bricks", "dress": "smooth_quartz", "extra": -2}},
+    # Queen Anne's School (Historic England list entry 1155905, school and press photos, aerial): Waterhouse's
+    # 1870s red brick house with stone quoins and dressings, steep coped gables, tall grouped chimneys and slate
+    # roofs, the south front deep in ivy; a buttressed chapel; at the Peppard Road end a stone bay under a
+    # balustrade between two domed brick turrets. Wings of the same red brick and slate round the quad behind.
+    "w160826605": {"name": "Queen Anne's School", "walls": "red_brick", "roof": "slate", "roof_kind": "hip",
+                   "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.4, "stacks": 14,
+                   "tower": {"size": 3, "top": "cupola", "walls": "bricks", "dress": "smooth_sandstone", "extra": -2}},
+    "w160826967": {"name": "Queen Anne's School (west wing)", "walls": "red_brick", "roof": "slate", "roof_kind": "gable",
+                   "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.2, "stacks": 14},
+    "w160826802": {"name": "Queen Anne's School (north wing)", "walls": "red_brick", "roof": "slate", "roof_kind": "gable",
+                   "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.2, "stacks": 14},
+    "w160826927": {"name": "Queen Anne's School (quad wing)", "walls": "red_brick", "roof": "slate", "roof_kind": "gable",
+                   "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.25, "stacks": 14},
+    "w160826742": {"name": "Queen Anne's School (quad wing)", "walls": "red_brick", "roof": "slate", "roof_kind": "gable",
+                   "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.2, "stacks": 14},
+    "w160826707": {"name": "Queen Anne's School (north range)", "walls": "red_brick", "roof": "slate", "roof_kind": "gable",
+                   "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.1, "stacks": 14},
+    "w160826633": {"name": "Queen Anne's School (octagon)", "walls": "red_brick", "roof": "slate", "roof_kind": "hip",
+                   "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.15, "stacks": 14},
     # Travellers Rest, Henley Road: dark brown tile roof, black-and-white Tudor gables and dormers, brick
     # chimneys, red parasols
     "w161702612": {"name": "Travellers Rest", "walls": "red_brick", "roof": "brown_tile", "dress": "bricks",
@@ -139,11 +153,6 @@ LANDMARKS = {
     # 203-217a Peppard Road: Georgian red-brick cottage terrace, slate roof, tall chimneys
     "w163753434": {"name": "Peppard Road cottages", "walls": "red_brick", "roof": "slate", "dress": None,
                    "windows": "house", "roof_kind": "gable"},
-    # Queen Anne's School main building, Henley Road (Mapillary): red brick, white-painted bay windows and
-    # trim, Dutch gables, domed corner turrets
-    "w160826605": {"name": "Queen Anne's School", "walls": "red_brick", "roof": "red_tile",
-                   "dress": "smooth_quartz", "windows": "tall", "band": 4,
-                   "tower": {"size": 3, "top": "cupola", "walls": "bricks", "dress": "smooth_quartz", "extra": -2}},
 }
 
 TOWER_BLOCKS = {"andesite": "andesite", "bricks": "bricks"}

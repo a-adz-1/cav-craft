@@ -256,6 +256,123 @@ def furnish(P, blocks, inner, edge, x0, z0, fl, ey, stair_cells, h):
             blocks.setdefault((x0 + c, fl + 5, z0 + a), P("lantern", hanging="true"))
 
 
+def big_interior(P, blocks, inside, edge, top, x0, z0, fl, school):
+    """Inside a big building: a flight of stairs up from every storey (each flight in its own place, so the
+    wells don't cut through each other), rooms of about 7x7 with a doorway in the middle of each wall, a
+    lantern in each room and, in schools, rows of desks. Returns the number of flights."""
+    H, W = inside.shape
+    inner = inside & ~edge
+    near_wall = inner & ndimage.binary_dilation(edge)
+    cells = np.argwhere(near_wall)
+    used = np.zeros_like(inside)
+    flights = 0
+    for k in range(20 * max(1, inside.sum() // 600)):
+        y0 = fl + 3 * (k // max(1, inside.sum() // 600))   # this storey's floor; one flight per 600 m2
+        if y0 + 5 >= ey_of(top, inside):
+            break
+        run = None
+        for zl, xl in cells[(k * 7919) % max(len(cells), 1):].tolist() + cells.tolist():
+            for name, (dx, dz) in DIRS.items():
+                path = [(zl + dz * j, xl + dx * j) for j in range(-1, 4)]
+                if all(0 <= a < H and 0 <= c < W and inner[a, c] and not used[a, c]
+                       and top[a, c] >= y0 + 6 for a, c in path):
+                    run = (path, name)
+                    break
+            if run:
+                break
+        if not run:
+            break
+        path, name = run
+        for j, (a, c) in enumerate(path[1:4]):
+            blocks[(x0 + c, y0 + 1 + j, z0 + a)] = P("oak_stairs", facing=name, half="bottom", shape="straight")
+            for y in range(y0 + 2 + j, y0 + 6):
+                blocks[(x0 + c, y, z0 + a)] = P("air")       # the well through the floor above
+        for y in (y0 + 1, y0 + 2):
+            blocks[(x0 + path[0][1], y, z0 + path[0][0])] = P("air")
+        for y in (y0 + 4, y0 + 5):
+            blocks[(x0 + path[4][1], y, z0 + path[4][0])] = P("air")
+        for a, c in path:
+            used[max(a - 1, 0):a + 2, max(c - 1, 0):c + 2] = True
+        flights += 1
+    # rooms: partition walls on a grid every 8 blocks, a doorway in the middle of each stretch
+    zz, xx = np.nonzero(inner & ~used)
+    gx, gz = (x0 + xx) % 8, (z0 + zz) % 8
+    part = ((gx == 0) & (gz != 4)) | ((gz == 0) & (gx != 4))
+    room_mid = (gx == 4) & (gz == 4)
+    desk = school & (gx % 2 == 0) & (gx > 0) & np.isin(gz, (2, 6))
+    wall, lamp, table = P("white_terracotta"), P("lantern", hanging="true"), P("spruce_slab", type="top")
+    for a, c, p, m, d in zip(zz, xx, part, room_mid, desk):
+        for y0 in range(fl, int(top[a, c]) - 3, 3):
+            if p:
+                blocks.setdefault((x0 + c, y0 + 1, z0 + a), wall)
+                blocks.setdefault((x0 + c, y0 + 2, z0 + a), wall)
+            elif m:
+                blocks.setdefault((x0 + c, y0 + 2, z0 + a), lamp)
+            elif d:
+                blocks.setdefault((x0 + c, y0 + 1, z0 + a), table)
+    return flights
+
+
+def side_doors(P, blocks, G, inside, edge, bid, x0, z0, fl, door):
+    """Big buildings: a door in the middle of each side (N, S, E, W) as well as the front one, where the wall
+    is straight and the ground outside is level with the floor. Returns how many."""
+    H, W = inside.shape
+    placed = 0
+    for name, (dx, dz) in DIRS.items():
+        cands = []
+        for a, c in zip(*np.nonzero(edge)):
+            outs = [(ex, ez) for ex, ez in DIRS.values()
+                    if not (0 <= a + ez < H and 0 <= c + ex < W and inside[a + ez, c + ex])]
+            a2, c2 = a - dz, c - dx
+            X, Z = x0 + c + dx, z0 + a + dz
+            if outs == [(dx, dz)] and 0 <= a2 < H and 0 <= c2 < W and inside[a2, c2] and not edge[a2, c2] \
+                    and bid[Z, X] == 0 and abs(int(G["ground"][Z, X]) - fl) <= 1:
+                cands.append((a, c))
+        if not cands:
+            continue
+        cands.sort(key=lambda v: v[1] if dz else v[0])           # along the wall
+        a, c = cands[len(cands) // 2]
+        X, Z = x0 + c, z0 + a
+        blocks[(X, fl + 1, Z)] = P(door, facing=name, half="lower", hinge="left", open="false")
+        blocks[(X, fl + 2, Z)] = P(door, facing=name, half="upper", hinge="left", open="false")
+        for y in (fl + 1, fl + 2):
+            blocks[(X - dx, y, Z - dz)] = P("air")
+        G.setdefault("doorsteps", []).append((X + dx, fl, Z + dz))
+        placed += 1
+    return placed
+
+
+def ey_of(top, inside):
+    """The lowest roof block over the building: storeys stop below it."""
+    return int(top[inside].min())
+
+
+def ivy(P, blocks, edge, bid, ground, x0, z0, fl, top, share):
+    """Ivy (vines) in clumps over about `share` of the outside walls, up from the ground."""
+    for zl, xl in zip(*np.nonzero(edge)):
+        for name, (dx, dz) in DIRS.items():
+            X, Z = x0 + xl + dx, z0 + zl + dz
+            if bid[Z, X]:
+                continue
+            if zlib.crc32(f"{X // 4},{Z // 4}".encode()) % 100 >= share * 100:
+                continue
+            for y in range(max(fl, int(ground[Z, X])) + 1, int(top[zl, xl])):
+                blocks.setdefault((X, y, Z), P("vine", **{k: ("true" if k == OPP[name] else "false")
+                                                         for k in ("north", "south", "east", "west", "up")}))
+
+
+def stacks(P, blocks, inside, top, x0, z0, spacing):
+    """Tall brick chimney stacks along the ridges, at least `spacing` blocks apart."""
+    ridge = inside & (top >= ndimage.maximum_filter(np.where(inside, top, 0), 5)) & ndimage.binary_erosion(inside)
+    picked = []
+    for zl, xl in sorted(np.argwhere(ridge).tolist(), key=lambda v: zlib.crc32(f"{x0 + v[1]},{z0 + v[0]}".encode())):
+        if all(abs(zl - a) + abs(xl - c) >= spacing for a, c in picked):
+            picked.append((zl, xl))
+            for y in range(int(top[zl, xl]), int(top[zl, xl]) + 3):
+                blocks[(x0 + xl, y, z0 + zl)] = P("bricks")
+            blocks[(x0 + xl, int(top[zl, xl]) + 3, z0 + zl)] = P("flower_pot")
+
+
 BAY_FAMILIES = {"grey_terrace": 2, "riverside_villa": 2, "victorian_terrace": 2, "victorian_villa": 2, "interwar_semi": 2, "interwar_detached": 2,
                 "postwar_council": 0}
 
@@ -556,6 +673,10 @@ def prepare(G, P, layers, lidar, buildings):
                     if k % 3 == 0:
                         for dy in range(2, 6):
                             blocks[(x0 + xl, g0 + dy, z0 + zl)] = P("spruce_leaves", persistent="true")
+            if lm.get("ivy"):
+                ivy(P, blocks, edge, bid, G["ground"], x0, z0, fl, top, lm["ivy"])
+            if lm.get("stacks"):
+                stacks(P, blocks, inside, top, x0, z0, lm["stacks"])
             if lm.get("vane"):
                 pk = np.argwhere(inside & (top == top[inside].max()))[0]
                 blocks[(x0 + pk[1], int(top.max()) + 1, z0 + pk[0])] = P("lightning_rod")
@@ -619,6 +740,12 @@ def prepare(G, P, layers, lidar, buildings):
                     blocks[(x0 + c, y, z0 + a)] = P("air")              # the landing
                 stair_xz = {(x0 + c, z0 + a) for a, c in path}
             furnish(P, blocks, inner, edge, x0, z0, fl, ey, set(run[0]) if run else set(), h)
+        elif big and ws != 1 and kind not in ("garage", "garages", "shed", "hut", "carport", "church", "chapel") \
+                and inside.sum() >= 40:
+            n = big_interior(P, blocks, inside, edge, top, x0, z0, fl, kind in ("school", "college") or st.get("family") == "school")
+            stats["big_stairs"] = stats.get("big_stairs", 0) + n
+            stats["side_doors"] = stats.get("side_doors", 0) + side_doors(
+                P, blocks, G, inside, edge, bid, x0, z0, fl, DOORS[(h >> 9) % len(DOORS)])
         # flat-roofed blocks: a parapet round the roof edge, a plant room on top of the big ones, and balconies
         # on apartment blocks (a slab ledge + glass rail under every other upper-floor window row)
         if rkind == "flat" and not lm and kind not in ("garage", "garages", "shed", "hut", "carport"):
