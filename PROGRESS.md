@@ -365,3 +365,8 @@ Pushed 643d1ae, uploaded the rebuilt world to release v0.1 (43 MB), and swapped 
   - Tennis clubs no longer get a play park dropped in the middle.
   - road_check: 0 drops over 1.
 - 2026-11-25 Parks build pushed (0c4778a), uploaded to release v0.1 and swapped onto the server; log clean.
+- 2026-11-25 Park pass (looked at Christchurch Meadows, Caversham Court Gardens, Balmore Walk, View Island, Mapledurham Playing Fields, Clayfield Copse from above; read up on Caversham Court and Christchurch Meadows):
+  - Big tennis outlines now hold as many courts as fit (a court with run-off is about 34 x 17): Christchurch Meadows 2, the Peppard Road club 8, the Walled Garden site 4; 29 courts in all, up from 17. Before, a big outline got one court in a sea of red.
+  - Statues mapped as memorials get built too: Caversham Court's two Griffins at the top of the steps (19 sculptures/statues in all).
+  - Checked and left alone: park trees come from the LiDAR canopy, so they're real; Caversham Court's walls, hedges and 1663 gazebo, Christchurch Meadows' paddling pool, play area and war memorial, and View Island's paths were already built. The magenta in the top views is only the preview's missing colour for allotment crops and berry bushes.
+  - road_check: 0 drops over 1.

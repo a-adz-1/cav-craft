@@ -1251,11 +1251,16 @@ def leisure(G, P):
             blocks[(sx, g + 3, sz)] = P("blue_concrete")
             stats["playgrounds"] = stats.get("playgrounds", 0) + 1
         elif kind == "pitch" and "tennis" in t.get("sport", "") and a["id"] != "w450242572":   # (heights_school's)
-            # a green court with white lines in a red surround, a net across the middle; fenced in groups below
+            # green courts with white lines in a red surround, a net across each; one outline can hold several
+            # courts (a single court with its run-off is about 34 x 17); fenced in groups below
             c, vt, L, W = rect_axes(pts)
-            lc, wc = min(11.9, L - 1), min(5.5, W - 1)                 # doubles court, or the polygon if smaller
-            uu = np.abs((np.stack([xs, zs], 1) - c) @ vt[0])
-            vv = np.abs((np.stack([xs, zs], 1) - c) @ vt[1])
+            na, nw = max(1, int(2 * L / 34)), max(1, int(2 * W / 17))
+            L, W = L / na, W / nw                                       # one court's share of the outline
+            lc, wc = min(11.9, L - 1), min(5.5, W - 1)                 # doubles court, or its share if smaller
+            u = (np.stack([xs, zs], 1) - c) @ vt[0] + L * na
+            v = (np.stack([xs, zs], 1) - c) @ vt[1] + W * nw
+            uu = np.abs(u - (np.clip(u // (2 * L), 0, na - 1) + 0.5) * 2 * L)
+            vv = np.abs(v - (np.clip(v // (2 * W), 0, nw - 1) + 0.5) * 2 * W)
             sv, sg = lc * 0.54, wc * 0.75                                # service line, singles sideline
             court = (uu <= lc + 0.5) & (vv <= wc + 0.5)
             line = court & ((np.abs(uu - lc) < 0.5) | (np.abs(vv - wc) < 0.5) | ((np.abs(vv - sg) < 0.5) & (uu <= lc))
@@ -1264,14 +1269,17 @@ def leisure(G, P):
                 blocks[(int(x), int(G["ground"][z, x]), int(z))] = P(
                     "white_concrete" if ln else "green_concrete" if cl else "red_terracotta")
             ns = abs(vt[1][1]) > abs(vt[1][0])                           # net runs north-south
-            for k in np.linspace(-wc - 1, wc + 1, int(2 * wc + 3)):
-                x, z = (int(round(v)) for v in c + vt[1] * k)
-                if 0 <= z < Hh and 0 <= x < Ww and inside[z, x]:
-                    blocks[(x, int(G["ground"][z, x]) + 1, z)] = P(
-                        "white_stained_glass_pane", north=str(ns).lower(), south=str(ns).lower(),
-                        east=str(not ns).lower(), west=str(not ns).lower(), waterlogged="false")
+            for i in range(na):
+                for j in range(nw):
+                    cc = c + vt[0] * (2 * L * (i + 0.5) - L * na) + vt[1] * (2 * W * (j + 0.5) - W * nw)
+                    for k in np.linspace(-wc - 1, wc + 1, int(2 * wc + 3)):
+                        x, z = (int(round(q)) for q in cc + vt[1] * k)
+                        if 0 <= z < Hh and 0 <= x < Ww and inside[z, x]:
+                            blocks[(x, int(G["ground"][z, x]) + 1, z)] = P(
+                                "white_stained_glass_pane", north=str(ns).lower(), south=str(ns).lower(),
+                                east=str(not ns).lower(), west=str(not ns).lower(), waterlogged="false")
+            stats["tennis courts"] = stats.get("tennis courts", 0) + na * nw
             tennis |= inside
-            stats["tennis courts"] = stats.get("tennis courts", 0) + 1
         elif kind == "pitch" and ("soccer" in t.get("sport", "") or "basketball" in t.get("sport", "")) \
                 and a["id"] not in hidden:
             # goals (posts and a crossbar, 7 wide) or basketball hoops at both ends of the long axis
@@ -1365,7 +1373,8 @@ def leisure(G, P):
                 or G["building"][z, x]:
             continue
         g = int(G["ground"][z, x])
-        if t.get("tourism") == "artwork" and t.get("artwork_type") in ("sculpture", "statue", None):
+        if t.get("tourism") == "artwork" and t.get("artwork_type") in ("sculpture", "statue", None) \
+                or t.get("historic") == "memorial" and t.get("memorial") == "statue":
             wood = t.get("material") == "wood"
             body, arm = ("stripped_oak_log", "stripped_spruce_log") if wood else ("stone_bricks", "stone_brick_wall")
             blocks[(x, g, z)] = P("coarse_dirt" if wood else "smooth_stone")
