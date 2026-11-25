@@ -484,8 +484,9 @@ def fill_numbers():
     # street from 1 (odds) or 2 (evens), the opposite parity to the other side where that side is known;
     # anything still blank takes the house before it plus the row's step
     # shortcut: a street split into several OSM ways restarts its count on each way, fix by chaining ways by name
-    guessed = 0
+    guessed = lettered = 0
     for (wi, side), row in rows.items():
+        suffix = "a"
         num = [buildings[i]["tags"].get("addr:housenumber") for _, i in row]
         known = [j for j, v in enumerate(num) if v and v.isdigit()]
         if not known:
@@ -502,11 +503,25 @@ def fill_numbers():
                     last = (j, int(num[j]))
                 elif last:
                     vals[j] = last[1] + step * (j - last[0])
+        taken = {int(v) for v in num if v and v.isdigit()}
+        prev = None
         for j, (_, i) in enumerate(row):
-            if not buildings[i]["tags"].get("addr:housenumber") and vals[j] >= 1:
-                buildings[i]["tags"]["addr:housenumber"] = str(vals[j])
-                guessed += 1
-    print("house numbers carried on from neighbours:", filled, "guessed along the street:", guessed)
+            have = buildings[i]["tags"].get("addr:housenumber")
+            if have:
+                prev, suffix = have, "a"
+                continue
+            if vals[j] >= 1 and vals[j] not in taken:
+                buildings[i]["tags"]["addr:housenumber"] = prev = str(vals[j])
+                taken.add(vals[j])
+            elif prev:                      # the count would repeat a real number: 12a, 12b after the 12
+                base = prev.rstrip("abcdefgh")
+                buildings[i]["tags"]["addr:housenumber"] = prev = base + suffix
+                suffix = chr(ord(suffix) + 1)
+                lettered += 1
+            else:
+                continue
+            guessed += 1
+    print("house numbers carried on from neighbours:", filled, "guessed along the street:", guessed, "(lettered to avoid a repeat:", lettered, ")")
 
 
 fill_numbers()

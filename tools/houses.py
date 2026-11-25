@@ -588,6 +588,7 @@ def prepare(G, P, layers, lidar, buildings):
         # inside: a staircase up to the first floor along one wall, and a few furnishings per floor
         stair_xz = set()
         if kind in HOUSE_KINDS and not big and not lm and ey - fl >= 5:
+            stats["two_storey"] = stats.get("two_storey", 0) + 1
             inner = inside & ~edge
             cells = np.argwhere(inner & ndimage.binary_dilation(edge))   # just inside the walls
             run = None
@@ -601,6 +602,7 @@ def prepare(G, P, layers, lidar, buildings):
                 if run:
                     break
             if run:
+                stats["stairs"] = stats.get("stairs", 0) + 1
                 path, name = run
                 for k, (a, c) in enumerate(path[1:4]):
                     X, Z = x0 + c, z0 + a
