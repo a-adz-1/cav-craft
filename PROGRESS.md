@@ -377,3 +377,8 @@ Pushed 643d1ae, uploaded the rebuilt world to release v0.1 (43 MB), and swapped 
   - Not done yet: Queen Anne's School (no single building in the list), The Clifton Arms (no clear photo), Highdown School (still the general school style).
   - road_check: 0 drops over 1.
 - 2026-11-25 Landmarks build pushed (55af56b), uploaded to release v0.1 and swapped onto the server; log clean.
+- 2026-11-25 More landmarks:
+  - Queen Anne's School main building (w160826605, Mapillary): red brick, white bands and trim, tall windows, a domed turret with a cupola.
+  - The Clifton Arms, Gosbrook Road (Street View, screenshot kept local): white-painted ground floor, red brick upper storey, black fascia, slate. Its OSM point sits just off its outline, so add_pub_points now takes the nearest building within 6 m (3 pubs styled now, was 2).
+  - Highdown School still uses the general school look: its buildings are inside the grounds, out of sight from the road.
+  - road_check: 0 drops over 1.

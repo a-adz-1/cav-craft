@@ -265,8 +265,10 @@ PUB_POINTS = {
     # bays, red clay hipped roof
     "The Crown": {"walls": "buff_brick", "upper": "painted_teal", "roof": "red_tile", "dress": "smooth_sandstone",
                   "windows": "house", "shopfront": "cyan_terracotta", "roof_kind": "hip"},
-    "The Clifton Arms": {"walls": "red_brick", "roof": "slate", "dress": "bricks", "windows": "house",
-                         "shopfront": "blue_concrete"},
+    # The Clifton Arms, Gosbrook Road (Street View): white-painted ground floor with a bay, red brick upper
+    # storey, black fascia with gold lettering
+    "The Clifton Arms": {"walls": "white_render", "upper": "red_brick", "roof": "slate", "dress": "bricks",
+                         "windows": "house", "shopfront": "black_concrete"},
     "The Moderation": {"walls": "white_render", "roof": "slate", "dress": "black_concrete", "windows": "house",
                        "shopfront": "black_concrete"},
 }
@@ -283,8 +285,11 @@ def add_pub_points(layers, buildings):
         name = nd["tags"].get("name")
         if name in PUB_POINTS and nd["tags"].get("amenity") == "pub":
             x, z = int(nd["pt"][0] - E0), int(N1 - nd["pt"][1])
-            if 0 <= z < bid.shape[0] and 0 <= x < bid.shape[1] and bid[z, x]:
-                b = buildings[bid[z, x]]
+            near = bid[max(z - 6, 0):z + 7, max(x - 6, 0):x + 7]      # a point just off its outline: nearest building
+            if near.any():
+                zz, xx = np.nonzero(near)
+                k = np.argmin((zz - min(z, 6)) ** 2 + (xx - min(x, 6)) ** 2)
+                b = buildings[near[zz[k], xx[k]]]
                 LANDMARKS[b["id"]] = dict({"roof_kind": "gable"}, **PUB_POINTS[name], name=name)
                 n += 1
     print("pubs from OSM points:", n)
