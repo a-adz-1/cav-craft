@@ -370,3 +370,9 @@ Pushed 643d1ae, uploaded the rebuilt world to release v0.1 (43 MB), and swapped 
   - Statues mapped as memorials get built too: Caversham Court's two Griffins at the top of the steps (19 sculptures/statues in all).
   - Checked and left alone: park trees come from the LiDAR canopy, so they're real; Caversham Court's walls, hedges and 1663 gazebo, Christchurch Meadows' paddling pool, play area and war memorial, and View Island's paths were already built. The magenta in the top views is only the preview's missing colour for allotment crops and berry bushes.
   - road_check: 0 drops over 1.
+- 2026-11-25 Landmarks pass: checked which notable places in OSM weren't styled yet (pubs, schools, wells, memorials).
+  - The Griffin and The Crown restyled from Mapillary photos (tools/look.py). They were already styled from OSM points by landmarks.PUB_POINTS, which overrides LANDMARKS, so the new looks went there. Griffin: red brick, white upper storey with black-and-white gables, grey fascia, dark tiles. Crown: yellow brick, dark teal painted upper storey (new wall finish painted_teal = cyan terracotta), teal fascia, red clay hipped roof (PUB_POINTS can now set roof_kind).
+  - Landmarks can now set a different upper-storey finish ("upper").
+  - St Anne's Holy Well, Priest Hill: a flint well-head round water, with a name sign. The King's Spy Oak (a real LiDAR tree) gets a name sign. Name signs now go on the first side clear of buildings (before, one replaced a house window).
+  - Not done yet: Queen Anne's School (no single building in the list), The Clifton Arms (no clear photo), Highdown School (still the general school style).
+  - road_check: 0 drops over 1.

@@ -35,7 +35,7 @@ WALLS = {
     "white_render": "white_concrete", "cream_render": "smooth_sandstone", "pebbledash": "diorite",
     "stone": "stone_bricks", "concrete": "light_gray_concrete", "timber": "spruce_planks",
     "tile_hung": "red_terracotta", "glass": "light_blue_stained_glass", "flint": "andesite",
-    "sandstone": "smooth_sandstone",
+    "sandstone": "smooth_sandstone", "painted_teal": "cyan_terracotta",
 }
 FASCIAS = ["black_concrete", "blue_concrete", "green_concrete", "red_concrete", "white_concrete", "cyan_concrete",
            "gray_concrete", "purple_concrete", "orange_concrete"]
@@ -400,6 +400,8 @@ def prepare(G, P, layers, lidar, buildings):
             rkind = "flat" if rkind == "flat" or ridge - eave < 1.5 else rkind
         if lm:
             st = {"walls": [lm["walls"]], "roof": [lm["roof"]], "tudor": 0}
+            if lm.get("upper"):                                        # a different finish on the upper storey
+                st.update(upper=[lm["upper"]], upper_p=1.0)
             if lm["roof"] == "flat":
                 rkind = "flat"
             elif rkind == "flat":

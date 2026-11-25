@@ -1366,6 +1366,15 @@ def leisure(G, P):
     blocks.update(connect(fence, "iron_bars", P, wall=False))
     # sculptures, shelters and picnic tables from the map's points
     import lock
+
+    def name_sign(x, z, g, d, lines):
+        """A standing sign d blocks from (x, z) on the first side clear of buildings, facing away from it."""
+        for dx, dz, rot in ((0, d, 0), (0, -d, 8), (d, 0, 12), (-d, 0, 4)):
+            sx, sz = x + dx, z + dz
+            if 0 <= sz < Hh and 0 <= sx < Ww and not G["building"][sz - 1:sz + 2, sx - 1:sx + 2].any():
+                blocks[(sx, g + 1, sz)] = P("oak_sign", rotation=rot)
+                G["block_entities"].setdefault((sx // 16, sz // 16), []).append(lock.sign_entity(sx, g + 1, sz, lines))
+                return
     for nd in osm["nodes"]:
         t = nd["tags"]
         x, z = xz(*nd["pt"])
@@ -1385,10 +1394,21 @@ def leisure(G, P):
                 for d in (-1, 1):
                     blocks[(x + d, g + 3, z)] = P(arm, axis="x")
             if t.get("name"):
-                blocks[(x, g + 1, z + 1)] = P("oak_sign", rotation=0)
-                G["block_entities"].setdefault((x // 16, (z + 1) // 16), []).append(
-                    lock.sign_entity(x, g + 1, z + 1, ["", t["name"][:15], "", ""]))
+                name_sign(x, z, g, 1, ["", t["name"][:15], "", ""])
             stats["sculptures"] = stats.get("sculptures", 0) + 1
+        elif "well" in t.get("name", "").lower().split() or t.get("tourism") == "attraction":
+            # St Anne's Holy Well: a flint well-head round the water; an attraction (the King's Spy Oak, a real
+            # tree from the LiDAR) just gets its name on a sign
+            if t.get("tourism") != "attraction":
+                for dx in (-1, 0, 1):
+                    for dz in (-1, 0, 1):
+                        blocks[(x + dx, g + 1, z + dz)] = P("water", level=0) if dx == dz == 0 else P(
+                            "andesite_wall", up="true", north="none", south="none", east="none", west="none",
+                            waterlogged="false")
+                blocks[(x, g, z)] = P("water", level=0)
+            words = t["name"].split()
+            name_sign(x, z, g, 2, [" ".join(words[i:i + 2])[:15] for i in range(0, min(len(words), 8), 2)])
+            stats["named spots"] = stats.get("named spots", 0) + 1
         elif t.get("amenity") == "shelter":
             # four posts, a slab roof and a bench along the back
             for dx in (-1, 1):

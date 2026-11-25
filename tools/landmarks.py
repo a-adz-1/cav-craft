@@ -252,10 +252,14 @@ def colonnade(P, blocks, inside, x0, z0, fl, eave, side):
 
 # pubs that OSM has only as points: the building under the point takes this style
 PUB_POINTS = {
-    "The Griffin": {"walls": "red_brick", "roof": "dark_tile", "dress": "bricks", "windows": "house",
-                    "shopfront": "green_concrete", "tudor_gable": True},
-    "The Crown": {"walls": "white_render", "roof": "slate", "dress": "black_concrete", "windows": "house",
-                  "shopfront": "black_concrete"},
+    # The Griffin, Church Road (Mapillary): red brick ground floor, white upper storey with black-and-white
+    # gables and bays, dark plain tiles, a dark grey fascia
+    "The Griffin": {"walls": "red_brick", "upper": "white_render", "roof": "dark_tile", "dress": "bricks",
+                    "windows": "house", "shopfront": "gray_concrete", "tudor_gable": True},
+    # The Crown, Bridge Street (Mapillary): yellow brick ground floor, dark teal painted upper storey with
+    # bays, red clay hipped roof
+    "The Crown": {"walls": "buff_brick", "upper": "painted_teal", "roof": "red_tile", "dress": "smooth_sandstone",
+                  "windows": "house", "shopfront": "cyan_terracotta", "roof_kind": "hip"},
     "The Clifton Arms": {"walls": "red_brick", "roof": "slate", "dress": "bricks", "windows": "house",
                          "shopfront": "blue_concrete"},
     "The Moderation": {"walls": "white_render", "roof": "slate", "dress": "black_concrete", "windows": "house",
@@ -276,6 +280,6 @@ def add_pub_points(layers, buildings):
             x, z = int(nd["pt"][0] - E0), int(N1 - nd["pt"][1])
             if 0 <= z < bid.shape[0] and 0 <= x < bid.shape[1] and bid[z, x]:
                 b = buildings[bid[z, x]]
-                LANDMARKS[b["id"]] = dict(PUB_POINTS[name], name=name, roof_kind="gable")
+                LANDMARKS[b["id"]] = dict({"roof_kind": "gable"}, **PUB_POINTS[name], name=name)
                 n += 1
     print("pubs from OSM points:", n)
