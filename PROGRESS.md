@@ -400,3 +400,4 @@ Pushed 643d1ae, uploaded the rebuilt world to release v0.1 (43 MB), and swapped 
   - Roof kinds no longer change between identical builds: a tie in an attached group's roof kind was broken by set order, which Python randomises per run. Ties now go hip, gable, flat.
   - Landmarks: new "gables" option (coped gables with a window standing up from the eaves along straight walls, a short ridge running back). Queen Anne's has 7-wide gables on its south, west and east fronts; Caversham Grove has small gabled dormers.
   - road_check: 0 drops over 1.
+- 2026-11-27 Pushed 6ddced4 (five commits), uploaded the rebuilt world to release v0.1 (43 MB) and swapped it onto the server (unload, new region/entities, poi removed, load). Nobody was in Cavcraft; the log shows no Cavcraft errors.
