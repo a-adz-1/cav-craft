@@ -32,7 +32,7 @@ COLOURS = {"black": "black_concrete", "navy": "blue_concrete", "blue": "blue_con
            "red": "red_concrete", "white": "white_concrete", "grey": "gray_concrete", "gray": "gray_concrete",
            "cream": "smooth_sandstone", "yellow": "yellow_concrete", "purple": "purple_concrete",
            "orange": "orange_concrete", "teal": "cyan_concrete", "burgundy": "red_nether_bricks", "brown": "brown_concrete"}
-FRONTS = {"hedge": "hedge", "low_brick_wall": "wall", "fence": "wall", "open": None, "none": None}
+FRONTS = {"hedge": "hedge", "low_brick_wall": "wall", "fence": "fence", "mixed": "mixed", "open": None, "none": None}
 
 
 def mix(shares, slots=12):
@@ -69,7 +69,10 @@ def measured(street, v):
     st = dict(fam[family], family=family, walls=mix(v["walls"]), roof=mix(v["roof"]), tudor=round(v.get("tudor", 0), 2),
               note=v.get("note", ""), source="street view")
     st.pop("upper", None), st.pop("upper_p", None)
-    upper = mix({v["upper"]: 1}) if isinstance(v.get("upper"), str) else []
+    up = v.get("upper") if isinstance(v.get("upper"), str) else ""
+    if not mix({up: 1}) and re.search("weatherboard|cladding", up):     # "white cladding panels/weatherboard"
+        up = "timber" if "dark" in up else "concrete" if "metal" in up else "weatherboard"
+    upper = mix({up: 1}) if up else []
     if v.get("upper_differs", 0) >= 0.05 and upper:
         st["upper"], st["upper_p"] = upper[:1], round(v["upper_differs"], 2)
     if v.get("front") in FRONTS:

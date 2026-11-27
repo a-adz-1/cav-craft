@@ -93,12 +93,14 @@ LANDMARKS = {
     # balustrade between two domed brick turrets. Wings of the same red brick and slate round the quad behind.
     "w160826605": {"name": "Queen Anne's School", "walls": "red_brick", "roof": "slate", "roof_kind": "hip",
                    "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.4, "stacks": 14,
+                   "gables": {"sides": ["south", "west", "east"], "width": 7},
                    "tower": {"size": 3, "top": "cupola", "walls": "bricks", "dress": "smooth_sandstone", "extra": -2}},
     # Caversham Grove, now Highdown School (Historic England list entry 1157071; hidden from the road): early
     # C18 house extended by Norman Shaw 1878-80 in Queen Anne style. Red brick, stucco string at first floor,
     # stone eaves cornice, sash windows, tiled hipped roof with gabled dormers; Shaw's wing ("Manor House") the same.
     "w153747654": {"name": "Caversham Grove (Highdown School)", "walls": "red_brick", "roof": "red_tile",
-                   "roof_kind": "hip", "dress": "smooth_quartz", "windows": "tall", "band": 3, "stacks": 10},
+                   "roof_kind": "hip", "dress": "smooth_quartz", "windows": "tall", "band": 3, "stacks": 10,
+                   "gables": {"sides": ["south", "east"], "width": 3, "depth": 2}},
     "w1252277450": {"name": "Highdown School (Manor House)", "walls": "red_brick", "roof": "red_tile",
                     "roof_kind": "hip", "dress": "smooth_quartz", "windows": "tall", "band": 3, "stacks": 10},
     "w160826967": {"name": "Queen Anne's School (west wing)", "walls": "red_brick", "roof": "slate", "roof_kind": "gable",
@@ -250,6 +252,48 @@ def dressings(P, blocks, inside, edge, x0, z0, fl, topgrid, spec):
         for y in range(fl + 1, int(topgrid[zl, xl])):
             if corner[zl, xl] or (band and (y - fl) % band == 0):
                 blocks[(x0 + xl, y, z0 + zl)] = dress
+
+
+def gables(P, blocks, inside, edge, bid, x0, z0, topgrid, wall, roof, cope, spec):
+    """Gables standing up from the eaves along the straight stretches of the walls facing spec["sides"]: a
+    triangle of wall `width` wide with a window, a coping, and a short ridge running back into the roof."""
+    side_dirs = {"north": (0, -1), "south": (0, 1), "east": (1, 0), "west": (-1, 0)}
+    w, depth = spec.get("width", 7), spec.get("depth", 4)
+    half = w // 2
+    H, W = inside.shape
+    n = 0
+    for side in spec["sides"]:
+        dx, dz = side_dirs[side]
+        runs = {}                                     # wall line -> positions along it
+        for zl, xl in zip(*np.nonzero(edge)):
+            if bid[z0 + zl + dz, x0 + xl + dx] == 0:
+                runs.setdefault(zl if dz else xl, []).append(xl if dz else zl)
+        for line, pos in runs.items():
+            pos = sorted(pos)
+            start = 0
+            for k in range(1, len(pos) + 1):
+                if k == len(pos) or pos[k] != pos[k - 1] + 1:
+                    seg = pos[start:k]
+                    start = k
+                    count = len(seg) // (w + 2)
+                    gap = (len(seg) - count * w) // (count + 1) if count else 0
+                    for g in range(count):
+                        first = seg[0] + gap * (g + 1) + w * g
+                        for j in range(w):
+                            zl, xl = (line, first + j) if dz else (first + j, line)
+                            base, rise = int(topgrid[zl, xl]), half + 1 - abs(j - half)
+                            for y in range(base, base + rise):
+                                blocks[(x0 + xl, y, z0 + zl)] = wall
+                            if j == half:
+                                for y in range(base + 1, base + rise - 1):
+                                    blocks[(x0 + xl, y, z0 + zl)] = P("gray_stained_glass")
+                            blocks[(x0 + xl, base + rise, z0 + zl)] = cope
+                            for d in range(1, depth + 1):
+                                a, c = zl - dz * d, xl - dx * d
+                                if 0 <= a < H and 0 <= c < W and inside[a, c] and topgrid[a, c] < base + rise:
+                                    blocks[(x0 + c, base + rise, z0 + a)] = roof
+                        n += 1
+    return n
 
 
 def colonnade(P, blocks, inside, x0, z0, fl, eave, side):

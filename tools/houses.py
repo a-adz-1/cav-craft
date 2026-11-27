@@ -35,7 +35,7 @@ WALLS = {
     "white_render": "white_concrete", "cream_render": "smooth_sandstone", "pebbledash": "diorite",
     "stone": "stone_bricks", "concrete": "light_gray_concrete", "timber": "spruce_planks",
     "tile_hung": "red_terracotta", "glass": "light_blue_stained_glass", "flint": "andesite",
-    "sandstone": "smooth_sandstone", "painted_teal": "cyan_terracotta",
+    "sandstone": "smooth_sandstone", "painted_teal": "cyan_terracotta", "weatherboard": "birch_planks",
 }
 FASCIAS = ["black_concrete", "blue_concrete", "green_concrete", "red_concrete", "white_concrete", "cyan_concrete",
            "gray_concrete", "purple_concrete", "orange_concrete"]
@@ -138,7 +138,7 @@ def shared_roofs(buildings, bid, crop):
         if len(members) < 2:
             continue
         kinds = [fits[i][0] for i in members]
-        kind = max(set(kinds), key=kinds.count)
+        kind = max(("hip", "gable", "flat"), key=kinds.count)     # a fixed order, so a tie falls the same way every build
         eave = float(np.median([fits[i][1] for i in members]))
         ridge = float(np.median([fits[i][2] for i in members]))
         for i in members:
@@ -440,8 +440,10 @@ def prepare(G, P, layers, lidar, buildings):
     floors_every = np.zeros((H, W), np.int8)
     winstyle = np.zeros((H, W), np.int8)     # 0 houses (2x2), 1 lancets, 2 tall mullioned
     roadish = np.isin(surface, (3, 4, 5, 6, 9))
+    road_iz, road_ix = ndimage.distance_transform_edt(~roadish, return_indices=True)[1]
     main_road = surface == 3
     stats = {"flat": 0, "hip": 0, "gable": 0}
+    plaqued = set()
     # shop names from OSM points (most shops are mapped as a point inside the building, not on the outline)
     shop_names = {}
     for nd in json.load(open("build/osm.json"))["nodes"]:
@@ -673,6 +675,9 @@ def prepare(G, P, layers, lidar, buildings):
                     if k % 3 == 0:
                         for dy in range(2, 6):
                             blocks[(x0 + xl, g0 + dy, z0 + zl)] = P("spruce_leaves", persistent="true")
+            if lm.get("gables"):
+                landmarks.gables(P, blocks, inside, edge, bid, x0, z0, top, P(WALLS[wname]), P(full),
+                                 P(lm["dress"] or WALLS[wname]), lm["gables"])
             if lm.get("ivy"):
                 ivy(P, blocks, edge, bid, G["ground"], x0, z0, fl, top, lm["ivy"])
             if lm.get("stacks"):
@@ -800,6 +805,9 @@ def prepare(G, P, layers, lidar, buildings):
             rz, rx = np.nonzero(roadish[z0 - 15 if z0 >= 15 else 0:z1 + 15, x0 - 15 if x0 >= 15 else 0:x1 + 15])
             oz, ox = (z0 - 15 if z0 >= 15 else 0), (x0 - 15 if x0 >= 15 else 0)
             ez, ex = np.nonzero(edge)
+            if not len(rz):                 # up a long drive: face the nearest road or path, however far
+                zc, xc = (z0 + z1) // 2, (x0 + x1) // 2
+                rz, rx = np.array([road_iz[zc, xc] - oz]), np.array([road_ix[zc, xc] - ox])
             if len(rz) and len(ez):
                 dd = (ez[:, None] + z0 - (rz[None] + oz)) ** 2 + (ex[:, None] + x0 - (rx[None] + ox)) ** 2
                 if not garage:
@@ -812,11 +820,18 @@ def prepare(G, P, layers, lidar, buildings):
                         if len(outs) != 1:
                             return False
                         dx, dz = outs[0]
+                        if bid[z0 + a + dz, x0 + c + dx]:       # a party wall, not a way out
+                            return False
                         a2, c2 = a - dz, c - dx
                         return (0 <= a2 < inside.shape[0] and 0 <= c2 < inside.shape[1] and inside[a2, c2]
                                 and not edge[a2, c2])
                     ok = np.array([sealed(a, c) for a, c in zip(ez, ex)])
+                    if not ok.any():            # too small or crooked for a sealed door: any wall with open
+                        ok = np.array([any(bid[z0 + a + dz, x0 + c + dx] == 0 for dx, dz in DIRS.values())
+                                       for a, c in zip(ez, ex)])   # ground outside, so it still gets its number
+                        stats["odd_doors"] = stats.get("odd_doors", 0) + 1
                     if not ok.any():
+                        stats["no_door"] = stats.get("no_door", 0) + 1
                         continue
                     dd = np.where(ok[:, None], dd, np.inf)
                 j = int(np.argmin(dd.min(1)))
@@ -839,7 +854,8 @@ def prepare(G, P, layers, lidar, buildings):
                             for y in (fl + 1, fl + 2):
                                 blocks[(x0 + c2, y, z0 + a2)] = P("white_concrete")
                         break
-                    if 0 <= a < inside.shape[0] and 0 <= c < inside.shape[1] and not inside[a, c]:
+                    if not (0 <= a < inside.shape[0] and 0 <= c < inside.shape[1] and inside[a, c]) \
+                            and bid[z0 + a, x0 + c] == 0:
                         door = DOORS[(h >> 9) % len(DOORS)]
                         X, Z = x0 + dx_, z0 + dz_
                         blocks[(X, fl + 1, Z)] = P(door, facing=name, half="lower", hinge="left", open="false")
@@ -869,7 +885,14 @@ def prepare(G, P, layers, lidar, buildings):
                         # the house number on a plaque beside the door, facing the street (after the bay, so it
                         # takes the free side); no room either side: over the door, in place of the porch hood
                         num = t.get("addr:housenumber")
-                        if num and not shop_colour:
+                        words, lines = (t.get("addr:housename") or "").split(), []
+                        for w_ in words:                    # a house name over up to three lines of the plaque
+                            if lines and len(lines[-1]) + len(w_) < 14:
+                                lines[-1] += " " + w_
+                            else:
+                                lines.append(w_)
+                        lines = lines[:3] + ([num.replace(",", " & ").replace(";", " & ")] if num else [])
+                        if lines and not shop_colour:
                             spots = [(X + dx + dz * k, fl + 2, Z + dz + dx * k) for k in (1, -1)]
                             spots = [(SX, SY, SZ) for SX, SY, SZ in spots
                                      if 0 <= SZ - dz - z0 < inside.shape[0] and 0 <= SX - dx - x0 < inside.shape[1]
@@ -877,9 +900,14 @@ def prepare(G, P, layers, lidar, buildings):
                             SX, SY, SZ = (spots or [(X + dx, fl + 3, Z + dz)])[0]
                             blocks[(SX, SY, SZ)] = P("dark_oak_wall_sign", facing=name)
                             G.setdefault("sign_texts", []).append(
-                                (int(SX), int(SY), int(SZ), [num.replace(",", " & ").replace(";", " & ")], "white"))
+                                (int(SX), int(SY), int(SZ), lines, "white"))
                             stats["numbered"] = stats.get("numbered", 0) + 1
+                            plaqued.add(b["id"])
                         break
+    missed = [b_ for b_ in buildings[1:] if b_ and b_["id"] not in plaqued
+              and (b_["tags"].get("addr:housenumber") or b_["tags"].get("addr:housename"))
+              and b_["tags"].get("building") in HOUSE_KINDS]
+    print("numbered homes without a plaque:", len(missed), [b_["id"] for b_ in missed[:12]])
     print("roofs:", stats)
     G["h_blocks"] = blocks
     front_paths(G, surface, bid)
@@ -1056,25 +1084,30 @@ def front_boundaries(G, P, bid, surface, buildings, styles, streets):
     blocks = G["h_blocks"]
     ground = G["ground"]
     n = 0
-    walls_at = {}
+    walls_at, fences_at = {}, {}
     for z, x in zip(zz, xx):
         b = buildings[bid[iz[z, x], ix[z, x]]]
         if not b or b["tags"].get("building") not in HOUSE_KINDS:
             continue
         st = styles.get(streets.get(b["id"], ""), {})
         kind = st["front"] if "front" in st else FRONT.get(st.get("family"), None)   # surveyed, or by era
+        if kind == "mixed":                          # a different boundary house by house
+            kind = ("hedge", "wall", "fence", None)[zlib.crc32(b["id"].encode()) % 4]
         if not kind or (x * 7 + z * 13) % 11 == 0:   # gaps for gates and drives
             continue
         g = int(ground[z, x])
         if kind == "wall":
             walls_at[(x, g + 1, z)] = True
+        elif kind == "fence":
+            fences_at[(x, g + 1, z)] = True
         else:
             blocks.setdefault((x, g + 1, z), hedge)
             blocks.setdefault((x, g + 2, z), hedge)
         n += 1
-    for k, v in connect(walls_at, "brick_wall", P).items():
+    for k, v in list(connect(walls_at, "brick_wall", P).items()) + \
+            list(connect(fences_at, "spruce_fence", P, wall=False).items()):
         blocks.setdefault(k, v)
-    print("front garden walls/hedges:", n)
+    print("front garden walls/hedges/fences:", n, "of them fence:", len(fences_at))
     garden_fences(G, P, bid, surface, buildings, d, iz, ix, road)
 
 

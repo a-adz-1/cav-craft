@@ -12,6 +12,7 @@ Layers (rows north to south, cols west to east, same grid as lidar.npz):
   building building index into build/buildings.json, 0 = none
 """
 import json
+import os
 import sys
 
 import numpy as np
@@ -442,17 +443,29 @@ def fill_numbers():
     rows = {}
     for i in range(1, n):
         t = buildings[i]["tags"]
-        if cnt[i] < 25 or t.get("building") not in homes or t.get("name") or t.get("amenity") or t.get("shop"):
+        if cnt[i] < 12 or t.get("building") not in homes or t.get("name") or t.get("amenity") or t.get("shop"):
             continue
         e, nn = E0 + cx[i] + 0.5, N1 - cz[i] - 0.5
         d, k = tree.query((e, nn))
-        if d > 40:
-            continue
-        name = osm["lines"][way[k]]["tags"]["name"]
-        if t.get("addr:street") and t["addr:street"] != name:
-            continue
+        # a house tagged with another street than the nearest one counts along its own street, where that is
+        # within 150 m; houses far up a drive still count along the nearest street
+        want = t.get("addr:street")
+        if want and osm["lines"][way[k]]["tags"]["name"] != want:
+            own = [j for j in tree.query_ball_point((e, nn), 150) if osm["lines"][way[j]]["tags"]["name"] == want]
+            if own:
+                k = min(own, key=lambda j: np.hypot(*(pts[j] - (e, nn))))
         side = np.sign(tan[k][0] * (nn - pts[k][1]) - tan[k][1] * (e - pts[k][0]))
         rows.setdefault((way[k], side), []).append((s_[k], i))
+    # self-check (NUM_TEST=1): hide every third known number, then see how close the passes below get to it
+    hidden = {}
+    if os.environ.get("NUM_TEST"):
+        import zlib
+        for (wi, _), row in rows.items():           # NUM_TEST=street hides whole streets instead
+            whole = zlib.crc32(osm["lines"][wi]["tags"]["name"].encode()) % 3 == 0
+            for _, i in row:
+                v = buildings[i]["tags"].get("addr:housenumber")
+                if v and v.isdigit() and (whole if os.environ["NUM_TEST"] == "street" else i % 3 == 0):
+                    hidden[i] = int(buildings[i]["tags"].pop("addr:housenumber"))
     filled = 0
     for row in rows.values():
         row.sort()
@@ -480,6 +493,103 @@ def fill_numbers():
                 if num[j] or not step:
                     break
                 put(j, int(num[end]) + step * k)
+    # houses OSM has no address for: real numbers from the Land Registry's sales records, which give the numbers
+    # in each postcode (about 15 neighbouring houses) and where the postcode is. Each postcode is a fix (its
+    # centre -> its middle number, odd and even apart), as is each house OSM does have a number for. A house
+    # takes the number its place between the two nearest fixes on its street gives, moved to the nearest number
+    # on record that is still free. House-name streets (no numbers on record) take the names on record nearby.
+    anchored = named = 0
+    addr = json.load(open("build/addresses.json")) if os.path.exists("build/addresses.json") else {}
+    is_road = np.isin(surface, (S["road"], S["minor_road"]))
+
+    def same_side(e1, n1, e2, n2):
+        """No road between two points (sampled every 1.5 m)."""
+        k = max(2, int(np.hypot(e2 - e1, n2 - n1) / 1.5))
+        ee, nn_ = np.linspace(e1, e2, k), np.linspace(n1, n2, k)
+        zz = np.clip((N1 - nn_).astype(int), 0, building.shape[0] - 1)
+        xx = np.clip((ee - E0).astype(int), 0, building.shape[1] - 1)
+        return not is_road[zz, xx].any()
+    where = lambda i: (E0 + cx[i] + 0.5, N1 - cz[i] - 0.5)
+    by_street = {}
+    for (wi, side), row in rows.items():
+        by_street.setdefault(osm["lines"][wi]["tags"]["name"].upper(), []).append(row)
+    for street, srows in by_street.items():
+        pcs = addr.get(street)
+        if not pcs:
+            continue
+        fixes = []                                 # (e, n, number, is a house)
+        for row in srows:
+            for _, i in row:
+                v = buildings[i]["tags"].get("addr:housenumber")
+                if v and v.isdigit():
+                    fixes.append((*where(i), int(v), True))
+        every = [n_ for d_ in pcs.values() for n_ in d_["nums"]] + [f[2] for f in fixes]
+        if not every:                              # a street of named houses
+            for row in srows:
+                for _, i in row:
+                    t = buildings[i]["tags"]
+                    e, nn = where(i)
+                    free = [(np.hypot(d_["e"] - e, d_["n"] - nn), nm, d_) for d_ in pcs.values() for nm in d_["names"]]
+                    if free and not t.get("addr:housenumber") and not t.get("addr:housename"):
+                        _, nm, d_ = min(free, key=lambda v: v[0])
+                        t["addr:housename"] = nm
+                        d_["names"].remove(nm)
+                        named += 1
+            continue
+        odd = sum(n_ % 2 for n_ in every) / len(every)
+        consecutive = 0.25 < odd < 0.75           # a close numbered 1, 2, 3 round the end
+        for d_ in pcs.values():
+            for par in ((None,) if consecutive else (0, 1)):
+                ns = [n_ for n_ in d_["nums"] if par is None or n_ % 2 == par]
+                if len(ns) >= 2 or (ns and len(ns) * 2 >= len(d_["nums"])):
+                    fixes.append((d_["e"], d_["n"], float(np.median(ns)), False))
+        taken = {f[2] for f in fixes if f[3]}
+        step = 1 if consecutive else 2
+        for row in srows:
+            rk = [int(v) for v in (buildings[i]["tags"].get("addr:housenumber") for _, i in row) if v and v.isdigit()]
+            for _, i in row:
+                if buildings[i]["tags"].get("addr:housenumber"):
+                    continue
+                e, nn = where(i)
+                order = sorted(fixes, key=lambda f: np.hypot(f[0] - e, f[1] - nn))
+                if consecutive:
+                    par = None
+                elif rk:
+                    par = int(sum(v % 2 for v in rk) * 2 > len(rk))
+                else:                              # the side of the road the nearest fixes say this is
+                    side_ = [f for f in order[:8] if np.hypot(f[0] - e, f[1] - nn) < 120 and same_side(e, nn, f[0], f[1])][:3]
+                    if not side_:
+                        continue
+                    par = int(sum(round(f[2]) % 2 for f in side_) * 2 > len(side_))
+                fx = [f for f in order if par is None or round(f[2]) % 2 == par or not float(f[2]).is_integer()]
+                if not fx or np.hypot(fx[0][0] - e, fx[0][1] - nn) > 250:
+                    continue
+                f1 = fx[0]
+                f2 = next((f for f in fx[1:] if np.hypot(f[0] - f1[0], f[1] - f1[1]) > 5 and f[2] != f1[2]), None)
+                want = f1[2]
+                if f2:
+                    v_ = np.array([f2[0] - f1[0], f2[1] - f1[1]])
+                    t_ = np.clip(np.dot((e - f1[0], nn - f1[1]), v_) / (v_ @ v_), -1, 2)
+                    want = f1[2] + (f2[2] - f1[2]) * t_
+                pool = [n_ for d_ in pcs.values() for n_ in d_["nums"]
+                        if (par is None or n_ % 2 == par) and n_ not in taken and abs(n_ - want) <= 4 * step]
+                v = int(round((want - (par or 0)) / step)) * step + (par or 0)
+                v = min(pool, key=lambda n_: abs(n_ - want)) if pool else v
+                k = 0
+                while v + k in taken or v + k < 1:   # the nearest free number either way
+                    k = -k if k > 0 else -k + step
+                v += k
+                buildings[i]["tags"]["addr:housenumber"] = str(v)
+                taken.add(v)
+                rk.append(v)
+                anchored += 1
+    print("house numbers from Land Registry postcodes:", anchored, "house names:", named)
+    if hidden:
+        err = np.array([abs(int(buildings[i]["tags"]["addr:housenumber"]) - v) for i, v in hidden.items()
+                        if buildings[i]["tags"].get("addr:housenumber", "").isdigit()])
+        print(f"NUM_TEST: {len(hidden)} hidden, {len(err)} given a number; exact {np.mean(err == 0):.0%}, within 2 "
+              f"{np.mean(err <= 2):.0%}, within 6 {np.mean(err <= 6):.0%}, median {np.median(err):.0f} off")
+        sys.exit()
     # every house gets a number: rows with one known number count on by 2 from it; rows with none number up the
     # street from 1 (odds) or 2 (evens), the opposite parity to the other side where that side is known;
     # anything still blank takes the house before it plus the row's step
@@ -509,6 +619,8 @@ def fill_numbers():
             have = buildings[i]["tags"].get("addr:housenumber")
             if have:
                 prev, suffix = have, "a"
+                continue
+            if buildings[i]["tags"].get("addr:housename"):      # a named house has no number
                 continue
             if vals[j] >= 1 and vals[j] not in taken:
                 buildings[i]["tags"]["addr:housenumber"] = prev = str(vals[j])

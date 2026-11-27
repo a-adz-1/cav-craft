@@ -105,7 +105,8 @@
   "upper": [
    "cream_render"
   ],
-  "upper_p": 0.15
+  "upper_p": 0.15,
+  "front": "mixed"
  },
  "Thames Side": {
   "walls": [
@@ -244,7 +245,8 @@
   "quoins": 0.5,
   "note": "Mixed: Victorian two-storey terraces (red brick and painted white/cream) near the Gosbrook Road lights, a single-storey red-brick hall with slate roof, a three-storey 1950s buff-brick flats block and open land; the south view is central Reading with a high-rise tower and offices, not Caversham.",
   "family": "town",
-  "source": "street view"
+  "source": "street view",
+  "front": "mixed"
  },
  "Church Street": {
   "walls": [
@@ -365,7 +367,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.25
+  "upper_p": 0.25,
+  "front": "mixed"
  },
  "All Hallows Road": {
   "walls": [
@@ -522,6 +525,7 @@
    "white_render"
   ],
   "upper_p": 0.4,
+  "front": "mixed",
   "fascias": [
    "black_concrete",
    "white_concrete"
@@ -995,7 +999,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.1
+  "upper_p": 0.1,
+  "front": "mixed"
  },
  "Tamesis Place": {
   "walls": [
@@ -1649,7 +1654,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.1
+  "upper_p": 0.1,
+  "front": "mixed"
  },
  "Star Road": {
   "walls": [
@@ -1897,7 +1903,8 @@
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.05
+  "upper_p": 0.05,
+  "front": "mixed"
  },
  "Briant's Avenue": {
   "walls": [
@@ -2054,7 +2061,7 @@
   "note": "1970s estate of two-storey brown/red-brick terraces with shallow tile roofs and small porch canopies, facing a big open green with mature trees; timber fences and garage blocks.",
   "family": "estate_6070",
   "source": "street view",
-  "front": "wall"
+  "front": "fence"
  },
  "Douglas Road": {
   "walls": [
@@ -2391,7 +2398,7 @@
   "note": "1970s estate of two-storey brown/red-brick terraces with shallow tile roofs and small porch canopies, facing a big open green with mature trees; timber fences and garage blocks.",
   "family": "estate_6070",
   "source": "street view",
-  "front": "wall"
+  "front": "fence"
  },
  "Eccles Close": {
   "walls": [
@@ -2577,7 +2584,7 @@
    "tile_hung"
   ],
   "upper_p": 0.1,
-  "front": "wall"
+  "front": "fence"
  },
  "Managua Close": {
   "walls": [
@@ -2761,7 +2768,7 @@
    "tile_hung"
   ],
   "upper_p": 0.1,
-  "front": "wall"
+  "front": "fence"
  },
  "Nelson Road": {
   "walls": [
@@ -2836,7 +2843,8 @@
   "tudor": 0,
   "note": "1920s-30s council-built red-brick semis and short terraces of four with hipped orange-red clay tile roofs, tall chimneys and small tiled porch hoods, behind low fences, hedges or open paved drives.",
   "family": "interwar_semi",
-  "source": "street view"
+  "source": "street view",
+  "front": "mixed"
  },
  "Donkin Hill": {
   "walls": [
@@ -3156,7 +3164,8 @@
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.05
+  "upper_p": 0.05,
+  "front": "mixed"
  },
  "Washington Road": {
   "walls": [
@@ -3271,7 +3280,7 @@
   "note": "1990s-2000s red-brick two-storey houses with dark tile roofs and tiled porch canopies, seen over close-boarded fences, beside a small gated industrial yard; hedges and trees.",
   "family": "modern",
   "source": "street view",
-  "front": "wall",
+  "front": "fence",
   "fascias": [
    "gray_concrete",
    "blue_concrete"
@@ -3429,6 +3438,10 @@
   "note": "A small 1970s-80s business park: brick-and-grey-metal-clad two-storey workshop/office units with car parking in front, a brick office block, hedges and a few trees; 1930s houses visible beyond.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "concrete"
+  ],
+  "upper_p": 0.8,
   "front": null,
   "fascias": [
    "red_concrete",
@@ -4135,7 +4148,7 @@
    "white_render"
   ],
   "upper_p": 0.1,
-  "front": "wall"
+  "front": "fence"
  },
  "Church Road": {
   "walls": [
@@ -4215,6 +4228,7 @@
    "white_render"
   ],
   "upper_p": 0.4,
+  "front": "mixed",
   "fascias": [
    "black_concrete",
    "white_concrete"
@@ -4540,7 +4554,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.25
+  "upper_p": 0.25,
+  "front": "mixed"
  },
  "Grass Hill": {
   "walls": [
@@ -4617,7 +4632,8 @@
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.35
+  "upper_p": 0.35,
+  "front": "mixed"
  },
  "Symeon Place": {
   "walls": [
@@ -4890,7 +4906,7 @@
   "note": "Both views are from St Peter's Hill and show mostly mature trees, close-board fences and hedges; only a couple of distant red-brick houses are visible.",
   "family": "interwar_detached",
   "source": "street view",
-  "front": "wall"
+  "front": "fence"
  },
  "Westonbirt Drive": {
   "walls": [
@@ -4964,7 +4980,7 @@
    "timber"
   ],
   "upper_p": 0.2,
-  "front": "wall"
+  "front": "fence"
  },
  "Chazey Road": {
   "walls": [
@@ -5082,7 +5098,7 @@
    "tile_hung"
   ],
   "upper_p": 0.2,
-  "front": "wall"
+  "front": "fence"
  },
  "River Road": {
   "walls": [
@@ -5192,7 +5208,7 @@
   "note": "A short close of detached houses behind tall timber fences and conifers; the one clearly visible house is a white-rendered chalet bungalow with a brown concrete tile roof and dormers. n1 landed on Upper Warren Avenue and was not counted.",
   "family": "estate_6070",
   "source": "street view",
-  "front": "wall"
+  "front": "fence"
  },
  "Hewett Close": {
   "walls": [
@@ -6213,7 +6229,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3
+  "upper_p": 0.3,
+  "front": "mixed"
  },
  "Buxton Avenue": {
   "walls": [
@@ -6410,7 +6427,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3
+  "upper_p": 0.3,
+  "front": "mixed"
  },
  "Blenheim Road": {
   "walls": [
@@ -6835,7 +6853,7 @@
    "timber"
   ],
   "upper_p": 0.3,
-  "front": "wall"
+  "front": "fence"
  },
  "Woodford Close": {
   "walls": [
@@ -6912,7 +6930,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.15
+  "upper_p": 0.15,
+  "front": "mixed"
  },
  "Conisboro Avenue": {
   "walls": [
@@ -7028,7 +7047,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3
+  "upper_p": 0.3,
+  "front": "mixed"
  },
  "Westdene Crescent": {
   "walls": [
@@ -7184,7 +7204,7 @@
    "white_render"
   ],
   "upper_p": 0.15,
-  "front": "wall"
+  "front": "fence"
  },
  "Geoffreyson Road": {
   "walls": [
@@ -7222,7 +7242,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.15
+  "upper_p": 0.15,
+  "front": "mixed"
  },
  "Pinewood Drive": {
   "walls": [
@@ -7260,7 +7281,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.2
+  "upper_p": 0.2,
+  "front": "mixed"
  },
  "Regency Heights": {
   "walls": [
@@ -7337,7 +7359,7 @@
    "timber"
   ],
   "upper_p": 0.3,
-  "front": "wall"
+  "front": "fence"
  },
  "Gurney Close": {
   "walls": [
@@ -7727,7 +7749,8 @@
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.5
+  "upper_p": 0.5,
+  "front": "mixed"
  },
  "Carlton Road": {
   "walls": [
@@ -7883,7 +7906,7 @@
    "white_render"
   ],
   "upper_p": 0.15,
-  "front": "wall"
+  "front": "fence"
  },
  "Ashcroft Close": {
   "walls": [
@@ -8069,7 +8092,8 @@
   "upper": [
    "pebbledash"
   ],
-  "upper_p": 0.5
+  "upper_p": 0.5,
+  "front": "mixed"
  },
  "Hunters Chase": {
   "walls": [
@@ -8937,7 +8961,7 @@
   "note": "Only the n2 viewpoint is on Grove Hill, and it looks into a garage court behind a two-storey red-brick 1960s-70s terrace (rear elevations, fences, lock-up garages). n0 is at an unnamed junction by a Victorian corner house and n1 landed on Eliot Close, so front elevations were not seen.",
   "family": "estate_6070",
   "source": "street view",
-  "front": "wall"
+  "front": "fence"
  },
  "Tredegar Road": {
   "walls": [
@@ -9317,7 +9341,8 @@
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.1
+  "upper_p": 0.1,
+  "front": "mixed"
  },
  "Merthyr Vale": {
   "walls": [
@@ -9390,7 +9415,7 @@
   "note": "Mostly 1960s-70s two-storey houses in yellow/buff and red brick with shallow brown concrete tile roofs, gable ends to the road and close-board fences and shrubs in front; an older red-brick house with dormers at the Gravel Hill end. n0 landed on Tredegar Road and was not counted.",
   "family": "estate_6070",
   "source": "street view",
-  "front": "wall"
+  "front": "fence"
  },
  "Emmer Green, Reading,": {
   "walls": [
@@ -9464,7 +9489,7 @@
   "note": "The views (no street name shown) are on a service road by Emmer Green surgery: a single-storey red-brick building with a tiled roof and a flat-roofed white-rendered clinic building with a car park; no ordinary houses were seen.",
   "family": "modern",
   "source": "street view",
-  "front": "wall"
+  "front": "fence"
  },
  "Grove Road": {
   "walls": [
@@ -9691,7 +9716,7 @@
    "white_render"
   ],
   "upper_p": 0.1,
-  "front": "wall"
+  "front": "fence"
  },
  "Scott Close": {
   "walls": [
@@ -9764,7 +9789,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.4
+  "upper_p": 0.4,
+  "front": "mixed"
  },
  "Eric Avenue": {
   "walls": [
@@ -10100,7 +10126,8 @@
   "upper": [
    "cream_render"
   ],
-  "upper_p": 0.45
+  "upper_p": 0.45,
+  "front": "mixed"
  },
  "Southdown Road": {
   "walls": [
@@ -10217,7 +10244,7 @@
    "tile_hung"
   ],
   "upper_p": 0.6,
-  "front": "wall"
+  "front": "fence"
  },
  "Grove Cottages": {
   "walls": [
@@ -10407,7 +10434,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.1
+  "upper_p": 0.1,
+  "front": "mixed"
  },
  "The Ridgeway": {
   "walls": [
@@ -10563,6 +10591,7 @@
    "white_render"
   ],
   "upper_p": 0.1,
+  "front": "mixed",
   "fascias": [
    "white_concrete",
    "red_concrete"
@@ -10601,7 +10630,7 @@
   "note": "Only the Peppard Road end (black railings, big trees, hedges) and a photosphere of the Caversham Park mansion (pale stone, columned) loaded; no houses on the drive itself were seen.",
   "family": "interwar_detached",
   "source": "street view",
-  "front": "wall"
+  "front": "fence"
  },
  "Oak Grove": {
   "walls": [
@@ -11440,7 +11469,7 @@
    "white_render"
   ],
   "upper_p": 0.3,
-  "front": "wall"
+  "front": "fence"
  },
  "Longhurst Close": {
   "walls": [
@@ -11928,7 +11957,7 @@
    "white_render"
   ],
   "upper_p": 0.2,
-  "front": "wall"
+  "front": "fence"
  },
  "Norman Road": {
   "walls": [
@@ -11966,7 +11995,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3
+  "upper_p": 0.3,
+  "front": "mixed"
  },
  "Pembroke Place": {
   "walls": [
@@ -12235,6 +12265,10 @@
   "note": "1980s executive detached houses in red brick with integral garages, some with dark-brown weatherboarded first floors; open-plan lawns and big oak trees.",
   "family": "modern",
   "source": "street view",
+  "upper": [
+   "timber"
+  ],
+  "upper_p": 0.4,
   "front": null
  },
  "Montfort Gate": {
@@ -12308,7 +12342,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.1
+  "upper_p": 0.1,
+  "front": "mixed"
  },
  "Woods Road": {
   "walls": [
@@ -12501,7 +12536,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.5
+  "upper_p": 0.5,
+  "front": "mixed"
  },
  "Lowfield Road": {
   "walls": [
@@ -12579,7 +12615,7 @@
    "white_render"
   ],
   "upper_p": 0.2,
-  "front": "wall"
+  "front": "fence"
  },
  "Hawthorne Road": {
   "walls": [
@@ -12657,7 +12693,7 @@
    "timber"
   ],
   "upper_p": 0.2,
-  "front": "wall"
+  "front": "fence"
  },
  "Henley road": {
   "walls": [
@@ -12695,7 +12731,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.1
+  "upper_p": 0.1,
+  "front": "mixed"
  },
  "Archway Road": {
   "walls": [
@@ -13603,7 +13640,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.4
+  "upper_p": 0.4,
+  "front": "mixed"
  },
  "Fishers Cottages": {
   "walls": [
@@ -13911,7 +13949,7 @@
   "note": "Council-estate court: a long three-storey red-brick maisonette block with external balconies and stairs behind a high brick wall, plus buff-brick single-storey and two-storey houses with brown concrete tile roofs, close-board fences and grass verges. n1 landed on The Meadway and was not counted.",
   "family": "estate_6070",
   "source": "street view",
-  "front": "wall"
+  "front": "fence"
  },
  "Jeferson Close": {
   "walls": [
@@ -14063,7 +14101,7 @@
    "timber"
   ],
   "upper_p": 0.6,
-  "front": "wall"
+  "front": "fence"
  },
  "Kiln Road": {
   "walls": [
@@ -14514,6 +14552,10 @@
   "note": "1970s estate of short terraces and link houses in orange-brown brick with white cladding bands under the upper windows and integral garages, set round open grass and some mature trees.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.6,
   "front": null
  },
  "Queensway": {
@@ -14977,7 +15019,7 @@
    "white_render"
   ],
   "upper_p": 0.5,
-  "front": "wall"
+  "front": "fence"
  },
  "Aldenham Close": {
   "walls": [
@@ -15093,7 +15135,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3
+  "upper_p": 0.3,
+  "front": "mixed"
  },
  "Rowallan Close": {
   "walls": [
@@ -15209,7 +15252,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.8
+  "upper_p": 0.8,
+  "front": "mixed"
  },
  "Netley Close": {
   "walls": [
@@ -15285,7 +15329,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.4
+  "upper_p": 0.4,
+  "front": "mixed"
  },
  "Eynsford Close": {
   "walls": [
@@ -15359,6 +15404,10 @@
   "note": "1970s link-detached houses in orange-brown brick with flat-roofed garages, canopy porches and brown concrete-tiled roofs set on open-plan corner lawns.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.1,
   "front": null
  },
  "Littlestead Close": {
@@ -15394,6 +15443,10 @@
   "note": "1970s estate of brown-brick detached houses and chalet bungalows, some with white-boarded first floors and integral garages, set back on open lawns with low brick walls and hedges.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.4,
   "front": null
  },
  "Dumbarton Way": {
@@ -15429,6 +15482,10 @@
   "note": "1970s orange-brown brick terraces and semis with white boarded bands under the upper windows, integral garages and pent canopies; open lawns and close-board fences to side gardens, big grassy open space beside the road.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.5,
   "front": null
  },
  "Ilchester Mews": {
@@ -15503,6 +15560,10 @@
   "note": "1970s buff/light-brown brick link-detached houses with gable fronts, integral garages and pent porches; block-paved fronts with planting, tall clipped hedges on the corner plots.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.1,
   "front": null
  },
  "Kelso Mews": {
@@ -15537,7 +15598,8 @@
   "tudor": 0,
   "note": "Small close of plain orange-red brick detached houses with garages, low picket fences and tall conifer hedges; one view was only hedge.",
   "family": "estate_6070",
-  "source": "street view"
+  "source": "street view",
+  "front": "mixed"
  },
  "Melford Green": {
   "walls": [
@@ -15575,7 +15637,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.5
+  "upper_p": 0.5,
+  "front": "mixed"
  },
  "Kingsway": {
   "walls": [
@@ -15688,6 +15751,10 @@
   "note": "Only 2 of 4 views loaded. 1970s buff and brown brick semis and link houses with white-clad panels, integral garages and open lawns; fences on the side gardens.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.3,
   "front": null
  },
  "Newton Avenue": {
@@ -15802,6 +15869,10 @@
   "note": "Mix of buff-brick bungalows and short terraces of red-brick houses with flat-roofed garages and porches; low brick walls, hedges and gravel fronts.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.1,
   "front": "wall"
  },
  "Farnham Drive": {
@@ -15836,7 +15907,11 @@
   "note": "1970s buff-brick terraces with integral garages and some white cladding behind close-board fences, plus a pale brick flat-roofed block (local shops/offices) with an external stair and garage court; very leafy with grass banks.",
   "family": "estate_6070",
   "source": "street view",
-  "front": "wall"
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.3,
+  "front": "fence"
  },
  "Redberry Close": {
   "walls": [
@@ -15871,6 +15946,10 @@
   "note": "1970s buff and light-brown brick semis and short terraces with integral or linked garages and pent porch roofs; some white-clad upper panels; open fronts, close-board side fences and a few hedges.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.3,
   "front": null
  },
  "Bramber Mews": {
@@ -15906,6 +15985,10 @@
   "note": "1970s estate: terraces of low red-brick bungalows with grey concrete-tiled roofs and white fascias, plus buff-brick two-storey houses; open grass fronts and fences.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.2,
   "front": null
  },
  "Kendal Avenue": {
@@ -15941,7 +16024,11 @@
   "note": "1970s orange-brown brick semis and link houses with flat-roofed garage links and white-framed porches; front gardens behind lap-fence and trellis panels with brick piers, plus shrubs and small trees.",
   "family": "estate_6070",
   "source": "street view",
-  "front": "wall"
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.2,
+  "front": "fence"
  },
  "Earlsfield Close": {
   "walls": [
@@ -15976,6 +16063,10 @@
   "note": "1970s buff-brick link houses and semis on a slope, with integral garages, some white-boarded upper fronts and solar panels; low buff-brick front walls topped by hedges, wooded backdrop.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.3,
   "front": "wall"
  },
  "Lomond Avenue": {
@@ -16011,6 +16102,10 @@
   "note": "1960s-70s estate terraces in red and orange-brown brick with white weatherboard panels and canopy porches, low-pitched concrete-tile roofs, open fronts turned into parking; occasional verge trees.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.3,
   "front": null
  },
  "Blackwater Close": {
@@ -16046,6 +16141,10 @@
   "note": "1970s buff-brick semis and terraces with white weatherboarded upper floors and integral garages; low buff-brick front walls with pierced screen-block panels, shrubs and conifers. (Imagery 2012.)",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.7,
   "front": "wall"
  },
  "Pevensey Avenue": {
@@ -16081,6 +16180,10 @@
   "note": "1970s buff-brick link-detached houses with integral garages and steep front gables, plus buff-brick terraces with tiled pent porches; open lawns, hedges and block-paved drives.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.1,
   "front": null
  },
  "Ulster Close": {
@@ -16116,6 +16219,10 @@
   "note": "1970s terraces and semis in orange-brown and buff brick, some with white-rendered upper floors, tiled pent porches and integral garages, round a grass turning circle; open gravel fronts with hedges and lap fences.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.4,
   "front": null
  },
  "Jordan Close": {
@@ -16193,7 +16300,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.4
+  "upper_p": 0.4,
+  "front": "mixed"
  },
  "Highbridge Close": {
   "walls": [
@@ -16228,6 +16336,10 @@
   "note": "1970s estate of short terraces and semis in buff and brown brick with white cladding bands under the upper windows and flat-roofed porch/garage fronts; open-plan lawns, a few fences and hedges, mature garden trees.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.6,
   "front": null
  },
  "Tenby Avenue": {
@@ -16263,6 +16375,10 @@
   "note": "1970s red/brown brick link-detached houses with front gables and linked garages on one side, and a brown-brick terrace with white panel inserts and integral garages on the other; open lawns, gravel drives and lap fences.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.2,
   "front": null
  },
  "Ibstone Avenue": {
@@ -16297,7 +16413,12 @@
   "tudor": 0,
   "note": "1970s orange-brown brick terraces and semis with white panels between the upper windows, flat-roofed garages and carports; fronts mix shrubs, gravel drives and trellis-topped fences.",
   "family": "estate_6070",
-  "source": "street view"
+  "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.4,
+  "front": "mixed"
  },
  "Chestnut Avenue": {
   "walls": [
@@ -16335,7 +16456,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.6
+  "upper_p": 0.6,
+  "front": "mixed"
  },
  "Devon Drive": {
   "walls": [
@@ -16370,7 +16492,11 @@
   "note": "1970s buff and brown brick estate houses with plain gables, some brown tile-hung upper fronts and white panels, single-storey links; fronts with low brick walls, lap fences and block paving.",
   "family": "estate_6070",
   "source": "street view",
-  "front": "wall"
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.3,
+  "front": "fence"
  },
  "Shakespeare Close": {
   "walls": [
@@ -16408,7 +16534,8 @@
   "upper": [
    "white_render"
   ],
-  "upper_p": 0.3
+  "upper_p": 0.3,
+  "front": "mixed"
  },
  "Odiham Avenue": {
   "walls": [
@@ -16443,7 +16570,11 @@
   "note": "1970s buff/light-brown brick semis and short terraces with integral garages and tiled pent canopies over door and garage; fronts paved for parking with close-board fences and hedges between plots.",
   "family": "estate_6070",
   "source": "street view",
-  "front": "wall"
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.1,
+  "front": "fence"
  },
  "Dacre Avenue": {
   "walls": [
@@ -16478,6 +16609,10 @@
   "note": "1960s-70s estate: low brown-brick bungalows with long brown concrete-tiled roofs on one side, and semis with white-clad upper floors over brown brick on the other; open-plan fronts and wooden fences.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.5,
   "front": null
  },
  "Grove Mews": {
@@ -16606,7 +16741,7 @@
    "timber"
   ],
   "upper_p": 0.6,
-  "front": "wall"
+  "front": "fence"
  },
  "Hornbeam Close": {
   "walls": [
@@ -16719,7 +16854,7 @@
   "note": "2000s development of red-brick three-storey townhouses and flats with dormer windows and buff-brick string courses, brown tile roofs; close-boarded fences, grass verges and plenty of mature trees.",
   "family": "modern",
   "source": "street view",
-  "front": "wall"
+  "front": "fence"
  },
  "Pendennis Avenue": {
   "walls": [
@@ -16754,6 +16889,10 @@
   "note": "1970s estate of buff-brick terraces and red-brick semis with integral garages and some tile-hung or clad upper fronts, brown concrete roofs, open-plan fronts and wooden ranch fences, next to the school.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.3,
   "front": null
  },
  "Willow view": {
@@ -16897,6 +17036,10 @@
   "note": "1970s buff-brick semis and short terraces with white panel bands under the upper windows, flat-roofed/lean-to porch and garage fronts, open lawns and low buff-brick walls.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.6,
   "front": null
  },
  "Hadleigh Rise": {
@@ -16974,7 +17117,8 @@
   "upper": [
    "tile_hung"
   ],
-  "upper_p": 0.1
+  "upper_p": 0.1,
+  "front": "mixed"
  },
  "Framlingham Drive": {
   "walls": [
@@ -17009,6 +17153,10 @@
   "note": "1970s terraces and semis in buff/brown brick with white weatherboard panels between storeys, integral garages and brown concrete roofs; open lawns, low fences and a communal green.",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.5,
   "front": null
  },
  "Goodrich Close": {
@@ -17044,6 +17192,10 @@
   "note": "1970s buff-brick estate houses, some with flat-roofed single-storey garage/porch wings and plain gable ends; red-brick semis opposite; open grass fronts with a few hedges and fence panels. (1_* views snapped to the same pano as 0_*.)",
   "family": "estate_6070",
   "source": "street view",
+  "upper": [
+   "weatherboard"
+  ],
+  "upper_p": 0.1,
   "front": null
  },
  "Putting Green": {
