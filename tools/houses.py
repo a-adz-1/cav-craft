@@ -387,7 +387,8 @@ BAY_FAMILIES = {"grey_terrace": 2, "riverside_villa": 2, "victorian_terrace": 2,
                 "postwar_council": 0}
 
 
-def add_bay(P, blocks, inside, bidcrop, dz_, dx_, dx, dz, x0, z0, fl, ey, wall, roof, family, stats):
+def add_bay(P, blocks, inside, bidcrop, dz_, dx_, dx, dz, x0, z0, fl, ey, wall, roof, family, stats,
+            upper=None, gable=False, roof_top=None, stair=None):
     """A bay window beside the front door: 3 wide, 1 out from the wall, glazed on its three faces, up one or
     two storeys (Victorian and 1930s houses), with a tiled cap."""
     storeys = BAY_FAMILIES[family]
@@ -409,10 +410,46 @@ def add_bay(P, blocks, inside, bidcrop, dz_, dx_, dx, dz, x0, z0, fl, ey, wall, 
             for y in range(fl + 1, top + 1):
                 corner = i != 1
                 sill = (y - fl) % 3 == 0 or y == fl + 1
-                blocks[(X, y, Z)] = wall if corner or sill else pane
+                # rendered or tile-hung above the first floor like the house; a mock-Tudor bay is white all the
+                # way up with a brick band between the floors
+                mat = upper if upper and (y > fl + 3 or (gable and y != fl + 3)) else wall
+                blocks[(X, y, Z)] = mat if corner or sill else pane
             blocks[(X, fl, Z)] = wall
             blocks[(X, top + 1, Z)] = roof
         stats["bays"] = stats.get("bays", 0) + 1
+        if gable and top >= fl + 4:           # the bay reaches the upper windows
+            # a half-timbered gable over a two-storey bay, its little roof running back into the main one
+            # (1930s semis: seen in the street survey's mock-Tudor streets)
+            name = {v: k for k, v in DIRS.items()}
+            up_, down_ = name[(dz * sign, dx * sign)], name[(-dz * sign, -dx * sign)]
+            white, beam = upper or wall, P("dark_oak_log")
+            T = top
+            # j along the wall (-1..3, the bay is 0..2): (y of the roof line, stair facing or None for the ridge)
+            line = {-1: (T + 1, up_), 0: (T + 2, up_), 1: (T + 3, None), 2: (T + 2, down_), 3: (T + 1, down_)}
+            for t in range(0, 6):                 # 0 = the bay's own cells, then back into the house
+                placed = 0
+                for j, (ry, facing) in line.items():
+                    a = out[1][0] + az * sign * (j - 1) - dz * t
+                    c = out[1][1] + ax * sign * (j - 1) - dx * t
+                    if not (0 <= a < inside.shape[0] and 0 <= c < inside.shape[1]):
+                        continue
+                    if t == 0 and (inside[a, c] or bidcrop[a, c]):
+                        continue
+                    if t > 0 and not inside[a, c]:
+                        continue
+                    floor_y = T if t == 0 else int(roof_top[a, c])      # nothing below the main roof's surface
+                    X, Z = x0 + c, z0 + a
+                    for y in range(T + 1, ry):
+                        if y > floor_y:
+                            blocks[(X, y, Z)] = (beam if j == 1 and y == T + 1 else white) if t == 0 else roof
+                            placed += 1
+                    if ry > floor_y:
+                        blocks[(X, ry, Z)] = P(stair, facing=facing, half="bottom", shape="straight") \
+                            if stair and facing else roof
+                        placed += 1
+                if not placed:
+                    break
+            stats["bay_gables"] = stats.get("bay_gables", 0) + 1
         return
 
 
@@ -897,7 +934,10 @@ def prepare(G, P, layers, lidar, buildings):
                                     blocks.setdefault((OX + dz * k, fl + 3, OZ + dx * k), P("spruce_slab", type="bottom"))
                         if st.get("family") in BAY_FAMILIES and not lm and not shop_colour:
                             add_bay(P, blocks, inside, bid[z0:z1, x0:x1], dz_, dx_, dx, dz, x0, z0, fl,
-                                    ey, P(WALLS[wname]), P(full), st["family"], stats)
+                                    ey, P(WALLS[wname]), P(full), st["family"], stats,
+                                    upper=P(WALLS[uname]) if uname and st["family"].startswith("interwar") else None,
+                                    gable=tudor and rkind != "flat" and st["family"].startswith("interwar"),
+                                    roof_top=top, stair=stair)
                         # the house number on a plaque beside the door, facing the street (after the bay, so it
                         # takes the free side); no room either side: over the door, in place of the porch hood
                         num = t.get("addr:housenumber")
@@ -1140,6 +1180,12 @@ def front_boundaries(G, P, bid, surface, buildings, styles, streets):
             blocks.setdefault((x, g + 1, z), hedge)
             blocks.setdefault((x, g + 2, z), hedge)
         n += 1
+    # gate piers: the wall cell either side of a gap is a brick post with a stone cap
+    for (x, y, z) in walls_at:
+        if any((nx * 7 + nz * 13) % 11 == 0 and (nx, y, nz) not in walls_at
+               for nx, nz in ((x + 1, z), (x - 1, z), (x, z + 1), (x, z - 1))):
+            blocks[(x, y, z)] = P("bricks")
+            blocks.setdefault((x, y + 1, z), P("smooth_stone_slab", type="bottom"))
     for k, v in list(connect(walls_at, "brick_wall", P).items()) + \
             list(connect(fences_at, "spruce_fence", P, wall=False).items()):
         blocks.setdefault(k, v)
