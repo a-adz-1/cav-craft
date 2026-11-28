@@ -94,7 +94,29 @@ LANDMARKS = {
     "w160826605": {"name": "Queen Anne's School", "walls": "red_brick", "roof": "slate", "roof_kind": "hip",
                    "dress": "smooth_sandstone", "windows": "tall", "band": 4, "ivy": 0.4, "stacks": 14,
                    "gables": {"sides": ["south", "west", "east"], "width": 7},
+                   # Bloomfield's chapel at the east end of the front (aerial view; photos): one tall storey,
+                   # big pointed windows between buttresses, its own slate gable roof, no ivy
+                   "parts": [{"at": [3776, 3078], "name": "Queen Anne's School (chapel)", "roof_kind": "gable",
+                              "windows": "lancet", "ivy": 0, "stacks": 0, "church": True}],
                    "tower": {"size": 3, "top": "cupola", "walls": "bricks", "dress": "smooth_sandstone", "extra": -2}},
+    # Grace Church (the old Emmer Green chapel), Peppard Road (Commons photos): a small white-rendered chapel
+    # with lancets, a slate roof and a white battlemented tower at its west end
+    "w163753722": {"name": "Grace Church Caversham", "walls": "white_render", "roof": "slate", "dress": "white_concrete",
+                   "windows": "lancet",
+                   "tower": {"size": 3, "top": "battlement", "walls": "white_concrete", "dress": "white_concrete"}},
+    # New Testament Church of God, Church Street (Mapillary): the old cinema, cream render with a pedimented
+    # parapet, flat roof
+    "w140485594": {"name": "New Testament Church Of God", "walls": "cream_render", "roof": "flat",
+                   "dress": "smooth_quartz", "windows": "house", "band": 4, "parapet": "sandstone_wall"},
+    # Miller & Carter (The Grosvenor), Kidmore Road (Mapillary): a 1920s roadhouse, red brick with a white
+    # rendered centre and upper storey, dark plain-tile hipped roofs, brick stacks
+    "w150801312": {"name": "Miller & Carter", "walls": "red_brick", "upper": "white_render", "roof": "dark_tile",
+                   "roof_kind": "hip", "dress": "bricks", "windows": "house", "stacks": 10},
+    # Reading Crematorium, All Hallows Road (Commons photos; 1932): red brick with brick quoins, red clay
+    # tiled roofs, a lead-covered dome with a lantern over the chapel
+    "w80222820": {"name": "Reading Crematorium", "walls": "red_brick", "roof": "red_tile", "roof_kind": "hip",
+                  "dress": "bricks", "windows": "tall", "band": 4,
+                  "tower": {"size": 5, "top": "cupola", "walls": "bricks", "dress": "smooth_sandstone", "extra": -3}},
     # Caversham Grove, now Highdown School (Historic England list entry 1157071; hidden from the road): early
     # C18 house extended by Norman Shaw 1878-80 in Queen Anne style. Red brick, stucco string at first floor,
     # stone eaves cornice, sash windows, tiled hipped roof with gabled dormers; Shaw's wing ("Manor House") the same.

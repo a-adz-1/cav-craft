@@ -8,6 +8,13 @@ doors, though not which exact house is which.
 
     .venv/bin/python tools/addresses.py  -> build/addresses.json
     {STREET: {postcode: {"e": easting, "n": northing, "nums": [12, 14, ...], "names": ["Rose Cottage", ...]}}}
+
+Also which postcode each house is in, exactly: OS Open UPRN (the position of every address in Britain) joined to
+the ONS UPRN Directory (each address's postcode), both Open Government Licence, cut to our box.
+
+    .venv/bin/python tools/addresses.py points  -> build/address_points.json  [[easting, northing, postcode], ...]
+    (needs .downloads/uprn/osopenuprn.zip from api.os.uk/downloads/v1/products/OpenUPRN and
+     .downloads/uprn/onsud.zip, the ONS UPRN Directory, from geoportal.statistics.gov.uk: about 1.8 GB)
 """
 import csv
 import json
@@ -81,5 +88,32 @@ def main():
     assert parse("FLAT 3") == (None, None) and parse("12 - 14") == (12, None)
 
 
+def points():
+    import io
+    import zipfile
+    from box import E0, E1, N0, N1
+    where = {}
+    z = zipfile.ZipFile(".downloads/uprn/osopenuprn.zip")
+    with z.open(next(n for n in z.namelist() if n.lower().endswith(".csv"))) as f:
+        r = csv.reader(io.TextIOWrapper(f, "utf-8-sig"))
+        next(r)
+        for row in r:                               # UPRN, X_COORDINATE, Y_COORDINATE, ...
+            e, n = float(row[1]), float(row[2])
+            if E0 <= e <= E1 and N0 <= n <= N1:
+                where[row[0]] = (e, n)
+    out = []
+    z = zipfile.ZipFile(".downloads/uprn/onsud.zip")
+    with z.open(next(n for n in z.namelist() if n.endswith("_SE.csv"))) as f:     # the South East file
+        r = csv.reader(io.TextIOWrapper(f, "utf-8-sig"))
+        h = [c.upper() for c in next(r)]
+        iu, ip = h.index("UPRN"), h.index("PCDS")
+        for row in r:
+            if row[iu] in where:
+                out.append([*where[row[iu]], row[ip]])
+    json.dump(out, open("build/address_points.json", "w"))
+    print(len(out), "address points with a postcode")
+
+
 if __name__ == "__main__":
-    main()
+    import sys
+    points() if sys.argv[1:] == ["points"] else main()

@@ -110,7 +110,8 @@ def shared_roofs(buildings, bid, crop):
     fits = {}
     for i in range(1, len(buildings)):
         b = buildings[i]
-        if b is None or b["tags"].get("building", "yes") not in HOUSE_KINDS or landmarks.LANDMARKS.get(b["id"]):
+        if b is None or b["tags"].get("building", "yes") not in HOUSE_KINDS or landmarks.LANDMARKS.get(b["id"]) \
+                or "part" in b:                      # a wing split off a big building keeps its own height
             continue
         c_ = crop(i)
         if c_ is None or c_[4].sum() > 400:
@@ -342,6 +343,15 @@ def side_doors(P, blocks, G, inside, edge, bid, x0, z0, fl, door):
     return placed
 
 
+def num_text(num):
+    """A plaque's number line: '2 & 4', or 'first-last' when the list is too long for a sign."""
+    parts = [p_.strip() for p_ in (num or "").replace(";", ",").split(",") if p_.strip()]
+    full = " & ".join(parts)
+    return full if len(full) <= 14 or len(parts) < 2 else parts[0].split("-")[0] + "-" + parts[-1].split("-")[-1]
+
+
+assert num_text("2,4") == "2 & 4" and num_text("42;43;44;45;46;47") == "42-47" and num_text("1-6,12,14-19") == "1-19"
+
 def ey_of(top, inside):
     """The lowest roof block over the building: storeys stop below it."""
     return int(top[inside].min())
@@ -492,6 +502,9 @@ def prepare(G, P, layers, lidar, buildings):
         t = b["tags"]
         kind = t.get("building", "yes")
         lm = landmarks.LANDMARKS.get(b["id"])
+        for part in (lm or {}).get("parts", []):               # a wing with a look of its own
+            if bid[part["at"][1], part["at"][0]] == i:
+                lm = dict(lm, **part)
         if lm and lm["roof"] != "flat":
             # landmarks: gabled; a tower's height mustn't set the nave's ridge
             rkind, eave, ridge, d = fit_roof(rel, inside, edge, attached, force=lm.get("roof_kind", "gable"),
@@ -505,7 +518,7 @@ def prepare(G, P, layers, lidar, buildings):
         stats[rkind] += 1
         h = zlib.crc32(b["id"].encode())
         st = styles.get(streets.get(b["id"].lstrip("wr"), ""), None) or styles.get(streets.get(b["id"], ""), None)
-        big = kind not in HOUSE_KINDS or inside.sum() > 400
+        big = kind not in HOUSE_KINDS or inside.sum() > 400 or "part" in b
         if st is None:
             st = DEFAULT_STYLE if not big else {"walls": ["concrete", "red_brick", "buff_brick", "white_render"],
                                                   "roof": ["flat"], "tudor": 0}
@@ -594,14 +607,15 @@ def prepare(G, P, layers, lidar, buildings):
                 stats["shopfronts"] += 1
                 # the shop's real name on a sign on the fascia, facing the street
                 sname = t.get("name") or shop_names.get(b["id"])
-                if sname:
+                snum = num_text(t.get("addr:housenumber"))
+                if sname or snum:
                     fz, fx = np.argwhere(front)[len(np.argwhere(front)) // 2]
                     for name_, (dx, dz) in DIRS.items():
                         a_, c_ = fz + dz, fx + dx
                         if 0 <= a_ < inside.shape[0] and 0 <= c_ < inside.shape[1] and not inside[a_, c_]:
                             SX, SZ = int(x0 + c_), int(z0 + a_)
                             blocks[(SX, fl + 3, SZ)] = P("dark_oak_wall_sign", facing=name_)
-                            words = sname.split()
+                            words = (sname or "").split()
                             lines, cur = [], ""
                             for w_ in words:
                                 if len(cur) + len(w_) + 1 > 15 and cur:
@@ -609,11 +623,13 @@ def prepare(G, P, layers, lidar, buildings):
                                     cur = w_
                                 else:
                                     cur = (cur + " " + w_).strip()
-                            lines.append(cur)
-                            G.setdefault("sign_texts", []).append((SX, int(fl) + 3, SZ, lines[:4]))
+                            lines = ([l_ for l_ in lines + [cur] if l_][:3 if snum else 4]) + ([snum] if snum else [])
+                            G.setdefault("sign_texts", []).append((SX, int(fl) + 3, SZ, lines))
                             stats["named"] = stats.get("named", 0) + 1
+                            if snum:
+                                plaqued.add(b["id"])
                             break
-        church = kind in ("church", "chapel") or t.get("amenity") == "place_of_worship"
+        church = kind in ("church", "chapel") or t.get("amenity") == "place_of_worship" or bool(lm and lm.get("church"))
         ws = {"lancet": 1, "tall": 2}.get(lm.get("windows"), 0) if lm else (1 if church else 2 if st.get("family") == "school" else 0)
         if kind in ("garage", "garages"):
             ws = 3   # no windows
@@ -624,7 +640,7 @@ def prepare(G, P, layers, lidar, buildings):
         if lm:
             if lm.get("dress"):
                 landmarks.dressings(P, blocks, inside, edge, x0, z0, fl, top, lm)
-            if "tower" in lm:
+            if "tower" in lm and not b.get("part"):          # on the main wing only
                 pk = np.unravel_index(np.argmax(np.where(inside, rel, -99)), rel.shape)
                 landmarks.tower(P, blocks, inside, fl, fl + int(round(rel[pk])), (x0 + pk[1], z0 + pk[0]),
                                 lm["tower"], P(full), P(stair) if stair else None)
@@ -675,7 +691,7 @@ def prepare(G, P, layers, lidar, buildings):
                     if k % 3 == 0:
                         for dy in range(2, 6):
                             blocks[(x0 + xl, g0 + dy, z0 + zl)] = P("spruce_leaves", persistent="true")
-            if lm.get("gables"):
+            if lm.get("gables") and not b.get("part"):
                 landmarks.gables(P, blocks, inside, edge, bid, x0, z0, top, P(WALLS[wname]), P(full),
                                  P(lm["dress"] or WALLS[wname]), lm["gables"])
             if lm.get("ivy"):
@@ -891,7 +907,7 @@ def prepare(G, P, layers, lidar, buildings):
                                 lines[-1] += " " + w_
                             else:
                                 lines.append(w_)
-                        lines = lines[:3] + ([num.replace(",", " & ").replace(";", " & ")] if num else [])
+                        lines = lines[:3] + ([num_text(num)] if num else [])
                         if lines and not shop_colour:
                             spots = [(X + dx + dz * k, fl + 2, Z + dz + dx * k) for k in (1, -1)]
                             spots = [(SX, SY, SZ) for SX, SY, SZ in spots
@@ -904,6 +920,26 @@ def prepare(G, P, layers, lidar, buildings):
                             stats["numbered"] = stats.get("numbered", 0) + 1
                             plaqued.add(b["id"])
                         break
+    # wings split off one big building (layers.split_big): a doorway through the wall between two of them
+    # where their floors are level, so the inside joins up
+    links = {}
+    for dz, dx in ((0, 1), (1, 0)):
+        a_, b_ = bid[:bid.shape[0] - dz, :bid.shape[1] - dx], bid[dz:, dx:]
+        for z, x in zip(*np.nonzero((a_ != b_) & (a_ > 0) & (b_ > 0))):
+            p, q = int(a_[z, x]), int(b_[z, x])
+            if "part" in buildings[p] and buildings[p]["id"] == buildings[q]["id"] and base[z, x] == base[z + dz, x + dx]:
+                links.setdefault((p, q, dz), []).append((z, x))
+    for (p, q, dz), cells in links.items():
+        dx = 1 - dz
+        cells = [(z, x) for z, x in cells                    # a straight stretch of wall, not a corner
+                 if all(bid[z + k * dx, x + k * dz] == p and bid[z + dz + k * dx, x + dx + k * dz] == q for k in (-1, 1))]
+        if cells:
+            z, x = cells[len(cells) // 2]
+            fl = int(base[z, x])
+            for k in (-1, 0, 1, 2):
+                for y in (fl + 1, fl + 2):
+                    blocks[(x + k * dx, y, z + k * dz)] = P("air")
+    print("doorways between wings:", len(links))
     missed = [b_ for b_ in buildings[1:] if b_ and b_["id"] not in plaqued
               and (b_["tags"].get("addr:housenumber") or b_["tags"].get("addr:housename"))
               and b_["tags"].get("building") in HOUSE_KINDS]

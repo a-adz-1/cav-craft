@@ -513,6 +513,186 @@ def fill_numbers():
     by_street = {}
     for (wi, side), row in rows.items():
         by_street.setdefault(osm["lines"][wi]["tags"]["name"].upper(), []).append(row)
+    # which postcode each house is in, exactly (tools/addresses.py points). A postcode's houses along one side
+    # of the road take that postcode's run of numbers in order, so a number can only be out within its own
+    # postcode (about 15 houses), and is exact when the houses and the numbers match one for one.
+    exact, by_pc = 0, set()
+    pc_of, units = {}, {}
+    if os.path.exists("build/address_points.json"):
+        votes = {}
+        for e, nn, pc in json.load(open("build/address_points.json")):
+            z, x = int(N1 - nn), int(e - E0)
+            if not (4 <= z < building.shape[0] - 4 and 4 <= x < building.shape[1] - 4):
+                continue
+            i = building[z, x]
+            if not i:                              # a point on the doorstep: the nearest building within 4 m
+                w = building[z - 4:z + 5, x - 4:x + 5]
+                zz, xx = np.nonzero(w)
+                if not len(zz):
+                    continue
+                k_ = np.argmin((zz - 4) ** 2 + (xx - 4) ** 2)
+                i = w[zz[k_], xx[k_]]
+            votes.setdefault(int(i), {}).setdefault(pc, 0)
+            votes[int(i)][pc] += 1
+        for i, v in votes.items():
+            pc_of[i] = max(sorted(v), key=v.get)
+            units[i] = max(1, min(v[pc_of[i]], int(cnt[i]) // int(os.environ.get("UNIT_M2", 55)), 8))    # a terrace drawn as one outline
+    town = np.array(nodes[CAVERSHAM_NODE]["pt"], float)
+    has_num = lambda i: buildings[i]["tags"].get("addr:housenumber")
+    street_keys, cons = {}, {}
+    for key in rows:
+        street_keys.setdefault(osm["lines"][key[0]]["tags"]["name"].upper(), []).append(key)
+    ends = {}                                      # how many named roads touch each point
+    for ln in osm["lines"]:
+        if ln["tags"].get("highway"):
+            for pt in ln["pts"]:
+                ends[tuple(pt)] = ends.get(tuple(pt), 0) + 1
+    for street, srows in by_street.items() if pc_of else ():
+        pcs = addr.get(street)
+        if not pcs:
+            continue
+        members = [i for row in srows for _, i in row]
+        known_all = [(i, int(has_num(i))) for i in members if (has_num(i) or "").isdigit()]
+        every = [n_ for d_ in pcs.values() for n_ in d_["nums"]] + [v for _, v in known_all]
+        if not every:
+            continue
+
+        def sides_of(pc):
+            """This postcode's houses on the street, grouped by side of the road."""
+            out_ = []
+            for i in members:
+                if pc_of.get(i) != pc:
+                    continue
+                for c in out_:
+                    if same_side(*where(i), *where(c[0])):
+                        c.append(i)
+                        break
+                else:
+                    out_.append([i])
+            return out_
+        # odds one side and evens the other, or 1, 2, 3 in a row? One-sided runs say: a postcode or a row of
+        # known numbers that is all one parity means odd/even; one side of the road holding both means in a row
+        oe = con = 0
+        for pc, d_ in pcs.items():
+            par_n = [sum(n_ % 2 == q for n_ in d_["nums"]) for q in (0, 1)]
+            if min(par_n) == 0 and max(par_n) >= 3:
+                oe += max(par_n)
+            elif min(par_n) >= 2:
+                sd = sides_of(pc)
+                if len(sd) == 1 and len(sd[0]) >= 3:
+                    con += sum(par_n)
+        for row in srows:
+            kn = [int(has_num(i)) for _, i in row if (has_num(i) or "").isdigit()]
+            if len(kn) >= 3:
+                q = sum(v % 2 for v in kn)
+                if min(q, len(kn) - q) * 4 >= len(kn):
+                    con += len(kn)
+                else:
+                    oe += len(kn)
+        if not con and not oe:                     # nothing to go on: a dead-end close is usually numbered in a row
+            ws_ = {k[0] for k in street_keys[street]}
+            tips = [ends.get(tuple(osm["lines"][w_]["pts"][e_]), 0) for w_ in ws_ for e_ in (0, -1)]
+            con = int(tips.count(1) >= 1 and sum(len(osm["lines"][w_]["pts"]) for w_ in ws_) < 60)
+        consecutive = cons[street] = con > oe
+        step = 1 if consecutive else 2
+        taken = {v for _, v in known_all}
+        numbered = [(*where(i), v) for i, v in known_all]          # grows as houses get numbers
+
+        def deal(seq, ns, known):
+            """seq: houses in street order; ns: the numbers on record for them; known: {house: number}."""
+            nonlocal exact
+            u = [units.get(i, 1) for i in seq]
+            total, full = sum(u), list(range(ns[0], ns[-1] + 1, step))
+            if total <= len(full):
+                run = [full[round(k * (len(full) - 1) / max(total - 1, 1))] if total > 1 else full[len(full) // 2]
+                       for k in range(total)]
+                if total == len(full):
+                    run = full
+            else:                                  # more houses than the record's run: it carries on past both ends
+                start = full[0] - (total - len(full)) // 2 * step
+                while start < 1:
+                    start += step
+                run = [start + k * step for k in range(total)]
+            at = np.cumsum([0] + u)
+            if known:                              # slide the run to agree with the numbers OSM has
+                off = np.median([v - run[at[seq.index(i)]] for i, v in known.items()])
+                run = [r + int(round(off / step)) * step for r in run]
+            for j, i in enumerate(seq):
+                mine = run[at[j]:at[j + 1]]
+                if has_num(i) or buildings[i]["tags"].get("addr:housename") or mine[0] < 1 or set(mine) & taken:
+                    continue
+                buildings[i]["tags"]["addr:housenumber"] = ";".join(map(str, mine))
+                taken.update(mine)
+                numbered.append((*where(i), mine[0]))
+                exact += 1
+                by_pc.add(i)
+
+        if consecutive:
+            # a close numbered 1, 2, 3...: up the left side from the way in and back down the right
+            keys = street_keys[street]
+            if len({k[0] for k in keys}) != 1:
+                continue
+            wi = keys[0][0]
+            wp = osm["lines"][wi]["tags"], osm["lines"][wi]["pts"]
+            a_in, b_in = ends.get(tuple(wp[1][0]), 0) > 1, ends.get(tuple(wp[1][-1]), 0) > 1
+            from_end = b_in and not a_in           # the way is drawn from its dead end
+            left = sorted(rows.get((wi, -1.0 if from_end else 1.0), []), reverse=from_end)
+            right = sorted(rows.get((wi, 1.0 if from_end else -1.0), []), reverse=not from_end)
+            seq = [i for _, i in left] + [i for _, i in right]
+            ns = sorted({n_ for d_ in pcs.values() for n_ in d_["nums"]})
+            if seq and ns:
+                known = {i: v for i, v in known_all if i in seq}
+                if len(known) >= 2:                # the numbers OSM has say which way round it runs
+                    ks = sorted(known, key=seq.index)
+                    if known[ks[0]] > known[ks[-1]]:
+                        seq = seq[::-1]
+                deal(seq, ns, known)
+            continue
+        for both in (False, True):                 # one-sided postcodes first: they show which side is odd
+            for pc in sorted(pcs):
+                d_ = pcs[pc]
+                pars = sorted({n_ % 2 for n_ in d_["nums"]})
+                if not pars or (len(pars) > 1) != both:
+                    continue
+                for c in sides_of(pc):
+                    known = {i: v for i, v in known_all if i in c}
+                    if all(has_num(i) for i in c):
+                        continue
+                    if len(pars) == 1:
+                        par = pars[0]
+                    elif known:
+                        par = int(sum(v % 2 for v in known.values()) * 2 > len(known))
+                    else:
+                        e, nn = where(c[0])
+                        near = [f for f in sorted(numbered, key=lambda f: np.hypot(f[0] - e, f[1] - nn))[:12]
+                                if np.hypot(f[0] - e, f[1] - nn) < 100 and same_side(e, nn, f[0], f[1])][:3]
+                        if near:
+                            par = int(sum(f[2] % 2 for f in near) * 2 > len(near))
+                        else:                      # nothing to go on: odd numbers on the left going out of town
+                            m_ = np.mean([where(i) for i in c], axis=0)
+                            k_ = tree.query(m_)[1]
+                            out_ = tan[k_] * np.sign((m_ - town) @ tan[k_] or 1)
+                            par = int(out_[0] * (m_[1] - pts[k_][1]) - out_[1] * (m_[0] - pts[k_][0]) > 0)
+                    ns = sorted(n_ for n_ in d_["nums"] if n_ % 2 == par)
+                    if not ns:
+                        continue
+                    pts_ = np.array([where(i) for i in c])
+                    mid = pts_.mean(0)
+                    ax = np.linalg.svd(pts_ - mid, full_matrices=False)[2][0] if len(c) > 1 else np.array([1.0, 0.0])
+                    proj = (pts_ - mid) @ ax
+                    refs = [(f[0], f[1], f[2]) for f in numbered if f[2] % 2 == par] + \
+                           [(o["e"], o["n"], float(np.median(m_))) for q, o in pcs.items() if q != pc
+                            for m_ in [[n_ for n_ in o["nums"] if n_ % 2 == par]] if m_]
+                    if len(known) >= 2:
+                        up = sum((proj[c.index(i)] - proj.mean()) * (v - np.mean(list(known.values()))) for i, v in known.items())
+                    elif refs:                     # lower numbers lie towards the lower-numbered neighbours
+                        up = sum(((np.array(f[:2]) - mid) @ ax) * (f[2] - np.median(ns)) /
+                                 (1 + np.hypot(*(np.array(f[:2]) - mid)) / 50) ** 2 for f in refs)
+                    else:
+                        up = (mid - town) @ ax     # numbers run up away from the middle of town
+                    seq = [c[j] for j in (np.argsort(proj) if up >= 0 else np.argsort(-proj))]
+                    deal(seq, ns, known)
+    print("house numbers from each house's own postcode:", exact)
     for street, srows in by_street.items():
         pcs = addr.get(street)
         if not pcs:
@@ -537,7 +717,7 @@ def fill_numbers():
                         named += 1
             continue
         odd = sum(n_ % 2 for n_ in every) / len(every)
-        consecutive = 0.25 < odd < 0.75           # a close numbered 1, 2, 3 round the end
+        consecutive = cons.get(street, 0.25 < odd < 0.75)           # a close numbered 1, 2, 3 round the end
         for d_ in pcs.values():
             for par in ((None,) if consecutive else (0, 1)):
                 ns = [n_ for n_ in d_["nums"] if par is None or n_ % 2 == par]
@@ -587,6 +767,32 @@ def fill_numbers():
     if hidden:
         err = np.array([abs(int(buildings[i]["tags"]["addr:housenumber"]) - v) for i, v in hidden.items()
                         if buildings[i]["tags"].get("addr:housenumber", "").isdigit()])
+        why = {}
+        for i in set(hidden) - by_pc:
+            st_ = next(k for k, v in by_street.items() if any(i == j for row in v for _, j in row))
+            r = "no point" if i not in pc_of else "street not on record" if st_ not in addr else \
+                "postcode not on that street" if pc_of[i] not in addr[st_] else "no numbers in postcode" if not addr[st_][pc_of[i]]["nums"] else \
+                "two-parity postcode" if len({n_ % 2 for n_ in addr[st_][pc_of[i]]["nums"]}) > 1 else \
+                "has a number anyway" if buildings[i]["tags"].get("addr:housenumber") else "other"
+            why[r] = why.get(r, 0) + 1
+        print("  not reached:", why)
+        pw = rev = okd = 0
+        for st_, v in by_street.items():
+            pr = [(int(buildings[i]["tags"]["addr:housenumber"].split(";")[0]), hidden[i]) for row in v for _, i in row
+                  if i in hidden and i in by_pc]
+            if len(pr) >= 4:
+                a_, t_ = np.array(pr).T
+                pw += int(np.mean((a_ - t_) % 2 == 1) > 0.5)
+                c_ = np.corrcoef(a_, t_)[0, 1] if a_.std() and t_.std() else 0
+                rev += int(c_ < -0.3); okd += int(c_ > 0.3)
+                if os.environ.get("NUM_SHOW") and (c_ < 0.3 or np.mean((a_ - t_) % 2 == 1) > 0.5):
+                    print("   ", st_, cons.get(st_), sorted(pr, key=lambda q: q[1])[:14])
+        print("  streets (4+ tested): parity mostly wrong", pw, "direction reversed", rev, "direction right", okd)
+        for lab_, sel in (("own postcode", by_pc), ("the rest", set(hidden) - by_pc)):
+            e_ = np.array([abs(int(buildings[i]["tags"]["addr:housenumber"].split(";")[0]) - v) for i, v in hidden.items()
+                           if i in sel and buildings[i]["tags"].get("addr:housenumber", "").split(";")[0].isdigit()])
+            if len(e_):
+                print(f"  {lab_}: {len(e_)}; exact {np.mean(e_ == 0):.0%}, within 2 {np.mean(e_ <= 2):.0%}, within 6 {np.mean(e_ <= 6):.0%}")
         print(f"NUM_TEST: {len(hidden)} hidden, {len(err)} given a number; exact {np.mean(err == 0):.0%}, within 2 "
               f"{np.mean(err <= 2):.0%}, within 6 {np.mean(err <= 6):.0%}, median {np.median(err):.0f} off")
         sys.exit()
@@ -637,6 +843,105 @@ def fill_numbers():
 
 
 fill_numbers()
+
+
+def split_big():
+    """Big outlines (schools, a hospital, blocks of flats) are often one polygon round several wings and a yard.
+    Where the LiDAR shows open ground inside one, that becomes a paved courtyard; where it shows wings of
+    clearly different heights (4 m or more apart), each wing becomes its own building (same id and tags, a
+    "part" number) so it gets its own eaves and roof."""
+    dsm = lidar["dsm"]
+    # looked at one by one: Queen Anne's ranges (about 12 m) and its halls and low wings (about 8 m)
+    gaps = {"w160826605": 3.0}
+    # (x0, z0, x1, z1) in world blocks that is a wing of its own whatever its height: Queen Anne's chapel
+    boxes = {"w160826605": [(3762, 3064, 3792, 3093)]}
+
+    def cut(v, gap=4.0):
+        best = None
+        for t in np.arange(v.min() + 1, v.max(), 0.5):
+            lo, hi = v[v < t], v[v >= t]
+            if min(lo.size, hi.size) < max(150, 0.1 * v.size) or hi.mean() - lo.mean() < gap:
+                continue
+            sc = lo.size * hi.size * (hi.mean() - lo.mean()) ** 2
+            if best is None or sc > best[0]:
+                best = (sc, t)
+        return best and best[1]
+    yards = parts = 0
+    for i, sl in enumerate(ndimage.find_objects(building), 1):
+        if sl is None or (building[sl] == i).sum() < 600:
+            continue
+        ins = building[sl] == i
+        zz, xx = np.mgrid[sl]
+        if buildings[i].get("turn"):                # squared to the grid: the LiDAR has it at its real angle
+            th, cx, cz = buildings[i]["turn"]
+            dx, dz = xx - cx, zz - cz
+            xo = np.clip(np.rint(cx + np.cos(th) * dx + np.sin(th) * dz).astype(int), 0, W - 1)
+            zo = np.clip(np.rint(cz - np.sin(th) * dx + np.cos(th) * dz).astype(int), 0, H - 1)
+            rel = dsm[zo, xo] - ground[sl][ins].mean()
+        else:
+            rel = dsm[sl] - ground[sl][ins].mean()
+        low = ins & (rel < 1.5)
+        if low.sum() > 0.5 * ins.sum():
+            continue                                # built after the LiDAR survey: nothing to read
+        lab, k = ndimage.label(ndimage.binary_opening(low, iterations=2))
+        for j in range(1, k + 1):
+            yard = ndimage.binary_dilation(lab == j, iterations=2) & low
+            if (lab == j).sum() >= 40:
+                building[sl][yard] = 0
+                surface[sl][yard] = S["paved"]
+                ins &= ~yard
+                yards += 1
+        lab, k = ndimage.label(ins)                 # a yard can cut the outline in two
+        if k > 1:
+            ins = lab == np.bincount(lab[ins]).argmax()
+            building[sl][(building[sl] == i) & ~ins] = 0
+        p75 = ndimage.percentile_filter(np.where(ins, rel, np.median(rel[ins])), 75, size=9)
+        cls = np.zeros(ins.shape, int)
+        t1 = cut(p75[ins], gaps.get(buildings[i]["id"], 4.0))
+        if t1 is not None:
+            cls = (p75 >= t1).astype(int) * 2
+            for c in (0, 2):
+                m = ins & (cls == c)
+                t2 = cut(p75[m])
+                if t2 is not None:
+                    cls[m & (p75 >= t2)] += 1
+            cls = ndimage.median_filter(cls, size=5)
+        zone = np.zeros(ins.shape, int)             # connected zones of one height class; small ones join a neighbour
+        n = 0
+        for c in np.unique(cls[ins]):
+            lab, k = ndimage.label(ins & (cls == c))
+            zone[lab > 0] = lab[lab > 0] + n
+            n += k
+        for _ in range(4 * n):
+            sizes = np.bincount(zone[ins], minlength=n + 1)
+            small = [z for z in range(1, n + 1) if 0 < sizes[z] < 120]
+            if not small:
+                break
+            z = min(small, key=lambda z_: sizes[z_])
+            near = zone[ndimage.binary_dilation(zone == z) & ins & (zone != z)]
+            if not near.size:
+                sizes[z] = 0
+                zone[zone == z] = 0
+                building[sl][ins & (zone == 0)] = 0
+                ins &= zone > 0
+                continue
+            zone[zone == z] = np.bincount(near).argmax()
+        for bx0, bz0, bx1, bz1 in boxes.get(buildings[i]["id"], []):
+            n += 1
+            zone[ins & (xx >= bx0) & (xx < bx1) & (zz >= bz0) & (zz < bz1)] = n
+        ids = [z for z in np.unique(zone[ins]) if z]
+        ids.sort(key=lambda z: -(zone == z).sum())
+        for k, z in enumerate(ids[1:], 1):          # the biggest wing keeps the name, number and index
+            buildings.append(dict(buildings[i], part=k, tags={a: v for a, v in buildings[i]["tags"].items()
+                                                             if a not in ("name", "addr:housenumber", "addr:housename")}))
+            building[sl][ins & (zone == z)] = len(buildings) - 1
+            parts += 1
+        if len(ids) > 1:
+            buildings[i]["part"] = 0
+    print("big buildings: courtyards opened:", yards, "extra wings split off by height:", parts)
+
+
+split_big()
 
 json.dump(buildings, open("build/buildings.json", "w"))
 json.dump([{"id": b["id"], "tags": b["tags"], "pts": b["pts"]} for b in bridges], open("build/bridges.json", "w"))
