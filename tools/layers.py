@@ -723,7 +723,9 @@ def fill_numbers():
                 ns = [n_ for n_ in d_["nums"] if par is None or n_ % 2 == par]
                 if len(ns) >= 2 or (ns and len(ns) * 2 >= len(d_["nums"])):
                     fixes.append((d_["e"], d_["n"], float(np.median(ns)), False))
-        taken = {f[2] for f in fixes if f[3]}
+        taken = {f[2] for f in fixes if f[3]} | {int(v) for row in srows for _, i in row      # "12;14" on a terrace
+                                                 for v in (buildings[i]["tags"].get("addr:housenumber") or "").split(";")
+                                                 if v.isdigit()}
         step = 1 if consecutive else 2
         for row in srows:
             rk = [int(v) for v in (buildings[i]["tags"].get("addr:housenumber") for _, i in row) if v and v.isdigit()]
@@ -819,7 +821,7 @@ def fill_numbers():
                     last = (j, int(num[j]))
                 elif last:
                     vals[j] = last[1] + step * (j - last[0])
-        taken = {int(v) for v in num if v and v.isdigit()}
+        taken = {int(v_) for v in num if v for v_ in v.split(";") if v_.isdigit()}
         prev = None
         for j, (_, i) in enumerate(row):
             have = buildings[i]["tags"].get("addr:housenumber")
@@ -847,7 +849,8 @@ fill_numbers()
 
 def split_big():
     """Big outlines (schools, a hospital, blocks of flats) are often one polygon round several wings and a yard.
-    Where the LiDAR shows open ground inside one, that becomes a paved courtyard; where it shows wings of
+    Where the LiDAR shows open ground inside one checked against the aerial view (yards_ok; elsewhere low
+    ground is as likely a building newer than the LiDAR), that becomes a paved courtyard; where it shows wings of
     clearly different heights (4 m or more apart), each wing becomes its own building (same id and tags, a
     "part" number) so it gets its own eaves and roof."""
     dsm = lidar["dsm"]
@@ -855,6 +858,7 @@ def split_big():
     gaps = {"w160826605": 3.0}
     # (x0, z0, x1, z1) in world blocks that is a wing of its own whatever its height: Queen Anne's chapel
     boxes = {"w160826605": [(3762, 3064, 3792, 3093)]}
+    yards_ok = {"w160826605"}
 
     def cut(v, gap=4.0):
         best = None
@@ -884,7 +888,7 @@ def split_big():
         if low.sum() > 0.5 * ins.sum():
             continue                                # built after the LiDAR survey: nothing to read
         lab, k = ndimage.label(ndimage.binary_opening(low, iterations=2))
-        for j in range(1, k + 1):
+        for j in range(1, k + 1) if buildings[i]["id"] in yards_ok else ():
             yard = ndimage.binary_dilation(lab == j, iterations=2) & low
             if (lab == j).sum() >= 40:
                 building[sl][yard] = 0
@@ -892,7 +896,7 @@ def split_big():
                 ins &= ~yard
                 yards += 1
         lab, k = ndimage.label(ins)                 # a yard can cut the outline in two
-        if k > 1:
+        if k > 1 and buildings[i]["id"] in yards_ok:
             ins = lab == np.bincount(lab[ins]).argmax()
             building[sl][(building[sl] == i) & ~ins] = 0
         p75 = ndimage.percentile_filter(np.where(ins, rel, np.median(rel[ins])), 75, size=9)
@@ -912,18 +916,16 @@ def split_big():
             lab, k = ndimage.label(ins & (cls == c))
             zone[lab > 0] = lab[lab > 0] + n
             n += k
+        alone = set()
         for _ in range(4 * n):
             sizes = np.bincount(zone[ins], minlength=n + 1)
-            small = [z for z in range(1, n + 1) if 0 < sizes[z] < 120]
+            small = [z for z in range(1, n + 1) if 0 < sizes[z] < 120 and z not in alone]
             if not small:
                 break
             z = min(small, key=lambda z_: sizes[z_])
             near = zone[ndimage.binary_dilation(zone == z) & ins & (zone != z)]
-            if not near.size:
-                sizes[z] = 0
-                zone[zone == z] = 0
-                building[sl][ins & (zone == 0)] = 0
-                ins &= zone > 0
+            if not near.size:                   # a bit on its own: leave it be
+                alone.add(z)
                 continue
             zone[zone == z] = np.bincount(near).argmax()
         for bx0, bz0, bx1, bz1 in boxes.get(buildings[i]["id"], []):

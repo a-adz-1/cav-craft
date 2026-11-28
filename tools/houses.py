@@ -606,7 +606,7 @@ def prepare(G, P, layers, lidar, buildings):
                 stats.setdefault("shopfronts", 0)
                 stats["shopfronts"] += 1
                 # the shop's real name on a sign on the fascia, facing the street
-                sname = t.get("name") or shop_names.get(b["id"])
+                sname = t.get("name") or (shop_names.get(b["id"]) if not b.get("part") else None)
                 snum = num_text(t.get("addr:housenumber"))
                 if sname or snum:
                     fz, fx = np.argwhere(front)[len(np.argwhere(front)) // 2]
@@ -644,9 +644,9 @@ def prepare(G, P, layers, lidar, buildings):
                 pk = np.unravel_index(np.argmax(np.where(inside, rel, -99)), rel.shape)
                 landmarks.tower(P, blocks, inside, fl, fl + int(round(rel[pk])), (x0 + pk[1], z0 + pk[0]),
                                 lm["tower"], P(full), P(stair) if stair else None)
-            if lm.get("colonnade"):
+            if lm.get("colonnade") and not b.get("part"):
                 landmarks.colonnade(P, blocks, inside, x0, z0, fl, (ry - 1) if rkind == "flat" else ey, lm["colonnade"])
-            if lm.get("terrace"):
+            if lm.get("terrace") and not b.get("part"):
                 # a paved terrace at floor level along the south front, balustraded, steps down at its middle
                 south = np.zeros_like(inside)
                 for k in range(1, 7):
